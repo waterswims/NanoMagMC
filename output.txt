@@ -1,0 +1,6788 @@
+Integer RNG started
+Integer RNG started
+Integer RNG started
+Integer RNG started
+Integer RNG started
+Integer RNG started
+Integer RNG started
+Integer RNG started
+Floating Point RNG started
+Floating Point RNG started
+Floating Point RNG started
+Floating Point RNG started
+Floating Point RNG started
+Floating Point RNG started
+Floating Point RNG started
+Floating Point RNG started
+Total number of processes is 8
+2 lattices per process
+3000 equillibriation steps per spin per temperature step
+Running MC...
+beta = 0.012894
+beta = 0.012894
+beta = 0.012894
+beta = 0.012894
+beta = 0.012894
+beta = 0.012894
+beta = 0.012894beta = 
+0.012894
+Number of Energy flips:3840392
+Number of Random flips:3843581
+Average dE:60.2617
+beta = 0.012894
+Number of Energy flips:3841997
+Number of Random flips:3842114
+Average dE:60.2522
+beta = 0.012894
+Number of Energy flips:3840123
+Number of Random flips:3841602
+Average dE:60.2823
+beta = 0.012894
+Number of Energy flips:3840766
+Number of Random flips:3840047
+Average dE:60.2584
+beta = 0.012894
+Number of Energy flips:3841945
+Number of Random flips:3843121
+Average dE:60.1844
+beta = 0.012894
+Number of Energy flips:3845031
+Number of Random flips:3842395
+Average dE:60.1347
+beta = 0.012894
+Number of Energy flips:3843008
+Number of Random flips:3843349
+Average dE:60.2096
+beta = 0.012894
+Number of Energy flips:3845749
+Number of Random flips:3843298
+Average dE:60.1697
+beta = 0.012894
+Number of Energy flips:769255
+Number of Random flips:768610
+Average dE:60.1168
+beta = 0.0130096
+Number of Energy flips:770562
+Number of Random flips:768534
+Average dE:60.1436
+beta = 0.0130096
+Number of Energy flips:768346
+Number of Random flips:768254
+Average dE:60.2613
+beta = 0.0130096
+Number of Energy flips:767609
+Number of Random flips:768648
+Average dE:60.2612
+beta = 0.0130096
+Number of Energy flips:768215
+Number of Random flips:768214
+Average dE:60.2247
+beta = 0.0130096
+Number of Energy flips:768472
+Number of Random flips:768235
+Average dE:60.2061
+beta = 0.0130096
+Number of Energy flips:768636
+Number of Random flips:769583
+Average dE:60.173
+beta = 0.0130096
+Number of Energy flips:768902
+Number of Random flips:768698
+Average dE:60.24
+Temp 0 of 100 completed
+beta = 0.0130096
+Number of Energy flips:766747
+Number of Random flips:766138
+Average dE:60.2962
+beta = 0.0131273
+Number of Energy flips:764435
+Number of Random flips:764423
+Average dE:60.5961
+beta = 0.0131273
+Number of Energy flips:765685
+Number of Random flips:765397
+Average dE:60.3731
+beta = 0.0131273
+Number of Energy flips:765225
+Number of Random flips:765166
+Average dE:60.542
+beta = 0.0131273
+Number of Energy flips:765029
+Number of Random flips:763651
+Average dE:60.5392
+beta = 0.0131273
+Number of Energy flips:765146
+Number of Random flips:765429
+Average dE:60.3756
+beta = 0.0131273
+Number of Energy flips:765364
+Number of Random flips:764793
+Average dE:60.4815
+beta = 0.0131273
+Number of Energy flips:765687
+Number of Random flips:764541
+Average dE:60.4298
+Temp 1 of 100 completed
+beta = 0.0131273
+Number of Energy flips:762307
+Number of Random flips:761497
+Average dE:60.703
+beta = 0.0132472
+Number of Energy flips:762778
+Number of Random flips:761940
+Average dE:60.5881
+beta = 0.0132472
+Number of Energy flips:761316
+Number of Random flips:762227
+Average dE:60.6479
+beta = 0.0132472
+Number of Energy flips:761521
+Number of Random flips:761629
+Average dE:60.6768
+beta = 0.0132472
+Number of Energy flips:762822
+Number of Random flips:762748
+Average dE:60.6139
+beta = 0.0132472
+Number of Energy flips:762685
+Number of Random flips:762152
+Average dE:60.6299
+beta = 0.0132472
+Number of Energy flips:759717
+Number of Random flips:760843
+Average dE:60.8787
+beta = 0.0132472
+Number of Energy flips:762523
+Number of Random flips:762672
+Average dE:60.6324
+Temp 2 of 100 completed
+beta = 0.0132472
+Number of Energy flips:758292
+Number of Random flips:759806
+Average dE:60.7779
+beta = 0.0133693
+Number of Energy flips:759598
+Number of Random flips:759664
+Average dE:60.8305
+beta = 0.0133693
+Number of Energy flips:759602
+Number of Random flips:758455
+Average dE:60.7847
+beta = 0.0133693
+Number of Energy flips:760215
+Number of Random flips:758926
+Average dE:60.8465
+beta = 0.0133693
+Number of Energy flips:759551
+Number of Random flips:759016
+Average dE:60.7845
+beta = 0.0133693
+Number of Energy flips:759055
+Number of Random flips:759746
+Average dE:60.8181
+beta = 0.0133693
+Number of Energy flips:758801
+Number of Random flips:758263
+Average dE:60.91
+beta = 0.0133693
+Number of Energy flips:758826
+Number of Random flips:758314
+Average dE:61.0191
+Temp 3 of 100 completed
+beta = 0.0133693
+Number of Energy flips:756110
+Number of Random flips:755083
+Average dE:61.1717
+beta = 0.0134937
+Number of Energy flips:755198
+Number of Random flips:755662
+Average dE:61.1466
+beta = 0.0134937
+Number of Energy flips:756102
+Number of Random flips:756288
+Average dE:61.1179
+beta = 0.0134937
+Number of Energy flips:756686
+Number of Random flips:757551
+Average dE:60.8885
+beta = 0.0134937
+Number of Energy flips:756390
+Number of Random flips:755759
+Average dE:61.1027
+beta = 0.0134937
+Number of Energy flips:754886
+Number of Random flips:755234
+Average dE:61.2623
+beta = 0.0134937
+Number of Energy flips:755104
+Number of Random flips:755210
+Average dE:61.2062
+beta = 0.0134937
+Number of Energy flips:755285
+Number of Random flips:754200
+Average dE:61.2055
+Temp 4 of 100 completed
+beta = 0.0134937
+Number of Energy flips:752711
+Number of Random flips:753253
+Average dE:61.2552
+beta = 0.0136204
+Number of Energy flips:752148
+Number of Random flips:751794
+Average dE:61.4044
+beta = 0.0136204
+Number of Energy flips:751108
+Number of Random flips:751594
+Average dE:61.4291
+beta = 0.0136204
+Number of Energy flips:752144
+Number of Random flips:752929
+Average dE:61.3304
+beta = 0.0136204
+Number of Energy flips:751592
+Number of Random flips:752439
+Average dE:61.2913
+beta = 0.0136204
+Number of Energy flips:753869
+Number of Random flips:753024
+Average dE:61.2325
+beta = 0.0136204
+Number of Energy flips:751980
+Number of Random flips:752366
+Average dE:61.4185
+beta = 0.0136204
+Number of Energy flips:752776
+Number of Random flips:752972
+Average dE:61.333
+Temp 5 of 100 completed
+beta = 0.0136204
+Number of Energy flips:748618
+Number of Random flips:749807
+Average dE:61.4824
+beta = 0.0137495
+Number of Energy flips:749653
+Number of Random flips:749787
+Average dE:61.4382
+beta = 0.0137495
+Number of Energy flips:749625
+Number of Random flips:747981
+Average dE:61.6345
+beta = 0.0137495
+Number of Energy flips:749665
+Number of Random flips:748121
+Average dE:61.5165
+beta = 0.0137495
+Number of Energy flips:748632
+Number of Random flips:749374
+Average dE:61.5731
+beta = 0.0137495
+Number of Energy flips:750218
+Number of Random flips:748486
+Average dE:61.6647
+beta = 0.0137495
+Number of Energy flips:750016
+Number of Random flips:749913
+Average dE:61.4114
+beta = 0.0137495
+Number of Energy flips:748964
+Number of Random flips:748601
+Average dE:61.4955
+Temp 6 of 100 completed
+beta = 0.0137495
+Number of Energy flips:744205
+Number of Random flips:745506
+Average dE:61.8377
+beta = 0.0138811
+Number of Energy flips:744421
+Number of Random flips:745034
+Average dE:61.9538
+beta = 0.0138811
+Number of Energy flips:745097
+Number of Random flips:745042
+Average dE:62.0169
+beta = 0.0138811
+Number of Energy flips:746069
+Number of Random flips:745208
+Average dE:61.8504
+beta = 0.0138811
+Number of Energy flips:744368
+Number of Random flips:744323
+Average dE:61.9946
+beta = 0.0138811
+Number of Energy flips:744953
+Number of Random flips:745392
+Average dE:61.929
+beta = 0.0138811
+Number of Energy flips:744484
+Number of Random flips:744340
+Average dE:61.9423
+beta = 0.0138811
+Number of Energy flips:745746
+Number of Random flips:745655
+Average dE:61.8376
+Temp 7 of 100 completed
+beta = 0.0138811
+Number of Energy flips:740845
+Number of Random flips:740986
+Average dE:62.2331
+beta = 0.0140152
+Number of Energy flips:741434
+Number of Random flips:740655
+Average dE:62.2366
+beta = 0.0140152
+Number of Energy flips:743037
+Number of Random flips:742496
+Average dE:62.0114
+beta = 0.0140152
+Number of Energy flips:742596
+Number of Random flips:742893
+Average dE:61.9038
+beta = 0.0140152
+Number of Energy flips:741333
+Number of Random flips:740992
+Average dE:62.1976
+beta = 0.0140152
+Number of Energy flips:741798
+Number of Random flips:740689
+Average dE:62.3196
+beta = 0.0140152
+Number of Energy flips:740247
+Number of Random flips:741982
+Average dE:62.1763
+beta = 0.0140152
+Number of Energy flips:739045
+Number of Random flips:738688
+Average dE:62.346
+beta = 0.0141519
+Number of Energy flips:740866
+Number of Random flips:741360
+Average dE:62.2086
+Temp 8 of 100 completed
+beta = 0.0140152
+Number of Energy flips:738702
+Number of Random flips:738713
+Average dE:62.1563
+beta = 0.0141519
+Number of Energy flips:738198
+Number of Random flips:738941
+Average dE:62.2976
+beta = 0.0141519
+Number of Energy flips:736850
+Number of Random flips:738229
+Average dE:62.5092
+beta = 0.0141519
+Number of Energy flips:738426
+Number of Random flips:737388
+Average dE:62.4013
+beta = 0.0141519
+Number of Energy flips:737674
+Number of Random flips:737707
+Average dE:62.423
+beta = 0.0141519
+Number of Energy flips:737937
+Number of Random flips:738394
+Average dE:62.411
+beta = 0.0141519
+Number of Energy flips:735030
+Number of Random flips:735150
+Average dE:62.6531
+beta = 0.0142913
+Number of Energy flips:733713
+Number of Random flips:734583
+Average dE:62.6809
+beta = 0.0142913
+Number of Energy flips:737088
+Number of Random flips:736600
+Average dE:62.6576
+Temp 9 of 100 completed
+beta = 0.0141519
+Number of Energy flips:733995
+Number of Random flips:734239
+Average dE:62.6822
+beta = 0.0142913
+Number of Energy flips:735864
+Number of Random flips:734605
+Average dE:62.5932
+beta = 0.0142913
+Number of Energy flips:732898
+Number of Random flips:733555
+Average dE:62.8329
+beta = 0.0142913
+Number of Energy flips:733980
+Number of Random flips:735009
+Average dE:62.6839
+beta = 0.0142913
+Number of Energy flips:734098
+Number of Random flips:733072
+Average dE:62.7891
+beta = 0.0142913
+Number of Energy flips:730035
+Number of Random flips:730330
+Average dE:63.0792
+beta = 0.0144335
+Number of Energy flips:731458
+Number of Random flips:731998
+Average dE:62.8534
+beta = 0.0144335
+Number of Energy flips:733862
+Number of Random flips:733311
+Average dE:62.8927
+Temp 10 of 100 completed
+beta = 0.0142913
+Number of Energy flips:731372
+Number of Random flips:730928
+Average dE:62.8265
+beta = 0.0144335
+Number of Energy flips:731980
+Number of Random flips:730633
+Average dE:62.8532
+beta = 0.0144335
+Number of Energy flips:730855
+Number of Random flips:730555
+Average dE:62.9715
+beta = 0.0144335
+Number of Energy flips:731083
+Number of Random flips:728938
+Average dE:63.0207
+beta = 0.0144335
+Number of Energy flips:731429
+Number of Random flips:729995
+Average dE:62.9272
+beta = 0.0144335
+Number of Energy flips:725969
+Number of Random flips:726237
+Average dE:63.3742
+beta = 0.0145786
+Number of Energy flips:725808
+Number of Random flips:726180
+Average dE:63.3989
+beta = 0.0145786
+Number of Energy flips:726253
+Number of Random flips:726289
+Average dE:63.2379
+beta = 0.0145786
+Number of Energy flips:730165
+Number of Random flips:730834
+Average dE:63.021
+Temp 11 of 100 completed
+beta = 0.0144335
+Number of Energy flips:726702
+Number of Random flips:726950
+Average dE:63.2826
+beta = 0.0145786
+Number of Energy flips:725777
+Number of Random flips:725429
+Average dE:63.3949
+beta = 0.0145786
+Number of Energy flips:726313
+Number of Random flips:726536
+Average dE:63.3585
+beta = 0.0145786
+Number of Energy flips:726049
+Number of Random flips:725587
+Average dE:63.5032
+beta = 0.0145786
+Number of Energy flips:723035
+Number of Random flips:723570
+Average dE:63.4878
+beta = 0.0147266
+Number of Energy flips:722126
+Number of Random flips:723015
+Average dE:63.5921
+beta = 0.0147266
+Number of Energy flips:723452
+Number of Random flips:721486
+Average dE:63.6932
+beta = 0.0147266
+Number of Energy flips:725929
+Number of Random flips:726676
+Average dE:63.3401
+Temp 12 of 100 completed
+beta = 0.0145786
+Number of Energy flips:722487
+Number of Random flips:722833
+Average dE:63.6137
+beta = 0.0147266
+Number of Energy flips:723512
+Number of Random flips:722550
+Average dE:63.5466
+beta = 0.0147266
+Number of Energy flips:721516
+Number of Random flips:722195
+Average dE:63.6694
+beta = 0.0147266
+Number of Energy flips:720883
+Number of Random flips:721827
+Average dE:63.7245
+beta = 0.0147266
+Number of Energy flips:719399
+Number of Random flips:720175
+Average dE:63.7092
+beta = 0.0148776
+Number of Energy flips:718936
+Number of Random flips:718330
+Average dE:63.9476
+beta = 0.0148776
+Number of Energy flips:718489
+Number of Random flips:718970
+Average dE:63.9339
+beta = 0.0148776
+Number of Energy flips:718013
+Number of Random flips:717857
+Average dE:64.0354
+beta = 0.0148776
+Number of Energy flips:721500
+Number of Random flips:722107
+Average dE:63.6945
+Temp 13 of 100 completed
+beta = 0.0147266
+Number of Energy flips:718145
+Number of Random flips:716951
+Average dE:64.0965
+beta = 0.0148776
+Number of Energy flips:718227
+Number of Random flips:718678
+Average dE:63.8219
+beta = 0.0148776
+Number of Energy flips:717271
+Number of Random flips:717224
+Average dE:64.1099
+beta = 0.0148776
+Number of Energy flips:714122
+Number of Random flips:713963
+Average dE:64.2924
+beta = 0.0150318
+Number of Energy flips:714978
+Number of Random flips:713853
+Average dE:64.3578
+beta = 0.0150318
+Number of Energy flips:714170
+Number of Random flips:714497
+Average dE:64.2267
+beta = 0.0150318
+Number of Energy flips:713997
+Number of Random flips:712520
+Average dE:64.3496
+beta = 0.0150318
+Number of Energy flips:717349
+Number of Random flips:717756
+Average dE:64.1481
+Temp 14 of 100 completed
+beta = 0.0148776
+Number of Energy flips:713867
+Number of Random flips:714153
+Average dE:64.247
+beta = 0.0150318
+Number of Energy flips:714122
+Number of Random flips:713127
+Average dE:64.4564
+beta = 0.0150318
+Number of Energy flips:713097
+Number of Random flips:714694
+Average dE:64.3232
+beta = 0.0150318
+Number of Energy flips:710006
+Number of Random flips:707645
+Average dE:64.8157
+beta = 0.0151892
+Number of Energy flips:709113
+Number of Random flips:709564
+Average dE:64.7645
+beta = 0.0151892
+Number of Energy flips:709496
+Number of Random flips:709661
+Average dE:64.5247
+beta = 0.0151892
+Number of Energy flips:709561
+Number of Random flips:709138
+Average dE:64.7419
+beta = 0.0151892
+Number of Energy flips:712530
+Number of Random flips:714144
+Average dE:64.4007
+Temp 15 of 100 completed
+beta = 0.0150318
+Number of Energy flips:709684
+Number of Random flips:710559
+Average dE:64.5209
+beta = 0.0151892
+Number of Energy flips:710325
+Number of Random flips:709728
+Average dE:64.5711
+beta = 0.0151892
+Number of Energy flips:709576
+Number of Random flips:709102
+Average dE:64.7401
+beta = 0.0151892
+Number of Energy flips:703911
+Number of Random flips:704572
+Average dE:65.1835
+beta = 0.01535
+Number of Energy flips:706671
+Number of Random flips:705766
+Average dE:64.7666
+beta = 0.01535
+Number of Energy flips:705854
+Number of Random flips:705775
+Average dE:65.0403
+beta = 0.01535
+Number of Energy flips:705591
+Number of Random flips:705836
+Average dE:64.9472
+beta = 0.01535
+Number of Energy flips:710066
+Number of Random flips:709378
+Average dE:64.6961
+Temp 16 of 100 completed
+beta = 0.0151892
+Number of Energy flips:703821
+Number of Random flips:703836
+Average dE:65.1424
+beta = 0.01535
+Number of Energy flips:704890
+Number of Random flips:704746
+Average dE:65.1288
+beta = 0.01535
+Number of Energy flips:704411
+Number of Random flips:704715
+Average dE:65.0828
+beta = 0.01535
+Number of Energy flips:700045
+Number of Random flips:700225
+Average dE:65.5611
+beta = 0.0155141
+Number of Energy flips:700076
+Number of Random flips:699873
+Average dE:65.6822
+beta = 0.0155141
+Number of Energy flips:702035
+Number of Random flips:701409
+Average dE:65.3434
+beta = 0.0155141
+Number of Energy flips:701020
+Number of Random flips:701048
+Average dE:65.2471
+beta = 0.0155141
+Number of Energy flips:705241
+Number of Random flips:705543
+Average dE:64.8976
+Temp 17 of 100 completed
+beta = 0.01535
+Number of Energy flips:701295
+Number of Random flips:700747
+Average dE:65.369
+beta = 0.0155141
+Number of Energy flips:700140
+Number of Random flips:699641
+Average dE:65.4981
+beta = 0.0155141
+Number of Energy flips:696544
+Number of Random flips:696958
+Average dE:65.6589
+beta = 0.0156818
+Number of Energy flips:700456
+Number of Random flips:701463
+Average dE:65.3803
+beta = 0.0155141
+Number of Energy flips:696703
+Number of Random flips:696909
+Average dE:65.707
+beta = 0.0156818
+Number of Energy flips:695536
+Number of Random flips:696667
+Average dE:65.8283
+beta = 0.0156818
+Number of Energy flips:696835
+Number of Random flips:695992
+Average dE:65.7384
+beta = 0.0156818
+Number of Energy flips:700968
+Number of Random flips:700458
+Average dE:65.3867
+Temp 18 of 100 completed
+beta = 0.0155141
+Number of Energy flips:694218
+Number of Random flips:694904
+Average dE:65.9284
+beta = 0.0156818
+Number of Energy flips:695926
+Number of Random flips:695997
+Average dE:65.7304
+beta = 0.0156818
+Number of Energy flips:690639
+Number of Random flips:690832
+Average dE:66.266
+beta = 0.0158532
+Number of Energy flips:695800
+Number of Random flips:696629
+Average dE:65.6709
+beta = 0.0156818
+Number of Energy flips:690087
+Number of Random flips:690055
+Average dE:66.4293
+beta = 0.0158532
+Number of Energy flips:691627
+Number of Random flips:691893
+Average dE:65.9855
+beta = 0.0158532
+Number of Energy flips:689727
+Number of Random flips:689410
+Average dE:66.5299
+beta = 0.0158532
+Number of Energy flips:695568
+Number of Random flips:695502
+Average dE:65.9272
+Temp 19 of 100 completed
+beta = 0.0156818
+Number of Energy flips:691914
+Number of Random flips:691749
+Average dE:66.0783
+beta = 0.0158532
+Number of Energy flips:690578
+Number of Random flips:691160
+Average dE:66.376
+beta = 0.0158532
+Number of Energy flips:686072
+Number of Random flips:685806
+Average dE:66.5651
+beta = 0.0160284
+Number of Energy flips:685806
+Number of Random flips:686392
+Average dE:66.5793
+beta = 0.0160284
+Number of Energy flips:691917
+Number of Random flips:691886
+Average dE:66.1338
+beta = 0.0158532
+Number of Energy flips:686234
+Number of Random flips:685920
+Average dE:66.6417
+beta = 0.0160284
+Number of Energy flips:686631
+Number of Random flips:686544
+Average dE:66.5654
+beta = 0.0160284
+Number of Energy flips:691253
+Number of Random flips:690322
+Average dE:66.4572
+Temp 20 of 100 completed
+beta = 0.0158532
+Number of Energy flips:685911
+Number of Random flips:687040
+Average dE:66.6718
+beta = 0.0160284
+Number of Energy flips:687070
+Number of Random flips:685712
+Average dE:66.7154
+beta = 0.0160284
+Number of Energy flips:679404
+Number of Random flips:680331
+Average dE:67.2541
+beta = 0.0162075
+Number of Energy flips:680539
+Number of Random flips:681659
+Average dE:67.0192
+beta = 0.0162075
+Number of Energy flips:684343
+Number of Random flips:685115
+Average dE:66.7979
+beta = 0.0160284
+Number of Energy flips:681464
+Number of Random flips:682149
+Average dE:67.0956
+beta = 0.0162075
+Number of Energy flips:679715
+Number of Random flips:679618
+Average dE:67.4414
+beta = 0.0162075
+Number of Energy flips:684465
+Number of Random flips:683909
+Average dE:67.0789
+Temp 21 of 100 completed
+beta = 0.0160284
+Number of Energy flips:681601
+Number of Random flips:681135
+Average dE:67.0475
+beta = 0.0162075
+Number of Energy flips:681772
+Number of Random flips:680943
+Average dE:67.039
+beta = 0.0162075
+Number of Energy flips:674090
+Number of Random flips:673049
+Average dE:68.0145
+beta = 0.0163906
+Number of Energy flips:677011
+Number of Random flips:677069
+Average dE:67.3999
+beta = 0.0163906
+Number of Energy flips:680223
+Number of Random flips:680568
+Average dE:67.2427
+beta = 0.0162075
+Number of Energy flips:674828
+Number of Random flips:674105
+Average dE:67.7248
+beta = 0.0163906
+Number of Energy flips:675896
+Number of Random flips:675087
+Average dE:67.6913
+beta = 0.0163906
+Number of Energy flips:675776
+Number of Random flips:676437
+Average dE:67.4969
+beta = 0.0163906
+Number of Energy flips:680573
+Number of Random flips:679768
+Average dE:67.3471
+Temp 22 of 100 completed
+beta = 0.0162075
+Number of Energy flips:670129
+Number of Random flips:669751
+Average dE:68.2223
+beta = 0.0165779
+Number of Energy flips:674855
+Number of Random flips:675405
+Average dE:67.7057
+beta = 0.0163906
+Number of Energy flips:670616
+Number of Random flips:670779
+Average dE:68.0846
+beta = 0.0165779
+Number of Energy flips:675840
+Number of Random flips:675775
+Average dE:67.5808
+beta = 0.0163906
+Number of Energy flips:672075
+Number of Random flips:671666
+Average dE:67.9032
+beta = 0.0165779
+Number of Energy flips:670774
+Number of Random flips:672338
+Average dE:67.9302
+beta = 0.0165779
+Number of Energy flips:669995
+Number of Random flips:668866
+Average dE:68.398
+beta = 0.0165779
+Number of Energy flips:665188
+Number of Random flips:664500
+Average dE:68.519
+beta = 0.0166732
+Number of Energy flips:675284
+Number of Random flips:676179
+Average dE:67.6852
+Temp 23 of 100 completed
+beta = 0.0163906
+Number of Energy flips:665584
+Number of Random flips:664357
+Average dE:68.5158
+beta = 0.0166732
+Number of Energy flips:669491
+Number of Random flips:669994
+Average dE:68.2739
+beta = 0.0165779
+Number of Energy flips:670226
+Number of Random flips:670219
+Average dE:68.1238
+beta = 0.0165779
+Number of Energy flips:664427
+Number of Random flips:664913
+Average dE:68.6624
+beta = 0.0166732
+Number of Energy flips:663372
+Number of Random flips:663883
+Average dE:68.8829
+beta = 0.0166732
+Number of Energy flips:664177
+Number of Random flips:664555
+Average dE:68.7183
+beta = 0.0166732
+Number of Energy flips:660876
+Number of Random flips:659882
+Average dE:69.2465
+beta = 0.0167696
+Number of Energy flips:663184
+Number of Random flips:661382
+Average dE:68.8585
+beta = 0.0167696
+Number of Energy flips:669405
+Number of Random flips:669922
+Average dE:68.0751
+Temp 24 of 100 completed
+beta = 0.0165779
+Number of Energy flips:662632
+Number of Random flips:662927
+Average dE:68.8849
+beta = 0.0166732
+Number of Energy flips:664170
+Number of Random flips:664273
+Average dE:68.7445
+beta = 0.0166732
+Number of Energy flips:659519
+Number of Random flips:659484
+Average dE:69.3246
+beta = 0.0167696
+Number of Energy flips:662474
+Number of Random flips:661720
+Average dE:68.8342
+beta = 0.0167696
+Number of Energy flips:658868
+Number of Random flips:658591
+Average dE:69.2832
+beta = 0.0168671
+Number of Energy flips:660154
+Number of Random flips:662037
+Average dE:69.0361
+beta = 0.0167696
+Number of Energy flips:657624
+Number of Random flips:655328
+Average dE:69.6461
+beta = 0.0168671
+Number of Energy flips:662219
+Number of Random flips:662735
+Average dE:68.7626
+beta = 0.0167696
+Number of Energy flips:664845
+Number of Random flips:664178
+Average dE:68.6076
+Temp 25 of 100 completed
+beta = 0.0166732
+Number of Energy flips:662140
+Number of Random flips:662232
+Average dE:68.856
+beta = 0.0167696
+Number of Energy flips:660008
+Number of Random flips:660771
+Average dE:69.0333
+beta = 0.0168671
+Number of Energy flips:657469
+Number of Random flips:658133
+Average dE:69.2838
+beta = 0.0168671
+Number of Energy flips:656086
+Number of Random flips:655260
+Average dE:69.4646
+beta = 0.0169657
+Number of Energy flips:654035
+Number of Random flips:655518
+Average dE:69.6397
+Number of Energy flips:657596
+Number of Random flips:657850
+Average dE:69.4056
+beta = 0.0169657
+beta = 0.0168671
+Number of Energy flips:659789
+Number of Random flips:659277
+Average dE:69.1399
+beta = 0.0168671
+Number of Energy flips:662388
+Number of Random flips:662208
+Average dE:68.9155
+Temp 26 of 100 completed
+beta = 0.0167696
+Number of Energy flips:656841
+Number of Random flips:658551
+Average dE:69.4534
+beta = 0.0168671
+Number of Energy flips:652714
+Number of Random flips:653235
+Average dE:69.9364
+beta = 0.0169657
+Number of Energy flips:655245
+Number of Random flips:655730
+Average dE:69.4889
+beta = 0.0169657
+Number of Energy flips:652496
+Number of Random flips:652236
+Average dE:69.9716
+beta = 0.0170655
+Number of Energy flips:652630
+Number of Random flips:654038
+Average dE:69.7065
+beta = 0.0170655
+Number of Energy flips:655316
+Number of Random flips:655043
+Average dE:69.7643
+beta = 0.0169657
+Number of Energy flips:655317
+Number of Random flips:656053
+Average dE:69.5933
+beta = 0.0169657
+Number of Energy flips:659434
+Number of Random flips:658338
+Average dE:69.1444
+Temp 27 of 100 completed
+beta = 0.0168671
+Number of Energy flips:655746
+Number of Random flips:656300
+Average dE:69.3907
+beta = 0.0169657
+Number of Energy flips:652827
+Number of Random flips:653443
+Average dE:69.6337
+beta = 0.0170655
+Number of Energy flips:651018
+Number of Random flips:651913
+Average dE:70.0842
+beta = 0.0170655
+Number of Energy flips:647436
+Number of Random flips:646607
+Average dE:70.7391
+beta = 0.0171665
+Number of Energy flips:647940
+Number of Random flips:648500
+Average dE:70.3622
+beta = 0.0171665
+Number of Energy flips:652162
+Number of Random flips:653067
+Average dE:69.7588
+beta = 0.0170655
+Number of Energy flips:653476
+Number of Random flips:653279
+Average dE:69.6942
+beta = 0.0170655
+Number of Energy flips:654899
+Number of Random flips:655810
+Average dE:69.5189
+Temp 28 of 100 completed
+beta = 0.0169657
+Number of Energy flips:649865
+Number of Random flips:649830
+Average dE:70.167
+beta = 0.0171665
+Number of Energy flips:654085
+Number of Random flips:654668
+Average dE:69.4845
+beta = 0.0170655
+Number of Energy flips:650077
+Number of Random flips:649633
+Average dE:70.1521
+beta = 0.0171665
+Number of Energy flips:646091
+Number of Random flips:647475
+Average dE:70.3001
+beta = 0.0172687
+Number of Energy flips:645417
+Number of Random flips:645083
+Average dE:70.6118
+beta = 0.0172687
+Number of Energy flips:649644
+Number of Random flips:649417
+Average dE:70.1925
+beta = 0.0171665
+Number of Energy flips:648910
+Number of Random flips:648312
+Average dE:70.4308
+beta = 0.0171665
+Number of Energy flips:644150
+Number of Random flips:644200
+Average dE:70.9109
+beta = 0.0172687
+Number of Energy flips:652322
+Number of Random flips:652249
+Average dE:69.8056
+Temp 29 of 100 completed
+beta = 0.0170655
+Number of Energy flips:648951
+Number of Random flips:647911
+Average dE:70.4832
+beta = 0.0171665
+Number of Energy flips:646136
+Number of Random flips:646661
+Average dE:70.4925
+beta = 0.0172687
+Number of Energy flips:642902
+Number of Random flips:642802
+Average dE:70.8526
+beta = 0.0173721
+Number of Energy flips:644271
+Number of Random flips:644274
+Average dE:70.5453
+beta = 0.0173721
+Number of Energy flips:647159
+Number of Random flips:646240
+Average dE:70.4391
+beta = 0.0172687
+Number of Energy flips:646310
+Number of Random flips:646882
+Average dE:70.4585
+beta = 0.0172687
+Number of Energy flips:641877
+Number of Random flips:642879
+Average dE:71.1064
+beta = 0.0173721
+Number of Energy flips:645885
+Number of Random flips:646946
+Average dE:70.3649
+beta = 0.0172687
+Number of Energy flips:649737
+Number of Random flips:649832
+Average dE:70.0547
+Temp 30 of 100 completed
+beta = 0.0171665
+Number of Energy flips:643752
+Number of Random flips:644315
+Average dE:70.797
+beta = 0.0173721
+Number of Energy flips:640082
+Number of Random flips:640176
+Average dE:71.2053
+beta = 0.0174768
+Number of Energy flips:639713
+Number of Random flips:639450
+Average dE:71.3064
+beta = 0.0174768
+Number of Energy flips:644217
+Number of Random flips:644488
+Average dE:70.5851
+beta = 0.0173721
+Number of Energy flips:643834
+Number of Random flips:645632
+Average dE:70.4449
+beta = 0.0173721
+Number of Energy flips:640349
+Number of Random flips:639558
+Average dE:71.1959
+beta = 0.0174768
+Number of Energy flips:642645
+Number of Random flips:642951
+Average dE:70.9095
+beta = 0.0173721
+Number of Energy flips:646371
+Number of Random flips:646360
+Average dE:70.5921
+Temp 31 of 100 completed
+beta = 0.0172687
+Number of Energy flips:639866
+Number of Random flips:640049
+Average dE:71.1625
+beta = 0.0174768
+Number of Energy flips:636848
+Number of Random flips:636648
+Average dE:71.5249
+beta = 0.0175827
+Number of Energy flips:637188
+Number of Random flips:637115
+Average dE:71.4403
+beta = 0.0175827
+Number of Energy flips:638799
+Number of Random flips:638971
+Average dE:71.3812
+beta = 0.0174768
+Number of Energy flips:639929
+Number of Random flips:639057
+Average dE:71.2449
+beta = 0.0174768
+Number of Energy flips:633822
+Number of Random flips:634709
+Average dE:71.896
+beta = 0.0175827
+Number of Energy flips:636966
+Number of Random flips:637079
+Average dE:71.7888
+beta = 0.0174768
+Number of Energy flips:642026
+Number of Random flips:642301
+Average dE:70.9803
+Temp 32 of 100 completed
+beta = 0.0173721
+Number of Energy flips:635933
+Number of Random flips:634915
+Average dE:71.7923
+beta = 0.0175827
+Number of Energy flips:634077
+Number of Random flips:634617
+Average dE:71.5558
+beta = 0.0176899
+Number of Energy flips:634716
+Number of Random flips:633532
+Average dE:71.7967
+beta = 0.0176899
+Number of Energy flips:634711
+Number of Random flips:634400
+Average dE:71.9996
+beta = 0.0175827
+Number of Energy flips:632878
+Number of Random flips:632856
+Average dE:72.1646
+beta = 0.0175827
+Number of Energy flips:631536
+Number of Random flips:633008
+Average dE:72.0089
+beta = 0.0176899
+Number of Energy flips:636574
+Number of Random flips:636182
+Average dE:71.6826
+beta = 0.0175827
+Number of Energy flips:637316
+Number of Random flips:637359
+Average dE:71.8748
+Temp 33 of 100 completed
+beta = 0.0174768
+Number of Energy flips:632515
+Number of Random flips:632061
+Average dE:72.0716
+beta = 0.0176899
+Number of Energy flips:632319
+Number of Random flips:632327
+Average dE:71.7943
+beta = 0.0177984
+Number of Energy flips:628316
+Number of Random flips:629036
+Average dE:72.3832
+beta = 0.0177984
+Number of Energy flips:632917
+Number of Random flips:632759
+Average dE:72.0204
+beta = 0.0176899
+Number of Energy flips:627958
+Number of Random flips:627344
+Average dE:72.5775
+beta = 0.0177984
+Number of Energy flips:633806
+Number of Random flips:633544
+Average dE:71.7621
+beta = 0.0176899
+Number of Energy flips:631105
+Number of Random flips:632267
+Average dE:72.0905
+beta = 0.0176899
+Number of Energy flips:629345
+Number of Random flips:629750
+Average dE:72.328
+beta = 0.0177984
+Number of Energy flips:636094
+Number of Random flips:636251
+Average dE:71.6842
+Temp 34 of 100 completed
+beta = 0.0175827
+Number of Energy flips:625298
+Number of Random flips:624244
+Average dE:72.9045
+beta = 0.0179083
+Number of Energy flips:624108
+Number of Random flips:623995
+Average dE:72.9304
+beta = 0.0179083
+Number of Energy flips:629508
+Number of Random flips:628211
+Average dE:72.4763
+beta = 0.0177984
+Number of Energy flips:624996
+Number of Random flips:624051
+Average dE:73.016
+beta = 0.0179083
+Number of Energy flips:629174
+Number of Random flips:629629
+Average dE:72.441
+beta = 0.0177984
+Number of Energy flips:629276
+Number of Random flips:629445
+Average dE:72.3303
+beta = 0.0177984
+Number of Energy flips:624160
+Number of Random flips:624357
+Average dE:73.0418
+beta = 0.0179083
+Number of Energy flips:630789
+Number of Random flips:630303
+Average dE:72.3042
+Temp 35 of 100 completed
+beta = 0.0176899
+Number of Energy flips:623287
+Number of Random flips:621507
+Average dE:73.1514
+beta = 0.0180195
+Number of Energy flips:622450
+Number of Random flips:623755
+Average dE:73.06
+beta = 0.0180195
+Number of Energy flips:624946
+Number of Random flips:624762
+Average dE:72.9383
+beta = 0.0179083
+Number of Energy flips:621206
+Number of Random flips:620233
+Average dE:73.5049
+beta = 0.0180195
+Number of Energy flips:625043
+Number of Random flips:625493
+Average dE:72.7703
+beta = 0.0179083
+Number of Energy flips:623786
+Number of Random flips:624801
+Average dE:72.9364
+beta = 0.0179083
+Number of Energy flips:621713
+Number of Random flips:622754
+Average dE:73.1606
+beta = 0.0180195
+Number of Energy flips:628418
+Number of Random flips:626636
+Average dE:72.7911
+Temp 36 of 100 completed
+beta = 0.0177984
+Number of Energy flips:615041
+Number of Random flips:616007
+Average dE:74.2161
+beta = 0.0181321
+Number of Energy flips:616014
+Number of Random flips:616569
+Average dE:73.9885
+beta = 0.0181321
+Number of Energy flips:622165
+Number of Random flips:621159
+Average dE:73.3043
+beta = 0.0180195
+Number of Energy flips:614092
+Number of Random flips:614813
+Average dE:74.3784
+beta = 0.0181321
+Number of Energy flips:620127
+Number of Random flips:619045
+Average dE:73.6594
+beta = 0.0180195
+Number of Energy flips:622225
+Number of Random flips:622304
+Average dE:73.2009
+beta = 0.0180195
+Number of Energy flips:616915
+Number of Random flips:616851
+Average dE:73.8915
+beta = 0.0181321
+Number of Energy flips:614325
+Number of Random flips:614382
+Average dE:74.0218
+beta = 0.0182462
+Number of Energy flips:627050
+Number of Random flips:627316
+Average dE:72.4377
+Temp 37 of 100 completed
+beta = 0.0179083
+Number of Energy flips:612794
+Number of Random flips:611693
+Average dE:74.5146
+beta = 0.0182462
+Number of Energy flips:614397
+Number of Random flips:615477
+Average dE:74.3564
+beta = 0.0181321
+Number of Energy flips:612720
+Number of Random flips:613155
+Average dE:74.4223
+beta = 0.0182462
+Number of Energy flips:617370
+Number of Random flips:617365
+Average dE:73.7609
+beta = 0.0181321
+Number of Energy flips:612462
+Number of Random flips:613747
+Average dE:74.3325
+beta = 0.0182462
+Number of Energy flips:618872
+Number of Random flips:619560
+Average dE:73.4808
+beta = 0.0181321
+Number of Energy flips:612910
+Number of Random flips:611559
+Average dE:74.232
+beta = 0.0183617
+Number of Energy flips:624819
+Number of Random flips:625891
+Average dE:72.4895
+Temp 38 of 100 completed
+beta = 0.0180195
+Number of Energy flips:611539
+Number of Random flips:611291
+Average dE:74.6226
+beta = 0.0183617
+Number of Energy flips:612044
+Number of Random flips:612943
+Average dE:74.3934
+beta = 0.0182462
+Number of Energy flips:610696
+Number of Random flips:610163
+Average dE:74.5582
+beta = 0.0183617
+Number of Energy flips:613709
+Number of Random flips:612153
+Average dE:74.5195
+beta = 0.0182462
+Number of Energy flips:608574
+Number of Random flips:609310
+Average dE:74.9164
+beta = 0.0183617
+Number of Energy flips:614253
+Number of Random flips:614614
+Average dE:74.1671
+beta = 0.0182462
+Number of Energy flips:605826
+Number of Random flips:606040
+Average dE:75.122
+beta = 0.0184786
+Number of Energy flips:604644
+Number of Random flips:605374
+Average dE:75.455
+beta = 0.0184786
+Number of Energy flips:617465
+Number of Random flips:616987
+Average dE:73.9722
+Temp 39 of 100 completed
+beta = 0.0181321
+Number of Energy flips:609525
+Number of Random flips:610023
+Average dE:74.7012
+beta = 0.0183617
+Number of Energy flips:604840
+Number of Random flips:604653
+Average dE:75.4887
+beta = 0.0184786
+Number of Energy flips:607927
+Number of Random flips:608544
+Average dE:75.1488
+beta = 0.0183617
+Number of Energy flips:604360
+Number of Random flips:604575
+Average dE:75.4613
+beta = 0.0184786
+Number of Energy flips:608512
+Number of Random flips:607525
+Average dE:75
+beta = 0.0183617
+Number of Energy flips:601998
+Number of Random flips:602693
+Average dE:75.5329
+beta = 0.0185971
+Number of Energy flips:599793
+Number of Random flips:597809
+Average dE:76.2136
+beta = 0.0185971
+Number of Energy flips:616041
+Number of Random flips:616258
+Average dE:73.797
+Temp 40 of 100 completed
+beta = 0.0182462
+Number of Energy flips:606818
+Number of Random flips:607139
+Average dE:75.014
+beta = 0.0184786
+Number of Energy flips:601735
+Number of Random flips:601145
+Average dE:75.7406
+beta = 0.0185971
+Number of Energy flips:603248
+Number of Random flips:601901
+Average dE:75.9154
+beta = 0.0184786
+Number of Energy flips:603886
+Number of Random flips:604246
+Average dE:75.154
+beta = 0.0185971
+Number of Energy flips:608475
+Number of Random flips:608063
+Average dE:74.5868
+beta = 0.0184786
+Number of Energy flips:597127
+Number of Random flips:597113
+Average dE:76.3359
+beta = 0.018717
+Number of Energy flips:596611
+Number of Random flips:597649
+Average dE:76.2834
+beta = 0.018717
+Number of Energy flips:609336
+Number of Random flips:610804
+Average dE:74.6465
+Temp 41 of 100 completed
+beta = 0.0183617
+Number of Energy flips:603473
+Number of Random flips:603599
+Average dE:75.3212
+beta = 0.0185971
+Number of Energy flips:598066
+Number of Random flips:598561
+Average dE:76.0969
+beta = 0.018717
+Number of Energy flips:603141
+Number of Random flips:603442
+Average dE:75.3382
+beta = 0.0185971
+Number of Energy flips:596553
+Number of Random flips:596396
+Average dE:76.4175
+beta = 0.018717
+Number of Energy flips:594371
+Number of Random flips:594707
+Average dE:76.482
+beta = 0.0188386
+Number of Energy flips:600452
+Number of Random flips:600464
+Average dE:75.994
+beta = 0.0185971
+Number of Energy flips:591103
+Number of Random flips:590217
+Average dE:77.3489
+beta = 0.0188386
+Number of Energy flips:605308
+Number of Random flips:605387
+Average dE:75.4933
+Temp 42 of 100 completed
+beta = 0.0184786
+Number of Energy flips:594131
+Number of Random flips:593405
+Average dE:76.7576
+beta = 0.0188386
+Number of Energy flips:596570
+Number of Random flips:595720
+Average dE:76.6866
+beta = 0.018717
+Number of Energy flips:598267
+Number of Random flips:598378
+Average dE:76.1012
+beta = 0.018717
+Number of Energy flips:593497
+Number of Random flips:593583
+Average dE:76.8386
+beta = 0.0188386
+Number of Energy flips:589634
+Number of Random flips:590164
+Average dE:77.1837
+beta = 0.0189617
+Number of Energy flips:597238
+Number of Random flips:597407
+Average dE:76.189
+beta = 0.018717
+Number of Energy flips:589005
+Number of Random flips:588346
+Average dE:77.3294
+beta = 0.0189617
+Number of Energy flips:597432
+Number of Random flips:597138
+Average dE:76.606
+Temp 43 of 100 completed
+beta = 0.0185971
+Number of Energy flips:590426
+Number of Random flips:590432
+Average dE:77.0382
+beta = 0.0189617
+Number of Energy flips:594661
+Number of Random flips:594364
+Average dE:76.5686
+beta = 0.0188386
+Number of Energy flips:594140
+Number of Random flips:593385
+Average dE:76.6811
+beta = 0.0188386
+Number of Energy flips:588979
+Number of Random flips:589002
+Average dE:77.4211
+beta = 0.0189617
+Number of Energy flips:586322
+Number of Random flips:585917
+Average dE:77.5512
+beta = 0.0190865
+Number of Energy flips:593538
+Number of Random flips:593611
+Average dE:76.6891
+beta = 0.0188386
+Number of Energy flips:584879
+Number of Random flips:584107
+Average dE:77.8109
+beta = 0.0190865
+Number of Energy flips:598771
+Number of Random flips:598096
+Average dE:76.1613
+Temp 44 of 100 completed
+beta = 0.018717
+Number of Energy flips:581610
+Number of Random flips:582047
+Average dE:78.56
+beta = 0.0190865
+Number of Energy flips:589658
+Number of Random flips:589172
+Average dE:77.4105
+beta = 0.0189617
+Number of Energy flips:587537
+Number of Random flips:587808
+Average dE:77.6602
+beta = 0.0189617
+Number of Energy flips:585740
+Number of Random flips:585131
+Average dE:77.6854
+beta = 0.0190865
+Number of Energy flips:580345
+Number of Random flips:580813
+Average dE:78.3402
+beta = 0.0192129
+Number of Energy flips:590000
+Number of Random flips:590750
+Average dE:76.9639
+beta = 0.0189617
+Number of Energy flips:577869
+Number of Random flips:578284
+Average dE:78.9688
+beta = 0.0192129
+Number of Energy flips:592520
+Number of Random flips:591395
+Average dE:77.1291
+Temp 45 of 100 completed
+beta = 0.0188386
+Number of Energy flips:580208
+Number of Random flips:580850
+Average dE:78.4421
+beta = 0.0192129
+Number of Energy flips:585140
+Number of Random flips:585358
+Average dE:77.7037
+beta = 0.0190865
+Number of Energy flips:585650
+Number of Random flips:585400
+Average dE:77.6631
+beta = 0.0190865
+Number of Energy flips:571645
+Number of Random flips:571400
+Average dE:79.9509
+beta = 0.0193409
+Number of Energy flips:576556
+Number of Random flips:576075
+Average dE:79.2719
+beta = 0.0192129
+Number of Energy flips:585012
+Number of Random flips:583800
+Average dE:77.8807
+beta = 0.0190865
+Number of Energy flips:573242
+Number of Random flips:573951
+Average dE:79.5284
+beta = 0.0193409
+Number of Energy flips:576279
+Number of Random flips:576006
+Average dE:79.1027
+beta = 0.0193409
+Number of Energy flips:589523
+Number of Random flips:590435
+Average dE:77.2556
+Temp 46 of 100 completed
+beta = 0.0189617
+Number of Energy flips:578772
+Number of Random flips:580076
+Average dE:78.5742
+beta = 0.0192129
+Number of Energy flips:583473
+Number of Random flips:582976
+Average dE:77.8106
+beta = 0.0192129
+Number of Energy flips:566194
+Number of Random flips:566564
+Average dE:80.7384
+beta = 0.0194707
+Number of Energy flips:570990
+Number of Random flips:570837
+Average dE:80.1664
+beta = 0.0193409
+Number of Energy flips:569716
+Number of Random flips:569533
+Average dE:80.0428
+beta = 0.0194707
+Number of Energy flips:576915
+Number of Random flips:577332
+Average dE:79.0345
+beta = 0.0192129
+Number of Energy flips:568038
+Number of Random flips:568742
+Average dE:80.1783
+beta = 0.0194707
+Number of Energy flips:583783
+Number of Random flips:584606
+Average dE:78.1394
+Temp 47 of 100 completed
+beta = 0.0190865
+Number of Energy flips:575193
+Number of Random flips:575615
+Average dE:79.0114
+beta = 0.0193409
+Number of Energy flips:576006
+Number of Random flips:576267
+Average dE:78.9989
+beta = 0.0193409
+Number of Energy flips:564611
+Number of Random flips:563950
+Average dE:80.8144
+beta = 0.0196023
+Number of Energy flips:565778
+Number of Random flips:565750
+Average dE:80.7996
+beta = 0.0194707
+Number of Energy flips:563187
+Number of Random flips:563094
+Average dE:81.0893
+beta = 0.0196023
+Number of Energy flips:575521
+Number of Random flips:575082
+Average dE:79.0065
+beta = 0.0193409
+Number of Energy flips:560815
+Number of Random flips:561491
+Average dE:81.4047
+beta = 0.0196023
+Number of Energy flips:579571
+Number of Random flips:581270
+Average dE:78.4606
+Temp 48 of 100 completed
+beta = 0.0192129
+Number of Energy flips:569130
+Number of Random flips:569464
+Average dE:80.1119
+beta = 0.0194707
+Number of Energy flips:559962
+Number of Random flips:559212
+Average dE:81.4377
+beta = 0.0197357
+Number of Energy flips:571434
+Number of Random flips:570823
+Average dE:79.6915
+beta = 0.0194707
+Number of Energy flips:566685
+Number of Random flips:566466
+Average dE:80.169
+beta = 0.0196023
+Number of Energy flips:553979
+Number of Random flips:554607
+Average dE:82.5353
+beta = 0.0197357
+Number of Energy flips:568516
+Number of Random flips:569661
+Average dE:80.0549
+beta = 0.0194707
+Number of Energy flips:556078
+Number of Random flips:556797
+Average dE:81.9826
+beta = 0.0197357
+Number of Energy flips:574476
+Number of Random flips:573962
+Average dE:79.4908
+Temp 49 of 100 completed
+beta = 0.0193409
+Number of Energy flips:565992
+Number of Random flips:565442
+Average dE:80.5805
+beta = 0.0196023
+Number of Energy flips:554831
+Number of Random flips:555436
+Average dE:82.105
+beta = 0.0198708
+Number of Energy flips:561693
+Number of Random flips:560929
+Average dE:81.5795
+beta = 0.0196023
+Number of Energy flips:556493
+Number of Random flips:557691
+Average dE:81.9026
+beta = 0.0197357
+Number of Energy flips:553707
+Number of Random flips:553961
+Average dE:82.1462
+beta = 0.0198708
+Number of Energy flips:563244
+Number of Random flips:563646
+Average dE:80.9792
+beta = 0.0196023
+Number of Energy flips:550799
+Number of Random flips:550755
+Average dE:82.9132
+beta = 0.0198708
+Number of Energy flips:566608
+Number of Random flips:566170
+Average dE:80.7361
+Temp 50 of 100 completed
+beta = 0.0194707
+Number of Energy flips:555105
+Number of Random flips:555038
+Average dE:82.5061
+beta = 0.0197357
+Number of Energy flips:546452
+Number of Random flips:546584
+Average dE:83.4825
+beta = 0.0200079
+Number of Energy flips:556118
+Number of Random flips:556468
+Average dE:82.1113
+beta = 0.0197357
+Number of Energy flips:553431
+Number of Random flips:553681
+Average dE:82.1643
+beta = 0.0198708
+Number of Energy flips:549330
+Number of Random flips:548846
+Average dE:83.0055
+beta = 0.0200079
+Number of Energy flips:559002
+Number of Random flips:559141
+Average dE:81.4836
+beta = 0.0197357
+Number of Energy flips:550652
+Number of Random flips:551551
+Average dE:82.4867
+beta = 0.0200079
+Number of Energy flips:553687
+Number of Random flips:553267
+Average dE:82.4025
+beta = 0.0198708
+Number of Energy flips:566838
+Number of Random flips:566173
+Average dE:80.1369
+Temp 51 of 100 completed
+beta = 0.0196023
+Number of Energy flips:539591
+Number of Random flips:540419
+Average dE:84.4983
+beta = 0.0201468
+Number of Energy flips:550290
+Number of Random flips:550705
+Average dE:82.9186
+beta = 0.0198708
+Number of Energy flips:546351
+Number of Random flips:546258
+Average dE:83.5217
+beta = 0.0200079
+Number of Energy flips:545105
+Number of Random flips:545151
+Average dE:83.3406
+beta = 0.0201468
+Number of Energy flips:549494
+Number of Random flips:549872
+Average dE:83.1551
+beta = 0.0198708
+Number of Energy flips:539780
+Number of Random flips:539596
+Average dE:84.5799
+beta = 0.0201468
+Number of Energy flips:532080
+Number of Random flips:531537
+Average dE:86.145
+beta = 0.0202877
+Number of Energy flips:546856
+Number of Random flips:547524
+Average dE:83.373
+beta = 0.0200079
+Number of Energy flips:561311
+Number of Random flips:561888
+Average dE:80.8598
+Temp 52 of 100 completed
+beta = 0.0197357
+Number of Energy flips:539208
+Number of Random flips:539401
+Average dE:84.8454
+beta = 0.0201468
+Number of Energy flips:546912
+Number of Random flips:546351
+Average dE:83.3746
+beta = 0.0200079
+Number of Energy flips:539046
+Number of Random flips:540201
+Average dE:84.0942
+beta = 0.0202877
+Number of Energy flips:544565
+Number of Random flips:544040
+Average dE:84.069
+beta = 0.0200079
+Number of Energy flips:533662
+Number of Random flips:533564
+Average dE:85.3992
+beta = 0.0202877
+Number of Energy flips:529038
+Number of Random flips:529590
+Average dE:86.291
+beta = 0.0204306
+Number of Energy flips:542823
+Number of Random flips:542523
+Average dE:84.0836
+beta = 0.0201468
+Number of Energy flips:552316
+Number of Random flips:551900
+Average dE:82.6841
+Temp 53 of 100 completed
+beta = 0.0198708
+Number of Energy flips:538439
+Number of Random flips:538030
+Average dE:84.3983
+beta = 0.0202877
+Number of Energy flips:543423
+Number of Random flips:543940
+Average dE:83.7868
+beta = 0.0201468
+Number of Energy flips:530629
+Number of Random flips:530335
+Average dE:86.0226
+beta = 0.0204306
+Number of Energy flips:540512
+Number of Random flips:541071
+Average dE:84.2727
+beta = 0.0201468
+Number of Energy flips:528988
+Number of Random flips:530533
+Average dE:86.0117
+beta = 0.0204306
+Number of Energy flips:523424
+Number of Random flips:522188
+Average dE:87.0755
+beta = 0.0205755
+Number of Energy flips:533062
+Number of Random flips:532170
+Average dE:85.904
+beta = 0.0202877
+Number of Energy flips:532892
+Number of Random flips:533685
+Average dE:85.0739
+beta = 0.0204306
+Number of Energy flips:551378
+Number of Random flips:550299
+Average dE:82.6594
+Temp 54 of 100 completed
+beta = 0.0200079
+Number of Energy flips:538263
+Number of Random flips:537500
+Average dE:84.648
+beta = 0.0202877
+Number of Energy flips:522820
+Number of Random flips:522238
+Average dE:87.3959
+beta = 0.0205755
+Number of Energy flips:537190
+Number of Random flips:538148
+Average dE:84.5968
+beta = 0.0202877
+Number of Energy flips:523175
+Number of Random flips:522331
+Average dE:87.2443
+beta = 0.0205755
+Number of Energy flips:518180
+Number of Random flips:517656
+Average dE:87.7137
+beta = 0.0207224
+Number of Energy flips:526377
+Number of Random flips:527042
+Average dE:86.6183
+beta = 0.0204306
+Number of Energy flips:521688
+Number of Random flips:521971
+Average dE:87.4787
+beta = 0.0205755
+Number of Energy flips:538681
+Number of Random flips:538404
+Average dE:84.9428
+Temp 55 of 100 completed
+beta = 0.0201468
+Number of Energy flips:527983
+Number of Random flips:528933
+Average dE:86.2938
+beta = 0.0204306
+Number of Energy flips:518059
+Number of Random flips:517342
+Average dE:87.8465
+beta = 0.0207224
+Number of Energy flips:526885
+Number of Random flips:526423
+Average dE:86.8521
+beta = 0.0204306
+Number of Energy flips:519221
+Number of Random flips:518688
+Average dE:87.6289
+beta = 0.0207224
+Number of Energy flips:511290
+Number of Random flips:512263
+Average dE:88.8391
+beta = 0.0208715
+Number of Energy flips:524188
+Number of Random flips:524140
+Average dE:86.8439
+beta = 0.0205755
+Number of Energy flips:516341
+Number of Random flips:515804
+Average dE:88.3842
+beta = 0.0207224
+Number of Energy flips:505370
+Number of Random flips:505209
+Average dE:90.3964
+beta = 0.0208715
+Number of Energy flips:534485
+Number of Random flips:534334
+Average dE:85.495
+Temp 56 of 100 completed
+beta = 0.0202877
+Number of Energy flips:518740
+Number of Random flips:519267
+Average dE:88.1735
+beta = 0.0205755
+Number of Energy flips:520346
+Number of Random flips:521211
+Average dE:87.6459
+beta = 0.0205755
+Number of Energy flips:510018
+Number of Random flips:511972
+Average dE:88.9802
+beta = 0.0208715
+Number of Energy flips:507841
+Number of Random flips:507388
+Average dE:89.3466
+beta = 0.0210228
+Number of Energy flips:515916
+Number of Random flips:515456
+Average dE:88.4875
+beta = 0.0207224
+Number of Energy flips:506938
+Number of Random flips:506769
+Average dE:89.8545
+beta = 0.0208715
+Number of Energy flips:500078
+Number of Random flips:499758
+Average dE:91.4128
+beta = 0.0210228
+Number of Energy flips:518681
+Number of Random flips:518243
+Average dE:87.6817
+beta = 0.0207224
+Number of Energy flips:527750
+Number of Random flips:527024
+Average dE:86.4567
+Temp 57 of 100 completed
+beta = 0.0204306
+Number of Energy flips:514774
+Number of Random flips:515817
+Average dE:88.3051
+beta = 0.0207224
+Number of Energy flips:505284
+Number of Random flips:503847
+Average dE:90.0289
+beta = 0.0210228
+Number of Energy flips:497351
+Number of Random flips:497365
+Average dE:91.2485
+beta = 0.0211762
+Number of Energy flips:510535
+Number of Random flips:509769
+Average dE:89.3578
+beta = 0.0208715
+Number of Energy flips:500350
+Number of Random flips:500884
+Average dE:90.8625
+beta = 0.0210228
+Number of Energy flips:489506
+Number of Random flips:488412
+Average dE:93.3001
+beta = 0.0211762
+Number of Energy flips:506811
+Number of Random flips:507024
+Average dE:90.0463
+beta = 0.0208715
+Number of Energy flips:522336
+Number of Random flips:522178
+Average dE:87.3346
+Temp 58 of 100 completed
+beta = 0.0205755
+Number of Energy flips:508300
+Number of Random flips:508278
+Average dE:89.7264
+beta = 0.0208715
+Number of Energy flips:498195
+Number of Random flips:498527
+Average dE:91.0964
+beta = 0.0211762
+Number of Energy flips:486455
+Number of Random flips:486649
+Average dE:93.3995
+beta = 0.0213319
+Number of Energy flips:496919
+Number of Random flips:496161
+Average dE:91.5347
+beta = 0.0211762
+Number of Energy flips:505864
+Number of Random flips:505417
+Average dE:89.7693
+beta = 0.0210228
+Number of Energy flips:488894
+Number of Random flips:490132
+Average dE:92.6026
+beta = 0.0213319
+Number of Energy flips:504551
+Number of Random flips:505042
+Average dE:90.0069
+beta = 0.0210228
+Number of Energy flips:513724
+Number of Random flips:513664
+Average dE:88.8565
+Temp 59 of 100 completed
+beta = 0.0207224
+Number of Energy flips:500712
+Number of Random flips:500668
+Average dE:91.0575
+beta = 0.0210228
+Number of Energy flips:489357
+Number of Random flips:489400
+Average dE:92.7024
+beta = 0.0213319
+Number of Energy flips:479170
+Number of Random flips:478368
+Average dE:94.624
+beta = 0.0214899
+Number of Energy flips:492352
+Number of Random flips:491861
+Average dE:91.9674
+beta = 0.0213319
+Number of Energy flips:495703
+Number of Random flips:495844
+Average dE:91.7429
+beta = 0.0211762
+Number of Energy flips:480205
+Number of Random flips:479857
+Average dE:94.5038
+beta = 0.0214899
+Number of Energy flips:494848
+Number of Random flips:494265
+Average dE:92.0405
+beta = 0.0211762
+Number of Energy flips:507889
+Number of Random flips:506830
+Average dE:89.972
+Temp 60 of 100 completed
+beta = 0.0208715
+Number of Energy flips:497682
+Number of Random flips:497267
+Average dE:91.124
+beta = 0.0211762
+Number of Energy flips:483343
+Number of Random flips:483157
+Average dE:93.8166
+beta = 0.0214899
+Number of Energy flips:474796
+Number of Random flips:474955
+Average dE:95.2666
+beta = 0.0216503
+Number of Energy flips:481402
+Number of Random flips:481297
+Average dE:94.2011
+beta = 0.0214899
+Number of Energy flips:489823
+Number of Random flips:489469
+Average dE:92.6506
+beta = 0.0213319
+Number of Energy flips:475360
+Number of Random flips:475338
+Average dE:95.1937
+beta = 0.0216503
+Number of Energy flips:489594
+Number of Random flips:490409
+Average dE:92.4983
+beta = 0.0213319
+Number of Energy flips:504099
+Number of Random flips:503478
+Average dE:90.422
+Temp 61 of 100 completed
+beta = 0.0210228
+Number of Energy flips:493399
+Number of Random flips:494286
+Average dE:91.5942
+beta = 0.0213319
+Number of Energy flips:480767
+Number of Random flips:479894
+Average dE:93.7194
+beta = 0.0216503
+Number of Energy flips:468872
+Number of Random flips:470017
+Average dE:96.0854
+beta = 0.0218131
+Number of Energy flips:474902
+Number of Random flips:475099
+Average dE:95.3108
+beta = 0.0216503
+Number of Energy flips:477522
+Number of Random flips:477647
+Average dE:95.1025
+beta = 0.0214899
+Number of Energy flips:470021
+Number of Random flips:469912
+Average dE:95.8501
+beta = 0.0218131
+Number of Energy flips:478906
+Number of Random flips:479051
+Average dE:94.7214
+beta = 0.0214899
+Number of Energy flips:499942
+Number of Random flips:499107
+Average dE:90.8087
+Temp 62 of 100 completed
+beta = 0.0211762
+Number of Energy flips:474095
+Number of Random flips:473573
+Average dE:94.9706
+beta = 0.0218131
+Number of Energy flips:484832
+Number of Random flips:485770
+Average dE:93.2023
+beta = 0.0214899
+Number of Energy flips:458474
+Number of Random flips:458733
+Average dE:98.2216
+beta = 0.0219783
+Number of Energy flips:467196
+Number of Random flips:467607
+Average dE:96.7551
+beta = 0.0218131
+Number of Energy flips:463145
+Number of Random flips:462658
+Average dE:97.259
+beta = 0.0219783
+Number of Energy flips:479402
+Number of Random flips:480224
+Average dE:94.0577
+beta = 0.0216503
+Number of Energy flips:478444
+Number of Random flips:478578
+Average dE:94.3513
+beta = 0.0216503
+Number of Energy flips:491530
+Number of Random flips:492252
+Average dE:92.1882
+Temp 63 of 100 completed
+beta = 0.0213319
+Number of Energy flips:461038
+Number of Random flips:460921
+Average dE:97.8479
+beta = 0.0219783
+Number of Energy flips:475588
+Number of Random flips:475565
+Average dE:95.1478
+beta = 0.0216503
+Number of Energy flips:454100
+Number of Random flips:453730
+Average dE:99.0496
+beta = 0.0221461
+Number of Energy flips:464902
+Number of Random flips:464990
+Average dE:96.7681
+beta = 0.0219783
+Number of Energy flips:452692
+Number of Random flips:452025
+Average dE:99.4052
+beta = 0.0221461
+Number of Energy flips:467794
+Number of Random flips:468132
+Average dE:96.4341
+beta = 0.0218131
+Number of Energy flips:468377
+Number of Random flips:467482
+Average dE:96.783
+beta = 0.0218131
+Number of Energy flips:486754
+Number of Random flips:486169
+Average dE:93.0237
+Temp 64 of 100 completed
+beta = 0.0214899
+Number of Energy flips:459002
+Number of Random flips:457410
+Average dE:97.8844
+beta = 0.0221461
+Number of Energy flips:466072
+Number of Random flips:465022
+Average dE:97.1249
+beta = 0.0218131
+Number of Energy flips:450672
+Number of Random flips:450595
+Average dE:99.2456
+beta = 0.0223165
+Number of Energy flips:454142
+Number of Random flips:454262
+Average dE:98.7685
+beta = 0.0221461
+Number of Energy flips:450574
+Number of Random flips:451367
+Average dE:99.0951
+beta = 0.0223165
+Number of Energy flips:465223
+Number of Random flips:465673
+Average dE:96.448
+beta = 0.0219783
+Number of Energy flips:468039
+Number of Random flips:467792
+Average dE:96.0278
+beta = 0.0219783
+Number of Energy flips:451852
+Number of Random flips:451982
+Average dE:98.7736
+beta = 0.0223165
+Number of Energy flips:478239
+Number of Random flips:477801
+Average dE:94.5722
+Temp 65 of 100 completed
+beta = 0.0216503
+Number of Energy flips:461596
+Number of Random flips:461254
+Average dE:97.601
+beta = 0.0219783
+Number of Energy flips:444852
+Number of Random flips:444356
+Average dE:100.214
+beta = 0.0224895
+Number of Energy flips:450189
+Number of Random flips:449853
+Average dE:99.4148
+beta = 0.0223165
+Number of Energy flips:443175
+Number of Random flips:443330
+Average dE:100.571
+beta = 0.0224895
+Number of Energy flips:454432
+Number of Random flips:454538
+Average dE:98.765
+beta = 0.0221461
+Number of Energy flips:457322
+Number of Random flips:457917
+Average dE:98.1617
+beta = 0.0221461
+Number of Energy flips:444926
+Number of Random flips:445140
+Average dE:100.257
+beta = 0.0224895
+Number of Energy flips:438329
+Number of Random flips:438990
+Average dE:101.209
+beta = 0.0226652
+Number of Energy flips:459112
+Number of Random flips:458644
+Average dE:97.8028
+beta = 0.0221461
+Number of Energy flips:469046
+Number of Random flips:468559
+Average dE:96.4769
+Temp 66 of 100 completed
+beta = 0.0218131
+Number of Energy flips:446381
+Number of Random flips:444974
+Average dE:100.048
+beta = 0.0224895
+Number of Energy flips:437265
+Number of Random flips:437069
+Average dE:101.663
+beta = 0.0226652
+Number of Energy flips:448932
+Number of Random flips:449648
+Average dE:99.5754
+beta = 0.0223165
+Number of Energy flips:452624
+Number of Random flips:452359
+Average dE:98.7863
+beta = 0.0223165
+Number of Energy flips:436184
+Number of Random flips:435847
+Average dE:101.942
+beta = 0.0226652
+Number of Energy flips:431557
+Number of Random flips:432010
+Average dE:102.479
+beta = 0.0228436
+Number of Energy flips:448925
+Number of Random flips:448720
+Average dE:99.6683
+beta = 0.0223165
+Number of Energy flips:462921
+Number of Random flips:461990
+Average dE:97.5275
+Temp 67 of 100 completed
+beta = 0.0219783
+Number of Energy flips:428548
+Number of Random flips:428072
+Average dE:103.322
+beta = 0.0228436
+Number of Energy flips:440639
+Number of Random flips:440656
+Average dE:100.421
+beta = 0.0226652
+Number of Energy flips:446833
+Number of Random flips:447564
+Average dE:99.5138
+beta = 0.0224895
+Number of Energy flips:444532
+Number of Random flips:444208
+Average dE:100.185
+beta = 0.0224895
+Number of Energy flips:426402
+Number of Random flips:426680
+Average dE:103.81
+beta = 0.0228436
+Number of Energy flips:421823
+Number of Random flips:422163
+Average dE:104.307
+beta = 0.0230249
+Number of Energy flips:448680
+Number of Random flips:447732
+Average dE:99.3252
+beta = 0.0224895
+Number of Energy flips:456234
+Number of Random flips:456288
+Average dE:98.3397
+Temp 68 of 100 completed
+beta = 0.0221461
+Number of Energy flips:420797
+Number of Random flips:420871
+Average dE:104.89
+beta = 0.0230249
+Number of Energy flips:431202
+Number of Random flips:431851
+Average dE:102.498
+beta = 0.0228436
+Number of Energy flips:437799
+Number of Random flips:438193
+Average dE:101.361
+beta = 0.0226652
+Number of Energy flips:437069
+Number of Random flips:437368
+Average dE:101.52
+beta = 0.0226652
+Number of Energy flips:423852
+Number of Random flips:424561
+Average dE:103.751
+beta = 0.0230249
+Number of Energy flips:415936
+Number of Random flips:417024
+Average dE:105.404
+beta = 0.0232091
+Number of Energy flips:435805
+Number of Random flips:436585
+Average dE:101.764
+beta = 0.0226652
+Number of Energy flips:452268
+Number of Random flips:452355
+Average dE:98.8157
+Temp 69 of 100 completed
+beta = 0.0223165
+Number of Energy flips:420175
+Number of Random flips:419379
+Average dE:104.624
+beta = 0.0232091
+Number of Energy flips:425433
+Number of Random flips:424864
+Average dE:103.78
+beta = 0.0230249
+Number of Energy flips:431778
+Number of Random flips:431464
+Average dE:102.508
+beta = 0.0228436
+Number of Energy flips:429602
+Number of Random flips:429966
+Average dE:102.913
+beta = 0.0228436
+Number of Energy flips:418563
+Number of Random flips:418293
+Average dE:104.783
+beta = 0.0232091
+Number of Energy flips:411496
+Number of Random flips:411392
+Average dE:106.133
+beta = 0.0235865
+Number of Energy flips:429099
+Number of Random flips:428867
+Average dE:103.175
+beta = 0.0228436
+Number of Energy flips:442302
+Number of Random flips:443758
+Average dE:100.512
+Temp 70 of 100 completed
+beta = 0.0224895
+Number of Energy flips:409392
+Number of Random flips:410174
+Average dE:106.546
+beta = 0.0235865
+Number of Energy flips:417730
+Number of Random flips:417298
+Average dE:105.063
+beta = 0.0232091
+Number of Energy flips:420782
+Number of Random flips:419846
+Average dE:104.754
+beta = 0.0230249
+Number of Energy flips:426800
+Number of Random flips:426466
+Average dE:103.163
+beta = 0.0230249
+Number of Energy flips:411093
+Number of Random flips:410786
+Average dE:106.222
+beta = 0.0235865
+Number of Energy flips:400329
+Number of Random flips:399337
+Average dE:107.9
+beta = 0.0239764
+Number of Energy flips:424548
+Number of Random flips:424648
+Average dE:103.716
+beta = 0.0230249
+Number of Energy flips:438456
+Number of Random flips:439111
+Average dE:101.121
+Temp 71 of 100 completed
+beta = 0.0226652
+Number of Energy flips:399433
+Number of Random flips:399262
+Average dE:108.122
+beta = 0.0239764
+Number of Energy flips:411650
+Number of Random flips:412428
+Average dE:105.805
+beta = 0.0235865
+Number of Energy flips:417033
+Number of Random flips:417138
+Average dE:105.077
+beta = 0.0232091
+Number of Energy flips:418530
+Number of Random flips:417635
+Average dE:104.938
+beta = 0.0232091
+Number of Energy flips:398760
+Number of Random flips:397544
+Average dE:108.539
+beta = 0.0239764
+Number of Energy flips:387923
+Number of Random flips:385963
+Average dE:110.382
+beta = 0.0243793
+Number of Energy flips:417740
+Number of Random flips:418317
+Average dE:104.899
+beta = 0.0232091
+Number of Energy flips:388518
+Number of Random flips:387879
+Average dE:109.952
+beta = 0.0243793
+Number of Energy flips:431254
+Number of Random flips:431602
+Average dE:102.353
+Temp 72 of 100 completed
+beta = 0.0228436
+Number of Energy flips:398950
+Number of Random flips:397762
+Average dE:108.513
+beta = 0.0239764
+Number of Energy flips:414482
+Number of Random flips:414535
+Average dE:105.199
+beta = 0.0235865
+Number of Energy flips:414590
+Number of Random flips:414235
+Average dE:105.256
+beta = 0.0235865
+Number of Energy flips:390006
+Number of Random flips:390056
+Average dE:109.71
+beta = 0.0243793
+Number of Energy flips:377957
+Number of Random flips:377666
+Average dE:111.827
+beta = 0.0247961
+Number of Energy flips:411791
+Number of Random flips:411722
+Average dE:105.984
+beta = 0.0235865
+Number of Energy flips:375956
+Number of Random flips:376476
+Average dE:112.335
+beta = 0.0247961
+Number of Energy flips:388507
+Number of Random flips:387765
+Average dE:110.067
+beta = 0.0243793
+Number of Energy flips:422635
+Number of Random flips:423430
+Average dE:104.147
+Temp 73 of 100 completed
+beta = 0.0230249
+Number of Energy flips:404360
+Number of Random flips:403829
+Average dE:107.043
+beta = 0.0239764
+Number of Energy flips:377277
+Number of Random flips:376687
+Average dE:111.974
+beta = 0.0247961
+Number of Energy flips:363034
+Number of Random flips:363128
+Average dE:114.483
+beta = 0.0252273
+Number of Energy flips:398462
+Number of Random flips:397992
+Average dE:108.425
+beta = 0.0239764
+Number of Energy flips:401063
+Number of Random flips:401625
+Average dE:107.651
+beta = 0.0239764
+Number of Energy flips:366864
+Number of Random flips:366606
+Average dE:113.45
+beta = 0.0252273
+Number of Energy flips:375335
+Number of Random flips:375618
+Average dE:112.112
+beta = 0.0247961
+Number of Energy flips:415594
+Number of Random flips:416287
+Average dE:105.332
+Temp 74 of 100 completed
+beta = 0.0232091
+Number of Energy flips:387561
+Number of Random flips:387643
+Average dE:109.972
+beta = 0.0243793
+Number of Energy flips:353824
+Number of Random flips:353769
+Average dE:116.13
+beta = 0.0256738
+Number of Energy flips:365879
+Number of Random flips:365864
+Average dE:113.803
+beta = 0.0252273
+Number of Energy flips:387007
+Number of Random flips:388128
+Average dE:110.452
+beta = 0.0243793
+Number of Energy flips:389444
+Number of Random flips:388623
+Average dE:109.758
+beta = 0.0243793
+Number of Energy flips:355980
+Number of Random flips:356648
+Average dE:115.293
+beta = 0.0256738
+Number of Energy flips:367335
+Number of Random flips:367064
+Average dE:113.42
+beta = 0.0252273
+Number of Energy flips:413793
+Number of Random flips:414491
+Average dE:105.215
+Temp 75 of 100 completed
+beta = 0.0235865
+Number of Energy flips:378178
+Number of Random flips:377839
+Average dE:111.497
+beta = 0.0247961
+Number of Energy flips:344529
+Number of Random flips:344622
+Average dE:117.721
+beta = 0.0261364
+Number of Energy flips:355000
+Number of Random flips:354445
+Average dE:115.999
+beta = 0.0256738
+Number of Energy flips:373578
+Number of Random flips:373784
+Average dE:112.872
+beta = 0.0247961
+Number of Energy flips:376094
+Number of Random flips:376207
+Average dE:112.007
+beta = 0.0247961
+Number of Energy flips:344591
+Number of Random flips:344686
+Average dE:117.804
+beta = 0.0261364
+Number of Energy flips:356196
+Number of Random flips:355512
+Average dE:115.533
+beta = 0.0256738
+Number of Energy flips:399724
+Number of Random flips:399487
+Average dE:108.167
+Temp 76 of 100 completed
+beta = 0.0239764
+Number of Energy flips:364793
+Number of Random flips:365557
+Average dE:113.98
+beta = 0.0252273
+Number of Energy flips:334238
+Number of Random flips:335071
+Average dE:119.23
+beta = 0.026616
+Number of Energy flips:343906
+Number of Random flips:344022
+Average dE:117.93
+beta = 0.0261364
+Number of Energy flips:363881
+Number of Random flips:364730
+Average dE:114.38
+beta = 0.0252273
+Number of Energy flips:365020
+Number of Random flips:365940
+Average dE:113.971
+beta = 0.0252273
+Number of Energy flips:334416
+Number of Random flips:334001
+Average dE:119.399
+beta = 0.026616
+Number of Energy flips:343259
+Number of Random flips:344015
+Average dE:117.927
+beta = 0.0261364
+Number of Energy flips:389275
+Number of Random flips:388226
+Average dE:110.047
+Temp 77 of 100 completed
+beta = 0.0243793
+Number of Energy flips:356212
+Number of Random flips:355928
+Average dE:115.379
+beta = 0.0256738
+Number of Energy flips:323434
+Number of Random flips:323034
+Average dE:121.646
+beta = 0.0271135
+Number of Energy flips:335792
+Number of Random flips:335385
+Average dE:119.112
+beta = 0.026616
+Number of Energy flips:353580
+Number of Random flips:353370
+Average dE:116.221
+beta = 0.0256738
+Number of Energy flips:326031
+Number of Random flips:325766
+Average dE:120.81
+beta = 0.0271135
+Number of Energy flips:354311
+Number of Random flips:354434
+Average dE:115.96
+beta = 0.0256738
+Number of Energy flips:335673
+Number of Random flips:336141
+Average dE:119.031
+beta = 0.026616
+Number of Energy flips:375345
+Number of Random flips:375581
+Average dE:112.421
+Temp 78 of 100 completed
+beta = 0.0247961
+Number of Energy flips:315619
+Number of Random flips:315482
+Average dE:122.716
+beta = 0.0276299
+Number of Energy flips:344518
+Number of Random flips:345046
+Average dE:117.678
+beta = 0.0261364
+Number of Energy flips:325422
+Number of Random flips:324565
+Average dE:120.988
+beta = 0.0271135
+Number of Energy flips:344766
+Number of Random flips:344576
+Average dE:117.667
+beta = 0.0261364
+Number of Energy flips:315547
+Number of Random flips:316207
+Average dE:122.43
+beta = 0.0276299
+Number of Energy flips:343255
+Number of Random flips:343680
+Average dE:117.654
+beta = 0.0261364
+Number of Energy flips:324643
+Number of Random flips:325058
+Average dE:121.036
+beta = 0.0271135
+Number of Energy flips:364437
+Number of Random flips:364109
+Average dE:114.325
+Temp 79 of 100 completed
+beta = 0.0252273
+Number of Energy flips:305340
+Number of Random flips:304697
+Average dE:124.659
+beta = 0.0281664
+Number of Energy flips:333945
+Number of Random flips:334733
+Average dE:119.288
+beta = 0.026616
+Number of Energy flips:315324
+Number of Random flips:314949
+Average dE:122.775
+beta = 0.0276299
+Number of Energy flips:334505
+Number of Random flips:334494
+Average dE:119.535
+beta = 0.026616
+Number of Energy flips:305305
+Number of Random flips:304734
+Average dE:124.672
+beta = 0.0281664
+Number of Energy flips:334393
+Number of Random flips:333895
+Average dE:119.629
+beta = 0.026616
+Number of Energy flips:315132
+Number of Random flips:314277
+Average dE:122.702
+beta = 0.0276299
+Number of Energy flips:296379
+Number of Random flips:296411
+Average dE:126.077
+beta = 0.0287242
+Number of Energy flips:355287
+Number of Random flips:355439
+Average dE:115.558
+Temp 80 of 100 completed
+beta = 0.0256738
+Number of Energy flips:302850
+Number of Random flips:303045
+Average dE:125.264
+beta = 0.0281664
+Number of Energy flips:325036
+Number of Random flips:324700
+Average dE:121.128
+beta = 0.0271135
+Number of Energy flips:323087
+Number of Random flips:322657
+Average dE:121.61
+beta = 0.0271135
+Number of Energy flips:296538
+Number of Random flips:296387
+Average dE:126.243
+beta = 0.0287242
+Number of Energy flips:323743
+Number of Random flips:323545
+Average dE:121.422
+beta = 0.0271135
+Number of Energy flips:305304
+Number of Random flips:305599
+Average dE:124.483
+beta = 0.0281664
+Number of Energy flips:285737
+Number of Random flips:285622
+Average dE:128.274
+beta = 0.0293045
+Number of Energy flips:295505
+Number of Random flips:294516
+Average dE:126.724
+beta = 0.0287242
+Number of Energy flips:314097
+Number of Random flips:314018
+Average dE:123.021
+beta = 0.0276299
+Number of Energy flips:342186
+Number of Random flips:342589
+Average dE:118.163
+Temp 81 of 100 completed
+beta = 0.0261364
+Number of Energy flips:314201
+Number of Random flips:314209
+Average dE:123.006
+beta = 0.0276299
+Number of Energy flips:288440
+Number of Random flips:288165
+Average dE:127.633
+beta = 0.0293045
+Number of Energy flips:314826
+Number of Random flips:314127
+Average dE:123.061
+beta = 0.0276299
+Number of Energy flips:295935
+Number of Random flips:296067
+Average dE:126.451
+beta = 0.0287242
+Number of Energy flips:279303
+Number of Random flips:278875
+Average dE:129.164
+beta = 0.0299087
+Number of Energy flips:287618
+Number of Random flips:287291
+Average dE:127.773
+beta = 0.0293045
+Number of Energy flips:305291
+Number of Random flips:305618
+Average dE:124.732
+beta = 0.0281664
+Number of Energy flips:334015
+Number of Random flips:334774
+Average dE:119.266
+Temp 82 of 100 completed
+beta = 0.026616
+Number of Energy flips:306171
+Number of Random flips:306461
+Average dE:124.217
+beta = 0.0281664
+Number of Energy flips:278548
+Number of Random flips:278227
+Average dE:129.37
+beta = 0.0299087
+Number of Energy flips:306235
+Number of Random flips:306277
+Average dE:124.344
+beta = 0.0281664
+Number of Energy flips:287110
+Number of Random flips:287905
+Average dE:127.729
+beta = 0.0293045
+Number of Energy flips:269188
+Number of Random flips:268837
+Average dE:131.309
+beta = 0.0305383
+Number of Energy flips:279466
+Number of Random flips:278821
+Average dE:129.335
+beta = 0.0299087
+Number of Energy flips:296229
+Number of Random flips:295656
+Average dE:126.296
+beta = 0.0287242
+Number of Energy flips:322768
+Number of Random flips:322241
+Average dE:121.601
+Temp 83 of 100 completed
+beta = 0.0271135
+Number of Energy flips:296055
+Number of Random flips:296041
+Average dE:126.334
+beta = 0.0287242
+Number of Energy flips:270252
+Number of Random flips:270304
+Average dE:130.963
+beta = 0.0305383
+Number of Energy flips:296898
+Number of Random flips:296246
+Average dE:126.14
+beta = 0.0287242
+Number of Energy flips:279408
+Number of Random flips:279267
+Average dE:129.225
+beta = 0.0299087
+Number of Energy flips:262517
+Number of Random flips:262290
+Average dE:132.323
+beta = 0.0311951
+Number of Energy flips:269852
+Number of Random flips:269857
+Average dE:131.203
+beta = 0.0305383
+Number of Energy flips:286702
+Number of Random flips:286263
+Average dE:128.078
+beta = 0.0293045
+Number of Energy flips:314522
+Number of Random flips:313957
+Average dE:123.073
+Temp 84 of 100 completed
+beta = 0.0276299
+Number of Energy flips:288109
+Number of Random flips:288165
+Average dE:127.773
+beta = 0.0293045
+Number of Energy flips:262864
+Number of Random flips:263546
+Average dE:131.964
+beta = 0.0311951
+Number of Energy flips:286368
+Number of Random flips:287146
+Average dE:127.957
+beta = 0.0293045
+Number of Energy flips:270312
+Number of Random flips:271080
+Average dE:130.769
+beta = 0.0305383
+Number of Energy flips:254062
+Number of Random flips:254291
+Average dE:134.015
+beta = 0.0318807
+Number of Energy flips:259980
+Number of Random flips:260145
+Average dE:133.024
+beta = 0.0311951
+Number of Energy flips:278856
+Number of Random flips:277953
+Average dE:129.461
+beta = 0.0299087
+Number of Energy flips:306366
+Number of Random flips:305542
+Average dE:124.39
+Temp 85 of 100 completed
+beta = 0.0281664
+Number of Energy flips:279109
+Number of Random flips:279769
+Average dE:129.194
+beta = 0.0299087
+Number of Energy flips:253378
+Number of Random flips:253122
+Average dE:134.241
+beta = 0.0318807
+Number of Energy flips:278239
+Number of Random flips:277418
+Average dE:129.694
+beta = 0.0299087
+Number of Energy flips:262504
+Number of Random flips:261641
+Average dE:132.331
+beta = 0.0311951
+Number of Energy flips:246261
+Number of Random flips:245941
+Average dE:135.426
+beta = 0.0325971
+Number of Energy flips:253088
+Number of Random flips:253291
+Average dE:134.412
+beta = 0.0318807
+Number of Energy flips:268986
+Number of Random flips:269812
+Average dE:131.283
+beta = 0.0305383
+Number of Energy flips:247289
+Number of Random flips:247739
+Average dE:135.144
+beta = 0.0325971
+Number of Energy flips:269841
+Number of Random flips:270316
+Average dE:131.096
+beta = 0.0305383
+Number of Energy flips:295951
+Number of Random flips:296469
+Average dE:126.274
+Temp 86 of 100 completed
+beta = 0.0287242
+Number of Energy flips:269891
+Number of Random flips:269866
+Average dE:131.024
+beta = 0.0305383
+Number of Energy flips:254104
+Number of Random flips:253812
+Average dE:133.726
+beta = 0.0318807
+Number of Energy flips:237709
+Number of Random flips:238191
+Average dE:136.928
+beta = 0.0333464
+Number of Energy flips:245883
+Number of Random flips:246039
+Average dE:135.428
+beta = 0.0325971
+Number of Energy flips:261813
+Number of Random flips:261159
+Average dE:132.731
+beta = 0.0311951
+Number of Energy flips:239055
+Number of Random flips:239419
+Average dE:136.833
+beta = 0.0333464
+Number of Energy flips:261935
+Number of Random flips:262135
+Average dE:132.44
+beta = 0.0311951
+Number of Energy flips:287921
+Number of Random flips:288667
+Average dE:127.292
+Temp 87 of 100 completed
+beta = 0.0293045
+Number of Energy flips:246697
+Number of Random flips:246311
+Average dE:135.296
+beta = 0.0325971
+Number of Energy flips:262327
+Number of Random flips:263093
+Average dE:132.183
+beta = 0.0311951
+Number of Energy flips:230864
+Number of Random flips:230773
+Average dE:138.328
+beta = 0.0341311
+Number of Energy flips:238237
+Number of Random flips:238377
+Average dE:136.712
+beta = 0.0333464
+Number of Energy flips:254947
+Number of Random flips:254486
+Average dE:133.667
+beta = 0.0318807
+Number of Energy flips:231592
+Number of Random flips:231961
+Average dE:138.095
+beta = 0.0341311
+Number of Energy flips:254067
+Number of Random flips:253744
+Average dE:134.072
+beta = 0.0318807
+Number of Energy flips:278915
+Number of Random flips:279155
+Average dE:129.101
+Temp 88 of 100 completed
+beta = 0.0299087
+Number of Energy flips:237468
+Number of Random flips:237459
+Average dE:137.123
+beta = 0.0333464
+Number of Energy flips:253614
+Number of Random flips:253955
+Average dE:133.741
+beta = 0.0318807
+Number of Energy flips:224984
+Number of Random flips:224937
+Average dE:139.451
+beta = 0.0349535
+Number of Energy flips:231244
+Number of Random flips:231246
+Average dE:138.146
+beta = 0.0341311
+Number of Energy flips:245629
+Number of Random flips:246613
+Average dE:135.491
+beta = 0.0325971
+Number of Energy flips:223444
+Number of Random flips:223110
+Average dE:139.845
+beta = 0.0349535
+Number of Energy flips:246446
+Number of Random flips:246253
+Average dE:135.455
+beta = 0.0325971
+Number of Energy flips:271404
+Number of Random flips:271681
+Average dE:130.746
+Temp 89 of 100 completed
+beta = 0.0305383
+Number of Energy flips:230787
+Number of Random flips:230561
+Average dE:138.355
+beta = 0.0341311
+Number of Energy flips:246322
+Number of Random flips:246737
+Average dE:135.246
+beta = 0.0325971
+Number of Energy flips:216966
+Number of Random flips:217272
+Average dE:140.776
+beta = 0.0358166
+Number of Energy flips:224207
+Number of Random flips:224358
+Average dE:139.519
+beta = 0.0349535
+Number of Energy flips:238981
+Number of Random flips:238615
+Average dE:136.644
+beta = 0.0333464
+Number of Energy flips:216800
+Number of Random flips:217115
+Average dE:141.07
+beta = 0.0358166
+Number of Energy flips:237697
+Number of Random flips:238064
+Average dE:137.169
+beta = 0.0333464
+Number of Energy flips:263975
+Number of Random flips:263308
+Average dE:132.08
+Temp 90 of 100 completed
+beta = 0.0311951
+Number of Energy flips:224089
+Number of Random flips:223930
+Average dE:139.663
+beta = 0.0349535
+Number of Energy flips:237428
+Number of Random flips:237652
+Average dE:137.131
+beta = 0.0333464
+Number of Energy flips:210011
+Number of Random flips:210262
+Average dE:142.046
+beta = 0.0367233
+Number of Energy flips:217008
+Number of Random flips:216674
+Average dE:140.879
+beta = 0.0358166
+Number of Energy flips:231014
+Number of Random flips:230263
+Average dE:138.405
+beta = 0.0341311
+Number of Energy flips:209302
+Number of Random flips:209660
+Average dE:142.15
+beta = 0.0367233
+Number of Energy flips:230456
+Number of Random flips:230248
+Average dE:138.537
+beta = 0.0341311
+Number of Energy flips:254045
+Number of Random flips:253251
+Average dE:134.012
+Temp 91 of 100 completed
+beta = 0.0318807
+Number of Energy flips:217635
+Number of Random flips:216746
+Average dE:141.155
+beta = 0.0358166
+Number of Energy flips:231270
+Number of Random flips:231499
+Average dE:138.11
+beta = 0.0341311
+Number of Energy flips:202352
+Number of Random flips:202527
+Average dE:143.798
+beta = 0.0376772
+Number of Energy flips:209434
+Number of Random flips:209249
+Average dE:142.339
+beta = 0.0367233
+Number of Energy flips:224062
+Number of Random flips:224075
+Average dE:139.593
+beta = 0.0349535
+Number of Energy flips:202902
+Number of Random flips:203908
+Average dE:143.387
+beta = 0.0376772
+Number of Energy flips:223791
+Number of Random flips:223796
+Average dE:139.864
+beta = 0.0349535
+Number of Energy flips:209642
+Number of Random flips:210170
+Average dE:142.373
+beta = 0.0367233
+Number of Energy flips:244701
+Number of Random flips:244804
+Average dE:135.749
+Temp 92 of 100 completed
+beta = 0.0325971
+Number of Energy flips:195411
+Number of Random flips:195805
+Average dE:145.131
+beta = 0.012894
+Number of Energy flips:223612
+Number of Random flips:223422
+Average dE:139.849
+beta = 0.0349535
+Number of Energy flips:203324
+Number of Random flips:202852
+Average dE:143.475
+beta = 0.0376772
+Number of Energy flips:217026
+Number of Random flips:217451
+Average dE:140.964
+beta = 0.0358166
+Number of Energy flips:196444
+Number of Random flips:196150
+Average dE:145.157
+beta = 0.012894
+Number of Energy flips:215483
+Number of Random flips:214977
+Average dE:141.395
+beta = 0.0358166
+Number of Energy flips:202155
+Number of Random flips:202271
+Average dE:144.008
+beta = 0.0376772
+Number of Energy flips:238885
+Number of Random flips:238391
+Average dE:136.802
+Temp 93 of 100 completed
+beta = 0.0333464
+Number of Energy flips:216231
+Number of Random flips:216333
+Average dE:141.195
+beta = 0.0358166
+Number of Energy flips:196274
+Number of Random flips:195995
+Average dE:145.007
+beta = 0.012894
+Number of Energy flips:209792
+Number of Random flips:209945
+Average dE:142.248
+beta = 0.0367233
+Number of Energy flips:209916
+Number of Random flips:209394
+Average dE:142.34
+beta = 0.0367233
+Number of Energy flips:196911
+Number of Random flips:196178
+Average dE:144.898
+beta = 0.012894
+Number of Energy flips:231161
+Number of Random flips:231235
+Average dE:138.373
+Temp 94 of 100 completed
+beta = 0.0341311
+Number of Energy flips:209915
+Number of Random flips:209511
+Average dE:142.101
+beta = 0.0367233
+Number of Energy flips:202957
+Number of Random flips:202363
+Average dE:143.821
+beta = 0.0376772
+Number of Energy flips:203204
+Number of Random flips:202830
+Average dE:143.617
+beta = 0.0376772
+Number of Energy flips:202912
+Number of Random flips:202531
+Average dE:143.628
+beta = 0.0376772
+Number of Energy flips:223297
+Number of Random flips:223290
+Average dE:139.82
+Temp 95 of 100 completed
+beta = 0.0349535
+Number of Energy flips:195893
+Number of Random flips:196024
+Average dE:145.122
+beta = 0.012894
+Number of Energy flips:195864
+Number of Random flips:195606
+Average dE:145.302
+beta = 0.012894
+Number of Energy flips:195283
+Number of Random flips:195911
+Average dE:145.287
+beta = 0.012894
+Number of Energy flips:217220
+Number of Random flips:216871
+Average dE:140.778
+Temp 96 of 100 completed
+beta = 0.0358166
+Number of Energy flips:3844613
+Number of Random flips:3842051
+Average dE:60.2236
+beta = 0.012894
+Number of Energy flips:209512
+Number of Random flips:209421
+Average dE:142.485
+Temp 97 of 100 completed
+beta = 0.0367233
+Number of Energy flips:3842224
+Number of Random flips:3841529
+Average dE:60.2552
+beta = 0.012894
+Number of Energy flips:768425
+Number of Random flips:769242
+Average dE:60.0805
+beta = 0.0130096
+Number of Energy flips:3840493
+Number of Random flips:3841412
+Average dE:60.2589
+beta = 0.012894
+Number of Energy flips:202319
+Number of Random flips:202526
+Average dE:143.785
+Temp 98 of 100 completed
+beta = 0.0376772
+Number of Energy flips:768980
+Number of Random flips:768689
+Average dE:60.2236
+beta = 0.0130096
+Number of Energy flips:765933
+Number of Random flips:765384
+Average dE:60.3386
+beta = 0.0131273
+Number of Energy flips:3839674
+Number of Random flips:3841867
+Average dE:60.2708
+beta = 0.012894
+Number of Energy flips:769102
+Number of Random flips:769530
+Average dE:59.9866
+beta = 0.0130096
+Number of Energy flips:195875
+Number of Random flips:195850
+Average dE:144.992
+Temp 99 of 100 completed
+Lattice 0 of 2 completed
+beta = 0.012894
+Number of Energy flips:764283
+Number of Random flips:764440
+Average dE:60.5247
+beta = 0.0131273
+Number of Energy flips:762357
+Number of Random flips:762201
+Average dE:60.6053
+beta = 0.0132472
+Number of Energy flips:768040
+Number of Random flips:768608
+Average dE:60.2473
+beta = 0.0130096
+Number of Energy flips:764929
+Number of Random flips:764991
+Average dE:60.4855
+beta = 0.0131273
+Number of Energy flips:760781
+Number of Random flips:762396
+Average dE:60.7317
+beta = 0.0132472
+Number of Energy flips:3840592
+Number of Random flips:3842839
+Average dE:60.2347
+beta = 0.012894
+Number of Energy flips:758646
+Number of Random flips:758686
+Average dE:61.0183
+beta = 0.0133693
+Number of Energy flips:3841060
+Number of Random flips:3838493
+Average dE:60.3297
+beta = 0.012894
+Number of Energy flips:764925
+Number of Random flips:764208
+Average dE:60.5574
+beta = 0.0131273
+Number of Energy flips:3841692
+Number of Random flips:3842275
+Average dE:60.2653
+beta = 0.012894
+Number of Energy flips:762257
+Number of Random flips:762618
+Average dE:60.5409
+beta = 0.0132472
+Number of Energy flips:758662
+Number of Random flips:759729
+Average dE:60.8539
+beta = 0.0133693
+Number of Energy flips:768928
+Number of Random flips:767935
+Average dE:60.1918
+beta = 0.0130096
+Number of Energy flips:756138
+Number of Random flips:755460
+Average dE:61.0364
+beta = 0.0134937
+Number of Energy flips:766783
+Number of Random flips:767731
+Average dE:60.3763
+beta = 0.0130096
+Number of Energy flips:763491
+Number of Random flips:762988
+Average dE:60.5345
+beta = 0.0132472
+Number of Energy flips:767578
+Number of Random flips:768550
+Average dE:60.2215
+beta = 0.0130096
+Number of Energy flips:759413
+Number of Random flips:759043
+Average dE:60.8498
+beta = 0.0133693
+Number of Energy flips:756457
+Number of Random flips:755840
+Average dE:61.1164
+beta = 0.0134937
+Number of Energy flips:764874
+Number of Random flips:765543
+Average dE:60.5073
+beta = 0.0131273
+Number of Energy flips:752697
+Number of Random flips:752344
+Average dE:61.3306
+beta = 0.0136204
+Number of Energy flips:765440
+Number of Random flips:766232
+Average dE:60.2454
+beta = 0.0131273
+Number of Energy flips:766809
+Number of Random flips:765881
+Average dE:60.3345
+beta = 0.0131273
+Number of Energy flips:759650
+Number of Random flips:758138
+Average dE:61.0143
+beta = 0.0133693
+Number of Energy flips:755565
+Number of Random flips:755893
+Average dE:61.1027
+beta = 0.0134937
+Number of Energy flips:751885
+Number of Random flips:752389
+Average dE:61.3619
+beta = 0.0136204
+Number of Energy flips:763655
+Number of Random flips:763012
+Average dE:60.5786
+beta = 0.0132472
+Number of Energy flips:749403
+Number of Random flips:748978
+Average dE:61.505
+beta = 0.0137495
+Number of Energy flips:761670
+Number of Random flips:761266
+Average dE:60.8075
+beta = 0.0132472
+Number of Energy flips:761437
+Number of Random flips:762337
+Average dE:60.7203
+beta = 0.0132472
+Number of Energy flips:756141
+Number of Random flips:756407
+Average dE:61.1359
+beta = 0.0134937
+Number of Energy flips:753018
+Number of Random flips:751292
+Average dE:61.4182
+beta = 0.0136204
+Number of Energy flips:747833
+Number of Random flips:748873
+Average dE:61.6281
+beta = 0.0137495
+Number of Energy flips:3843615
+Number of Random flips:3843505
+Average dE:60.1742
+beta = 0.012894
+Number of Energy flips:758673
+Number of Random flips:759412
+Average dE:60.8825
+beta = 0.0133693
+Number of Energy flips:744660
+Number of Random flips:744362
+Average dE:61.9893
+beta = 0.0138811
+Number of Energy flips:758299
+Number of Random flips:758583
+Average dE:60.9781
+beta = 0.0133693
+Number of Energy flips:758074
+Number of Random flips:758622
+Average dE:60.9631
+beta = 0.0133693
+Number of Energy flips:753074
+Number of Random flips:752085
+Average dE:61.3654
+beta = 0.0136204
+Number of Energy flips:749290
+Number of Random flips:749283
+Average dE:61.6314
+beta = 0.0137495
+Number of Energy flips:745779
+Number of Random flips:745916
+Average dE:61.8643
+beta = 0.0138811
+Number of Energy flips:767765
+Number of Random flips:768947
+Average dE:60.2316
+Temp 0 of 100 completed
+beta = 0.0130096
+Number of Energy flips:756254
+Number of Random flips:755610
+Average dE:61.0735
+beta = 0.0134937
+Number of Energy flips:742321
+Number of Random flips:742621
+Average dE:62.0114
+beta = 0.0140152
+Number of Energy flips:756190
+Number of Random flips:755600
+Average dE:61.1107
+beta = 0.0134937
+Number of Energy flips:754953
+Number of Random flips:754843
+Average dE:61.3009
+beta = 0.0134937
+Number of Energy flips:749215
+Number of Random flips:750381
+Average dE:61.456
+beta = 0.0137495
+Number of Energy flips:745700
+Number of Random flips:743906
+Average dE:61.9889
+beta = 0.0138811
+Number of Energy flips:741481
+Number of Random flips:742068
+Average dE:62.216
+beta = 0.0140152
+Number of Energy flips:767367
+Number of Random flips:765089
+Average dE:60.4841
+Temp 1 of 100 completed
+beta = 0.0131273
+Number of Energy flips:751391
+Number of Random flips:752721
+Average dE:61.2775
+beta = 0.0136204
+Number of Energy flips:738092
+Number of Random flips:737426
+Average dE:62.5064
+beta = 0.0141519
+Number of Energy flips:751783
+Number of Random flips:751917
+Average dE:61.3891
+beta = 0.0136204
+Number of Energy flips:752465
+Number of Random flips:751699
+Average dE:61.276
+beta = 0.0136204
+Number of Energy flips:745102
+Number of Random flips:744189
+Average dE:62.0314
+beta = 0.0138811
+Number of Energy flips:741498
+Number of Random flips:741120
+Average dE:62.1279
+beta = 0.0140152
+Number of Energy flips:738632
+Number of Random flips:738621
+Average dE:62.4546
+beta = 0.0141519
+Number of Energy flips:762510
+Number of Random flips:763192
+Average dE:60.5235
+Temp 2 of 100 completed
+beta = 0.0132472
+Number of Energy flips:748465
+Number of Random flips:748702
+Average dE:61.6877
+beta = 0.0137495
+Number of Energy flips:735419
+Number of Random flips:736246
+Average dE:62.4979
+beta = 0.0142913
+Number of Energy flips:748755
+Number of Random flips:749550
+Average dE:61.4561
+beta = 0.0137495
+Number of Energy flips:748418
+Number of Random flips:748226
+Average dE:61.8037
+beta = 0.0137495
+Number of Energy flips:741732
+Number of Random flips:742031
+Average dE:62.1448
+beta = 0.0140152
+Number of Energy flips:737903
+Number of Random flips:737720
+Average dE:62.4475
+beta = 0.0141519
+Number of Energy flips:734673
+Number of Random flips:734655
+Average dE:62.6124
+beta = 0.0142913
+Number of Energy flips:759556
+Number of Random flips:759116
+Average dE:60.8532
+Temp 3 of 100 completed
+beta = 0.0133693
+Number of Energy flips:745911
+Number of Random flips:745251
+Average dE:61.972
+beta = 0.0138811
+Number of Energy flips:731692
+Number of Random flips:731876
+Average dE:62.7334
+beta = 0.0144335
+Number of Energy flips:745479
+Number of Random flips:744962
+Average dE:61.9169
+beta = 0.0138811
+Number of Energy flips:745743
+Number of Random flips:745630
+Average dE:61.7493
+beta = 0.0138811
+Number of Energy flips:737437
+Number of Random flips:737971
+Average dE:62.4104
+beta = 0.0141519
+Number of Energy flips:733721
+Number of Random flips:733686
+Average dE:62.8752
+beta = 0.0142913
+Number of Energy flips:731295
+Number of Random flips:731274
+Average dE:62.8149
+beta = 0.0144335
+Number of Energy flips:754162
+Number of Random flips:756524
+Average dE:61.0701
+Temp 4 of 100 completed
+beta = 0.0134937
+Number of Energy flips:742027
+Number of Random flips:741300
+Average dE:62.1808
+beta = 0.0140152
+Number of Energy flips:726198
+Number of Random flips:725572
+Average dE:63.3877
+beta = 0.0145786
+Number of Energy flips:741884
+Number of Random flips:742684
+Average dE:62.0497
+beta = 0.0140152
+Number of Energy flips:742515
+Number of Random flips:742284
+Average dE:62.0945
+beta = 0.0140152
+Number of Energy flips:730532
+Number of Random flips:729973
+Average dE:63.0196
+beta = 0.0144335
+Number of Energy flips:735317
+Number of Random flips:734531
+Average dE:62.5312
+beta = 0.0142913
+Number of Energy flips:727313
+Number of Random flips:727015
+Average dE:63.1176
+beta = 0.0145786
+Number of Energy flips:752598
+Number of Random flips:751814
+Average dE:61.3957
+Temp 5 of 100 completed
+beta = 0.0136204
+Number of Energy flips:738121
+Number of Random flips:738431
+Average dE:62.3331
+beta = 0.0141519
+Number of Energy flips:723583
+Number of Random flips:722807
+Average dE:63.467
+beta = 0.0147266
+Number of Energy flips:738421
+Number of Random flips:737897
+Average dE:62.4363
+beta = 0.0141519
+Number of Energy flips:739839
+Number of Random flips:738771
+Average dE:62.2283
+beta = 0.0141519
+Number of Energy flips:726328
+Number of Random flips:726441
+Average dE:63.3728
+beta = 0.0145786
+Number of Energy flips:730145
+Number of Random flips:729918
+Average dE:63.1317
+beta = 0.0144335
+Number of Energy flips:722991
+Number of Random flips:721599
+Average dE:63.6559
+beta = 0.0147266
+Number of Energy flips:749132
+Number of Random flips:748973
+Average dE:61.654
+Temp 6 of 100 completed
+beta = 0.0137495
+Number of Energy flips:733608
+Number of Random flips:734484
+Average dE:62.7173
+beta = 0.0142913
+Number of Energy flips:718003
+Number of Random flips:717609
+Average dE:64.0024
+beta = 0.0148776
+Number of Energy flips:734070
+Number of Random flips:734813
+Average dE:62.6637
+beta = 0.0142913
+Number of Energy flips:733646
+Number of Random flips:734070
+Average dE:62.6723
+beta = 0.0142913
+Number of Energy flips:723143
+Number of Random flips:723429
+Average dE:63.485
+beta = 0.0147266
+Number of Energy flips:718997
+Number of Random flips:718027
+Average dE:63.9323
+beta = 0.0148776
+Number of Energy flips:725273
+Number of Random flips:726721
+Average dE:63.3942
+beta = 0.0145786
+Number of Energy flips:745890
+Number of Random flips:746408
+Average dE:61.7644
+Temp 7 of 100 completed
+beta = 0.0138811
+Number of Energy flips:729850
+Number of Random flips:732368
+Average dE:62.9097
+beta = 0.0144335
+Number of Energy flips:715881
+Number of Random flips:714456
+Average dE:64.2363
+beta = 0.0150318
+Number of Energy flips:730063
+Number of Random flips:730144
+Average dE:63.0282
+beta = 0.0144335
+Number of Energy flips:730622
+Number of Random flips:731805
+Average dE:62.9252
+beta = 0.0144335
+Number of Energy flips:716992
+Number of Random flips:716510
+Average dE:64.2235
+beta = 0.0148776
+Number of Energy flips:712829
+Number of Random flips:712886
+Average dE:64.4685
+beta = 0.0150318
+Number of Energy flips:722152
+Number of Random flips:721768
+Average dE:63.7138
+beta = 0.0147266
+Number of Energy flips:742424
+Number of Random flips:742393
+Average dE:62.0901
+Temp 8 of 100 completed
+beta = 0.0140152
+Number of Energy flips:728096
+Number of Random flips:727012
+Average dE:63.1715
+beta = 0.0145786
+Number of Energy flips:710547
+Number of Random flips:710929
+Average dE:64.5068
+beta = 0.0151892
+Number of Energy flips:727131
+Number of Random flips:725996
+Average dE:63.3876
+beta = 0.0145786
+Number of Energy flips:726179
+Number of Random flips:726767
+Average dE:63.2493
+beta = 0.0145786
+Number of Energy flips:714469
+Number of Random flips:715629
+Average dE:64.2078
+beta = 0.0150318
+Number of Energy flips:709400
+Number of Random flips:709002
+Average dE:64.7399
+beta = 0.0151892
+Number of Energy flips:718726
+Number of Random flips:718626
+Average dE:63.9545
+beta = 0.0148776
+Number of Energy flips:737537
+Number of Random flips:737346
+Average dE:62.4772
+Temp 9 of 100 completed
+beta = 0.0141519
+Number of Energy flips:722582
+Number of Random flips:723022
+Average dE:63.6546
+beta = 0.0147266
+Number of Energy flips:704866
+Number of Random flips:705257
+Average dE:65.0102
+beta = 0.01535
+Number of Energy flips:721902
+Number of Random flips:721261
+Average dE:63.7053
+beta = 0.0147266
+Number of Energy flips:722938
+Number of Random flips:722759
+Average dE:63.6689
+beta = 0.0147266
+Number of Energy flips:705844
+Number of Random flips:704338
+Average dE:65.0993
+beta = 0.01535
+Number of Energy flips:709603
+Number of Random flips:710083
+Average dE:64.4822
+beta = 0.0151892
+Number of Energy flips:713945
+Number of Random flips:714578
+Average dE:64.2403
+beta = 0.0150318
+Number of Energy flips:734083
+Number of Random flips:734229
+Average dE:62.7401
+Temp 10 of 100 completed
+beta = 0.0142913
+Number of Energy flips:719373
+Number of Random flips:717907
+Average dE:63.8941
+beta = 0.0148776
+Number of Energy flips:700681
+Number of Random flips:700559
+Average dE:65.3265
+beta = 0.0155141
+Number of Energy flips:717474
+Number of Random flips:718525
+Average dE:63.9342
+beta = 0.0148776
+Number of Energy flips:718149
+Number of Random flips:718478
+Average dE:63.8297
+beta = 0.0148776
+Number of Energy flips:701173
+Number of Random flips:701579
+Average dE:65.4039
+beta = 0.0155141
+Number of Energy flips:705351
+Number of Random flips:705847
+Average dE:65.0336
+beta = 0.01535
+Number of Energy flips:709225
+Number of Random flips:708774
+Average dE:64.6842
+beta = 0.0151892
+Number of Energy flips:730816
+Number of Random flips:730548
+Average dE:63.0008
+Temp 11 of 100 completed
+beta = 0.0144335
+Number of Energy flips:696791
+Number of Random flips:697019
+Average dE:65.6127
+beta = 0.0156818
+Number of Energy flips:713915
+Number of Random flips:713366
+Average dE:64.275
+beta = 0.0150318
+Number of Energy flips:713167
+Number of Random flips:712549
+Average dE:64.4914
+beta = 0.0150318
+Number of Energy flips:695672
+Number of Random flips:696283
+Average dE:65.695
+beta = 0.0156818
+Number of Energy flips:713703
+Number of Random flips:714131
+Average dE:64.1812
+beta = 0.0150318
+Number of Energy flips:701486
+Number of Random flips:700348
+Average dE:65.4096
+beta = 0.0155141
+Number of Energy flips:705584
+Number of Random flips:705766
+Average dE:65.0229
+beta = 0.01535
+Number of Energy flips:726002
+Number of Random flips:726532
+Average dE:63.3475
+Temp 12 of 100 completed
+beta = 0.0145786
+Number of Energy flips:690111
+Number of Random flips:689879
+Average dE:66.4076
+beta = 0.0158532
+Number of Energy flips:709922
+Number of Random flips:709458
+Average dE:64.754
+beta = 0.0151892
+Number of Energy flips:709487
+Number of Random flips:707923
+Average dE:64.8343
+beta = 0.0151892
+Number of Energy flips:691030
+Number of Random flips:691026
+Average dE:66.1988
+beta = 0.0158532
+Number of Energy flips:710579
+Number of Random flips:709299
+Average dE:64.5764
+beta = 0.0151892
+Number of Energy flips:695358
+Number of Random flips:695482
+Average dE:65.878
+beta = 0.0156818
+Number of Energy flips:700661
+Number of Random flips:700365
+Average dE:65.4486
+beta = 0.0155141
+Number of Energy flips:721355
+Number of Random flips:722089
+Average dE:63.6487
+Temp 13 of 100 completed
+beta = 0.0147266
+Number of Energy flips:686215
+Number of Random flips:685904
+Average dE:66.59
+beta = 0.0160284
+Number of Energy flips:705421
+Number of Random flips:705596
+Average dE:64.8304
+beta = 0.01535
+Number of Energy flips:705278
+Number of Random flips:704867
+Average dE:64.9938
+beta = 0.01535
+Number of Energy flips:685813
+Number of Random flips:685816
+Average dE:66.6701
+beta = 0.0160284
+Number of Energy flips:690578
+Number of Random flips:689379
+Average dE:66.4321
+beta = 0.0158532
+Number of Energy flips:705996
+Number of Random flips:706210
+Average dE:64.9032
+beta = 0.01535
+Number of Energy flips:696389
+Number of Random flips:695186
+Average dE:65.8922
+beta = 0.0156818
+Number of Energy flips:717441
+Number of Random flips:717731
+Average dE:64.0329
+Temp 14 of 100 completed
+beta = 0.0148776
+Number of Energy flips:680986
+Number of Random flips:681038
+Average dE:67.2387
+beta = 0.0162075
+Number of Energy flips:699863
+Number of Random flips:699448
+Average dE:65.6172
+beta = 0.0155141
+Number of Energy flips:700753
+Number of Random flips:701029
+Average dE:65.4007
+beta = 0.0155141
+Number of Energy flips:681915
+Number of Random flips:681992
+Average dE:67.0504
+beta = 0.0162075
+Number of Energy flips:686984
+Number of Random flips:686689
+Average dE:66.5217
+beta = 0.0160284
+Number of Energy flips:699787
+Number of Random flips:699536
+Average dE:65.5535
+beta = 0.0155141
+Number of Energy flips:690797
+Number of Random flips:691081
+Average dE:66.286
+beta = 0.0158532
+Number of Energy flips:715461
+Number of Random flips:713377
+Average dE:64.3098
+Temp 15 of 100 completed
+beta = 0.0150318
+Number of Energy flips:675812
+Number of Random flips:674690
+Average dE:67.6727
+beta = 0.0163906
+Number of Energy flips:696130
+Number of Random flips:695128
+Average dE:66.0187
+beta = 0.0156818
+Number of Energy flips:695359
+Number of Random flips:695078
+Average dE:65.9123
+beta = 0.0156818
+Number of Energy flips:675012
+Number of Random flips:674900
+Average dE:67.7664
+beta = 0.0163906
+Number of Energy flips:680184
+Number of Random flips:680514
+Average dE:67.3241
+beta = 0.0162075
+Number of Energy flips:695848
+Number of Random flips:694713
+Average dE:65.971
+beta = 0.0156818
+Number of Energy flips:685851
+Number of Random flips:686130
+Average dE:66.626
+beta = 0.0160284
+Number of Energy flips:709035
+Number of Random flips:709469
+Average dE:64.7136
+Temp 16 of 100 completed
+beta = 0.0151892
+Number of Energy flips:670120
+Number of Random flips:671176
+Average dE:68.023
+beta = 0.0165779
+Number of Energy flips:693046
+Number of Random flips:691458
+Average dE:66.1161
+beta = 0.0158532
+Number of Energy flips:689094
+Number of Random flips:690679
+Average dE:66.4737
+beta = 0.0158532
+Number of Energy flips:670470
+Number of Random flips:669461
+Average dE:68.1318
+beta = 0.0165779
+Number of Energy flips:676942
+Number of Random flips:677671
+Average dE:67.3999
+beta = 0.0163906
+Number of Energy flips:692392
+Number of Random flips:691860
+Average dE:65.9742
+beta = 0.0158532
+Number of Energy flips:679418
+Number of Random flips:679177
+Average dE:67.5144
+beta = 0.0162075
+Number of Energy flips:705109
+Number of Random flips:705640
+Average dE:64.987
+Temp 17 of 100 completed
+beta = 0.01535
+Number of Energy flips:663949
+Number of Random flips:664370
+Average dE:68.7712
+beta = 0.0166732
+Number of Energy flips:686792
+Number of Random flips:686918
+Average dE:66.6209
+beta = 0.0160284
+Number of Energy flips:686921
+Number of Random flips:687790
+Average dE:66.4114
+beta = 0.0160284
+Number of Energy flips:663055
+Number of Random flips:663699
+Average dE:68.9866
+beta = 0.0166732
+Number of Energy flips:672139
+Number of Random flips:670791
+Average dE:67.9004
+beta = 0.0165779
+Number of Energy flips:685373
+Number of Random flips:685340
+Average dE:66.7163
+beta = 0.0160284
+Number of Energy flips:677657
+Number of Random flips:677717
+Average dE:67.4615
+beta = 0.0163906
+Number of Energy flips:661178
+Number of Random flips:660655
+Average dE:69.1168
+beta = 0.0167696
+Number of Energy flips:701276
+Number of Random flips:701378
+Average dE:65.3144
+Temp 18 of 100 completed
+beta = 0.0155141
+Number of Energy flips:681450
+Number of Random flips:682464
+Average dE:66.8987
+beta = 0.0162075
+Number of Energy flips:680663
+Number of Random flips:680783
+Average dE:67.1739
+beta = 0.0162075
+Number of Energy flips:661258
+Number of Random flips:660185
+Average dE:69.2162
+beta = 0.0167696
+Number of Energy flips:664843
+Number of Random flips:664881
+Average dE:68.5606
+beta = 0.0166732
+Number of Energy flips:680897
+Number of Random flips:680274
+Average dE:67.2218
+beta = 0.0162075
+Number of Energy flips:670153
+Number of Random flips:671162
+Average dE:68.0648
+beta = 0.0165779
+Number of Energy flips:658315
+Number of Random flips:659314
+Average dE:69.1857
+beta = 0.0168671
+Number of Energy flips:695471
+Number of Random flips:695086
+Average dE:65.9663
+Temp 19 of 100 completed
+beta = 0.0156818
+Number of Energy flips:674787
+Number of Random flips:674292
+Average dE:67.7872
+beta = 0.0163906
+Number of Energy flips:659872
+Number of Random flips:659057
+Average dE:69.2015
+beta = 0.0168671
+Number of Energy flips:674941
+Number of Random flips:674541
+Average dE:67.7289
+beta = 0.0163906
+Number of Energy flips:661449
+Number of Random flips:662361
+Average dE:68.8747
+beta = 0.0167696
+Number of Energy flips:675728
+Number of Random flips:675479
+Average dE:67.6289
+beta = 0.0163906
+Number of Energy flips:654445
+Number of Random flips:654717
+Average dE:69.735
+beta = 0.0169657
+Number of Energy flips:664607
+Number of Random flips:663772
+Average dE:68.7886
+beta = 0.0166732
+Number of Energy flips:689678
+Number of Random flips:690342
+Average dE:66.4417
+Temp 20 of 100 completed
+beta = 0.0158532
+Number of Energy flips:669690
+Number of Random flips:668831
+Average dE:68.2221
+beta = 0.0165779
+Number of Energy flips:655029
+Number of Random flips:655279
+Average dE:69.5464
+beta = 0.0169657
+Number of Energy flips:669006
+Number of Random flips:669035
+Average dE:68.4108
+beta = 0.0165779
+Number of Energy flips:657555
+Number of Random flips:657770
+Average dE:69.5109
+beta = 0.0168671
+Number of Energy flips:652290
+Number of Random flips:651853
+Average dE:70.0141
+beta = 0.0170655
+Number of Energy flips:671276
+Number of Random flips:671124
+Average dE:67.9864
+beta = 0.0165779
+Number of Energy flips:660965
+Number of Random flips:660239
+Average dE:69.1313
+beta = 0.0167696
+Number of Energy flips:686466
+Number of Random flips:686292
+Average dE:66.5623
+Temp 21 of 100 completed
+beta = 0.0160284
+Number of Energy flips:663124
+Number of Random flips:664345
+Average dE:68.8743
+beta = 0.0166732
+Number of Energy flips:651770
+Number of Random flips:650498
+Average dE:70.3127
+beta = 0.0170655
+Number of Energy flips:665142
+Number of Random flips:664162
+Average dE:68.6477
+beta = 0.0166732
+Number of Energy flips:654793
+Number of Random flips:656121
+Average dE:69.4703
+beta = 0.0169657
+Number of Energy flips:650075
+Number of Random flips:649332
+Average dE:70.2758
+beta = 0.0171665
+Number of Energy flips:663570
+Number of Random flips:664025
+Average dE:68.9972
+beta = 0.0166732
+Number of Energy flips:659099
+Number of Random flips:659510
+Average dE:69.1552
+beta = 0.0168671
+Number of Energy flips:681657
+Number of Random flips:680917
+Average dE:67.1089
+Temp 22 of 100 completed
+beta = 0.0162075
+Number of Energy flips:660708
+Number of Random flips:661292
+Average dE:68.9471
+beta = 0.0167696
+Number of Energy flips:647013
+Number of Random flips:647707
+Average dE:70.6122
+beta = 0.0171665
+Number of Energy flips:660953
+Number of Random flips:660168
+Average dE:69.1677
+beta = 0.0167696
+Number of Energy flips:653195
+Number of Random flips:651840
+Average dE:69.8833
+beta = 0.0170655
+Number of Energy flips:645596
+Number of Random flips:645162
+Average dE:70.7466
+beta = 0.0172687
+Number of Energy flips:652756
+Number of Random flips:653277
+Average dE:70.091
+beta = 0.0169657
+Number of Energy flips:661828
+Number of Random flips:662894
+Average dE:68.7903
+beta = 0.0167696
+Number of Energy flips:676041
+Number of Random flips:676314
+Average dE:67.5586
+Temp 23 of 100 completed
+beta = 0.0163906
+Number of Energy flips:658932
+Number of Random flips:659395
+Average dE:69.1579
+beta = 0.0168671
+Number of Energy flips:646500
+Number of Random flips:647550
+Average dE:70.2413
+beta = 0.0172687
+Number of Energy flips:657791
+Number of Random flips:658863
+Average dE:69.2263
+beta = 0.0168671
+Number of Energy flips:648509
+Number of Random flips:649522
+Average dE:70.1263
+beta = 0.0171665
+Number of Energy flips:642214
+Number of Random flips:642204
+Average dE:71.0298
+beta = 0.0173721
+Number of Energy flips:652370
+Number of Random flips:652446
+Average dE:69.9438
+beta = 0.0170655
+Number of Energy flips:658043
+Number of Random flips:657750
+Average dE:69.3207
+beta = 0.0168671
+Number of Energy flips:668727
+Number of Random flips:668184
+Average dE:68.5017
+Temp 24 of 100 completed
+beta = 0.0165779
+Number of Energy flips:654451
+Number of Random flips:654243
+Average dE:69.8492
+beta = 0.0169657
+Number of Energy flips:642246
+Number of Random flips:642549
+Average dE:71.0125
+beta = 0.0173721
+Number of Energy flips:655580
+Number of Random flips:654915
+Average dE:69.6895
+beta = 0.0169657
+Number of Energy flips:647953
+Number of Random flips:647209
+Average dE:70.3378
+beta = 0.0172687
+Number of Energy flips:640450
+Number of Random flips:640561
+Average dE:71.2191
+beta = 0.0174768
+Number of Energy flips:647863
+Number of Random flips:648179
+Average dE:70.5751
+beta = 0.0171665
+Number of Energy flips:663583
+Number of Random flips:663452
+Average dE:68.9333
+Temp 25 of 100 completed
+beta = 0.0166732
+Number of Energy flips:655571
+Number of Random flips:654687
+Average dE:69.7189
+beta = 0.0169657
+Number of Energy flips:652620
+Number of Random flips:652348
+Average dE:69.8547
+beta = 0.0170655
+Number of Energy flips:638055
+Number of Random flips:638456
+Average dE:71.3555
+beta = 0.0174768
+Number of Energy flips:652652
+Number of Random flips:653216
+Average dE:69.9018
+beta = 0.0170655
+Number of Energy flips:643385
+Number of Random flips:643335
+Average dE:70.7834
+beta = 0.0173721
+Number of Energy flips:634819
+Number of Random flips:635067
+Average dE:71.9131
+beta = 0.0175827
+Number of Energy flips:646195
+Number of Random flips:645095
+Average dE:70.7613
+beta = 0.0172687
+Number of Energy flips:661039
+Number of Random flips:662230
+Average dE:68.9916
+Temp 26 of 100 completed
+beta = 0.0167696
+Number of Energy flips:652085
+Number of Random flips:653417
+Average dE:69.8582
+beta = 0.0170655
+Number of Energy flips:648391
+Number of Random flips:648892
+Average dE:70.3239
+beta = 0.0171665
+Number of Energy flips:636921
+Number of Random flips:636152
+Average dE:71.6165
+beta = 0.0175827
+Number of Energy flips:649768
+Number of Random flips:649506
+Average dE:70.2704
+beta = 0.0171665
+Number of Energy flips:638545
+Number of Random flips:637589
+Average dE:71.6549
+beta = 0.0174768
+Number of Energy flips:631745
+Number of Random flips:631662
+Average dE:72.1714
+beta = 0.0176899
+Number of Energy flips:643685
+Number of Random flips:643721
+Average dE:70.7288
+beta = 0.0173721
+Number of Energy flips:657401
+Number of Random flips:658380
+Average dE:69.3761
+Temp 27 of 100 completed
+beta = 0.0168671
+Number of Energy flips:648184
+Number of Random flips:648810
+Average dE:70.4367
+beta = 0.0171665
+Number of Energy flips:644994
+Number of Random flips:644480
+Average dE:71.0188
+beta = 0.0172687
+Number of Energy flips:631865
+Number of Random flips:631185
+Average dE:72.3569
+beta = 0.0176899
+Number of Energy flips:647165
+Number of Random flips:646058
+Average dE:70.4508
+beta = 0.0172687
+Number of Energy flips:637271
+Number of Random flips:637525
+Average dE:71.367
+beta = 0.0175827
+Number of Energy flips:628681
+Number of Random flips:628927
+Average dE:72.4098
+beta = 0.0177984
+Number of Energy flips:641263
+Number of Random flips:640442
+Average dE:70.9643
+beta = 0.0174768
+Number of Energy flips:655243
+Number of Random flips:654602
+Average dE:69.6593
+Temp 28 of 100 completed
+beta = 0.0169657
+Number of Energy flips:646548
+Number of Random flips:647004
+Average dE:70.4956
+beta = 0.0172687
+Number of Energy flips:644403
+Number of Random flips:643277
+Average dE:70.9001
+beta = 0.0173721
+Number of Energy flips:627034
+Number of Random flips:626646
+Average dE:72.8395
+beta = 0.0177984
+Number of Energy flips:644579
+Number of Random flips:644980
+Average dE:70.4138
+beta = 0.0173721
+Number of Energy flips:631872
+Number of Random flips:631941
+Average dE:72.0857
+beta = 0.0176899
+Number of Energy flips:624579
+Number of Random flips:623975
+Average dE:73.1584
+beta = 0.0179083
+Number of Energy flips:637598
+Number of Random flips:636556
+Average dE:71.5773
+beta = 0.0175827
+Number of Energy flips:652006
+Number of Random flips:651550
+Average dE:70.1481
+Temp 29 of 100 completed
+beta = 0.0170655
+Number of Energy flips:642908
+Number of Random flips:643289
+Average dE:70.8962
+beta = 0.0173721
+Number of Energy flips:638745
+Number of Random flips:638528
+Average dE:71.5194
+beta = 0.0174768
+Number of Energy flips:626064
+Number of Random flips:625557
+Average dE:72.674
+beta = 0.0179083
+Number of Energy flips:639568
+Number of Random flips:639377
+Average dE:71.2852
+beta = 0.0174768
+Number of Energy flips:619593
+Number of Random flips:620005
+Average dE:73.6928
+beta = 0.0180195
+Number of Energy flips:629093
+Number of Random flips:628876
+Average dE:72.5781
+beta = 0.0177984
+Number of Energy flips:632533
+Number of Random flips:632515
+Average dE:72.1593
+beta = 0.0176899
+Number of Energy flips:648079
+Number of Random flips:648524
+Average dE:70.2229
+Temp 30 of 100 completed
+beta = 0.0171665
+Number of Energy flips:637914
+Number of Random flips:638458
+Average dE:71.5801
+beta = 0.0174768
+Number of Energy flips:637296
+Number of Random flips:637376
+Average dE:71.4203
+beta = 0.0175827
+Number of Energy flips:622465
+Number of Random flips:621114
+Average dE:73.3552
+beta = 0.0180195
+Number of Energy flips:635895
+Number of Random flips:635864
+Average dE:71.6759
+beta = 0.0175827
+Number of Energy flips:618271
+Number of Random flips:617539
+Average dE:73.7604
+beta = 0.0181321
+Number of Energy flips:625117
+Number of Random flips:625461
+Average dE:72.8443
+beta = 0.0179083
+Number of Energy flips:629015
+Number of Random flips:628895
+Average dE:72.3127
+beta = 0.0177984
+Number of Energy flips:646260
+Number of Random flips:646224
+Average dE:70.5838
+Temp 31 of 100 completed
+beta = 0.0172687
+Number of Energy flips:635562
+Number of Random flips:635995
+Average dE:71.6667
+beta = 0.0175827
+Number of Energy flips:632802
+Number of Random flips:632395
+Average dE:72.002
+beta = 0.0176899
+Number of Energy flips:618954
+Number of Random flips:618154
+Average dE:73.5516
+beta = 0.0181321
+Number of Energy flips:634257
+Number of Random flips:633854
+Average dE:71.7673
+beta = 0.0176899
+Number of Energy flips:616338
+Number of Random flips:615346
+Average dE:73.8038
+beta = 0.0182462
+Number of Energy flips:622341
+Number of Random flips:622470
+Average dE:73.0538
+beta = 0.0180195
+Number of Energy flips:644021
+Number of Random flips:642519
+Average dE:71.0106
+Temp 32 of 100 completed
+beta = 0.0173721
+Number of Energy flips:628456
+Number of Random flips:628060
+Average dE:72.2812
+beta = 0.0179083
+Number of Energy flips:635260
+Number of Random flips:635049
+Average dE:71.4908
+beta = 0.0176899
+Number of Energy flips:631506
+Number of Random flips:629734
+Average dE:72.1918
+beta = 0.0177984
+Number of Energy flips:614810
+Number of Random flips:614124
+Average dE:74.1027
+beta = 0.0182462
+Number of Energy flips:627593
+Number of Random flips:629158
+Average dE:72.4478
+beta = 0.0177984
+Number of Energy flips:610566
+Number of Random flips:609790
+Average dE:74.7362
+beta = 0.0183617
+Number of Energy flips:617354
+Number of Random flips:618324
+Average dE:73.7416
+beta = 0.0181321
+Number of Energy flips:638755
+Number of Random flips:637255
+Average dE:71.5793
+Temp 33 of 100 completed
+beta = 0.0174768
+Number of Energy flips:621222
+Number of Random flips:621695
+Average dE:73.3025
+beta = 0.0180195
+Number of Energy flips:628536
+Number of Random flips:628045
+Average dE:72.5769
+beta = 0.0177984
+Number of Energy flips:626832
+Number of Random flips:628085
+Average dE:72.5102
+beta = 0.0179083
+Number of Energy flips:607246
+Number of Random flips:607317
+Average dE:75.2309
+beta = 0.0183617
+Number of Energy flips:627367
+Number of Random flips:626506
+Average dE:72.5556
+beta = 0.0179083
+Number of Energy flips:609466
+Number of Random flips:609715
+Average dE:74.4838
+beta = 0.0184786
+Number of Energy flips:613860
+Number of Random flips:613522
+Average dE:74.0508
+beta = 0.0182462
+Number of Energy flips:637390
+Number of Random flips:636760
+Average dE:71.5326
+Temp 34 of 100 completed
+beta = 0.0175827
+Number of Energy flips:617649
+Number of Random flips:617885
+Average dE:73.6403
+beta = 0.0181321
+Number of Energy flips:620779
+Number of Random flips:621459
+Average dE:73.3579
+beta = 0.0180195
+Number of Energy flips:626403
+Number of Random flips:626827
+Average dE:72.6069
+beta = 0.0179083
+Number of Energy flips:607137
+Number of Random flips:607934
+Average dE:74.8292
+beta = 0.0184786
+Number of Energy flips:620422
+Number of Random flips:620384
+Average dE:73.5019
+beta = 0.0180195
+Number of Energy flips:601209
+Number of Random flips:602187
+Average dE:75.658
+beta = 0.0185971
+Number of Energy flips:609051
+Number of Random flips:609169
+Average dE:74.9426
+beta = 0.0183617
+Number of Energy flips:631789
+Number of Random flips:631948
+Average dE:72.1834
+Temp 35 of 100 completed
+beta = 0.0176899
+Number of Energy flips:613456
+Number of Random flips:613878
+Average dE:74.1988
+beta = 0.0182462
+Number of Energy flips:617294
+Number of Random flips:617926
+Average dE:73.6892
+beta = 0.0181321
+Number of Energy flips:602464
+Number of Random flips:603097
+Average dE:75.4273
+beta = 0.0185971
+Number of Energy flips:620002
+Number of Random flips:620626
+Average dE:73.6428
+beta = 0.0180195
+Number of Energy flips:619101
+Number of Random flips:617920
+Average dE:73.6058
+beta = 0.0181321
+Number of Energy flips:599043
+Number of Random flips:598461
+Average dE:76.0884
+beta = 0.018717
+Number of Energy flips:605625
+Number of Random flips:605467
+Average dE:75.2236
+beta = 0.0184786
+Number of Energy flips:630148
+Number of Random flips:629819
+Average dE:72.2059
+Temp 36 of 100 completed
+beta = 0.0177984
+Number of Energy flips:611468
+Number of Random flips:612013
+Average dE:74.1882
+beta = 0.0183617
+Number of Energy flips:599276
+Number of Random flips:598602
+Average dE:75.8813
+beta = 0.018717
+Number of Energy flips:614879
+Number of Random flips:614398
+Average dE:74.0448
+beta = 0.0182462
+Number of Energy flips:617018
+Number of Random flips:617784
+Average dE:73.7367
+beta = 0.0181321
+Number of Energy flips:613959
+Number of Random flips:614323
+Average dE:74.1608
+beta = 0.0182462
+Number of Energy flips:594802
+Number of Random flips:594603
+Average dE:76.4728
+beta = 0.0188386
+Number of Energy flips:600714
+Number of Random flips:600254
+Average dE:76.0045
+beta = 0.0185971
+Number of Energy flips:627675
+Number of Random flips:627119
+Average dE:72.4372
+Temp 37 of 100 completed
+beta = 0.0179083
+Number of Energy flips:607025
+Number of Random flips:606626
+Average dE:75.0725
+beta = 0.0184786
+Number of Energy flips:593557
+Number of Random flips:593391
+Average dE:76.7168
+beta = 0.0188386
+Number of Energy flips:609355
+Number of Random flips:609462
+Average dE:74.8464
+beta = 0.0183617
+Number of Energy flips:614383
+Number of Random flips:613805
+Average dE:74.1937
+beta = 0.0182462
+Number of Energy flips:611234
+Number of Random flips:612210
+Average dE:74.3591
+beta = 0.0183617
+Number of Energy flips:587942
+Number of Random flips:586937
+Average dE:77.6001
+beta = 0.0189617
+Number of Energy flips:596340
+Number of Random flips:596561
+Average dE:76.3958
+beta = 0.018717
+Number of Energy flips:621233
+Number of Random flips:621088
+Average dE:73.4404
+Temp 38 of 100 completed
+beta = 0.0180195
+Number of Energy flips:601382
+Number of Random flips:601066
+Average dE:75.6159
+beta = 0.0185971
+Number of Energy flips:586598
+Number of Random flips:587289
+Average dE:77.6086
+beta = 0.0189617
+Number of Energy flips:603687
+Number of Random flips:603625
+Average dE:75.8298
+beta = 0.0184786
+Number of Energy flips:611574
+Number of Random flips:611775
+Average dE:74.3278
+beta = 0.0183617
+Number of Energy flips:603948
+Number of Random flips:604620
+Average dE:75.4542
+beta = 0.0184786
+Number of Energy flips:587836
+Number of Random flips:587590
+Average dE:77.2707
+beta = 0.0190865
+Number of Energy flips:591569
+Number of Random flips:590742
+Average dE:77.114
+beta = 0.0188386
+Number of Energy flips:618160
+Number of Random flips:617760
+Average dE:73.7784
+Temp 39 of 100 completed
+beta = 0.0181321
+Number of Energy flips:598294
+Number of Random flips:599068
+Average dE:75.9335
+beta = 0.018717
+Number of Energy flips:583261
+Number of Random flips:583294
+Average dE:78.1661
+beta = 0.0190865
+Number of Energy flips:604014
+Number of Random flips:604455
+Average dE:75.2552
+beta = 0.0185971
+Number of Energy flips:605487
+Number of Random flips:604431
+Average dE:75.3057
+beta = 0.0184786
+Number of Energy flips:600596
+Number of Random flips:600615
+Average dE:76.1005
+beta = 0.0185971
+Number of Energy flips:582353
+Number of Random flips:582615
+Average dE:77.9396
+beta = 0.0192129
+Number of Energy flips:586660
+Number of Random flips:586649
+Average dE:77.7404
+beta = 0.0189617
+Number of Energy flips:613330
+Number of Random flips:613189
+Average dE:74.2995
+Temp 40 of 100 completed
+beta = 0.0182462
+Number of Energy flips:578489
+Number of Random flips:578913
+Average dE:78.8509
+beta = 0.0192129
+Number of Energy flips:591232
+Number of Random flips:591215
+Average dE:77.4144
+beta = 0.0188386
+Number of Energy flips:594822
+Number of Random flips:594792
+Average dE:76.818
+beta = 0.018717
+Number of Energy flips:604654
+Number of Random flips:605392
+Average dE:75.0669
+beta = 0.0185971
+Number of Energy flips:598598
+Number of Random flips:599169
+Average dE:75.8875
+beta = 0.018717
+Number of Energy flips:572425
+Number of Random flips:573811
+Average dE:79.5817
+beta = 0.0193409
+Number of Energy flips:583627
+Number of Random flips:582599
+Average dE:78.2187
+beta = 0.0190865
+Number of Energy flips:608905
+Number of Random flips:608166
+Average dE:74.9271
+Temp 41 of 100 completed
+beta = 0.0183617
+Number of Energy flips:575669
+Number of Random flips:575013
+Average dE:79.1276
+beta = 0.0193409
+Number of Energy flips:588404
+Number of Random flips:588106
+Average dE:77.3741
+beta = 0.0189617
+Number of Energy flips:592373
+Number of Random flips:591926
+Average dE:77.0179
+beta = 0.0188386
+Number of Energy flips:597738
+Number of Random flips:597794
+Average dE:76.2121
+beta = 0.018717
+Number of Energy flips:593831
+Number of Random flips:593199
+Average dE:76.7056
+beta = 0.0188386
+Number of Energy flips:567971
+Number of Random flips:568384
+Average dE:80.1567
+beta = 0.0194707
+Number of Energy flips:577882
+Number of Random flips:577306
+Average dE:78.8512
+beta = 0.0192129
+Number of Energy flips:604983
+Number of Random flips:604783
+Average dE:75.3966
+Temp 42 of 100 completed
+beta = 0.0184786
+Number of Energy flips:567789
+Number of Random flips:568408
+Average dE:80.2359
+beta = 0.0194707
+Number of Energy flips:584571
+Number of Random flips:584167
+Average dE:77.9954
+beta = 0.0190865
+Number of Energy flips:585617
+Number of Random flips:585047
+Average dE:78.0486
+beta = 0.0189617
+Number of Energy flips:592269
+Number of Random flips:591894
+Average dE:76.9019
+beta = 0.0188386
+Number of Energy flips:590385
+Number of Random flips:590674
+Average dE:76.7473
+beta = 0.0189617
+Number of Energy flips:563553
+Number of Random flips:563606
+Average dE:80.9245
+beta = 0.0196023
+Number of Energy flips:573225
+Number of Random flips:573141
+Average dE:79.6368
+beta = 0.0193409
+Number of Energy flips:602197
+Number of Random flips:602220
+Average dE:75.6836
+Temp 43 of 100 completed
+beta = 0.0185971
+Number of Energy flips:562775
+Number of Random flips:563429
+Average dE:81.0881
+beta = 0.0196023
+Number of Energy flips:582541
+Number of Random flips:582743
+Average dE:78.0079
+beta = 0.0192129
+Number of Energy flips:584390
+Number of Random flips:585441
+Average dE:77.7865
+beta = 0.0190865
+Number of Energy flips:587287
+Number of Random flips:587682
+Average dE:77.7204
+beta = 0.0189617
+Number of Energy flips:559180
+Number of Random flips:558512
+Average dE:81.6045
+beta = 0.0197357
+Number of Energy flips:586915
+Number of Random flips:586336
+Average dE:77.4638
+beta = 0.0190865
+Number of Energy flips:565062
+Number of Random flips:565215
+Average dE:81.0103
+beta = 0.0194707
+Number of Energy flips:598842
+Number of Random flips:598863
+Average dE:75.926
+Temp 44 of 100 completed
+beta = 0.018717
+Number of Energy flips:559755
+Number of Random flips:560204
+Average dE:81.1829
+beta = 0.0197357
+Number of Energy flips:577143
+Number of Random flips:576451
+Average dE:78.9468
+beta = 0.0193409
+Number of Energy flips:579703
+Number of Random flips:580054
+Average dE:78.5934
+beta = 0.0192129
+Number of Energy flips:582826
+Number of Random flips:581943
+Average dE:78.4119
+beta = 0.0190865
+Number of Energy flips:553009
+Number of Random flips:551803
+Average dE:82.5956
+beta = 0.0198708
+Number of Energy flips:580661
+Number of Random flips:580718
+Average dE:78.2247
+beta = 0.0192129
+Number of Energy flips:563084
+Number of Random flips:564681
+Average dE:80.7945
+beta = 0.0196023
+Number of Energy flips:594141
+Number of Random flips:594074
+Average dE:76.5626
+Temp 45 of 100 completed
+beta = 0.0188386
+Number of Energy flips:554559
+Number of Random flips:554787
+Average dE:82.0509
+beta = 0.0198708
+Number of Energy flips:566973
+Number of Random flips:565331
+Average dE:80.8535
+beta = 0.0194707
+Number of Energy flips:571361
+Number of Random flips:570976
+Average dE:80.0831
+beta = 0.0193409
+Number of Energy flips:578089
+Number of Random flips:577311
+Average dE:79.0021
+beta = 0.0192129
+Number of Energy flips:546731
+Number of Random flips:546766
+Average dE:83.4286
+beta = 0.0200079
+Number of Energy flips:575445
+Number of Random flips:576284
+Average dE:78.9772
+beta = 0.0193409
+Number of Energy flips:559489
+Number of Random flips:559237
+Average dE:81.4865
+beta = 0.0197357
+Number of Energy flips:587159
+Number of Random flips:586711
+Average dE:77.8659
+Temp 46 of 100 completed
+beta = 0.0189617
+Number of Energy flips:544527
+Number of Random flips:544318
+Average dE:83.9971
+beta = 0.0200079
+Number of Energy flips:561391
+Number of Random flips:559608
+Average dE:81.6594
+beta = 0.0196023
+Number of Energy flips:568922
+Number of Random flips:568234
+Average dE:80.0783
+beta = 0.0194707
+Number of Energy flips:572861
+Number of Random flips:573884
+Average dE:79.4531
+beta = 0.0193409
+Number of Energy flips:542868
+Number of Random flips:543028
+Average dE:83.7786
+beta = 0.0201468
+Number of Energy flips:567171
+Number of Random flips:567841
+Average dE:80.2404
+beta = 0.0194707
+Number of Energy flips:554373
+Number of Random flips:553330
+Average dE:82.2435
+beta = 0.0198708
+Number of Energy flips:583286
+Number of Random flips:584089
+Average dE:78.0638
+Temp 47 of 100 completed
+beta = 0.0190865
+Number of Energy flips:539774
+Number of Random flips:540231
+Average dE:84.5534
+beta = 0.0201468
+Number of Energy flips:557494
+Number of Random flips:556724
+Average dE:81.9242
+beta = 0.0197357
+Number of Energy flips:563183
+Number of Random flips:563861
+Average dE:81.0444
+beta = 0.0196023
+Number of Energy flips:536160
+Number of Random flips:535591
+Average dE:85.1647
+beta = 0.0202877
+Number of Energy flips:567988
+Number of Random flips:568868
+Average dE:80.3887
+beta = 0.0194707
+Number of Energy flips:564805
+Number of Random flips:563192
+Average dE:80.5918
+beta = 0.0196023
+Number of Energy flips:544795
+Number of Random flips:543969
+Average dE:83.9184
+beta = 0.0200079
+Number of Energy flips:533188
+Number of Random flips:533694
+Average dE:85.6111
+beta = 0.0202877
+Number of Energy flips:579896
+Number of Random flips:580874
+Average dE:78.4719
+Temp 48 of 100 completed
+beta = 0.0192129
+Number of Energy flips:550534
+Number of Random flips:551052
+Average dE:82.7585
+beta = 0.0198708
+Number of Energy flips:559015
+Number of Random flips:558018
+Average dE:81.5632
+beta = 0.0197357
+Number of Energy flips:532865
+Number of Random flips:533544
+Average dE:85.2471
+beta = 0.0204306
+Number of Energy flips:559213
+Number of Random flips:559870
+Average dE:81.7244
+beta = 0.0196023
+Number of Energy flips:557006
+Number of Random flips:556807
+Average dE:82.0375
+beta = 0.0197357
+Number of Energy flips:540834
+Number of Random flips:540193
+Average dE:84.5125
+beta = 0.0201468
+Number of Energy flips:527112
+Number of Random flips:527755
+Average dE:86.5758
+beta = 0.0204306
+Number of Energy flips:573853
+Number of Random flips:574286
+Average dE:79.3209
+Temp 49 of 100 completed
+beta = 0.0193409
+Number of Energy flips:554296
+Number of Random flips:555185
+Average dE:82.0485
+beta = 0.0198708
+Number of Energy flips:550731
+Number of Random flips:549590
+Average dE:82.7904
+beta = 0.0200079
+Number of Energy flips:523981
+Number of Random flips:523784
+Average dE:86.9383
+beta = 0.0205755
+Number of Energy flips:557207
+Number of Random flips:556710
+Average dE:82.0466
+beta = 0.0197357
+Number of Energy flips:552414
+Number of Random flips:552472
+Average dE:82.5602
+beta = 0.0198708
+Number of Energy flips:536603
+Number of Random flips:535559
+Average dE:85.1051
+beta = 0.0202877
+Number of Energy flips:525711
+Number of Random flips:525294
+Average dE:86.4399
+beta = 0.0205755
+Number of Energy flips:569086
+Number of Random flips:569622
+Average dE:80.0513
+Temp 50 of 100 completed
+beta = 0.0194707
+Number of Energy flips:546358
+Number of Random flips:546823
+Average dE:83.2395
+beta = 0.0200079
+Number of Energy flips:544580
+Number of Random flips:544933
+Average dE:83.301
+beta = 0.0201468
+Number of Energy flips:518130
+Number of Random flips:516594
+Average dE:88.019
+beta = 0.0207224
+Number of Energy flips:547511
+Number of Random flips:548376
+Average dE:83.6244
+beta = 0.0198708
+Number of Energy flips:549395
+Number of Random flips:550613
+Average dE:82.7738
+beta = 0.0200079
+Number of Energy flips:526424
+Number of Random flips:527439
+Average dE:86.5637
+beta = 0.0204306
+Number of Energy flips:516589
+Number of Random flips:516169
+Average dE:88.1595
+beta = 0.0207224
+Number of Energy flips:561377
+Number of Random flips:562468
+Average dE:81.1815
+Temp 51 of 100 completed
+beta = 0.0196023
+Number of Energy flips:543077
+Number of Random flips:542598
+Average dE:83.8759
+beta = 0.0201468
+Number of Energy flips:537332
+Number of Random flips:537490
+Average dE:84.5882
+beta = 0.0202877
+Number of Energy flips:509660
+Number of Random flips:509436
+Average dE:89.4261
+beta = 0.0208715
+Number of Energy flips:544197
+Number of Random flips:543518
+Average dE:83.7344
+beta = 0.0201468
+Number of Energy flips:547099
+Number of Random flips:547160
+Average dE:83.447
+beta = 0.0200079
+Number of Energy flips:520716
+Number of Random flips:520821
+Average dE:87.7013
+beta = 0.0205755
+Number of Energy flips:510888
+Number of Random flips:510252
+Average dE:89.2461
+beta = 0.0208715
+Number of Energy flips:555555
+Number of Random flips:556109
+Average dE:82.073
+Temp 52 of 100 completed
+beta = 0.0197357
+Number of Energy flips:534328
+Number of Random flips:535209
+Average dE:85.3686
+beta = 0.0202877
+Number of Energy flips:529066
+Number of Random flips:528422
+Average dE:86.0509
+beta = 0.0204306
+Number of Energy flips:501273
+Number of Random flips:501808
+Average dE:90.5979
+beta = 0.0210228
+Number of Energy flips:534721
+Number of Random flips:536454
+Average dE:85.1368
+beta = 0.0202877
+Number of Energy flips:539082
+Number of Random flips:537659
+Average dE:84.8715
+beta = 0.0201468
+Number of Energy flips:515498
+Number of Random flips:516235
+Average dE:88.395
+beta = 0.0207224
+Number of Energy flips:501812
+Number of Random flips:502518
+Average dE:90.5632
+beta = 0.0210228
+Number of Energy flips:555151
+Number of Random flips:555869
+Average dE:81.9945
+Temp 53 of 100 completed
+beta = 0.0198708
+Number of Energy flips:529173
+Number of Random flips:528178
+Average dE:86.3665
+beta = 0.0204306
+Number of Energy flips:494738
+Number of Random flips:494424
+Average dE:92.0423
+beta = 0.0211762
+Number of Energy flips:521007
+Number of Random flips:521702
+Average dE:87.471
+beta = 0.0205755
+Number of Energy flips:527238
+Number of Random flips:527645
+Average dE:86.5007
+beta = 0.0204306
+Number of Energy flips:535490
+Number of Random flips:535161
+Average dE:85.2588
+beta = 0.0202877
+Number of Energy flips:511385
+Number of Random flips:511247
+Average dE:88.9736
+beta = 0.0208715
+Number of Energy flips:493551
+Number of Random flips:493332
+Average dE:92.0334
+beta = 0.0211762
+Number of Energy flips:545793
+Number of Random flips:545264
+Average dE:83.5921
+Temp 54 of 100 completed
+beta = 0.0200079
+Number of Energy flips:524146
+Number of Random flips:524503
+Average dE:86.678
+beta = 0.0205755
+Number of Energy flips:491918
+Number of Random flips:491527
+Average dE:92.2429
+beta = 0.0213319
+Number of Energy flips:516059
+Number of Random flips:515634
+Average dE:88.2252
+beta = 0.0207224
+Number of Energy flips:525059
+Number of Random flips:525223
+Average dE:86.5048
+beta = 0.0205755
+Number of Energy flips:521592
+Number of Random flips:521619
+Average dE:88.1062
+beta = 0.0204306
+Number of Energy flips:503334
+Number of Random flips:504090
+Average dE:90.3298
+beta = 0.0210228
+Number of Energy flips:488081
+Number of Random flips:487685
+Average dE:93.1631
+beta = 0.0213319
+Number of Energy flips:541342
+Number of Random flips:541344
+Average dE:84.2634
+Temp 55 of 100 completed
+beta = 0.0201468
+Number of Energy flips:517474
+Number of Random flips:517584
+Average dE:87.9676
+beta = 0.0207224
+Number of Energy flips:481696
+Number of Random flips:482885
+Average dE:94.0097
+beta = 0.0214899
+Number of Energy flips:510190
+Number of Random flips:510652
+Average dE:89.0004
+beta = 0.0208715
+Number of Energy flips:510838
+Number of Random flips:510138
+Average dE:89.6931
+beta = 0.0207224
+Number of Energy flips:524920
+Number of Random flips:525367
+Average dE:86.7965
+beta = 0.0205755
+Number of Energy flips:493341
+Number of Random flips:493287
+Average dE:92.3785
+beta = 0.0211762
+Number of Energy flips:485733
+Number of Random flips:484971
+Average dE:93.2234
+beta = 0.0214899
+Number of Energy flips:532480
+Number of Random flips:532840
+Average dE:85.9475
+Temp 56 of 100 completed
+beta = 0.0202877
+Number of Energy flips:475460
+Number of Random flips:476120
+Average dE:95.4012
+beta = 0.0216503
+Number of Energy flips:509182
+Number of Random flips:508199
+Average dE:89.6479
+beta = 0.0208715
+Number of Energy flips:503658
+Number of Random flips:504686
+Average dE:90.2348
+beta = 0.0210228
+Number of Energy flips:505882
+Number of Random flips:505433
+Average dE:90.3989
+beta = 0.0208715
+Number of Energy flips:509880
+Number of Random flips:510844
+Average dE:89.6031
+beta = 0.0207224
+Number of Energy flips:486207
+Number of Random flips:485663
+Average dE:93.4845
+beta = 0.0213319
+Number of Energy flips:471793
+Number of Random flips:471838
+Average dE:96.1916
+beta = 0.0216503
+Number of Energy flips:525662
+Number of Random flips:525529
+Average dE:87.0374
+Temp 57 of 100 completed
+beta = 0.0204306
+Number of Energy flips:468570
+Number of Random flips:468284
+Average dE:96.4349
+beta = 0.0218131
+Number of Energy flips:502711
+Number of Random flips:501561
+Average dE:90.6983
+beta = 0.0210228
+Number of Energy flips:493010
+Number of Random flips:494011
+Average dE:92.2882
+beta = 0.0211762
+Number of Energy flips:501400
+Number of Random flips:501000
+Average dE:90.9163
+beta = 0.0210228
+Number of Energy flips:506379
+Number of Random flips:505432
+Average dE:90.1479
+beta = 0.0208715
+Number of Energy flips:481487
+Number of Random flips:480968
+Average dE:94.2444
+beta = 0.0214899
+Number of Energy flips:472113
+Number of Random flips:472447
+Average dE:95.3513
+beta = 0.0218131
+Number of Energy flips:521218
+Number of Random flips:520903
+Average dE:87.6039
+Temp 58 of 100 completed
+beta = 0.0205755
+Number of Energy flips:461700
+Number of Random flips:461523
+Average dE:97.6104
+beta = 0.0219783
+Number of Energy flips:498284
+Number of Random flips:498490
+Average dE:91.0649
+beta = 0.0211762
+Number of Energy flips:489127
+Number of Random flips:488692
+Average dE:93.0305
+beta = 0.0213319
+Number of Energy flips:497205
+Number of Random flips:496397
+Average dE:91.4339
+beta = 0.0211762
+Number of Energy flips:499921
+Number of Random flips:500887
+Average dE:91.0772
+beta = 0.0210228
+Number of Energy flips:474734
+Number of Random flips:473946
+Average dE:95.3298
+beta = 0.0216503
+Number of Energy flips:462150
+Number of Random flips:461474
+Average dE:97.5923
+beta = 0.0219783
+Number of Energy flips:518017
+Number of Random flips:517809
+Average dE:88.0939
+Temp 59 of 100 completed
+beta = 0.0207224
+Number of Energy flips:456515
+Number of Random flips:457658
+Average dE:98.0166
+beta = 0.0221461
+Number of Energy flips:488561
+Number of Random flips:488082
+Average dE:93.0663
+beta = 0.0213319
+Number of Energy flips:483639
+Number of Random flips:483136
+Average dE:93.8612
+beta = 0.0214899
+Number of Energy flips:490377
+Number of Random flips:490487
+Average dE:92.4935
+beta = 0.0213319
+Number of Energy flips:495275
+Number of Random flips:495347
+Average dE:91.7454
+beta = 0.0211762
+Number of Energy flips:468739
+Number of Random flips:468509
+Average dE:96.2531
+beta = 0.0218131
+Number of Energy flips:455187
+Number of Random flips:454964
+Average dE:98.5234
+beta = 0.0221461
+Number of Energy flips:510674
+Number of Random flips:509637
+Average dE:89.1179
+Temp 60 of 100 completed
+beta = 0.0208715
+Number of Energy flips:450050
+Number of Random flips:451180
+Average dE:99.068
+beta = 0.0223165
+Number of Energy flips:484623
+Number of Random flips:483976
+Average dE:93.714
+beta = 0.0214899
+Number of Energy flips:470524
+Number of Random flips:470165
+Average dE:96.294
+beta = 0.0216503
+Number of Energy flips:482534
+Number of Random flips:483393
+Average dE:93.6648
+beta = 0.0214899
+Number of Energy flips:490180
+Number of Random flips:490437
+Average dE:92.5371
+beta = 0.0213319
+Number of Energy flips:447641
+Number of Random flips:448705
+Average dE:99.7621
+beta = 0.0223165
+Number of Energy flips:458453
+Number of Random flips:459814
+Average dE:98.1001
+beta = 0.0219783
+Number of Energy flips:502255
+Number of Random flips:500958
+Average dE:90.6424
+Temp 61 of 100 completed
+beta = 0.0210228
+Number of Energy flips:444619
+Number of Random flips:443526
+Average dE:100.418
+beta = 0.0224895
+Number of Energy flips:475066
+Number of Random flips:475582
+Average dE:95.1282
+beta = 0.0216503
+Number of Energy flips:465395
+Number of Random flips:466454
+Average dE:97.1435
+beta = 0.0218131
+Number of Energy flips:474273
+Number of Random flips:474891
+Average dE:95.1542
+beta = 0.0216503
+Number of Energy flips:481887
+Number of Random flips:483173
+Average dE:93.9037
+beta = 0.0214899
+Number of Energy flips:443425
+Number of Random flips:443938
+Average dE:100.368
+beta = 0.0224895
+Number of Energy flips:454900
+Number of Random flips:454340
+Average dE:98.7421
+beta = 0.0221461
+Number of Energy flips:494846
+Number of Random flips:495093
+Average dE:91.8678
+Temp 62 of 100 completed
+beta = 0.0211762
+Number of Energy flips:433650
+Number of Random flips:432980
+Average dE:102.484
+beta = 0.0226652
+Number of Energy flips:471865
+Number of Random flips:471161
+Average dE:95.742
+beta = 0.0218131
+Number of Energy flips:469555
+Number of Random flips:468828
+Average dE:96.2092
+beta = 0.0218131
+Number of Energy flips:462804
+Number of Random flips:462125
+Average dE:97.4495
+beta = 0.0219783
+Number of Energy flips:471272
+Number of Random flips:471302
+Average dE:96.0689
+beta = 0.0216503
+Number of Energy flips:437106
+Number of Random flips:437892
+Average dE:101.512
+beta = 0.0226652
+Number of Energy flips:446792
+Number of Random flips:447252
+Average dE:100.333
+beta = 0.0223165
+Number of Energy flips:488684
+Number of Random flips:488735
+Average dE:92.9134
+Temp 63 of 100 completed
+beta = 0.0213319
+Number of Energy flips:434271
+Number of Random flips:434432
+Average dE:101.769
+beta = 0.0228436
+Number of Energy flips:462421
+Number of Random flips:462330
+Average dE:97.3422
+beta = 0.0219783
+Number of Energy flips:460260
+Number of Random flips:461431
+Average dE:97.4535
+beta = 0.0219783
+Number of Energy flips:453498
+Number of Random flips:453868
+Average dE:98.9732
+beta = 0.0221461
+Number of Energy flips:428831
+Number of Random flips:428444
+Average dE:103.223
+beta = 0.0228436
+Number of Energy flips:469773
+Number of Random flips:470151
+Average dE:96.0531
+beta = 0.0218131
+Number of Energy flips:438837
+Number of Random flips:438967
+Average dE:101.809
+beta = 0.0224895
+Number of Energy flips:487929
+Number of Random flips:487829
+Average dE:92.5741
+Temp 64 of 100 completed
+beta = 0.0214899
+Number of Energy flips:423774
+Number of Random flips:423624
+Average dE:103.96
+beta = 0.0230249
+Number of Energy flips:453328
+Number of Random flips:453989
+Average dE:99.0201
+beta = 0.0221461
+Number of Energy flips:462635
+Number of Random flips:462874
+Average dE:96.7155
+beta = 0.0221461
+Number of Energy flips:450989
+Number of Random flips:451828
+Average dE:98.8352
+beta = 0.0223165
+Number of Energy flips:426665
+Number of Random flips:426651
+Average dE:103.276
+beta = 0.0230249
+Number of Energy flips:462496
+Number of Random flips:463098
+Average dE:97.1607
+beta = 0.0219783
+Number of Energy flips:435081
+Number of Random flips:436329
+Average dE:101.861
+beta = 0.0226652
+Number of Energy flips:474866
+Number of Random flips:474996
+Average dE:95.263
+Temp 65 of 100 completed
+beta = 0.0216503
+Number of Energy flips:419801
+Number of Random flips:420047
+Average dE:104.51
+beta = 0.0232091
+Number of Energy flips:447019
+Number of Random flips:446138
+Average dE:100.421
+beta = 0.0223165
+Number of Energy flips:452203
+Number of Random flips:451578
+Average dE:99.0485
+beta = 0.0223165
+Number of Energy flips:442956
+Number of Random flips:444775
+Average dE:100.131
+beta = 0.0224895
+Number of Energy flips:417235
+Number of Random flips:418289
+Average dE:104.719
+beta = 0.0232091
+Number of Energy flips:456124
+Number of Random flips:455761
+Average dE:98.3941
+beta = 0.0221461
+Number of Energy flips:429643
+Number of Random flips:430143
+Average dE:102.867
+beta = 0.0228436
+Number of Energy flips:471873
+Number of Random flips:470633
+Average dE:95.6491
+Temp 66 of 100 completed
+beta = 0.0218131
+Number of Energy flips:412188
+Number of Random flips:411571
+Average dE:106.09
+beta = 0.0235865
+Number of Energy flips:440800
+Number of Random flips:441575
+Average dE:101.168
+beta = 0.0224895
+Number of Energy flips:444728
+Number of Random flips:444315
+Average dE:100.138
+beta = 0.0224895
+Number of Energy flips:433791
+Number of Random flips:433572
+Average dE:102.312
+beta = 0.0226652
+Number of Energy flips:413718
+Number of Random flips:413645
+Average dE:105.659
+beta = 0.0235865
+Number of Energy flips:423721
+Number of Random flips:423594
+Average dE:104.03
+beta = 0.0230249
+Number of Energy flips:449758
+Number of Random flips:449736
+Average dE:99.231
+beta = 0.0223165
+Number of Energy flips:461999
+Number of Random flips:461166
+Average dE:97.4377
+Temp 67 of 100 completed
+beta = 0.0219783
+Number of Energy flips:400585
+Number of Random flips:401537
+Average dE:107.564
+beta = 0.0239764
+Number of Energy flips:434395
+Number of Random flips:434913
+Average dE:102.153
+beta = 0.0226652
+Number of Energy flips:439126
+Number of Random flips:438806
+Average dE:101.271
+beta = 0.0226652
+Number of Energy flips:429284
+Number of Random flips:429023
+Average dE:103.245
+beta = 0.0228436
+Number of Energy flips:400042
+Number of Random flips:400190
+Average dE:108.174
+beta = 0.0239764
+Number of Energy flips:419630
+Number of Random flips:420415
+Average dE:104.382
+beta = 0.0232091
+Number of Energy flips:445030
+Number of Random flips:444293
+Average dE:100.02
+beta = 0.0224895
+Number of Energy flips:455538
+Number of Random flips:455840
+Average dE:98.5794
+Temp 68 of 100 completed
+beta = 0.0221461
+Number of Energy flips:387708
+Number of Random flips:387726
+Average dE:110.167
+beta = 0.0243793
+Number of Energy flips:429922
+Number of Random flips:429569
+Average dE:102.939
+beta = 0.0228436
+Number of Energy flips:430149
+Number of Random flips:429701
+Average dE:102.772
+beta = 0.0228436
+Number of Energy flips:422342
+Number of Random flips:423305
+Average dE:104.15
+beta = 0.0230249
+Number of Energy flips:388314
+Number of Random flips:388198
+Average dE:110.032
+beta = 0.0243793
+Number of Energy flips:410791
+Number of Random flips:410681
+Average dE:106.263
+beta = 0.0235865
+Number of Energy flips:441867
+Number of Random flips:441268
+Average dE:100.462
+beta = 0.0226652
+Number of Energy flips:446216
+Number of Random flips:447115
+Average dE:100.361
+Temp 69 of 100 completed
+beta = 0.0223165
+Number of Energy flips:376503
+Number of Random flips:375851
+Average dE:112.247
+beta = 0.0247961
+Number of Energy flips:421741
+Number of Random flips:422080
+Average dE:104.463
+beta = 0.0230249
+Number of Energy flips:421093
+Number of Random flips:420394
+Average dE:104.84
+beta = 0.0230249
+Number of Energy flips:418444
+Number of Random flips:418198
+Average dE:104.96
+beta = 0.0232091
+Number of Energy flips:375375
+Number of Random flips:376406
+Average dE:112.279
+beta = 0.0247961
+Number of Energy flips:403990
+Number of Random flips:403041
+Average dE:106.977
+beta = 0.0239764
+Number of Energy flips:432308
+Number of Random flips:432245
+Average dE:102.336
+beta = 0.0228436
+Number of Energy flips:442303
+Number of Random flips:442771
+Average dE:100.903
+Temp 70 of 100 completed
+beta = 0.0224895
+Number of Energy flips:364808
+Number of Random flips:364734
+Average dE:114.186
+beta = 0.0252273
+Number of Energy flips:415745
+Number of Random flips:415834
+Average dE:105.483
+beta = 0.0232091
+Number of Energy flips:414849
+Number of Random flips:415941
+Average dE:105.664
+beta = 0.0232091
+Number of Energy flips:365632
+Number of Random flips:365705
+Average dE:113.811
+beta = 0.0252273
+Number of Energy flips:411660
+Number of Random flips:411179
+Average dE:106.075
+beta = 0.0235865
+Number of Energy flips:389426
+Number of Random flips:390191
+Average dE:109.626
+beta = 0.0243793
+Number of Energy flips:421586
+Number of Random flips:421750
+Average dE:104.528
+beta = 0.0230249
+Number of Energy flips:438512
+Number of Random flips:438092
+Average dE:101.219
+Temp 71 of 100 completed
+beta = 0.0226652
+Number of Energy flips:354396
+Number of Random flips:355289
+Average dE:115.819
+beta = 0.0256738
+Number of Energy flips:410635
+Number of Random flips:411004
+Average dE:106.035
+beta = 0.0235865
+Number of Energy flips:410869
+Number of Random flips:411257
+Average dE:106.262
+beta = 0.0235865
+Number of Energy flips:354054
+Number of Random flips:354428
+Average dE:116.133
+beta = 0.0256738
+Number of Energy flips:398908
+Number of Random flips:399858
+Average dE:108.081
+beta = 0.0239764
+Number of Energy flips:374653
+Number of Random flips:374801
+Average dE:112.599
+beta = 0.0247961
+Number of Energy flips:418737
+Number of Random flips:418971
+Average dE:104.81
+beta = 0.0232091
+Number of Energy flips:430653
+Number of Random flips:430582
+Average dE:102.86
+Temp 72 of 100 completed
+beta = 0.0228436
+Number of Energy flips:344731
+Number of Random flips:344204
+Average dE:117.535
+beta = 0.0261364
+Number of Energy flips:398962
+Number of Random flips:398739
+Average dE:108.402
+beta = 0.0239764
+Number of Energy flips:401952
+Number of Random flips:401659
+Average dE:107.456
+beta = 0.0239764
+Number of Energy flips:344553
+Number of Random flips:344777
+Average dE:117.741
+beta = 0.0261364
+Number of Energy flips:387817
+Number of Random flips:387410
+Average dE:109.969
+beta = 0.0243793
+Number of Energy flips:365611
+Number of Random flips:364826
+Average dE:114.011
+beta = 0.0252273
+Number of Energy flips:409704
+Number of Random flips:409840
+Average dE:106.464
+beta = 0.0235865
+Number of Energy flips:421014
+Number of Random flips:420075
+Average dE:104.807
+Temp 73 of 100 completed
+beta = 0.0230249
+Number of Energy flips:334712
+Number of Random flips:334633
+Average dE:119.379
+beta = 0.026616
+Number of Energy flips:387064
+Number of Random flips:386482
+Average dE:110.384
+beta = 0.0243793
+Number of Energy flips:388378
+Number of Random flips:388355
+Average dE:109.96
+beta = 0.0243793
+Number of Energy flips:334070
+Number of Random flips:334567
+Average dE:119.611
+beta = 0.026616
+Number of Energy flips:377114
+Number of Random flips:377147
+Average dE:112.037
+beta = 0.0247961
+Number of Energy flips:354187
+Number of Random flips:353866
+Average dE:116.13
+beta = 0.0256738
+Number of Energy flips:416277
+Number of Random flips:415891
+Average dE:105.388
+Temp 74 of 100 completed
+beta = 0.0232091
+Number of Energy flips:399107
+Number of Random flips:399208
+Average dE:108.345
+beta = 0.0239764
+Number of Energy flips:325648
+Number of Random flips:325121
+Average dE:120.858
+beta = 0.0271135
+Number of Energy flips:377494
+Number of Random flips:377309
+Average dE:111.809
+beta = 0.0247961
+Number of Energy flips:378214
+Number of Random flips:378198
+Average dE:111.646
+beta = 0.0247961
+Number of Energy flips:326644
+Number of Random flips:325377
+Average dE:120.794
+beta = 0.0271135
+Number of Energy flips:363643
+Number of Random flips:363557
+Average dE:114.451
+beta = 0.0252273
+Number of Energy flips:343051
+Number of Random flips:343097
+Average dE:118.015
+beta = 0.0261364
+Number of Energy flips:412847
+Number of Random flips:412876
+Average dE:105.564
+Temp 75 of 100 completed
+beta = 0.0235865
+Number of Energy flips:314937
+Number of Random flips:314212
+Average dE:122.967
+beta = 0.0276299
+Number of Energy flips:390164
+Number of Random flips:389444
+Average dE:109.437
+beta = 0.0243793
+Number of Energy flips:368414
+Number of Random flips:367777
+Average dE:113.066
+beta = 0.0252273
+Number of Energy flips:365198
+Number of Random flips:364698
+Average dE:113.965
+beta = 0.0252273
+Number of Energy flips:313320
+Number of Random flips:313210
+Average dE:123.199
+beta = 0.0276299
+Number of Energy flips:355396
+Number of Random flips:355148
+Average dE:115.785
+beta = 0.0256738
+Number of Energy flips:334571
+Number of Random flips:334498
+Average dE:119.458
+beta = 0.026616
+Number of Energy flips:304428
+Number of Random flips:304290
+Average dE:124.887
+beta = 0.0281664
+Number of Energy flips:404113
+Number of Random flips:404009
+Average dE:106.942
+Temp 76 of 100 completed
+beta = 0.0239764
+Number of Energy flips:377096
+Number of Random flips:377261
+Average dE:111.574
+beta = 0.0247961
+Number of Energy flips:355979
+Number of Random flips:356486
+Average dE:115.254
+beta = 0.0256738
+Number of Energy flips:355694
+Number of Random flips:356088
+Average dE:115.358
+beta = 0.0256738
+Number of Energy flips:305404
+Number of Random flips:304692
+Average dE:124.531
+beta = 0.0281664
+Number of Energy flips:343203
+Number of Random flips:343458
+Average dE:117.778
+beta = 0.0261364
+Number of Energy flips:324332
+Number of Random flips:323806
+Average dE:121.228
+beta = 0.0271135
+Number of Energy flips:296001
+Number of Random flips:296556
+Average dE:126.147
+beta = 0.0287242
+Number of Energy flips:388886
+Number of Random flips:389037
+Average dE:109.889
+Temp 77 of 100 completed
+beta = 0.0243793
+Number of Energy flips:364896
+Number of Random flips:365245
+Average dE:114.242
+beta = 0.0252273
+Number of Energy flips:342315
+Number of Random flips:342488
+Average dE:118.124
+beta = 0.0261364
+Number of Energy flips:343398
+Number of Random flips:344546
+Average dE:117.793
+beta = 0.0261364
+Number of Energy flips:294718
+Number of Random flips:294268
+Average dE:126.675
+beta = 0.0287242
+Number of Energy flips:333725
+Number of Random flips:333282
+Average dE:119.561
+beta = 0.026616
+Number of Energy flips:313774
+Number of Random flips:313779
+Average dE:123.081
+beta = 0.0276299
+Number of Energy flips:287321
+Number of Random flips:287362
+Average dE:127.594
+beta = 0.0293045
+Number of Energy flips:376390
+Number of Random flips:376980
+Average dE:111.868
+Temp 78 of 100 completed
+beta = 0.0247961
+Number of Energy flips:355309
+Number of Random flips:354628
+Average dE:115.877
+beta = 0.0256738
+Number of Energy flips:334385
+Number of Random flips:333436
+Average dE:119.501
+beta = 0.026616
+Number of Energy flips:334659
+Number of Random flips:334056
+Average dE:119.356
+beta = 0.026616
+Number of Energy flips:287271
+Number of Random flips:287237
+Average dE:128.055
+beta = 0.0293045
+Number of Energy flips:322454
+Number of Random flips:322550
+Average dE:121.804
+beta = 0.0271135
+Number of Energy flips:306051
+Number of Random flips:305127
+Average dE:124.47
+beta = 0.0281664
+Number of Energy flips:277994
+Number of Random flips:278007
+Average dE:129.625
+beta = 0.0299087
+Number of Energy flips:365838
+Number of Random flips:366160
+Average dE:113.674
+Temp 79 of 100 completed
+beta = 0.0252273
+Number of Energy flips:343175
+Number of Random flips:344825
+Average dE:117.703
+beta = 0.0261364
+Number of Energy flips:324961
+Number of Random flips:324552
+Average dE:121.239
+beta = 0.0271135
+Number of Energy flips:324516
+Number of Random flips:324945
+Average dE:121.144
+beta = 0.0271135
+Number of Energy flips:278626
+Number of Random flips:278906
+Average dE:129.28
+beta = 0.0299087
+Number of Energy flips:315480
+Number of Random flips:314402
+Average dE:122.717
+beta = 0.0276299
+Number of Energy flips:295183
+Number of Random flips:295858
+Average dE:126.2
+beta = 0.0287242
+Number of Energy flips:270013
+Number of Random flips:269819
+Average dE:131.02
+beta = 0.0305383
+Number of Energy flips:353874
+Number of Random flips:353726
+Average dE:116.175
+Temp 80 of 100 completed
+beta = 0.0256738
+Number of Energy flips:333256
+Number of Random flips:332968
+Average dE:119.868
+beta = 0.026616
+Number of Energy flips:315744
+Number of Random flips:315768
+Average dE:122.341
+beta = 0.0276299
+Number of Energy flips:269787
+Number of Random flips:269948
+Average dE:130.965
+beta = 0.0305383
+Number of Energy flips:313866
+Number of Random flips:313740
+Average dE:123.139
+beta = 0.0276299
+Number of Energy flips:305230
+Number of Random flips:304861
+Average dE:124.738
+beta = 0.0281664
+Number of Energy flips:287578
+Number of Random flips:286357
+Average dE:128.058
+beta = 0.0293045
+Number of Energy flips:261961
+Number of Random flips:262449
+Average dE:132.351
+beta = 0.0311951
+Number of Energy flips:345700
+Number of Random flips:344840
+Average dE:117.687
+Temp 81 of 100 completed
+beta = 0.0261364
+Number of Energy flips:325635
+Number of Random flips:325687
+Average dE:120.692
+beta = 0.0271135
+Number of Energy flips:306740
+Number of Random flips:305956
+Average dE:124.53
+beta = 0.0281664
+Number of Energy flips:262032
+Number of Random flips:262152
+Average dE:132.617
+beta = 0.0311951
+Number of Energy flips:306206
+Number of Random flips:305632
+Average dE:124.338
+beta = 0.0281664
+Number of Energy flips:297569
+Number of Random flips:297069
+Average dE:125.806
+beta = 0.0287242
+Number of Energy flips:254553
+Number of Random flips:254448
+Average dE:133.667
+beta = 0.0318807
+Number of Energy flips:277841
+Number of Random flips:277785
+Average dE:129.792
+beta = 0.0299087
+Number of Energy flips:334173
+Number of Random flips:333520
+Average dE:119.907
+Temp 82 of 100 completed
+beta = 0.026616
+Number of Energy flips:314580
+Number of Random flips:314227
+Average dE:123.041
+beta = 0.0276299
+Number of Energy flips:297017
+Number of Random flips:296434
+Average dE:125.946
+beta = 0.0287242
+Number of Energy flips:254199
+Number of Random flips:253244
+Average dE:134.069
+beta = 0.0318807
+Number of Energy flips:296887
+Number of Random flips:296863
+Average dE:125.855
+beta = 0.0287242
+Number of Energy flips:289395
+Number of Random flips:289116
+Average dE:127.502
+beta = 0.0293045
+Number of Energy flips:246068
+Number of Random flips:246295
+Average dE:135.251
+beta = 0.0325971
+Number of Energy flips:270009
+Number of Random flips:270583
+Average dE:130.941
+beta = 0.0305383
+Number of Energy flips:323371
+Number of Random flips:323717
+Average dE:121.231
+Temp 83 of 100 completed
+beta = 0.0271135
+Number of Energy flips:305648
+Number of Random flips:306190
+Average dE:124.414
+beta = 0.0281664
+Number of Energy flips:286772
+Number of Random flips:287184
+Average dE:127.879
+beta = 0.0293045
+Number of Energy flips:245668
+Number of Random flips:245152
+Average dE:135.736
+beta = 0.0325971
+Number of Energy flips:287485
+Number of Random flips:287791
+Average dE:127.648
+beta = 0.0293045
+Number of Energy flips:279412
+Number of Random flips:279340
+Average dE:129.337
+beta = 0.0299087
+Number of Energy flips:238819
+Number of Random flips:238490
+Average dE:136.978
+beta = 0.0333464
+Number of Energy flips:262330
+Number of Random flips:261889
+Average dE:132.463
+beta = 0.0311951
+Number of Energy flips:313534
+Number of Random flips:313606
+Average dE:123.19
+Temp 84 of 100 completed
+beta = 0.0276299
+Number of Energy flips:295851
+Number of Random flips:295670
+Average dE:126.087
+beta = 0.0287242
+Number of Energy flips:279725
+Number of Random flips:279917
+Average dE:129.113
+beta = 0.0299087
+Number of Energy flips:238550
+Number of Random flips:238721
+Average dE:136.934
+beta = 0.0333464
+Number of Energy flips:279164
+Number of Random flips:278857
+Average dE:129.385
+beta = 0.0299087
+Number of Energy flips:230777
+Number of Random flips:231286
+Average dE:138.342
+beta = 0.0341311
+Number of Energy flips:270605
+Number of Random flips:269944
+Average dE:130.889
+beta = 0.0305383
+Number of Energy flips:254145
+Number of Random flips:254004
+Average dE:133.881
+beta = 0.0318807
+Number of Energy flips:304878
+Number of Random flips:304843
+Average dE:124.848
+Temp 85 of 100 completed
+beta = 0.0281664
+Number of Energy flips:288309
+Number of Random flips:288282
+Average dE:127.687
+beta = 0.0293045
+Number of Energy flips:269718
+Number of Random flips:270236
+Average dE:131.092
+beta = 0.0305383
+Number of Energy flips:231091
+Number of Random flips:230015
+Average dE:138.476
+beta = 0.0341311
+Number of Energy flips:270273
+Number of Random flips:270901
+Average dE:130.756
+beta = 0.0305383
+Number of Energy flips:222205
+Number of Random flips:222342
+Average dE:140.096
+beta = 0.0349535
+Number of Energy flips:262780
+Number of Random flips:262192
+Average dE:132.334
+beta = 0.0311951
+Number of Energy flips:246071
+Number of Random flips:246204
+Average dE:135.476
+beta = 0.0325971
+Number of Energy flips:296363
+Number of Random flips:296123
+Average dE:126.184
+Temp 86 of 100 completed
+beta = 0.0287242
+Number of Energy flips:278749
+Number of Random flips:278697
+Average dE:129.209
+beta = 0.0299087
+Number of Energy flips:260052
+Number of Random flips:260409
+Average dE:133.056
+beta = 0.0311951
+Number of Energy flips:223574
+Number of Random flips:223844
+Average dE:139.6
+beta = 0.0349535
+Number of Energy flips:260945
+Number of Random flips:261331
+Average dE:132.651
+beta = 0.0311951
+Number of Energy flips:216166
+Number of Random flips:216029
+Average dE:141.128
+beta = 0.0358166
+Number of Energy flips:253161
+Number of Random flips:253529
+Average dE:134.089
+beta = 0.0318807
+Number of Energy flips:239030
+Number of Random flips:239044
+Average dE:136.593
+beta = 0.0333464
+Number of Energy flips:287178
+Number of Random flips:286689
+Average dE:127.938
+Temp 87 of 100 completed
+beta = 0.0293045
+Number of Energy flips:271199
+Number of Random flips:270578
+Average dE:130.748
+beta = 0.0305383
+Number of Energy flips:254371
+Number of Random flips:254230
+Average dE:133.935
+beta = 0.0318807
+Number of Energy flips:217167
+Number of Random flips:217566
+Average dE:140.774
+beta = 0.0358166
+Number of Energy flips:253967
+Number of Random flips:254233
+Average dE:134.016
+beta = 0.0318807
+Number of Energy flips:209528
+Number of Random flips:209656
+Average dE:142.499
+beta = 0.0367233
+Number of Energy flips:246810
+Number of Random flips:247341
+Average dE:135.279
+beta = 0.0325971
+Number of Energy flips:230448
+Number of Random flips:230423
+Average dE:138.68
+beta = 0.0341311
+Number of Energy flips:279308
+Number of Random flips:278948
+Average dE:129.414
+Temp 88 of 100 completed
+beta = 0.0299087
+Number of Energy flips:260909
+Number of Random flips:260432
+Average dE:132.793
+beta = 0.0311951
+Number of Energy flips:209164
+Number of Random flips:209298
+Average dE:142.624
+beta = 0.0367233
+Number of Energy flips:246345
+Number of Random flips:245711
+Average dE:135.736
+beta = 0.0325971
+Number of Energy flips:246797
+Number of Random flips:246727
+Average dE:135.258
+beta = 0.0325971
+Number of Energy flips:202718
+Number of Random flips:202305
+Average dE:143.841
+beta = 0.0376772
+Number of Energy flips:238533
+Number of Random flips:238220
+Average dE:137.042
+beta = 0.0333464
+Number of Energy flips:223700
+Number of Random flips:223496
+Average dE:139.71
+beta = 0.0349535
+Number of Energy flips:269771
+Number of Random flips:269592
+Average dE:131.106
+Temp 89 of 100 completed
+beta = 0.0305383
+Number of Energy flips:253607
+Number of Random flips:253455
+Average dE:133.979
+beta = 0.0318807
+Number of Energy flips:203127
+Number of Random flips:203667
+Average dE:143.729
+beta = 0.0376772
+Number of Energy flips:239352
+Number of Random flips:239573
+Average dE:136.723
+beta = 0.0333464
+Number of Energy flips:238350
+Number of Random flips:239128
+Average dE:136.769
+beta = 0.0333464
+Number of Energy flips:196561
+Number of Random flips:196429
+Average dE:144.947
+Number of Energy flips:231715
+Number of Random flips:232403
+Average dE:137.76
+beta = 0.0341311
+Number of Energy flips:261735
+Number of Random flips:262441
+Average dE:132.374
+Temp 90 of 100 completed
+beta = 0.0311951
+Number of Energy flips:217553
+Number of Random flips:217528
+Average dE:140.664
+beta = 0.0358166
+Number of Energy flips:195423
+Number of Random flips:195770
+Average dE:145.315
+Number of Energy flips:246285
+Number of Random flips:246451
+Average dE:135.367
+beta = 0.0325971
+Number of Energy flips:230908
+Number of Random flips:231145
+Average dE:138.288
+beta = 0.0341311
+Number of Energy flips:232717
+Number of Random flips:231913
+Average dE:137.998
+beta = 0.0341311
+Number of Energy flips:224314
+Number of Random flips:223999
+Average dE:139.673
+beta = 0.0349535
+Number of Energy flips:253523
+Number of Random flips:253720
+Average dE:134.06
+Temp 91 of 100 completed
+beta = 0.0318807
+Number of Energy flips:209384
+Number of Random flips:209131
+Average dE:142.614
+beta = 0.0367233
+Number of Energy flips:238846
+Number of Random flips:239048
+Average dE:136.91
+beta = 0.0333464
+Number of Energy flips:223310
+Number of Random flips:222903
+Average dE:139.876
+beta = 0.0349535
+Number of Energy flips:224154
+Number of Random flips:224186
+Average dE:139.761
+beta = 0.0349535
+Number of Energy flips:245320
+Number of Random flips:245399
+Average dE:135.534
+Temp 92 of 100 completed
+beta = 0.0325971
+Number of Energy flips:215638
+Number of Random flips:215189
+Average dE:141.447
+beta = 0.0358166
+Number of Energy flips:202319
+Number of Random flips:202302
+Average dE:143.971
+beta = 0.0376772
+Number of Energy flips:231231
+Number of Random flips:230741
+Average dE:138.259
+beta = 0.0341311
+Number of Energy flips:216557
+Number of Random flips:216113
+Average dE:141.151
+beta = 0.0358166
+Number of Energy flips:216558
+Number of Random flips:215982
+Average dE:141.12
+beta = 0.0358166
+Number of Energy flips:239138
+Number of Random flips:239102
+Average dE:136.724
+Temp 93 of 100 completed
+beta = 0.0333464
+Number of Energy flips:210346
+Number of Random flips:210399
+Average dE:142.175
+beta = 0.0367233
+Number of Energy flips:195508
+Number of Random flips:195604
+Average dE:145.219
+Number of Energy flips:223504
+Number of Random flips:223704
+Average dE:139.79
+beta = 0.0349535
+Number of Energy flips:209148
+Number of Random flips:209156
+Average dE:142.48
+beta = 0.0367233
+Number of Energy flips:209381
+Number of Random flips:209843
+Average dE:142.305
+beta = 0.0367233
+Number of Energy flips:231236
+Number of Random flips:231560
+Average dE:138.18
+Temp 94 of 100 completed
+beta = 0.0341311
+Number of Energy flips:202537
+Number of Random flips:202341
+Average dE:143.785
+beta = 0.0376772
+Number of Energy flips:216487
+Number of Random flips:216096
+Average dE:141.186
+beta = 0.0358166
+Number of Energy flips:202484
+Number of Random flips:202686
+Average dE:143.89
+beta = 0.0376772
+Number of Energy flips:202660
+Number of Random flips:203047
+Average dE:143.81
+beta = 0.0376772
+Number of Energy flips:224246
+Number of Random flips:223438
+Average dE:139.545
+Temp 95 of 100 completed
+beta = 0.0349535
+Number of Energy flips:195848
+Number of Random flips:196069
+Average dE:145.135
+Number of Energy flips:209829
+Number of Random flips:210260
+Average dE:142.062
+beta = 0.0367233
+Number of Energy flips:195252
+Number of Random flips:195951
+Average dE:145.352
+Number of Energy flips:195964
+Number of Random flips:196535
+Average dE:145.055
+Number of Energy flips:217139
+Number of Random flips:216716
+Average dE:140.983
+Temp 96 of 100 completed
+beta = 0.0358166
+Number of Energy flips:202134
+Number of Random flips:202205
+Average dE:143.971
+beta = 0.0376772
+Number of Energy flips:209920
+Number of Random flips:209533
+Average dE:142.588
+Temp 97 of 100 completed
+beta = 0.0367233
+Number of Energy flips:196786
+Number of Random flips:196681
+Average dE:144.811
+Number of Energy flips:202577
+Number of Random flips:202932
+Average dE:143.761
+Temp 98 of 100 completed
+beta = 0.0376772
+Number of Energy flips:196325
+Number of Random flips:196160
+Average dE:145.118
+Temp 99 of 100 completed
+Lattice 1 of 2 completed
+Reducing Data...
+Finding profiles and printing to file...
+T = 900
+T = 892
+T = 884
+T = 876
+T = 868
+T = 860
+T = 852
+T = 844
+T = 836
+T = 828
+T = 820
+T = 812
+T = 804
+T = 796
+T = 788
+T = 780
+T = 772
+T = 764
+T = 756
+T = 748
+T = 740
+T = 732
+T = 724
+T = 716
+T = 708
+T = 700
+T = 696
+T = 692
+T = 688
+T = 684
+T = 680
+T = 676
+T = 672
+T = 668
+T = 664
+T = 660
+T = 656
+T = 652
+T = 648
+T = 644
+T = 640
+T = 636
+T = 632
+T = 628
+T = 624
+T = 620
+T = 616
+T = 612
+T = 608
+T = 604
+T = 600
+T = 596
+T = 592
+T = 588
+T = 584
+T = 580
+T = 576
+T = 572
+T = 568
+T = 564
+T = 560
+T = 556
+T = 552
+T = 548
+T = 544
+T = 540
+T = 536
+T = 532
+T = 528
+T = 524
+T = 520
+T = 516
+T = 512
+T = 508
+T = 504
+T = 500
+T = 492
+T = 484
+T = 476
+T = 468
+T = 460
+T = 452
+T = 444
+T = 436
+T = 428
+T = 420
+T = 412
+T = 404
+T = 396
+T = 388
+T = 380
+T = 372
+T = 364
+T = 356
+T = 348
+T = 340
+T = 332
+T = 324
+T = 316
+T = 308
