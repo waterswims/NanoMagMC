@@ -70,22 +70,21 @@ template <class T> field_cluster<T>::field_cluster(string filename)
         stream >> temp_d;
         (*xs).push_back(temp_d);
         stream >> temp_d;
-        (*ys).push_back(temp_d);
+        (*temp).push_back(temp_d);
         stream >> temp_d;
-        (*zs).push_back(temp_d);
+        (*temp).push_back(temp_d);
         stream >> temp_d;
-        (*Rms).push_back(temp_d);
+        (*temp).push_back(temp_d);
         stream >> temp_d;
-        (*Rns).push_back(temp_d);
+        (*temp).push_back(temp_d);
     }
     file.close();
     this->insize=(*xs).size();
     this->totsize=this->insize;
-    ks = new vector<T>(this->insize);
     field = new vector<T>(this->insize);
     for(int i=0; i < this->insize; i++)
     {
-        (*ks)[i].rand_spin();
+        (*field)[i].rand_spin();
     }
 }
 

@@ -1,7 +1,9 @@
 #include "hamiltonian.hpp"
 #include "functions.h"
+#include <sstream>
 #include <iostream>
 #include <fstream>
+
 
 template <class T> ham_ising<T>::ham_ising(ham_type<ising_spin>& other)
 {
@@ -533,6 +535,45 @@ template <class T> bool ham_FePt<T>::check_pos(int start, int fin)
 
 template class ham_FePt<ising_spin>;
 template class ham_FePt<heis_spin>;
+
+template <class T> ham_cluster<T>::ham_cluster(string filename)
+{
+    ifstream file;
+    file.open(filename.c_str());
+    if(!file.is_open())
+    {
+        cout << "Input file not opened" << endl;
+        exit(105);
+    }
+    string line;
+    double temp_d;
+    while(getline(file, line))
+    {
+        istringstream stream(line);
+        stream >> temp_d;
+        (*xs).push_back(temp_d);
+        stream >> temp_d;
+        (*ys).push_back(temp_d);
+        stream >> temp_d;
+        (*zs).push_back(temp_d);
+        stream >> temp_d;
+        (*Rms).push_back(temp_d);
+        stream >> temp_d;
+        (*Rns).push_back(temp_d);
+    }
+    file.close();
+
+    ks = new vector<T>((*xs).size());
+    for(int i=0; i < this->insize; i++)
+    {
+        (*ks)[i].rand_spin();
+    }
+}
+
+template <class T> double ham_cluster<T>::calc_E(field_type<heis_spin>* lattice)
+{
+    
+}
 
 // template <class T> ham_skyrm<T>::ham_skyrm(double Hin, double Jin, double Dxin, double Dyin)
 // {

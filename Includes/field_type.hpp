@@ -33,12 +33,6 @@ public:
     virtual boost::multi_array<T, 2>* get_2dfield(){return NULL;}
     virtual boost::multi_array<T, 3>* get_3dfield(){return NULL;}
     virtual void print(){}
-    virtual vector<double>* get_xs(){return NULL;}
-    virtual vector<double>* get_ys(){return NULL;}
-    virtual vector<double>* get_zs(){return NULL;}
-    virtual vector<double>* get_Rms(){return NULL;}
-    virtual vector<double>* get_Rns(){return NULL;}
-    virtual vector<T>* get_ks(){return NULL;}
 };
 
 template <class T> class field_2d: public field_type<T>
@@ -113,12 +107,7 @@ public:
 template <class T> class field_cluster: public field_type<T>
 {
 protected:
-    vector<double>* xs;
-    vector<double>* ys;
-    vector<double>* zs;
-    vector<double>* Rms;
-    vector<double>* Rns;
-    vector<T>* ks;
+    vector<double>* xs, temp;
     vector<T>* field;
 public:
     field_cluster();
@@ -134,12 +123,6 @@ public:
     field_cluster<T>& operator=(field_cluster<T>& other);
     int findnum(){return (*field).size();}
     vector<T>* get_1dfield(){return field;}
-    vector<double>* get_xs(){return xs;}
-    vector<double>* get_ys(){return ys;}
-    vector<double>* get_zs(){return zs;}
-    vector<double>* get_Rms(){return Rms;}
-    vector<double>* get_Rns(){return Rns;}
-    vector<T>* get_ks(){return ks;}
 };
 
 #endif

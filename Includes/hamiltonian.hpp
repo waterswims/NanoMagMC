@@ -7,6 +7,7 @@
 #include "boost/assign.hpp"
 #include <vector>
 #include <iostream>
+#include <string>
 
 using namespace std;
 
@@ -27,6 +28,12 @@ public:
     virtual T* get_test(){}
     virtual double get_Dx(){return 0;}
     virtual double get_Dy(){return 0;}
+    virtual vector<double>* get_xs(){return NULL;}
+    virtual vector<double>* get_ys(){return NULL;}
+    virtual vector<double>* get_zs(){return NULL;}
+    virtual vector<double>* get_Rms(){return NULL;}
+    virtual vector<double>* get_Rns(){return NULL;}
+    virtual vector<T>* get_ks(){return NULL;}
 };
 
 template <class T> class ham_ising: public ham_type<T>
@@ -103,8 +110,29 @@ template <class T> class ham_cluster: public ham_type<T>
 {
 private:
     T test;
+    vector<double>* xs;
+    vector<double>* ys;
+    vector<double>* zs;
+    vector<double>* Rms;
+    vector<double>* Rns;
+    vector<T>* ks;
 public:
-
+    ham_cluster(){}
+    ham_cluster(string filename);
+    ham_cluster(ham_type<ising_spin>& other){cout << "Error" << endl; exit(201);}
+    ham_cluster(ham_type<heis_spin>& other);
+    ~ham_FePt(){}
+    double calc_E(field_type<heis_spin>* lattice);
+    vector<double> calc_M(field_type<heis_spin>* lattice);
+    double dE(field_type<heis_spin>* lattice, vector<int>& position);
+    T* get_test(){return &test;}
+    ham_cluster<T>& operator=(ham_type<heis_spin>& other);
+    vector<double>* get_xs(){return xs;}
+    vector<double>* get_ys(){return ys;}
+    vector<double>* get_zs(){return zs;}
+    vector<double>* get_Rms(){return Rms;}
+    vector<double>* get_Rns(){return Rns;}
+    vector<T>* get_ks(){return ks;}
 };
 
 // template <class T> class ham_skyrm: public ham_heis<T>
