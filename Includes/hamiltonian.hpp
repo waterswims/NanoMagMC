@@ -99,6 +99,14 @@ public:
     bool check_pos(int start, int fin);
 };
 
+template <class T> class ham_cluster: public ham_type<T>
+{
+private:
+    T test;
+public:
+
+};
+
 // template <class T> class ham_skyrm: public ham_heis<T>
 // {
 // private:

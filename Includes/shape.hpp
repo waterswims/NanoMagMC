@@ -61,4 +61,11 @@ public:
     ~cube(){}
 };
 
+class sh_cluster: public shape_3d
+{
+public:
+    sh_cluster(){}
+    ~sh_cluster(){}
+};
+
 #endif

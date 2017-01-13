@@ -1,5 +1,7 @@
 #include "spin_type.hpp"
 #include "field_type.hpp"
+#include <fstream>
+#include <sstream>
 #include <iostream>
 
 template <class T> field_2d<T>::field_2d()
@@ -12,6 +14,12 @@ template <class T> field_3d<T>::field_3d()
 {
     this->dim=3;
     this->periodic=true;
+}
+
+template <class T> field_cluster<T>::field_cluster()
+{
+    this->dim=1;
+    this->periodic=false;
 }
 
 template <class T> field_2d<T>::field_2d(int size, bool isperio)
@@ -40,6 +48,45 @@ template <class T> field_3d<T>::field_3d(int size, bool isperio)
         this->totsize = this->insize + 2;
     }
     field = new boost::multi_array<T, 3>(boost::extents[this->totsize][this->totsize][this->totsize]);
+}
+
+template <class T> field_cluster<T>::field_cluster(string filename)
+{
+    this->dim = 1;
+    this->periodic=false;
+
+    ifstream file;
+    file.open(filename.c_str());
+    if(!file.is_open())
+    {
+        cout << "Input file not opened" << endl;
+        exit(105);
+    }
+    string line;
+    double temp_d;
+    while(getline(file, line))
+    {
+        istringstream stream(line);
+        stream >> temp_d;
+        (*xs).push_back(temp_d);
+        stream >> temp_d;
+        (*ys).push_back(temp_d);
+        stream >> temp_d;
+        (*zs).push_back(temp_d);
+        stream >> temp_d;
+        (*Rms).push_back(temp_d);
+        stream >> temp_d;
+        (*Rns).push_back(temp_d);
+    }
+    file.close();
+    this->insize=(*xs).size();
+    this->totsize=this->insize;
+    ks = new vector<T>(this->insize);
+    field = new vector<T>(this->insize);
+    for(int i=0; i < this->insize; i++)
+    {
+        (*ks)[i].rand_spin();
+    }
 }
 
 template <class T> field_3d<T>::field_3d(int size, bool isperio, int pad)
@@ -74,6 +121,21 @@ template <class T> field_3d<T>::field_3d(field_type<T>& other)
     field = new boost::multi_array<T, 3>(*(other.get_3dfield()));
 }
 
+template <class T> field_cluster<T>::field_cluster(field_type<T>& other)
+{
+    this->dim = 1;
+    this->insize = other.get_insize();
+    this->totsize = other.get_totsize();
+    this->periodic = other.get_perio();
+    xs = new vector<double>(*(other.get_xs()));
+    ys = new vector<double>(*(other.get_ys()));
+    zs = new vector<double>(*(other.get_zs()));
+    Rms = new vector<double>(*(other.get_Rms()));
+    Rns = new vector<double>(*(other.get_Rns()));
+    ks = new vector<T>(*(other.get_ks()));
+    field = new vector<T>(*(other.get_1dfield()));
+}
+
 template <class T> field_2d<T>::field_2d(const field_2d<T>& other)
 {
     this->dim = 2;
@@ -90,6 +152,21 @@ template <class T> field_3d<T>::field_3d(const field_3d<T>& other)
     this->totsize = other.totsize;
     this->periodic = other.periodic;
     field = new boost::multi_array<T, 3>(*(other.field));
+}
+
+template <class T> field_cluster<T>::field_cluster(const field_cluster<T>& other)
+{
+    this->dim = 1;
+    this->insize = other.insize;
+    this->totsize = other.totsize;
+    this->periodic = other.periodic;
+    xs = new vector<double>(*other.xs);
+    ys = new vector<double>(*other.ys);
+    zs = new vector<double>(*other.zs);
+    Rms = new vector<double>(*other.Rms);
+    Rns = new vector<double>(*other.Rns);
+    ks = new vector<T>(*other.ks);
+    field = new vector<T>(*other.field);
 }
 
 template <class T> T& field_2d<T>::access(vector<int>& position)
@@ -260,6 +337,18 @@ template <class T> T& field_3d<T>::next(bool &finish, vector<int> &pos)
     return *out;
 }
 
+template <class T> T& field_cluster<T>::next(bool &finish, vector<int> &pos)
+{
+    T* out = &(this->access(pos));
+    pos[0]++;
+    if(pos[0] == this->insize)
+    {
+        pos[0] = 0;
+        finish = true;
+    }
+    return *out;
+}
+
 template <class T> void field_2d<T>::fill_ghost(int &num)
 {
     if(!(this->periodic))
@@ -332,6 +421,22 @@ template <class T> field_3d<T>& field_3d<T>::operator=(field_3d<T>& other)
     this->totsize = other.get_totsize();
     this->periodic = other.get_perio();
     field = new boost::multi_array<T, 3>(*(other.get_3dfield()));
+    return *this;
+}
+
+template <class T> field_cluster<T>& field_cluster<T>::operator=(field_cluster<T>& other)
+{
+    this->dim = 1;
+    this->insize = other.get_insize();
+    this->totsize = other.get_totsize();
+    this->periodic = other.get_perio();
+    xs = new vector<double>(*(other.get_xs()));
+    ys = new vector<double>(*(other.get_ys()));
+    zs = new vector<double>(*(other.get_zs()));
+    Rms = new vector<double>(*(other.get_Rms()));
+    Rns = new vector<double>(*(other.get_Rns()));
+    ks = new vector<T>(*(other.get_ks()));
+    field = new vector<T>(*(other.get_1dfield()));
     return *this;
 }
 
@@ -537,6 +642,8 @@ template class field_2d<ising_spin>;
 template class field_2d<heis_spin>;
 template class field_3d<ising_spin>;
 template class field_3d<heis_spin>;
+template class field_cluster<ising_spin>;
+template class field_cluster<heis_spin>;
 template class hex_2d<heis_spin>;
 template class hex_2d<ising_spin>;
 template class hex_3d<heis_spin>;

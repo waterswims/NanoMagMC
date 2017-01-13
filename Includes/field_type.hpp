@@ -5,6 +5,7 @@
 
 #include "boost/multi_array.hpp"
 #include <vector>
+#include <string>
 
 using namespace std;
 
@@ -17,7 +18,6 @@ public:
     field_type(){}
     ~field_type(){}
     virtual T& access(vector<int>& position){}
-    __declspec(vector)
     virtual vector<double>& spin_access(vector<int>& position){}
     virtual void adjacent(vector<int>& position, vector<T*>& out){}
     virtual T& next(bool &finish, vector<int> &pos){}
@@ -29,9 +29,16 @@ public:
     virtual void fill_ghost(int &num){}
     virtual void new_mem(){}
     virtual int findnum(){return 0;}
+    virtual vector<T>* get_1dfield(){return NULL;}
     virtual boost::multi_array<T, 2>* get_2dfield(){return NULL;}
     virtual boost::multi_array<T, 3>* get_3dfield(){return NULL;}
     virtual void print(){}
+    virtual vector<double>* get_xs(){return NULL;}
+    virtual vector<double>* get_ys(){return NULL;}
+    virtual vector<double>* get_zs(){return NULL;}
+    virtual vector<double>* get_Rms(){return NULL;}
+    virtual vector<double>* get_Rns(){return NULL;}
+    virtual vector<T>* get_ks(){return NULL;}
 };
 
 template <class T> class field_2d: public field_type<T>
@@ -101,6 +108,38 @@ public:
     void adjacent(vector<int> &position, vector<T*> &out);
     hex_3d<T>& operator=(hex_3d<T>& other);
     boost::multi_array<T,3>* get_3dfield(){return this->field;}
+};
+
+template <class T> class field_cluster: public field_type<T>
+{
+protected:
+    vector<double>* xs;
+    vector<double>* ys;
+    vector<double>* zs;
+    vector<double>* Rms;
+    vector<double>* Rns;
+    vector<T>* ks;
+    vector<T>* field;
+public:
+    field_cluster();
+    field_cluster(string filename);
+    field_cluster(field_type<T>& other);
+    field_cluster(const field_cluster<T>& other);
+    ~field_cluster(){delete xs; delete ys; delete zs; delete Rms; delete Rns;
+        delete ks; delete field;}
+    T& access(vector<int>& position){return (*field)[position[0]];}
+    vector<double>& spin_access(vector<int>& position)
+        {return (*field)[position[0]].spin_access();}
+    T& next(bool &finish, vector<int> &pos);
+    field_cluster<T>& operator=(field_cluster<T>& other);
+    int findnum(){return (*field).size();}
+    vector<T>* get_1dfield(){return field;}
+    vector<double>* get_xs(){return xs;}
+    vector<double>* get_ys(){return ys;}
+    vector<double>* get_zs(){return zs;}
+    vector<double>* get_Rms(){return Rms;}
+    vector<double>* get_Rns(){return Rns;}
+    vector<T>* get_ks(){return ks;}
 };
 
 #endif
