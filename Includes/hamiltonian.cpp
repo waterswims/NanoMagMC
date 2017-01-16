@@ -4,6 +4,7 @@
 #include <iostream>
 #include <fstream>
 
+const double pi = 3.141592653589793;
 
 template <class T> ham_ising<T>::ham_ising(ham_type<ising_spin>& other)
 {
@@ -551,28 +552,69 @@ template <class T> ham_cluster<T>::ham_cluster(string filename)
     {
         istringstream stream(line);
         stream >> temp_d;
-        (*xs).push_back(temp_d);
+        (xs).push_back(temp_d);
         stream >> temp_d;
-        (*ys).push_back(temp_d);
+        (ys).push_back(temp_d);
         stream >> temp_d;
-        (*zs).push_back(temp_d);
+        (zs).push_back(temp_d);
         stream >> temp_d;
-        (*Rms).push_back(temp_d);
+        (Rms).push_back(temp_d);
         stream >> temp_d;
-        (*Rns).push_back(temp_d);
+        (Rns).push_back(temp_d);
     }
     file.close();
 
-    ks = new vector<T>((*xs).size());
+    ks = vector<T>((xs).size());
     for(int i=0; i < this->insize; i++)
     {
-        (*ks)[i].rand_spin();
+        (ks)[i].rand_spin();
+        (Vms).push_back(4*pi*pow(Rms[i], 3) / 3);
     }
+    mu0 = 4e-7 * pi;
 }
 
 template <class T> double ham_cluster<T>::calc_E(field_type<heis_spin>* lattice)
 {
-    
+    double ani_sum = 0, mag_sum = 0, di_sum = 0;
+
+    int n_parts = lattice->get_totsize();
+    pos.resize(1);
+    pos2.resize(1);
+    temp.resize(3);
+
+    for (pos[0] = 0; pos[0] < n_parts; pos[0]++)
+    {
+        curr = (lattice->access(pos)).spin_access();
+        curr_ani = ks[pos[0]].spin_access();
+
+        ani_sum += (pow((curr_ani[1]*curr[2] - curr[1]*curr_ani[2]), 2) +
+                   pow((curr_ani[2]*curr[0] - curr[2]*curr_ani[0]), 2) +
+                   pow((curr_ani[0]*curr[1] - curr[0]*curr_ani[1]), 2)) *
+                   Vms[pos[0]];
+
+        mag_sum -= Vms[pos[0]] * (curr[0] * (*h)[0] + curr[1] *
+                                  (*h)[1] + curr[2] * (*h)[2]);
+
+        temp[0] = 0;
+        temp[1] = 0;
+        temp[2] = 0;
+        for(pos2[0] = 0; pos2[0] < pos[0]; pos2[0]++)
+        {
+            curr2 = (lattice->access(pos2)).spin_access();
+            double dx = xs[pos[0]] - xs[pos2[0]];
+            double dy = ys[pos[0]] - ys[pos2[0]];
+            double dz = zs[pos[0]] - zs[pos2[0]];
+
+            double invr3 = pow((pow(dx, 2) + pow(dy, 2) + pow(dz, 2)), -3/2);
+
+            double mr = curr2[0] * dx + curr2[1] * dy + curr2[2] * dz;
+
+            temp[0] +=
+        }
+    }
+
+    double E = ani_const * ani_sum + mu0 * Ms * (mag_sum + di_sum * Ms /
+                                                 (4 * pi));
 }
 
 // template <class T> ham_skyrm<T>::ham_skyrm(double Hin, double Jin, double Dxin, double Dyin)

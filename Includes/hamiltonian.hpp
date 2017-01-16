@@ -110,12 +110,12 @@ template <class T> class ham_cluster: public ham_type<T>
 {
 private:
     T test;
-    vector<double>* xs;
-    vector<double>* ys;
-    vector<double>* zs;
-    vector<double>* Rms;
-    vector<double>* Rns;
-    vector<T>* ks;
+    vector<double> xs, ys, zs, Rms, Rns, Vms, Vs, h;
+    vector<double> temp;
+    vector<double> curr, curr2, curr_ani;
+    vector<T> ks;
+    vector<int> pos, pos2;
+    double ani_const, Ms, mu0;
 public:
     ham_cluster(){}
     ham_cluster(string filename);
@@ -127,12 +127,12 @@ public:
     double dE(field_type<heis_spin>* lattice, vector<int>& position);
     T* get_test(){return &test;}
     ham_cluster<T>& operator=(ham_type<heis_spin>& other);
-    vector<double>* get_xs(){return xs;}
-    vector<double>* get_ys(){return ys;}
-    vector<double>* get_zs(){return zs;}
-    vector<double>* get_Rms(){return Rms;}
-    vector<double>* get_Rns(){return Rns;}
-    vector<T>* get_ks(){return ks;}
+    vector<double>* get_xs(){return &xs;}
+    vector<double>* get_ys(){return &ys;}
+    vector<double>* get_zs(){return &zs;}
+    vector<double>* get_Rms(){return &Rms;}
+    vector<double>* get_Rns(){return &Rns;}
+    vector<T>* get_ks(){return &ks;}
 };
 
 // template <class T> class ham_skyrm: public ham_heis<T>
