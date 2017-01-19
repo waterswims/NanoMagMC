@@ -568,7 +568,7 @@ template <class T> ham_cluster<T>::ham_cluster(string filename)
     for(int i=0; i < this->insize; i++)
     {
         (ks)[i].rand_spin();
-        (Vms).push_back(4*pi*pow(Rms[i], 3) / 3);
+        (Vms).push_back(4.0*pi*pow(Rms[i], 3.0) / 3.0);
     }
     mu0 = 4e-7 * pi;
 }
@@ -605,16 +605,113 @@ template <class T> double ham_cluster<T>::calc_E(field_type<heis_spin>* lattice)
             double dy = ys[pos[0]] - ys[pos2[0]];
             double dz = zs[pos[0]] - zs[pos2[0]];
 
-            double invr3 = pow((pow(dx, 2) + pow(dy, 2) + pow(dz, 2)), -3/2);
+            double modr = pow((pow(dx, 2) + pow(dy, 2) + pow(dz, 2)), 0.5);
+
+            dx = dx / modr;
+            dy = dy / modr;
+            dz = dz / modr;
+
+            double invr3 = pow(modr, -3);
 
             double mr = curr2[0] * dx + curr2[1] * dy + curr2[2] * dz;
 
-            temp[0] +=
+            temp[0] += Vms[pos2[0]] * invr3 * (-curr2[0] + dx * mr);
+            temp[1] += Vms[pos2[0]] * invr3 * (-curr2[1] + dy * mr);
+            temp[2] += Vms[pos2[0]] * invr3 * (-curr2[2] + dz * mr);
         }
+
+        di_sum -= Vms[pos[0]] * Ms * (curr[0] * temp[0] + curr[1] * temp[1] +
+                                      curr[2] * temp[2]);
     }
 
     double E = ani_const * ani_sum + mu0 * Ms * (mag_sum + di_sum * Ms /
-                                                 (4 * pi));
+                                                 (4.0 * pi));
+
+    return E;
+}
+
+template <class T> double ham_cluster<T>::dE(field_type<heis_spin>* lattice, vector<int>& position)
+{
+    int n_parts = lattice->get_totsize();
+    pos2.resize(1);
+    temp.resize(3);
+    diff.resize(3);
+
+    test.rand_spin();
+    potential = test.spin_access();
+
+    curr = (lattice->access(position)).spin_access();
+    curr_ani = ks[position[0]].spin_access();
+
+    diff[0] = potential[0] - curr[0];
+    diff[1] = potential[1] - curr[1];
+    diff[2] = potential[2] - curr[2];
+
+    double diff_ani_sum = (pow((curr_ani[1]*diff[2] - diff[1]*curr_ani[2]), 2) +
+                          pow((curr_ani[2]*diff[0] - diff[2]*curr_ani[0]), 2) +
+                          pow((curr_ani[0]*diff[1] - diff[0]*curr_ani[1]), 2)) *
+                          Vms[position[0]];
+
+    double diff_mag_sum = -Vms[position[0]] * (diff[0] * (*h)[0] + diff[1] *
+                                          (*h)[1] + diff[2] * (*h)[2]);
+
+    temp[0] = 0;
+    temp[1] = 0;
+    temp[2] = 0;
+    for(pos2[0] = 0; pos2[0] < n_parts; pos2[0]++)
+    {
+        if (pos2[0] == position[0]) {continue;}
+
+        curr2 = (lattice->access(pos2)).spin_access();
+        double dx = xs[position[0]] - xs[pos2[0]];
+        double dy = ys[position[0]] - ys[pos2[0]];
+        double dz = zs[position[0]] - zs[pos2[0]];
+
+        double modr = pow((pow(dx, 2) + pow(dy, 2) + pow(dz, 2)), 0.5);
+
+        dx = dx / modr;
+        dy = dy / modr;
+        dz = dz / modr;
+
+        double invr3 = pow(modr, -3);
+
+        double mr = curr2[0] * dx + curr2[1] * dy + curr2[2] * dz;
+
+        temp[0] += Vms[pos2[0]] * invr3 * (-curr2[0] + dx * mr);
+        temp[1] += Vms[pos2[0]] * invr3 * (-curr2[1] + dy * mr);
+        temp[2] += Vms[pos2[0]] * invr3 * (-curr2[2] + dz * mr);
+    }
+
+    double diff_di_sum = -Vms[position[0]] * Ms * (diff[0] * temp[0] +
+                                                  diff[1] * temp[1] +
+                                                  diff[2] * temp[2]);
+
+    double dE = ani_const * diff_ani_sum + mu0 * Ms * (diff_mag_sum +
+                                                       diff_di_sum * Ms /
+                                                       (4.0 * pi));
+
+    return dE;
+}
+
+template <class T> vector<double> ham_cluster<T>::calc_M(field_type<heis_spin>* lattice)
+{
+    temp.resize(3);
+    vector<T>* field_point = lattice->get_1dfield();
+
+    temp[0] = 0;
+    temp[1] = 0;
+    temp[2] = 0;
+
+    for(vector<T>::iterator it = (*field_point).begin();
+        it != (*field_point).end(); i++)
+    {
+        curr = (*it).spin_access();
+        temp[0] += curr[0];
+        temp[1] += curr[1];
+        temp[2] += curr[2];
+    }
+
+    return temp;
 }
 
 // template <class T> ham_skyrm<T>::ham_skyrm(double Hin, double Jin, double Dxin, double Dyin)

@@ -111,7 +111,7 @@ template <class T> class ham_cluster: public ham_type<T>
 private:
     T test;
     vector<double> xs, ys, zs, Rms, Rns, Vms, Vs, h;
-    vector<double> temp;
+    vector<double> temp, potential, diff;
     vector<double> curr, curr2, curr_ani;
     vector<T> ks;
     vector<int> pos, pos2;
@@ -121,7 +121,7 @@ public:
     ham_cluster(string filename);
     ham_cluster(ham_type<ising_spin>& other){cout << "Error" << endl; exit(201);}
     ham_cluster(ham_type<heis_spin>& other);
-    ~ham_FePt(){}
+    ~ham_cluster(){}
     double calc_E(field_type<heis_spin>* lattice);
     vector<double> calc_M(field_type<heis_spin>* lattice);
     double dE(field_type<heis_spin>* lattice, vector<int>& position);

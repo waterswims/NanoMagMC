@@ -107,15 +107,15 @@ public:
 template <class T> class field_cluster: public field_type<T>
 {
 protected:
-    vector<double>* xs, temp;
+    vector<double>* xs;
+    vector<double>* temp;
     vector<T>* field;
 public:
     field_cluster();
     field_cluster(string filename);
     field_cluster(field_type<T>& other);
     field_cluster(const field_cluster<T>& other);
-    ~field_cluster(){delete xs; delete ys; delete zs; delete Rms; delete Rns;
-        delete ks; delete field;}
+    ~field_cluster(){delete xs; delete temp; delete field;}
     T& access(vector<int>& position){return (*field)[position[0]];}
     vector<double>& spin_access(vector<int>& position)
         {return (*field)[position[0]].spin_access();}

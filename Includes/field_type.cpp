@@ -126,12 +126,6 @@ template <class T> field_cluster<T>::field_cluster(field_type<T>& other)
     this->insize = other.get_insize();
     this->totsize = other.get_totsize();
     this->periodic = other.get_perio();
-    xs = new vector<double>(*(other.get_xs()));
-    ys = new vector<double>(*(other.get_ys()));
-    zs = new vector<double>(*(other.get_zs()));
-    Rms = new vector<double>(*(other.get_Rms()));
-    Rns = new vector<double>(*(other.get_Rns()));
-    ks = new vector<T>(*(other.get_ks()));
     field = new vector<T>(*(other.get_1dfield()));
 }
 
@@ -160,11 +154,6 @@ template <class T> field_cluster<T>::field_cluster(const field_cluster<T>& other
     this->totsize = other.totsize;
     this->periodic = other.periodic;
     xs = new vector<double>(*other.xs);
-    ys = new vector<double>(*other.ys);
-    zs = new vector<double>(*other.zs);
-    Rms = new vector<double>(*other.Rms);
-    Rns = new vector<double>(*other.Rns);
-    ks = new vector<T>(*other.ks);
     field = new vector<T>(*other.field);
 }
 
@@ -429,12 +418,6 @@ template <class T> field_cluster<T>& field_cluster<T>::operator=(field_cluster<T
     this->insize = other.get_insize();
     this->totsize = other.get_totsize();
     this->periodic = other.get_perio();
-    xs = new vector<double>(*(other.get_xs()));
-    ys = new vector<double>(*(other.get_ys()));
-    zs = new vector<double>(*(other.get_zs()));
-    Rms = new vector<double>(*(other.get_Rms()));
-    Rns = new vector<double>(*(other.get_Rns()));
-    ks = new vector<T>(*(other.get_ks()));
     field = new vector<T>(*(other.get_1dfield()));
     return *this;
 }
