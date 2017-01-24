@@ -27,6 +27,10 @@ template <class T> state<T>::state(double size, bool isPerio, char shape_code,
         case 'F':
             hamil = new ham_FePt<T>();
             break;
+        case 'c':
+        case 'C':
+            hamil  = new ham_cluster<T>("Includes/Js/cluster.txt");
+            break;
         default:
             cout << "Incorrect Hamiltonian exiting" << endl;
             exit(102);
@@ -73,6 +77,10 @@ template <class T> state<T>::state(double size, bool isPerio, char shape_code,
             field = new L10<T>(int(size), isPerio);
             shape = new cube;
             break;
+        case '1':
+            field = new field_cluster<T>("Includes/Js/cluster.txt");
+            shape = new cube;
+            break;
         default:
             cout << "Incorrect shape code, exiting" << endl;
             exit(103);
@@ -112,6 +120,10 @@ template <class T> state<T>::state(const state<T>& other)
         case 'f':
         case 'F':
             hamil = new ham_FePt<T>(*(other.hamil));
+            break;
+        case 'c':
+        case 'C':
+            hamil = new ham_cluster<T>(*(other.hamil));
             break;
         default:
             cout << "Incorrect Hamiltonian exiting" << endl;
@@ -157,6 +169,10 @@ template <class T> state<T>::state(const state<T>& other)
         case 'l':
         case 'L':
             field = new L10<T>(*(other.field));
+            shape = new cube;
+            break;
+        case '1':
+            field = new field_cluster<T>(*(other.field));
             shape = new cube;
             break;
         default:
@@ -341,6 +357,10 @@ template <class T> state<T>& state<T>::operator=(const state<T>& other)
         case 'F':
             hamil = new ham_FePt<T>(*(other.hamil));
             break;
+        case 'c':
+        case 'C':
+            hamil = new ham_cluster<T>(*(other.hamil));
+            break;
         default:
             cout << "Incorrect Hamiltonian exiting" << endl;
             exit(102);
@@ -385,6 +405,10 @@ template <class T> state<T>& state<T>::operator=(const state<T>& other)
         case 'l':
         case 'L':
             field = new L10<T>(*(other.field));
+            shape = new cube;
+            break;
+        case '1':
+            field = new field_cluster<T>(*(other.field));
             shape = new cube;
             break;
         default:

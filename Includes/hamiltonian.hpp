@@ -31,9 +31,12 @@ public:
     virtual vector<double>* get_xs(){return NULL;}
     virtual vector<double>* get_ys(){return NULL;}
     virtual vector<double>* get_zs(){return NULL;}
+    virtual vector<double>* get_hs(){return NULL;}
     virtual vector<double>* get_Rms(){return NULL;}
     virtual vector<double>* get_Rns(){return NULL;}
-    virtual vector<T>* get_ks(){return NULL;}
+    virtual vector<heis_spin>* get_ks(){return NULL;}
+    virtual double get_ani(){return 0;}
+    virtual double get_Ms(){return 0;}
 };
 
 template <class T> class ham_ising: public ham_type<T>
@@ -113,7 +116,7 @@ private:
     vector<double> xs, ys, zs, Rms, Rns, Vms, Vs, h;
     vector<double> temp, potential, diff;
     vector<double> curr, curr2, curr_ani;
-    vector<T> ks;
+    vector<heis_spin> ks;
     vector<int> pos, pos2;
     double ani_const, Ms, mu0;
 public:
@@ -122,17 +125,20 @@ public:
     ham_cluster(ham_type<ising_spin>& other){cout << "Error" << endl; exit(201);}
     ham_cluster(ham_type<heis_spin>& other);
     ~ham_cluster(){}
-    double calc_E(field_type<heis_spin>* lattice);
-    vector<double> calc_M(field_type<heis_spin>* lattice);
-    double dE(field_type<heis_spin>* lattice, vector<int>& position);
+    double calc_E(field_type<T>* lattice);
+    vector<double> calc_M(field_type<T>* lattice);
+    double dE(field_type<T>* lattice, vector<int>& position);
     T* get_test(){return &test;}
-    ham_cluster<T>& operator=(ham_type<heis_spin>& other);
+    ham_cluster<T>& operator=(ham_type<T>& other);
     vector<double>* get_xs(){return &xs;}
     vector<double>* get_ys(){return &ys;}
     vector<double>* get_zs(){return &zs;}
     vector<double>* get_Rms(){return &Rms;}
     vector<double>* get_Rns(){return &Rns;}
-    vector<T>* get_ks(){return &ks;}
+    vector<double>* get_hs(){return &h;}
+    vector<heis_spin>* get_ks(){return &ks;}
+    double get_ani(){return ani_const;}
+    double get_Ms(){return Ms;}
 };
 
 // template <class T> class ham_skyrm: public ham_heis<T>

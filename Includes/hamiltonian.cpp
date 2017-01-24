@@ -564,16 +564,59 @@ template <class T> ham_cluster<T>::ham_cluster(string filename)
     }
     file.close();
 
-    ks = vector<T>((xs).size());
-    for(int i=0; i < this->insize; i++)
+    ks = vector<heis_spin>((xs).size());
+    for(int i=0; i < xs.size(); i++)
     {
         (ks)[i].rand_spin();
         (Vms).push_back(4.0*pi*pow(Rms[i], 3.0) / 3.0);
+        (Vs).push_back(4.0*pi*pow(Rns[i], 3.0) / 3.0);
     }
     mu0 = 4e-7 * pi;
 }
 
-template <class T> double ham_cluster<T>::calc_E(field_type<heis_spin>* lattice)
+template <class T> ham_cluster<T>::ham_cluster(ham_type<heis_spin>& other)
+{
+    xs = *(other.get_xs());
+    ys = *(other.get_ys());
+    zs = *(other.get_zs());
+    Rms = *(other.get_Rms());
+    Rns = *(other.get_Rns());
+    ks = *(other.get_ks());
+    h = *(other.get_hs());
+
+    for(int i=0; i < xs.size(); i++)
+    {
+        (Vms).push_back(4.0*pi*pow(Rms[i], 3.0) / 3.0);
+        (Vs).push_back(4.0*pi*pow(Rns[i], 3.0) / 3.0);
+    }
+    mu0 = 4e-7 * pi;
+    ani_const = other.get_ani();
+    Ms = other.get_Ms();
+}
+
+template <class T> ham_cluster<T>& ham_cluster<T>::operator=(ham_type<T>& other)
+{
+    xs = *(other.get_xs());
+    ys = *(other.get_ys());
+    zs = *(other.get_zs());
+    Rms = *(other.get_Rms());
+    Rns = *(other.get_Rns());
+    ks = *(other.get_ks());
+    h = *(other.get_hs());
+
+    for(int i=0; i < xs.size(); i++)
+    {
+        (Vms).push_back(4.0*pi*pow(Rms[i], 3.0) / 3.0);
+        (Vs).push_back(4.0*pi*pow(Rns[i], 3.0) / 3.0);
+    }
+    mu0 = 4e-7 * pi;
+    ani_const = other.get_ani();
+    Ms = other.get_Ms();
+
+    return *this;
+}
+
+template <class T> double ham_cluster<T>::calc_E(field_type<T>* lattice)
 {
     double ani_sum = 0, mag_sum = 0, di_sum = 0;
 
@@ -592,8 +635,8 @@ template <class T> double ham_cluster<T>::calc_E(field_type<heis_spin>* lattice)
                    pow((curr_ani[0]*curr[1] - curr[0]*curr_ani[1]), 2)) *
                    Vms[pos[0]];
 
-        mag_sum -= Vms[pos[0]] * (curr[0] * (*h)[0] + curr[1] *
-                                  (*h)[1] + curr[2] * (*h)[2]);
+        mag_sum -= Vms[pos[0]] * (curr[0] * (h)[0] + curr[1] *
+                                  (h)[1] + curr[2] * (h)[2]);
 
         temp[0] = 0;
         temp[1] = 0;
@@ -630,7 +673,7 @@ template <class T> double ham_cluster<T>::calc_E(field_type<heis_spin>* lattice)
     return E;
 }
 
-template <class T> double ham_cluster<T>::dE(field_type<heis_spin>* lattice, vector<int>& position)
+template <class T> double ham_cluster<T>::dE(field_type<T>* lattice, vector<int>& position)
 {
     int n_parts = lattice->get_totsize();
     pos2.resize(1);
@@ -652,8 +695,8 @@ template <class T> double ham_cluster<T>::dE(field_type<heis_spin>* lattice, vec
                           pow((curr_ani[0]*diff[1] - diff[0]*curr_ani[1]), 2)) *
                           Vms[position[0]];
 
-    double diff_mag_sum = -Vms[position[0]] * (diff[0] * (*h)[0] + diff[1] *
-                                          (*h)[1] + diff[2] * (*h)[2]);
+    double diff_mag_sum = -Vms[position[0]] * (diff[0] * (h)[0] + diff[1] *
+                                          (h)[1] + diff[2] * (h)[2]);
 
     temp[0] = 0;
     temp[1] = 0;
@@ -693,7 +736,7 @@ template <class T> double ham_cluster<T>::dE(field_type<heis_spin>* lattice, vec
     return dE;
 }
 
-template <class T> vector<double> ham_cluster<T>::calc_M(field_type<heis_spin>* lattice)
+template <class T> vector<double> ham_cluster<T>::calc_M(field_type<T>* lattice)
 {
     temp.resize(3);
     vector<T>* field_point = lattice->get_1dfield();
@@ -702,10 +745,9 @@ template <class T> vector<double> ham_cluster<T>::calc_M(field_type<heis_spin>* 
     temp[1] = 0;
     temp[2] = 0;
 
-    for(vector<T>::iterator it = (*field_point).begin();
-        it != (*field_point).end(); i++)
+    for(int i = 0; i < (*field_point).size(); i++)
     {
-        curr = (*it).spin_access();
+        curr = (*field_point)[i].spin_access();
         temp[0] += curr[0];
         temp[1] += curr[1];
         temp[2] += curr[2];
@@ -713,6 +755,9 @@ template <class T> vector<double> ham_cluster<T>::calc_M(field_type<heis_spin>* 
 
     return temp;
 }
+
+template class ham_cluster<ising_spin>;
+template class ham_cluster<heis_spin>;
 
 // template <class T> ham_skyrm<T>::ham_skyrm(double Hin, double Jin, double Dxin, double Dyin)
 // {

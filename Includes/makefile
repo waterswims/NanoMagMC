@@ -1,7 +1,7 @@
 # Makefile for project
 
-# CXX = mpiicpc
-CXX = mpic++
+CXX = mpiicpc
+#CXX = mpic++
 INC_PATH = ../Includes
 CPPFLAGS = -g -O3 -mkl -I$(INC_PATH)
 
