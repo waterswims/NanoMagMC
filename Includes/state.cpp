@@ -1,7 +1,7 @@
 #include "state.hpp"
 #include "mklrand.h"
 #include "functions.h"
-#include "FCC.hpp"
+// #include "FCC.hpp"
 #include <iostream>
 #include <fstream>
 
@@ -67,16 +67,16 @@ template <class T> state<T>::state(double size, bool isPerio, char shape_code,
             field = new hex_3d<T>(int(size), isPerio);
             shape = new cube;
             break;
-        case 'f':
-        case 'F':
-            field = new FC_Tetr<T>(int(size), isPerio);
-            shape = new cube;
-            break;
-        case 'l':
-        case 'L':
-            field = new L10<T>(int(size), isPerio);
-            shape = new cube;
-            break;
+        // case 'f':
+        // case 'F':
+        //     field = new FC_Tetr<T>(int(size), isPerio);
+        //     shape = new cube;
+        //     break;
+        // case 'l':
+        // case 'L':
+        //     field = new L10<T>(int(size), isPerio);
+        //     shape = new cube;
+        //     break;
         case '1':
             field = new field_cluster<T>("Includes/Js/cluster.txt");
             shape = new cube;
@@ -161,16 +161,16 @@ template <class T> state<T>::state(const state<T>& other)
             field = new hex_3d<T>(*(other.field));
             shape = new cube;
             break;
-        case 'f':
-        case 'F':
-            field = new FC_Tetr<T>(*(other.field));
-            shape = new cube;
-            break;
-        case 'l':
-        case 'L':
-            field = new L10<T>(*(other.field));
-            shape = new cube;
-            break;
+        // case 'f':
+        // case 'F':
+        //     field = new FC_Tetr<T>(*(other.field));
+        //     shape = new cube;
+        //     break;
+        // case 'l':
+        // case 'L':
+        //     field = new L10<T>(*(other.field));
+        //     shape = new cube;
+        //     break;
         case '1':
             field = new field_cluster<T>(*(other.field));
             shape = new cube;
@@ -397,16 +397,16 @@ template <class T> state<T>& state<T>::operator=(const state<T>& other)
             field = new hex_3d<T>(*(other.field));
             shape = new cube;
             break;
-        case 'f':
-        case 'F':
-            field = new FC_Tetr<T>(*(other.field));
-            shape = new cube;
-            break;
-        case 'l':
-        case 'L':
-            field = new L10<T>(*(other.field));
-            shape = new cube;
-            break;
+        // case 'f':
+        // case 'F':
+        //     field = new FC_Tetr<T>(*(other.field));
+        //     shape = new cube;
+        //     break;
+        // case 'l':
+        // case 'L':
+        //     field = new L10<T>(*(other.field));
+        //     shape = new cube;
+        //     break;
         case '1':
             field = new field_cluster<T>(*(other.field));
             shape = new cube;

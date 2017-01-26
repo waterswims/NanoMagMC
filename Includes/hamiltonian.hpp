@@ -2,7 +2,7 @@
 #define _HAMIL
 
 #include "field_type.hpp"
-#include "FCC.hpp"
+// #include "FCC.hpp"
 #include "spin_type.hpp"
 #include "boost/assign.hpp"
 #include <vector>

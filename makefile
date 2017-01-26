@@ -1,8 +1,9 @@
 run:
-	cd Includes; make clean all run
+	cd Includes; make run f_run
 	cp Includes/run ./
-	# cp Includes/d_run ./
+	cp Includes/f_run ./
 
 clean:
+	cd Includes; make clean
 	-rm run
-	# -rm d_run
+	-rm f_run

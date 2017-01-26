@@ -1,9 +1,11 @@
+
 #include "state.hpp"
 #include "spin_type.hpp"
 #include "mklrand.h"
 #include "functions.h"
 #include "cpoints.hpp"
 #include "output.hpp"
+#include "param_read.hpp"
 
 #include <iostream>
 #include <vector>
@@ -14,8 +16,10 @@
 mkl_irand st_rand_int(1e7, 1);
 mkl_drand st_rand_double(1e8, 1);
 
+const double Ry = 13.606;
+
 // define the type of spin
-typedef heis_spin sp_typ;
+typedef ising_spin sp_typ;
 
 int main(int argc, char **argv)
 {
@@ -30,37 +34,28 @@ int main(int argc, char **argv)
 		cout << "Total number of processes is " << comm_size << endl;
 	}
 
-	// setup optional arguments
-	double beta = 50;
-	double args[] = {beta};
-
-	//Set the main arguments
-	double amean(8);
-    double asd(2);
-    double lmean, lsd;
-    AtoLn(amean, asd, lmean, lsd);
-
-	double J(1), H(0), k(1);
-	bool periodic=false;
-	char shape='x';
-	char hamil='h';
+	// setup arguments
+	int padding, size, N_av, Nsingle;
+	double J, H, k, beta, amean, asd, lmean, lsd;
+	bool periodic, distributed;
+	char shape, hamil;
+	string temp_name;
+	read_all_vars(argv[1], size, J, H, k, periodic, shape, hamil, N_av,
+		Nsingle, padding, beta, distributed, amean, asd, temp_name);
+	double args[] = {beta, padding};
+	AtoLn(amean, asd, lmean, lsd);
 
 	// load temperatures
-	double Ts[100];
-	load_temps("3dheis", Ts);
-
-	int num_Ts = 100;
+	double Ts[50];
+	load_temps(temp_name, Ts);
+	int num_Ts = 50;
 	double Tmin(Ts[num_Ts-1]), Tmax(Ts[0]);
-
-	// Size of the problem
-	int N_av(6/comm_size);
-	int Nsingle(2500);
 
 	//Set the random seeds of the generators
 	st_rand_int.change_seed(rank);
 	st_rand_double.change_seed(600+rank);
 
-    // New Generator for Lognormal
+	// New Generator for Lognormal
     mkl_lnrand rand_ln(lmean, lsd, N_av, 1200+rank);
 
     if(rank==0)
@@ -70,7 +65,7 @@ int main(int argc, char **argv)
     }
 
 	// Storage Variables
-    int nums[N_av], s_nums[N_av];
+	int nums[N_av], s_nums[N_av];
 	double mag1[N_av][num_Ts], ener1[N_av][num_Ts],
 		magx1[N_av][num_Ts], magy1[N_av][num_Ts], magz1[N_av][num_Ts],
 		smag1[N_av][num_Ts], smagx1[N_av][num_Ts], smagy1[N_av][num_Ts],
@@ -86,22 +81,31 @@ int main(int argc, char **argv)
 		cout << "Running MC..." << endl;
 	}
 
-    // checkpointing file
-    fstream cpoint;
-    string magpoint = cpointname("mag", rank);
-	string magxpoint = cpointname("magx", rank);
-	string magypoint = cpointname("magy", rank);
-	string magzpoint = cpointname("magz", rank);
-	string enpoint = cpointname("en", rank);
-	string seedipoint = cpointname("seedi", rank);
-	string seeddpoint = cpointname("seedd", rank);
-	string seedlnpoint = cpointname("seedln", rank);
-	string numpoint = cpointname("num", rank);
-	string smagpoint = cpointname("smag", rank);
-	string smagxpoint = cpointname("smagx", rank);
-	string smagypoint = cpointname("smagy", rank);
-	string smagzpoint = cpointname("smagz", rank);
-	string snumpoint = cpointname("snum", rank);
+	// checkpoint names
+	double csize = 0;
+	if (distributed)
+	{
+		csize = asd;
+	}
+	else
+	{
+		csize = size;
+	}
+	fstream cpoint;
+    string magpoint = cpointname("mag", rank, csize, distributed, shape, hamil);
+	string magxpoint = cpointname("magx", rank, csize, distributed, shape, hamil);
+	string magypoint = cpointname("magy", rank, csize, distributed, shape, hamil);
+	string magzpoint = cpointname("magz", rank, csize, distributed, shape, hamil);
+	string enpoint = cpointname("en", rank, csize, distributed, shape, hamil);
+	string seedipoint = cpointname("seedi", rank, csize, distributed, shape, hamil);
+	string seeddpoint = cpointname("seedd", rank, csize, distributed, shape, hamil);
+	string seedlnpoint = cpointname("seedln", rank, csize, distributed, shape, hamil);
+	string numpoint = cpointname("num", rank, csize, distributed, shape, hamil);
+	string smagpoint = cpointname("smag", rank, csize, distributed, shape, hamil);
+	string smagxpoint = cpointname("smagx", rank, csize, distributed, shape, hamil);
+	string smagypoint = cpointname("smagy", rank, csize, distributed, shape, hamil);
+	string smagzpoint = cpointname("smagz", rank, csize, distributed, shape, hamil);
+	string snumpoint = cpointname("snum", rank, csize, distributed, shape, hamil);
 
 	// read checkpoint
 	int j=0;
@@ -131,10 +135,18 @@ int main(int argc, char **argv)
 	}
 
 	// main loop
-    for (; j < N_av; j++)
-    {
-        double size = rand_ln.gen();
-        state<sp_typ> curr_state(size, periodic, shape, hamil, J, H, k, Tmax, args);
+	for (; j < N_av; j++)
+	{
+		double s_size = 0;
+		if(distributed)
+		{
+			s_size = rand_ln.gen();
+		}
+		else
+		{
+			s_size = size;
+		}
+        state<sp_typ> curr_state(s_size, periodic, shape, hamil, J, H, k, Tmax, args);
         nums[j] = curr_state.num_spins();
 		s_nums[j] = curr_state.sub_num(0);
 		curr_state.equil(5*Nsingle*nums[j]);
@@ -161,9 +173,14 @@ int main(int argc, char **argv)
 				smagz1[j][i] = mtemp[2];
 			}
 			smag1[j][i] = norm(mtemp);
+
+			if (rank==0)
+	        {
+	            cout << "Temp " << i << " of " << num_Ts << " completed" << endl;
+	        }
         }
 
-        // Checkpoint data
+		// Checkpoint data
 		print_clist(cpoint, magpoint, mag1[j], num_Ts);
 		print_clist(cpoint, smagpoint, smag1[j], num_Ts);
 		if (hamil != 'i' && hamil != 'I')
@@ -186,7 +203,7 @@ int main(int argc, char **argv)
         {
             cout << "Lattice " << j << " of " << N_av << " completed" << endl;
         }
-    }
+	}
 
 	// Prep for printing and stuff
 	int tmax = num_Ts;
@@ -358,16 +375,30 @@ int main(int argc, char **argv)
 		int g_slattsize = sum(allsnums);
 
 		// ready for printing
-		string avname = main_name_d(H, J, amean, asd, k, shape, hamil);
-		init_avs(avname, H, J, k, amean, Tmin, Tmax);
-		create_folder_d(H, J, amean, asd, k, shape, hamil);
+		string avname;
+		if (distributed)
+		{
+			avname = main_name_d(H, J, amean, asd, k, shape, hamil);
+			init_avs(avname, H, J, k, amean, Tmin, Tmax);
+			create_folder_d(H, J, amean, asd, k, shape, hamil);
+		}
+		else
+		{
+			avname = main_name(H, J, size, k, shape, hamil);
+			init_avs(avname, H, J, k, size, Tmin, Tmax);
+			create_folder(H, J, size, k, shape, hamil);
+		}
 
 		int t = 0;
 		for(int j = 0; j < num_Ts; j++)
 		{
 			double T = Ts[j];
 
-			string datname = full_name_d(H, J, amean, asd, k, shape, hamil, T);
+			string datname;
+			if(distributed)
+			{datname = full_name_d(H, J, amean, asd, k, shape, hamil, T);}
+			else
+			{datname = full_name(H, J, size, k, shape, hamil, T);}
 
 			print_full(datname, T, allener[t], allmag[t], allmagx[t], allmagy[t],
 				allmagz[t], allsmag[t], allsmagx[t], allsmagy[t], allsmagz[t],
