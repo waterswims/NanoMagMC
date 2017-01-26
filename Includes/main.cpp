@@ -92,20 +92,20 @@ int main(int argc, char **argv)
 		csize = size;
 	}
 	fstream cpoint;
-    string magpoint = cpointname("mag", rank, csize, distributed, shape, hamil);
-	string magxpoint = cpointname("magx", rank, csize, distributed, shape, hamil);
-	string magypoint = cpointname("magy", rank, csize, distributed, shape, hamil);
-	string magzpoint = cpointname("magz", rank, csize, distributed, shape, hamil);
-	string enpoint = cpointname("en", rank, csize, distributed, shape, hamil);
-	string seedipoint = cpointname("seedi", rank, csize, distributed, shape, hamil);
-	string seeddpoint = cpointname("seedd", rank, csize, distributed, shape, hamil);
-	string seedlnpoint = cpointname("seedln", rank, csize, distributed, shape, hamil);
-	string numpoint = cpointname("num", rank, csize, distributed, shape, hamil);
-	string smagpoint = cpointname("smag", rank, csize, distributed, shape, hamil);
-	string smagxpoint = cpointname("smagx", rank, csize, distributed, shape, hamil);
-	string smagypoint = cpointname("smagy", rank, csize, distributed, shape, hamil);
-	string smagzpoint = cpointname("smagz", rank, csize, distributed, shape, hamil);
-	string snumpoint = cpointname("snum", rank, csize, distributed, shape, hamil);
+    string magpoint = cpointname("mag", rank, csize, distributed, shape, hamil, H);
+	string magxpoint = cpointname("magx", rank, csize, distributed, shape, hamil, H);
+	string magypoint = cpointname("magy", rank, csize, distributed, shape, hamil, H);
+	string magzpoint = cpointname("magz", rank, csize, distributed, shape, hamil, H);
+	string enpoint = cpointname("en", rank, csize, distributed, shape, hamil, H);
+	string seedipoint = cpointname("seedi", rank, csize, distributed, shape, hamil, H);
+	string seeddpoint = cpointname("seedd", rank, csize, distributed, shape, hamil, H);
+	string seedlnpoint = cpointname("seedln", rank, csize, distributed, shape, hamil, H);
+	string numpoint = cpointname("num", rank, csize, distributed, shape, hamil, H);
+	string smagpoint = cpointname("smag", rank, csize, distributed, shape, hamil, H);
+	string smagxpoint = cpointname("smagx", rank, csize, distributed, shape, hamil, H);
+	string smagypoint = cpointname("smagy", rank, csize, distributed, shape, hamil, H);
+	string smagzpoint = cpointname("smagz", rank, csize, distributed, shape, hamil, H);
+	string snumpoint = cpointname("snum", rank, csize, distributed, shape, hamil, H);
 
 	// read checkpoint
 	int j=0;

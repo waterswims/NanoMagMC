@@ -66,10 +66,10 @@ int read_clist(fstream &stream, string fname, double clist[][100])
     return i;
 }
 
-string cpointname(string prefix, int rank, double size, int dist, char latt, char ham)
+string cpointname(string prefix, int rank, double size, int dist, char latt, char ham, double field)
 {
     stringstream stream;
-    stream << "Checkpoints/" << prefix << "_" << dist << size << latt << ham << "_" << rank << ".cp";
+    stream << "Checkpoints/" << prefix << "_" << dist << size << latt << ham << field << "_" << rank << ".cp";
     string out;
     stream >> out;
     return out;

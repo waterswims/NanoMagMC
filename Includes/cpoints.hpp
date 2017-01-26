@@ -17,7 +17,7 @@ int read_cval(fstream &stream, string fname, int cvals[]);
 
 int read_clist(fstream &stream, string fname, double clist[][100]);
 
-string cpointname(string prefix, int rank, double size, int dist, char latt, char ham);
+string cpointname(string prefix, int rank, double size, int dist, char latt, char ham, double field);
 
 bool exists(string &name);
 
