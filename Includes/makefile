@@ -54,7 +54,14 @@ run: $(OBJS) main.o
 f_run: $(OBJS) field_run.o
 	$(CXX) $(CPPFLAGS) $(OBJS) field_run.o -o f_run
 
+test.o: test.cpp mklrand.h
+	$(CXX) $(CPPFLAGS) -c test.cpp -lgtest
+
+test: $(OBJS) test.o
+	$(CXX) $(CPPFLAGS) $(OBJS) test.o -o test -lgtest
+
 clean:
 	-rm *.o
 	-rm run
 	-rm f_run
+	-rm test
