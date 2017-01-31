@@ -72,7 +72,9 @@ TEST(Random_Numbers, Ln_Test)
     vector<int> bins(N_bins, 0);
     for(int i = 0; i < N_atts; i++)
     {
-        bins[int(rand_ln.gen()*(N_bins/2.0))]++;
+        double b_num = int(rand_ln.gen()*(N_bins/2.0));
+        if (b_num >= N_bins) {b_num = N_bins - 1;}
+        bins[b_num]++;
     }
     vector<double> expect(N_bins);
     for(int i=0; i < N_atts; i++)
