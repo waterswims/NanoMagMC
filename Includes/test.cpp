@@ -81,7 +81,7 @@ TEST(Random_Numbers, Ln_Test)
     {
         double x = log((i+0.5)*2.0/float(N_bins));
         double temp = pow(x, 2) / 0.125;
-        expect[i] = exp(-temp) / (x*0.25 * pow(2*pi, 0.5));
+        expect[i] = N_atts * exp(-temp) / (1.646424*x*0.25 * pow(2*pi, 0.5));
     }
     double chi2_test = chi2(bins, expect);
     EXPECT_GT(chi2_test, 0.9);
