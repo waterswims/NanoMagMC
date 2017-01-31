@@ -74,7 +74,6 @@ TEST(Random_Numbers, Ln_Test)
     {
         double b_num = int(rand_ln.gen()*(N_bins/2.0));
         if (b_num >= N_bins) {b_num = N_bins - 1;}
-        cout << b_num << endl;
         bins[b_num]++;
     }
     vector<double> expect(N_bins);
@@ -84,6 +83,7 @@ TEST(Random_Numbers, Ln_Test)
         double temp = pow(x, 2) / 0.125;
         expect[i] = exp(-temp) / (x*0.25 * pow(2*pi, 0.5));
     }
+    cout << "got here" << endl;
     double chi2_test = chi2(bins, expect);
     EXPECT_GT(chi2_test, 0.9);
     EXPECT_LT(chi2_test, 1.3);
