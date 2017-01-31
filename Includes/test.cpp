@@ -77,13 +77,12 @@ TEST(Random_Numbers, Ln_Test)
         bins[b_num]++;
     }
     vector<double> expect(N_bins);
-    for(int i=0; i < N_atts; i++)
+    for(int i=0; i < N_bins; i++)
     {
         double x = log((i+0.5)*2.0/float(N_bins));
         double temp = pow(x, 2) / 0.125;
         expect[i] = exp(-temp) / (x*0.25 * pow(2*pi, 0.5));
     }
-    cout << "got here" << endl;
     double chi2_test = chi2(bins, expect);
     EXPECT_GT(chi2_test, 0.9);
     EXPECT_LT(chi2_test, 1.3);
