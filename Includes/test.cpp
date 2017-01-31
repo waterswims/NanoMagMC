@@ -28,7 +28,7 @@ double chi2(vector<int>& count, vector<double>& expect)
 
 TEST(Random_Numbers, Integer_Test)
 {
-    int N_atts = 1e5, N_toss = 100;
+    int N_atts = 1e6, N_toss = 100;
     vector<int> bins(N_toss/2, 0);
     for(int i=0; i < N_atts; i++)
     {
@@ -42,12 +42,13 @@ TEST(Random_Numbers, Integer_Test)
     vector<double> expect(N_toss/2);
     for(int i = 0; i < N_toss/2; i++)
     {
-        expect[i] = boost::math::binomial_coefficient<double>(100, 50-i) * N_atts / float(pow(2, (N_toss - 1)));
+        expect[i] = boost::math::binomial_coefficient<double>(N_toss, (N_toss/2)-i) * N_atts / float(pow(2, (N_toss - 1)));
     }
     expect[0] = expect[0] / 2;
     double chi2_test = chi2(bins, expect);
     EXPECT_GT(chi2_test, 0.9);
     EXPECT_LT(chi2_test, 1.3);
+    cout << chi2_test << endl;
 }
 
 int main(int argc, char **argv) {
