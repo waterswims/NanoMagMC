@@ -74,6 +74,7 @@ TEST(Random_Numbers, Ln_Test)
     {
         double b_num = int(rand_ln.gen()*(N_bins/2.0));
         if (b_num >= N_bins) {b_num = N_bins - 1;}
+        cout << b_num << endl;
         bins[b_num]++;
     }
     vector<double> expect(N_bins);
