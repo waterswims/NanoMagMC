@@ -4,11 +4,13 @@
 #include <vector>
 #include <cmath>
 
-
 using namespace std;
 
 mkl_irand st_rand_int(1e5, 1);
 mkl_drand st_rand_double(1e5, 2);
+mkl_lnrand rand_ln(0, 0.25, 1e5, 3);
+
+const double pi = 3.141592653589793;
 
 double chi2(vector<int>& count, vector<double>& expect)
 {
@@ -59,6 +61,26 @@ TEST(Random_Numbers, Double_Test)
         bins[int(st_rand_double.gen()*N_bins)]++;
     }
     vector<double> expect(N_bins, (N_atts/N_bins));
+    double chi2_test = chi2(bins, expect);
+    EXPECT_GT(chi2_test, 0.9);
+    EXPECT_LT(chi2_test, 1.3);
+}
+
+TEST(Random_Numbers, Ln_Test)
+{
+    int N_bins = 100, N_atts = 1e6;
+    vector<int> bins(N_bins, 0);
+    for(int i = 0; i < N_atts; i++)
+    {
+        bins[int(rand_ln.gen()*(N_bins/2.0))]++;
+    }
+    vector<double> expect(N_bins);
+    for(int i=0; i < N_atts; i++)
+    {
+        double x = log((i+0.5)*2.0/float(N_bins);
+        double temp = pow(x, 2) / 0.125;
+        expect[i] = exp(-temp) / (x*0.25 * pow(2*pi));
+    }
     double chi2_test = chi2(bins, expect);
     EXPECT_GT(chi2_test, 0.9);
     EXPECT_LT(chi2_test, 1.3);
