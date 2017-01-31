@@ -3,6 +3,8 @@
 #include <gtest/gtest.h>
 #include <vector>
 #include <cmath>
+#include <string>
+#include <fstream>
 
 using namespace std;
 
@@ -88,7 +90,40 @@ TEST(Random_Numbers, Ln_Test)
     EXPECT_LT(chi2_test, 1.3);
 }
 
-int main(int argc, char **argv) {
-  ::testing::InitGoogleTest(&argc, argv);
-  return RUN_ALL_TESTS();
+TEST(Random_Numbers, Read_Checkpoint)
+{
+    st_rand_double.load("Includes/Test_Files/double_load_test.cp");
+    st_rand_double.fill();
+    double loaded;
+    ifstream in;
+    in.open("Includes/Test_Files/double_load_test.result");
+    for (int i = 0; i < 100; i++)
+    {
+        in >> loaded;
+        EXPECT_NEAR(st_rand_double.gen(), loaded, 1e-6);
+    }
+    in.close();
+}
+
+TEST(Random_Numbers, Save_Checkpoint)
+{
+    vector<double> first(100);
+    st_rand_double.save("Includes/Test_Files/double_save_test.cp");
+    st_rand_double.fill();
+    for(int i = 0; i < 100; i++)
+    {
+        first[i] = st_rand_double.gen();
+    }
+    st_rand_double.load("Includes/Test_Files/double_save_test.cp");
+    st_rand_double.fill();
+    for(int i = 0; i < 100; i++)
+    {
+        EXPECT_EQ(first[i], st_rand_double.gen());
+    }
+}
+
+int main(int argc, char **argv)
+{
+    ::testing::InitGoogleTest(&argc, argv);
+    return RUN_ALL_TESTS();
 }

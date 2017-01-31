@@ -24,7 +24,6 @@ double mkl_drand::gen()
 	curr++;
 	if(curr >= arr_size)
 	{
-		curr = 0;
 		this->fill();
 	}
 	return out;
@@ -32,6 +31,7 @@ double mkl_drand::gen()
 
 void mkl_drand::fill()
 {
+	curr = 0;
 	vdRngUniform(VSL_RNG_METHOD_UNIFORM_STD, stream, arr_size, randarr, 0, 1);
 }
 
@@ -66,7 +66,6 @@ int mkl_irand::gen()
 	curr++;
 	if(curr >= arr_size)
 	{
-		curr = 0;
 		this->fill();
 	}
 	return out;
@@ -74,6 +73,7 @@ int mkl_irand::gen()
 
 void mkl_irand::fill()
 {
+	curr = 0;
 	viRngUniform(VSL_RNG_METHOD_UNIFORM_STD, stream, arr_size, randarr, 0, 2);
 }
 
@@ -107,7 +107,6 @@ double mkl_lnrand::gen()
 	curr++;
 	if(curr >= arr_size)
 	{
-		curr = 0;
 		this->fill();
 	}
 	return out;
@@ -115,6 +114,7 @@ double mkl_lnrand::gen()
 
 void mkl_lnrand::fill()
 {
+	curr = 0;
 	vdRngLognormal(VSL_RNG_METHOD_LOGNORMAL_BOXMULLER2, stream, arr_size, randarr, lmean, lsd, 0, 1);
 }
 
