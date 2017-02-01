@@ -60,7 +60,7 @@ run: $(OBJS) main.o
 f_run: $(OBJS) field_run.o
 	$(CXX) $(CPPFLAGS) $(OBJS) field_run.o -o f_run
 
-test.o: test.cpp mklrand.h
+test.o: test.cpp mklrand.h cpoints.hpp
 	$(CXX) $(CPPFLAGS) -c test.cpp -lgtest
 
 test: $(OBJS) test.o
