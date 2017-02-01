@@ -1,7 +1,13 @@
 # Makefile for project
 
+OS := $(shell uname)
+
+ifeq ($(OS),Darwin)
+CXX = mpic++
+else
 CXX = mpiicpc
-#CXX = mpic++
+endif
+
 INC_PATH = ../Includes
 CPPFLAGS = -g -O3 -mkl -I$(INC_PATH)
 
