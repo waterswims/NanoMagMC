@@ -48,9 +48,6 @@ int read_clist(fstream &stream, string fname, double clist[][100])
 {
     stream.open(fname.c_str(), fstream::in);
     int i;
-    double curr;
-    bool cont=false;
-
     string line;
     vector<string> vals;
 
