@@ -146,6 +146,7 @@ int main(int argc, char **argv)
 		{
 			s_size = size;
 		}
+		cout << Tmax <<endl;
         state<sp_typ> curr_state(s_size, periodic, shape, hamil, J, H, k, Tmax, args);
         nums[j] = curr_state.num_spins();
 		s_nums[j] = curr_state.sub_num(0);

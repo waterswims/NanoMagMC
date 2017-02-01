@@ -88,6 +88,7 @@ template <class T> state<T>::state(double size, bool isPerio, char shape_code,
     k_b = k;
     if (Temp <= 0)
     {
+        cout << Temp << endl;
         cout << "Invalid temperature, exiting" << endl;
         exit(104);
     }
