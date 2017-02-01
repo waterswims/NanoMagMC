@@ -1,4 +1,5 @@
 #include "mklrand.h"
+#include "cpoints.hpp"
 #include "boost/math/special_functions/binomial.hpp"
 #include <gtest/gtest.h>
 #include <vector>
@@ -120,6 +121,11 @@ TEST(Random_Numbers, Save_Checkpoint)
     {
         EXPECT_EQ(first[i], st_rand_double.gen());
     }
+}
+
+TEST(Parameter_Checkpointing, Full_Cpoint_Name)
+{
+
 }
 
 int main(int argc, char **argv)
