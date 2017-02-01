@@ -1,7 +1,10 @@
 #include "functions.h"
+#include "boost/algorithm/string/split.hpp"
+#include "boost/algorithm/string/classification.hpp"
 #include <iostream>
 #include <cmath>
 #include <sstream>
+#include <vector>
 
 
 void print_cval(fstream &stream, string fname, double cval)
@@ -47,19 +50,16 @@ int read_clist(fstream &stream, string fname, double clist[][100])
     int i;
     double curr;
     bool cont=false;
-    if(stream >> curr) {cont = true;}
 
-    for(i=0; cont; i++)
+    string line;
+    vector<string> vals;
+
+    for(i=0; getline(stream, line); i++)
     {
-        for(int j=0; j<100;j++)
+        boost::algorithm::split(vals, line, boost::algorithm::is_any_of(" "));
+        for(int j=0; j<vals.size();j++)
         {
-            clist[i][j] = curr;
-            if(stream >> curr) {}
-            else
-            {
-                cont = false;
-                break;
-            }
+            clist[i][j] = atof(vals[j].c_str());
         }
     }
     stream.close();
