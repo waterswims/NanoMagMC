@@ -33,7 +33,7 @@ do
 		fi
 
 		echo "Submitting size equal to ${SIZE} and field equal to ${FIELD}"
-		qsub job_sub_"$SIZE"_"$FIELD"
+		qsub f_sub_"$SIZE"_"$FIELD"
 		sleep 1
 	done
 done

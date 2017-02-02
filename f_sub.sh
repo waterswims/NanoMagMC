@@ -9,9 +9,7 @@
 # Change to the directory from which the job was submitted.
 # (The actual name is held in the PBS environment variable $PBS_O_WORKDIR)
 cd $PBS_O_WORKDIR
-module load intel/2016
-module load intel/mkl/2016
-module load intel/mpi/2016
+source load_compilers.sh
 nprocs=`wc -l $PBS_NODEFILE | awk '{ print $1 }'`
 
 # Run my_prog taking input from file input_file and send output to output_file
