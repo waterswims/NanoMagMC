@@ -13,4 +13,4 @@ source load_compilers.sh
 nprocs=`wc -l $PBS_NODEFILE | awk '{ print $1 }'`
 
 # Run my_prog taking input from file input_file and send output to output_file
-mpirun -bootstrap rsh -f $PBS_NODEFILE -n $nprocs ./run F_INPUT_5_1
+mpirun -bootstrap rsh -f $PBS_NODEFILE -n $nprocs ./f_run F_INPUT_5_1
