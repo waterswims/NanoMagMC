@@ -1,6 +1,6 @@
 source load_compilers.sh
 
-make clean run
+make run
 
 for SIZE in 5 15
 do

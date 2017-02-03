@@ -1,6 +1,7 @@
 source load_compilers.sh
 
-make clean f_run
+make f_run
+
 for FIELD in $(seq -0.005 0.0005 0.005)
 do
 	for SIZE in 25 50 75 100
