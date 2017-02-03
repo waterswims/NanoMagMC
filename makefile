@@ -1,12 +1,11 @@
-run:
-	make -C Includes run f_run
-	cp Includes/run ./
-	cp Includes/f_run ./
+RUN_TYPES = run f_run test
+.PHONY: $(RUN_TYPES)
 
-test:
-	make -C Includes test
-	cp Includes/test ./
+$(RUN_TYPES):
+	make -C Includes $@
+	cp Includes/$@ ./
 
+.PHONY: clean
 clean:
 	make -C Includes clean
 	-rm run

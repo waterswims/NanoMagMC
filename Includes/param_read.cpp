@@ -58,6 +58,7 @@ void read_all_vars(string f_name, int& size, double& J, double& H, double& k,
         case 'H':
             J = read_var<double>("EXCHANGE", f_name);
             H = read_var<double>("MAGFIELD", f_name);
+            break;
         default:
             J = 1;
             H = 0;
