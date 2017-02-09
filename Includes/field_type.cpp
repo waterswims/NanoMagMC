@@ -167,11 +167,6 @@ template <class T> T& field_3d<T>::access(vector<int>& position)
     return (*field)[position[0]][position[1]][position[2]];
 }
 
-template <class T> vector<double>& field_3d<T>::spin_access(vector<int>& position)
-{
-    return ((*field)[position[0]][position[1]][position[2]]).spin_access();
-}
-
 template <class T> void field_2d<T>::adjacent(vector<int>& position, vector<T*>& out)
 {
     out.resize(4);

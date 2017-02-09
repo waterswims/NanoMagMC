@@ -141,21 +141,4 @@ public:
     double get_Ms(){return Ms;}
 };
 
-// template <class T> class ham_skyrm: public ham_heis<T>
-// {
-// private:
-//     double Dx, Dy;
-// public:
-//     ham_skyrm(){}
-//     ham_skyrm(double Hin, Jin, Dxin, Dyin);
-//     ham_skyrm(ham_type<ising_spin>& other){cout << "Error" << endl; exit(201);}
-//     ham_skyrm(ham_type<heis_spin>& other);
-//     ~ham_skyrm(){}
-//     double dE(field_type<heis_spin>* lattice, vector<int>& position);
-//     double calc_E(field_type<heis_spin>* lattice);
-//     double get_Dx(){return Dx;}
-//     double get_Dy(){return Dy;}
-//     ham_skyrm<T>& operator=(ham_type<heis_spin>& other);
-// };
-
 #endif

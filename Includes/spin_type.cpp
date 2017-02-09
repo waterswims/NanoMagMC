@@ -55,16 +55,17 @@ void ising_spin::print()
 
 heis_spin::heis_spin()
 {
-    spins = vector<double>(3);
-    spins[0] = 0;
-    spins[1] = 0;
-    spins[2] = 0;
+    spinx = 0;
+    spiny = 0;
+    spinz = 0;
     zero_flag = true;
 }
 
 heis_spin::heis_spin(const heis_spin& other)
 {
-    spins = other.spins;
+    spinx = other.spinx;
+    spiny = other.spiny;
+    spinz = other.spinz;
     zero_flag = other.zero_flag;
 }
 
@@ -111,46 +112,39 @@ void heis_spin::rand_spin()
     double phi = st_rand_double.gen()*2*pi;
     double cthet = 2*st_rand_double.gen()-1;
     double sthet = pow(1 - pow(cthet, 2), 0.5);
-    spins[0] = cos(phi)*sthet;
-    spins[1] = sin(phi)*sthet;
-    spins[2] = cthet;
+    spinx = cos(phi)*sthet;
+    spiny = sin(phi)*sthet;
+    spinz = cthet;
 }
 
 void heis_spin::zero_spin()
 {
-    spins[0] = 0;
-    spins[1] = 0;
-    spins[2] = 0;
+    spinx = 0;
+    spiny = 0;
+    spinz = 0;
     zero_flag = true;
 }
 
 void heis_spin::change_spin(spin_type* in)
 {
-    spins = in->spin_access();
+    in->spin_access(spinx, spiny, spinz);
     zero_flag = in->is_zero();
 }
 
 bool heis_spin::is_zero()
 {
-    // if (spins[0] == 0 && spins[1] == 0 && spins[2] == 0)
-    // {
-    //     return true;
-    // }
-    // else
-    // {
-    //     return false;
-    // }
-
     return zero_flag;
 }
 
 heis_spin& heis_spin::operator=(const heis_spin& other)
 {
-    spins = other.spins;
+    spinx = 0;
+    spiny = 0;
+    spinz = 0;
     zero_flag = other.zero_flag;
 }
 
 void heis_spin::print()
 {
-    cout << "[" << spins[0] << "," << spins[1] << "," << spins[2] << "]";
+    cout << "[" << spinx << "," << spiny << "," << spinz << "]";
 }

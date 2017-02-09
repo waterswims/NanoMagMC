@@ -18,7 +18,6 @@ public:
     field_type(){}
     ~field_type(){}
     virtual T& access(vector<int>& position){}
-    virtual vector<double>& spin_access(vector<int>& position){}
     virtual void adjacent(vector<int>& position, vector<T*>& out){}
     virtual T& next(bool &finish, vector<int> &pos){}
     int get_insize(){return insize;}
@@ -68,7 +67,6 @@ public:
     field_3d(const field_3d<T>& other);
     ~field_3d(){delete field;}
     T& access(vector<int>& position);
-    vector<double>& spin_access(vector<int>& position);
     virtual void adjacent(vector<int>& position, vector<T*>& out);
     T& next(bool &finish, vector<int> &pos);
     void fill_ghost(int &num);
@@ -117,8 +115,6 @@ public:
     field_cluster(const field_cluster<T>& other);
     ~field_cluster(){delete xs; delete temp; delete field;}
     T& access(vector<int>& position){return (*field)[position[0]];}
-    vector<double>& spin_access(vector<int>& position)
-        {return (*field)[position[0]].spin_access();}
     T& next(bool &finish, vector<int> &pos);
     field_cluster<T>& operator=(field_cluster<T>& other);
     int findnum(){return (*field).size();}

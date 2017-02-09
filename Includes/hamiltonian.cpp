@@ -141,6 +141,11 @@ template <class T> ham_heis<T>::ham_heis(double Hin, double Jin)
     J[2] = Jin;
     test = T();
     vsum.resize(3);
+    curr.resize(3);
+    adj_curr.resize(3);
+    H_sum.resize(3);
+    J_sum.resize(3);
+    potential.resize(3);
 }
 
 template <class T> ham_heis<T>::ham_heis(ham_type<heis_spin>& other)
@@ -149,6 +154,11 @@ template <class T> ham_heis<T>::ham_heis(ham_type<heis_spin>& other)
     J = other.get_Js();
     test = *(other.get_test());
     vsum.resize(3);
+    curr.resize(3);
+    adj_curr.resize(3);
+    H_sum.resize(3);
+    J_sum.resize(3);
+    potential.resize(3);
 }
 
 template <class T> double ham_heis<T>::calc_E(field_type<heis_spin>* lattice)
@@ -177,13 +187,13 @@ template <class T> double ham_heis<T>::calc_E(field_type<heis_spin>* lattice)
     while (!finished)
     {
         lattice->adjacent(pos, adj);
-        curr = (lattice->next(finished, pos)).spin_access();
+        (lattice->next(finished, pos)).spin_access(curr[0], curr[1], curr[2]);
         H_sum[0] += curr[0];
         H_sum[1] += curr[1];
         H_sum[2] += curr[2];
         for (vector<heis_spin*>::iterator it = adj.begin(); it != adj.end(); it++)
         {
-            adj_curr = (*it)->spin_access();
+            (*it)->spin_access(adj_curr[0], adj_curr[1], adj_curr[2]);
             J_sum[0] += curr[0]*adj_curr[0];
             J_sum[1] += curr[1]*adj_curr[1];
             J_sum[2] += curr[2]*adj_curr[2];
@@ -220,7 +230,7 @@ template <class T> vector<double> ham_heis<T>::calc_M(field_type<heis_spin>* lat
     bool finished = false;
     while (!finished)
     {
-        curr = (lattice->next(finished, pos)).spin_access();
+        (lattice->next(finished, pos)).spin_access(curr[0], curr[1], curr[2]);
         vsum[0] += curr[0];
         vsum[1] += curr[1];
         vsum[2] += curr[2];
@@ -250,7 +260,7 @@ template <class T> vector<double> ham_heis<T>::calc_subM(field_type<heis_spin>* 
     while (!finished)
     {
         possum = sum(pos);
-        curr = (lattice->next(finished, pos)).spin_access();
+        (lattice->next(finished, pos)).spin_access(curr[0], curr[1], curr[2]);
         if (possum%2 == subnumber)
         {
             vsum[0] += curr[0];
@@ -264,11 +274,11 @@ template <class T> vector<double> ham_heis<T>::calc_subM(field_type<heis_spin>* 
 template <class T> double ham_heis<T>::dE(field_type<heis_spin>* lattice, vector<int>& position)
 {
     test.rand_spin();
-    // potential = test.spin_access();
-    // curr = (lattice->access(position)).spin_access();
-    double cmp1 = (lattice->access(position)).spin_access()[0] - test.spin_access()[0];
-    double cmp2 = (lattice->access(position)).spin_access()[1] - test.spin_access()[1];
-    double cmp3 = (lattice->access(position)).spin_access()[2] - test.spin_access()[2];
+    (lattice->access(position)).spin_access(curr[0], curr[1], curr[2]);
+    test.spin_access(adj_curr[0], adj_curr[1], adj_curr[2]);
+    double cmp1 = curr[0] - adj_curr[0];
+    double cmp2 = curr[1] - adj_curr[2];
+    double cmp3 = curr[2] - adj_curr[3];
     double dEH = H[0] * cmp1 + H[1] * cmp2 + H[2] * cmp3;
 
     lattice->adjacent(position, adj);
@@ -277,9 +287,10 @@ template <class T> double ham_heis<T>::dE(field_type<heis_spin>* lattice, vector
     vsum[2] = 0;
     for(vector<heis_spin*>::iterator it = adj.begin(), end = adj.end(); it != end; it++)
     {
-        vsum[0] += (*it)->spin_access()[0];
-        vsum[1] += (*it)->spin_access()[1];
-        vsum[2] += (*it)->spin_access()[2];
+        (*it)->spin_access(curr[0], curr[1], curr[2]);
+        vsum[0] += curr[0];
+        vsum[1] += curr[1];
+        vsum[2] += curr[2];
     }
 
     double dE = dEH + (J[0] * cmp1 * vsum[0] + J[1] * cmp2 * vsum[1] + J[2] * cmp3 * vsum[2]);
@@ -293,6 +304,11 @@ template <class T> ham_heis<T>& ham_heis<T>::operator=(ham_type<heis_spin>& othe
     J = other.get_Js();
     test = *(other.get_test());
     vsum.resize(3);
+    curr.resize(3);
+    adj_curr.resize(3);
+    H_sum.resize(3);
+    J_sum.resize(3);
+    potential.resize(3);
     return *this;
 }
 
@@ -323,7 +339,7 @@ template <class T> double ham_FePt<T>::calc_E(field_type<heis_spin>* lattice)
     bool finished = false;
     while (!finished)
     {
-        curr = (lattice->next(finished, pos2)).spin_access();
+        (lattice->next(finished, pos2)).spin_access(curr[0], curr[1], curr[2]);
         // All neighbour interactions
         for(int i = 0; i < nN; i++)
         {
@@ -333,7 +349,7 @@ template <class T> double ham_FePt<T>::calc_E(field_type<heis_spin>* lattice)
 
             if(this->check_pos(start, fin))
             {
-                adj_curr = (lattice->access(pos2)).spin_access();
+                (lattice->access(pos2)).spin_access(adj_curr[0], adj_curr[1], adj_curr[2]);
 
                 Jx_sum += curr[0] * adj_curr[0] * Js[i];
                 Jy_sum += curr[1] * adj_curr[1] * Js[i];
@@ -371,7 +387,7 @@ template <class T> vector<double> ham_FePt<T>::calc_M(field_type<heis_spin>* lat
     bool finished = false;
     while (!finished)
     {
-        curr = (lattice->next(finished, pos)).spin_access();
+        (lattice->next(finished, pos)).spin_access(curr[0], curr[1], curr[2]);
         vsum[0] += curr[0];
         vsum[1] += curr[1];
         vsum[2] += curr[2];
@@ -401,7 +417,7 @@ template <class T> vector<double> ham_FePt<T>::calc_subM(field_type<heis_spin>* 
     while (!finished)
     {
         possum = sum(pos);
-        curr = (lattice->next(finished, pos)).spin_access();
+        (lattice->next(finished, pos)).spin_access(curr[0], curr[1], curr[2]);
         if (possum%2 == subnumber)
         {
             vsum[0] += curr[0];
@@ -425,9 +441,8 @@ template <class T> double ham_FePt<T>::dE(field_type<heis_spin>* lattice, vector
     int fin = start+i_size;
 
     test.rand_spin();
-    potential = test.spin_access();
-    // curr = (lattice->access(position)).spin_access();
-    curr = lattice->spin_access(position);
+    test.spin_access(potential[0], potential[1], potential[2]);
+    (lattice->access(position)).spin_access(curr[0], curr[1], curr[2]);
     double cmp1 = curr[0] - potential[0];
     double cmp2 = curr[1] - potential[1];
     double cmp3 = curr[2] - potential[2];
@@ -444,8 +459,7 @@ template <class T> double ham_FePt<T>::dE(field_type<heis_spin>* lattice, vector
 
         if(this->check_pos(start, fin))
         {
-            // adj_curr = (lattice->access(pos)).spin_access();
-            adj_curr = lattice->spin_access(pos);
+            (lattice->access(pos)).spin_access(adj_curr[0], adj_curr[1], adj_curr[2]);
 
             Jx_sum += adj_curr[0] * Js[i];
             Jy_sum += adj_curr[1] * Js[i];
@@ -468,6 +482,11 @@ template <class T> ham_FePt<T>::ham_FePt(ham_type<heis_spin>& other)
 {
     this->read_Js();
     vsum.resize(3);
+    curr.resize(3);
+    adj_curr.resize(3);
+    d_ijs.resize(3);
+    Js.resize(3);
+    potential.resize(3);
     test = *(other.get_test());
 
 }
@@ -477,12 +496,22 @@ template <class T> ham_FePt<T>::ham_FePt()
     this->read_Js();
     test = T();
     vsum.resize(3);
+    curr.resize(3);
+    adj_curr.resize(3);
+    d_ijs.resize(3);
+    Js.resize(3);
+    potential.resize(3);
 }
 
 template <class T> ham_FePt<T>& ham_FePt<T>::operator=(ham_type<heis_spin>& other)
 {
     this->read_Js();
     vsum.resize(3);
+    curr.resize(3);
+    adj_curr.resize(3);
+    d_ijs.resize(3);
+    Js.resize(3);
+    potential.resize(3);
     test = *(other.get_test());
     return *this;
 }
@@ -572,6 +601,13 @@ template <class T> ham_cluster<T>::ham_cluster(string filename)
         (Vs).push_back(4.0*pi*pow(Rns[i], 3.0) / 3.0);
     }
     mu0 = 4e-7 * pi;
+
+    temp.resize(3);
+    potential.resize(3);
+    diff.resize(3);
+    curr.resize(3);
+    curr2.resize(3);
+    curr_ani.resize(3);
 }
 
 template <class T> ham_cluster<T>::ham_cluster(ham_type<heis_spin>& other)
@@ -592,6 +628,13 @@ template <class T> ham_cluster<T>::ham_cluster(ham_type<heis_spin>& other)
     mu0 = 4e-7 * pi;
     ani_const = other.get_ani();
     Ms = other.get_Ms();
+
+    temp.resize(3);
+    potential.resize(3);
+    diff.resize(3);
+    curr.resize(3);
+    curr2.resize(3);
+    curr_ani.resize(3);
 }
 
 template <class T> ham_cluster<T>& ham_cluster<T>::operator=(ham_type<T>& other)
@@ -612,6 +655,13 @@ template <class T> ham_cluster<T>& ham_cluster<T>::operator=(ham_type<T>& other)
     mu0 = 4e-7 * pi;
     ani_const = other.get_ani();
     Ms = other.get_Ms();
+    
+    temp.resize(3);
+    potential.resize(3);
+    diff.resize(3);
+    curr.resize(3);
+    curr2.resize(3);
+    curr_ani.resize(3);
 
     return *this;
 }
@@ -627,8 +677,8 @@ template <class T> double ham_cluster<T>::calc_E(field_type<T>* lattice)
 
     for (pos[0] = 0; pos[0] < n_parts; pos[0]++)
     {
-        curr = (lattice->access(pos)).spin_access();
-        curr_ani = ks[pos[0]].spin_access();
+        (lattice->access(pos)).spin_access(curr[0], curr[1], curr[2]);
+        ks[pos[0]].spin_access(curr_ani[0], curr_ani[1], curr_ani[2]);
 
         ani_sum += (pow((curr_ani[1]*curr[2] - curr[1]*curr_ani[2]), 2) +
                    pow((curr_ani[2]*curr[0] - curr[2]*curr_ani[0]), 2) +
@@ -643,7 +693,7 @@ template <class T> double ham_cluster<T>::calc_E(field_type<T>* lattice)
         temp[2] = 0;
         for(pos2[0] = 0; pos2[0] < pos[0]; pos2[0]++)
         {
-            curr2 = (lattice->access(pos2)).spin_access();
+            (lattice->access(pos2)).spin_access(curr2[0], curr2[1], curr2[2]);
             double dx = xs[pos[0]] - xs[pos2[0]];
             double dy = ys[pos[0]] - ys[pos2[0]];
             double dz = zs[pos[0]] - zs[pos2[0]];
@@ -681,10 +731,10 @@ template <class T> double ham_cluster<T>::dE(field_type<T>* lattice, vector<int>
     diff.resize(3);
 
     test.rand_spin();
-    potential = test.spin_access();
+    test.spin_access(potential[0], potential[1], potential[2]);
 
-    curr = (lattice->access(position)).spin_access();
-    curr_ani = ks[position[0]].spin_access();
+    (lattice->access(position)).spin_access(curr[0], curr[1], curr[2]);
+    ks[position[0]].spin_access(curr_ani[0], curr_ani[1], curr_ani[2]);
 
     diff[0] = potential[0] - curr[0];
     diff[1] = potential[1] - curr[1];
@@ -705,7 +755,7 @@ template <class T> double ham_cluster<T>::dE(field_type<T>* lattice, vector<int>
     {
         if (pos2[0] == position[0]) {continue;}
 
-        curr2 = (lattice->access(pos2)).spin_access();
+        (lattice->access(pos2)).spin_access(curr2[0], curr2[1], curr2[2]);
         double dx = xs[position[0]] - xs[pos2[0]];
         double dy = ys[position[0]] - ys[pos2[0]];
         double dz = zs[position[0]] - zs[pos2[0]];
@@ -747,7 +797,7 @@ template <class T> vector<double> ham_cluster<T>::calc_M(field_type<T>* lattice)
 
     for(int i = 0; i < (*field_point).size(); i++)
     {
-        curr = (*field_point)[i].spin_access();
+        (*field_point)[i].spin_access(curr[0], curr[1], curr[2]);
         temp[0] += curr[0];
         temp[1] += curr[1];
         temp[2] += curr[2];
@@ -758,114 +808,3 @@ template <class T> vector<double> ham_cluster<T>::calc_M(field_type<T>* lattice)
 
 template class ham_cluster<ising_spin>;
 template class ham_cluster<heis_spin>;
-
-// template <class T> ham_skyrm<T>::ham_skyrm(double Hin, double Jin, double Dxin, double Dyin)
-// {
-//     H = vector<double>(3);
-//     J = vector<double>(3);
-//     H[0] = 0;
-//     H[1] = 0;
-//     H[2] = Hin;
-//     J[0] = Jin;
-//     J[1] = Jin;
-//     J[2] = Jin;
-//     test = T();
-//     vsum.resize(3);
-//     Dx = Dxin;
-//     Dy = Dyin;
-// }
-//
-// template <class T> ham_skyrm<T>::ham_skyrm(ham_type<heis_spin>& other)
-// {
-//     H = other.get_Hs();
-//     J = other.get_Js();
-//     test = *(other.get_test());
-//     vsum.resize(3);
-//     Dx = other.get_Dx();
-//     Dy = other.get_Dy();
-// }
-//
-// template <class T> ham_skyrm<T>& ham_skyrm<T>::operator=(ham_type<heis_spin>& other)
-// {
-//     H = other.get_Hs();
-//     J = other.get_Js();
-//     test = *(other.get_test());
-//     vsum.resize(3);
-//     Dx = other.get_Dx();
-//     Dy = other.get_Dy();
-//
-//     return *this;
-// }
-//
-// template <class T> double ham_skyrm<T>::dE(field_type<heis_spin>* lattice, vector<int>& position)
-// {
-//     test.rand_spin();
-//     double cmp1 = (lattice->access(position)).spin_access()[0] - test.spin_access()[0];
-//     double cmp2 = (lattice->access(position)).spin_access()[1] - test.spin_access()[1];
-//     double cmp3 = (lattice->access(position)).spin_access()[2] - test.spin_access()[2];
-//     double dEH = H[0] * cmp1 + H[1] * cmp2 + H[2] * cmp3;
-//
-//     lattice->adjacent(position, adj);
-//     vsum[0] = 0;
-//     vsum[1] = 0;
-//     vsum[2] = 0;
-//     for(vector<heis_spin*>::iterator it = adj.begin(), end = adj.end(); it != end; it++)
-//     {
-//         vsum[0] += (*it)->spin_access()[0];
-//         vsum[1] += (*it)->spin_access()[1];
-//         vsum[2] += (*it)->spin_access()[2];
-//     }
-//
-//     double dE = dEH + (J[0] * cmp1 * vsum[0] + J[1] * cmp2 * vsum[1] + J[2] * cmp3 * vsum[2]);
-//
-//     return dE;
-// }
-//
-// template <class T> double ham_skyrm<T>::calc_E(field_type<heis_spin>* lattice)
-// {
-//     int sum=0;
-//     int start = 0;
-//     if(lattice->get_perio())
-//     {
-//         start++;
-//     }
-//     int dim = lattice->get_dim();
-//     pos.resize(dim);
-//     for (vector<int>::iterator it = pos.begin(); it != pos.end(); it++)
-//     {
-//         *it = start;
-//     }
-//     bool finished = false;
-//     H_sum.resize(3);
-//     J_sum.resize(3);
-//     H_sum[0] = 0;
-//     H_sum[1] = 0;
-//     H_sum[2] = 0;
-//     J_sum[0] = 0;
-//     J_sum[1] = 0;
-//     J_sum[2] = 0;
-//     while (!finished)
-//     {
-//         lattice->adjacent(pos, adj);
-//         curr = (lattice->next(finished, pos)).spin_access();
-//         H_sum[0] += curr[0];
-//         H_sum[1] += curr[1];
-//         H_sum[2] += curr[2];
-//         for (vector<heis_spin*>::iterator it = adj.begin(); it != adj.end(); it++)
-//         {
-//             adj_curr = (*it)->spin_access();
-//             J_sum[0] += curr[0]*adj_curr[0];
-//             J_sum[1] += curr[1]*adj_curr[1];
-//             J_sum[2] += curr[2]*adj_curr[2];
-//         }
-//     }
-//     H_sum[0] = H_sum[0] * H[0];
-//     H_sum[1] = H_sum[1] * H[1];
-//     H_sum[2] = H_sum[2] * H[2];
-//     J_sum[0] = J_sum[0] * J[0];
-//     J_sum[1] = J_sum[1] * J[1];
-//     J_sum[2] = J_sum[2] * J[2];
-//     double E = -(H_sum[0] + H_sum[1] + H_sum[2]) - 0.5*(J_sum[0] + J_sum[1] + J_sum[2]);
-//
-//     return E;
-// }
