@@ -4,12 +4,14 @@ OS := $(shell uname)
 
 ifeq ($(OS),Darwin)
 CXX = mpic++
+LDFLAGS =  ${MKLROOT}/lib/libmkl_intel_lp64.a ${MKLROOT}/lib/libmkl_sequential.a ${MKLROOT}/lib/libmkl_core.a -lpthread -lm -ldl
 else
-CXX = mpiicpc
+CXX = CC
+LDFLAGS = -Wl,--start-group ${MKLROOT}/lib/intel64/libmkl_intel_lp64.a ${MKLROOT}/lib/intel64/libmkl_sequential.a ${MKLROOT}/lib/intel64/libmkl_core.a -Wl,--end-group -lpthread -lm -ldl
 endif
 
 INC_PATH = ../Includes
-CPPFLAGS = -g -O3 -mkl -I$(INC_PATH)
+CPPFLAGS = -g -O3 -I$(INC_PATH) -I${MKLROOT}/include
 
 OBJS = param_read.o mklrand.o spin_type.o field_type.o shape.o hamiltonian.o state.o functions.o cpoints.o output.o
 
@@ -55,16 +57,16 @@ field_run.o: field_run.cpp state.hpp spin_type.hpp mklrand.h functions.h cpoints
 	$(CXX) $(CPPFLAGS) -c field_run.cpp
 
 run: $(OBJS) main.o
-	$(CXX) $(CPPFLAGS) $(OBJS) main.o -o run
+	$(CXX) $(LDFLAGS) $(OBJS) main.o -o run
 
 f_run: $(OBJS) field_run.o
-	$(CXX) $(CPPFLAGS) $(OBJS) field_run.o -o f_run
+	$(CXX) $(LDFLAGS) $(OBJS) field_run.o -o f_run
 
 test.o: test.cpp mklrand.h cpoints.hpp
 	$(CXX) $(CPPFLAGS) -c test.cpp -lgtest
 
 test: $(OBJS) test.o
-	$(CXX) $(CPPFLAGS) $(OBJS) test.o -o test -lgtest
+	$(CXX) $(LDFLAGS) $(OBJS) test.o -o test -lgtest
 
 clean:
 	-rm *.o
