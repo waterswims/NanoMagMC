@@ -6,7 +6,6 @@ ifeq ($(OS),Darwin)
 CXX = mpic++
 LDFLAGS =  ${MKLROOT}/lib/libmkl_intel_lp64.a ${MKLROOT}/lib/libmkl_sequential.a ${MKLROOT}/lib/libmkl_core.a -lpthread -lm -ldl
 else
-CC ?= mpiicpc
 CXX = CC
 LDFLAGS = -Wl,--start-group ${MKLROOT}/lib/intel64/libmkl_intel_lp64.a ${MKLROOT}/lib/intel64/libmkl_sequential.a ${MKLROOT}/lib/intel64/libmkl_core.a -Wl,--end-group -lpthread -lm -ldl
 endif
@@ -14,9 +13,12 @@ endif
 INC_PATH = ../Includes
 CPPFLAGS = -g -O3 -I$(INC_PATH) -I${MKLROOT}/include
 
-OBJS = param_read.o mklrand.o spin_type.o field_type.o shape.o hamiltonian.o state.o functions.o cpoints.o output.o
+OBJS = param_read.o mklrand.o spin_type.o field_type.o shape.o hamiltonian.o state.o functions.o cpoints.o output.o array_alloc.o
 
 all: $(OBJS) main.o field_run.o
+
+array_alloc.o: array_alloc.cpp array_alloc.hpp
+	$(CXX) $(SPPFLAGS) - array_alloc.cpp
 
 param_read.o: param_read.cpp param_read.hpp
 	$(CXX) $(CPPFLAGS) -c param_read.cpp
