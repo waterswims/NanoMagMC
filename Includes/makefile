@@ -18,7 +18,7 @@ OBJS = param_read.o mklrand.o spin_type.o field_type.o shape.o hamiltonian.o sta
 all: $(OBJS) main.o field_run.o
 
 array_alloc.o: array_alloc.cpp array_alloc.hpp
-	$(CXX) $(SPPFLAGS) - array_alloc.cpp
+	$(CXX) $(CPPFLAGS) -c array_alloc.cpp
 
 param_read.o: param_read.cpp param_read.hpp
 	$(CXX) $(CPPFLAGS) -c param_read.cpp
