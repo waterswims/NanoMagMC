@@ -7,7 +7,7 @@ CXX = mpic++
 LDFLAGS =  ${MKLROOT}/lib/libmkl_intel_lp64.a ${MKLROOT}/lib/libmkl_sequential.a ${MKLROOT}/lib/libmkl_core.a -lpthread -lm -ldl
 else
 CXX = mpiicpc
-LDFLAGS = -Wl,--start-group ${MKLROOT}/lib/intel64/libmkl_intel_lp64.a ${MKLROOT}/lib/intel64/libmkl_sequential.a ${MKLROOT}/lib/intel64/libmkl_core.a -Wl,--end-group -lpthread -lm -ldl
+LDFLAGS =  -L${MKLROOT}/lib/intel64 -lmkl_intel_lp64 -lmkl_sequential -lmkl_core -lpthread -lm -ldl
 endif
 
 INC_PATH = ../Includes
@@ -60,16 +60,16 @@ field_run.o: field_run.cpp state.hpp spin_type.hpp mklrand.h functions.h cpoints
 	$(CXX) $(CPPFLAGS) -c field_run.cpp
 
 run: $(OBJS) main.o
-	$(CXX) $(LDFLAGS) $(OBJS) main.o -o run
+	$(CXX) $(OBJS) main.o -o run $(LDFLAGS)
 
 f_run: $(OBJS) field_run.o
-	$(CXX) $(LDFLAGS) $(OBJS) field_run.o -o f_run
+	$(CXX) $(OBJS) field_run.o -o f_run $(LDFLAGS)
 
 test.o: test.cpp mklrand.h cpoints.hpp
 	$(CXX) $(CPPFLAGS) -c test.cpp -lgtest
 
 test: $(OBJS) test.o
-	$(CXX) $(LDFLAGS) $(OBJS) test.o -o test -lgtest
+	$(CXX) $(OBJS) test.o -o test -lgtest $(LDFLAGS)
 
 clean:
 	-rm *.o
