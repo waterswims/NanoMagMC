@@ -74,7 +74,26 @@ public:
     field_2d_h& operator=(field_2d_h& other);
     int findnum();
     void get_2dfield_h(double** &x, double** &y, double** &z);
-    void h_adjacent(vector<int>& position, vector<vector<double> >& out);
+    void h_adjacent(vector<int>& position, double** &out);
+};
+
+class field_2d_i: public field_type
+{
+protected:
+    int** spin;
+public:
+    field_2d_i();
+    field_2d_i(int size, bool isperio);
+    field_2d_i(field_type& other);
+    field_2d_i(const field_2d_i& other);
+    ~field_2d_i();
+    void i_access(vector<int>& position, int &out);
+    void i_next(bool &finish, vector<int> &pos, int &out);
+    void fill_ghost();
+    field_2d_i& operator=(field_2d_i& other);
+    int findnum();
+    void get_2dfield_i(int** &x);
+    void i_adjacent(vector<int>& position, int* &out);
 };
 
 #endif
