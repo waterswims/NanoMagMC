@@ -29,7 +29,7 @@ int boundmoveup(int test, int limit)
     return test%limit;
 }
 
-void field_type::rand_spin_h(double &x, double &y, double &z)
+void rand_spin_h(double &x, double &y, double &z)
 {
     double phi = st_rand_double.gen()*2*pi;
     double cthet = 2*st_rand_double.gen()-1;
@@ -79,7 +79,7 @@ field_cluster_h::field_cluster_h(string filename)
 
     for(int i=0; i < insize; i++)
     {
-        this->rand_spin_h(spinx[i], spiny[i], spinz[i]);
+        rand_spin_h(spinx[i], spiny[i], spinz[i]);
     }
 }
 
@@ -350,9 +350,9 @@ void field_2d_h::h_adjacent(vector<int>& position, double** &out)
 
     for (int i = 0; i < 4; i++)
     {
-        out[i][0] = spinx[dirsx[i]][dirsy[i]];
-        out[i][1] = spiny[dirsx[i]][dirsy[i]];
-        out[i][2] = spinz[dirsx[i]][dirsy[i]];
+        out[0][i] = spinx[dirsx[i]][dirsy[i]];
+        out[1][i] = spiny[dirsx[i]][dirsy[i]];
+        out[3][i] = spinz[dirsx[i]][dirsy[i]];
     }
 }
 
@@ -723,9 +723,9 @@ void field_3d_h::h_adjacent(vector<int>& position, double** &out)
 
     for (int i = 0; i < 6; i++)
     {
-        out[i][0] = spinx[dirsx[i]][dirsy[i]][dirsz[i]];
-        out[i][1] = spiny[dirsx[i]][dirsy[i]][dirsz[i]];
-        out[i][2] = spinz[dirsx[i]][dirsy[i]][dirsz[i]];
+        out[0][i] = spinx[dirsx[i]][dirsy[i]][dirsz[i]];
+        out[1][i] = spiny[dirsx[i]][dirsy[i]][dirsz[i]];
+        out[2][i] = spinz[dirsx[i]][dirsy[i]][dirsz[i]];
     }
 }
 

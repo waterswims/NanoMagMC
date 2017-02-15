@@ -48,4 +48,25 @@ public:
     ham_ising& operator=(ham_type& other);
 };
 
+class ham_heis: public ham_type
+{
+private:
+    vector<double> H, J;
+    double** adj;
+    vector<double> vsum, curr, H_sum, J_sum, test;
+    vector<int> pos;
+public:
+    ham_heis(){}
+    ham_heis(double Hin, double Jin);
+    ham_heis(ham_type& other);
+    ~ham_heis(){}
+    virtual double calc_E(field_type* lattice);
+    vector<double> calc_M(field_type* lattice);
+    vector<double> calc_subM(field_type* lattice, int subnumber);
+    virtual double dE(field_type* lattice, vector<int>& position);
+    vector<double> get_Js(){return J;}
+    vector<double> get_Hs(){return H;}
+    ham_heis& operator=(ham_type& other);
+};
+
 #endif

@@ -6,6 +6,8 @@
 
 using namespace std;
 
+void rand_spin_h(double &x, double &y, double &z);
+
 class field_type
 {
 protected:
@@ -34,7 +36,6 @@ public:
     virtual void get_2dfield_h(double** &x, double** &y, double** &z) const{}
     virtual void get_3dfield_h(double*** &x, double*** &y, double*** &z) const{}
     virtual void print(){}
-    void rand_spin_h(double &x, double &y, double &z);
     int get_ft() const {return ft;}
 };
 

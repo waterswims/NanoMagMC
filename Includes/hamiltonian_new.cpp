@@ -137,3 +137,182 @@ double ham_ising::dE(field_type* lattice, vector<int>& position)
     double dE = dEH + 2 * J * val * sum;
     return dE;
 }
+
+///////////////////////////////////
+// Heis model hamiltonian
+///////////////////////////////////
+
+ham_heis::ham_heis(double Hin, double Jin)
+{
+    H.resize(3);
+    J.resize(3);
+    H[0] = 0;
+    H[1] = 0;
+    H[2] = Hin;
+    J[0] = Jin;
+    J[1] = Jin;
+    J[2] = Jin;
+    vsum.resize(3);
+    curr.resize(3);
+    H_sum.resize(3);
+    J_sum.resize(3);
+    test.resize(3);
+}
+
+ham_heis::ham_heis(ham_type& other)
+{
+    H = other.get_Hs();
+    J = other.get_Js();
+    vsum.resize(3);
+    curr.resize(3);
+    H_sum.resize(3);
+    J_sum.resize(3);
+    test.resize(3);
+}
+
+ham_heis& ham_heis::operator=(ham_type& other)
+{
+    H = other.get_Hs();
+    J = other.get_Js();
+    vsum.resize(3);
+    curr.resize(3);
+    H_sum.resize(3);
+    J_sum.resize(3);
+    test.resize(3);
+
+    return *this;
+}
+
+double ham_heis::calc_E(field_type* lattice)
+{
+    int sum=0;
+    int start = 0;
+    if(lattice->get_perio())
+    {
+        start++;
+    }
+    int dim = lattice->get_dim();
+    pos.resize(dim);
+    for (vector<int>::iterator it = pos.begin(); it != pos.end(); it++)
+    {
+        *it = start;
+    }
+    bool finished = false;
+    H_sum[0] = 0;
+    H_sum[1] = 0;
+    H_sum[2] = 0;
+    J_sum[0] = 0;
+    J_sum[1] = 0;
+    J_sum[2] = 0;
+    int arrsize = dim*2;
+    adj = alloc_2darr<double>(3, arrsize);
+    while (!finished)
+    {
+        lattice->h_adjacent(pos, adj);
+        lattice->h_next(finished, pos, curr);
+        for (int j = 0; j < 3; j++)
+        {
+            H_sum[j] += curr[j];
+            for (int i = 0; i < arrsize; i++)
+            {
+                J_sum[j] += curr[j]*adj[j][i];
+            }
+        }
+    }
+    dealloc_2darr<double>(3, arrsize, adj);
+    for (int j = 0; j < 3; j++)
+    {
+        H_sum[j] = H_sum[j] * H[j];
+        J_sum[j] = J_sum[j] * J[j];
+    }
+    double E = -(H_sum[0] + H_sum[1] + H_sum[2]) - 0.5*(J_sum[0] + J_sum[1] + J_sum[2]);
+
+    return E;
+}
+
+vector<double> ham_heis::calc_M(field_type* lattice)
+{
+    vsum[0] = 0;
+    vsum[1] = 0;
+    vsum[2] = 0;
+    int start = 0;
+    if(lattice->get_perio())
+    {
+        start++;
+    }
+    int dim = lattice->get_dim();
+    pos.resize(dim);
+    for (vector<int>::iterator it = pos.begin(); it != pos.end(); it++)
+    {
+        *it = start;
+    }
+    bool finished = false;
+    while (!finished)
+    {
+        lattice->h_next(finished, pos, curr);
+        vsum[0] += curr[0];
+        vsum[1] += curr[1];
+        vsum[2] += curr[2];
+    }
+    return vsum;
+}
+
+vector<double> ham_heis::calc_subM(field_type* lattice, int subnumber)
+{
+    vsum[0] = 0;
+    vsum[1] = 0;
+    vsum[2] = 0;
+    int start = 0;
+    if(lattice->get_perio())
+    {
+        start++;
+    }
+    int dim = lattice->get_dim();
+    pos.resize(dim);
+    for (vector<int>::iterator it = pos.begin(); it != pos.end(); it++)
+    {
+        *it = start;
+    }
+    bool finished = false;
+    int possum = 0;
+    while (!finished)
+    {
+        possum = sum(pos);
+        lattice->h_next(finished, pos, curr);
+        if (possum%2 == subnumber)
+        {
+            vsum[0] += curr[0];
+            vsum[1] += curr[1];
+            vsum[2] += curr[2];
+        }
+    }
+    return vsum;
+}
+
+double ham_heis::dE(field_type* lattice, vector<int>& position)
+{
+    rand_spin_h(test[0], test[1], test[2]);
+    lattice->h_access(position, curr);
+    double cmp1 = curr[0] - test[0];
+    double cmp2 = curr[1] - test[2];
+    double cmp3 = curr[2] - test[3];
+    double dEH = H[0] * cmp1 + H[1] * cmp2 + H[2] * cmp3;
+
+    int dim = lattice->get_dim();
+    int arrsize = dim*2;
+    adj = alloc_2darr<double>(3, arrsize);
+    lattice->h_adjacent(position, adj);
+    for(int j = 0; j < 3; j++)
+    {
+        vsum[j] = 0;
+        for(int i = 0; i < arrsize; i++)
+        {
+            vsum[j] += adj[j][i];
+        }
+    }
+    dealloc_2darr<double>(3, arrsize, adj);
+
+    double dE = dEH + (J[0] * cmp1 * vsum[0] + J[1] * cmp2 * vsum[1] + J[2] * cmp3 * vsum[2]);
+
+    return dE;
+}
