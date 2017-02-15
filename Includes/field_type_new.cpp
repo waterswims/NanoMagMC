@@ -1,9 +1,14 @@
 #include "field_type_new.hpp"
+#include "array_alloc.hpp"
 #include <fstream>
 #include <sstream>
 
 extern mkl_irand st_rand_int;
 extern mkl_drand st_rand_double;
+
+///////////////////////
+// Random Functions
+///////////////////////
 
 int boundmovedown(int test, int limit)
 {
@@ -24,6 +29,10 @@ void field_type::rand_spin_h(double &x, double &y, double &z)
     y = sin(phi)*sthet;
     z = cthet;
 }
+
+///////////////////////
+// 1d Heis-model
+///////////////////////
 
 field_cluster_h::field_cluster_h()
 {
@@ -145,6 +154,10 @@ void field_cluster_h::get_1dfield_h(double* &x, double* &y, double* &z)
     z = spinz;
 }
 
+///////////////////////
+// 2d Heis-model
+///////////////////////
+
 field_2d_h::field_2d_h()
 {
     dim = 2;
@@ -185,9 +198,9 @@ field_2d_h::field_2d_h(field_type& other)
     periodic = other.get_perio();
     double** xoth, yoth, zoth;
     other.get_2dfield_h(xoth, yoth, zoth);
-    spinx = deep_copy_2darr<double>(insize, xoth);
-    spiny = deep_copy_2darr<double>(insize, yoth);
-    spinz = deep_copy_2darr<double>(insize, zoth);
+    spinx = deep_copy_2darr<double>(totsize, totsize, xoth);
+    spiny = deep_copy_2darr<double>(totsize, totsize, yoth);
+    spinz = deep_copy_2darr<double>(totsize, totsize, zoth);
 }
 
 field_2d_h::field_2d_h(const field_2d_h& other)
@@ -199,9 +212,9 @@ field_2d_h::field_2d_h(const field_2d_h& other)
     periodic = other.get_perio();
     double** xoth, yoth, zoth;
     other.get_2dfield_h(xoth, yoth, zoth);
-    spinx = deep_copy_2darr<double>(insize, xoth);
-    spiny = deep_copy_2darr<double>(insize, yoth);
-    spinz = deep_copy_2darr<double>(insize, zoth);
+    spinx = deep_copy_2darr<double>(totsize, totsize, xoth);
+    spiny = deep_copy_2darr<double>(totsize, totsize, yoth);
+    spinz = deep_copy_2darr<double>(totsize, totsize, zoth);
 }
 
 field_2d_h& field_2d_h::operator=(field_2d_h& other)
@@ -213,9 +226,9 @@ field_2d_h& field_2d_h::operator=(field_2d_h& other)
     periodic = other.get_perio();
     double** xoth, yoth, zoth;
     other.get_2dfield_h(xoth, yoth, zoth);
-    spinx = deep_copy_2darr<double>(insize, xoth);
-    spiny = deep_copy_2darr<double>(insize, yoth);
-    spinz = deep_copy_2darr<double>(insize, zoth);
+    spinx = deep_copy_2darr<double>(totsize, totsize, xoth);
+    spiny = deep_copy_2darr<double>(totsize, totsize, yoth);
+    spinz = deep_copy_2darr<double>(totsize, totsize, zoth);
     return *this;
 }
 
@@ -325,6 +338,10 @@ void field_2d_h::h_adjacent(vector<int>& position, double** &out)
     return out;
 }
 
+///////////////////////
+// 2d Ising-model
+///////////////////////
+
 field_2d_i::field_2d_i()
 {
     dim = 2;
@@ -363,7 +380,7 @@ field_2d_i::field_2d_i(field_type& other)
     periodic = other.get_perio();
     int** othspin;
     other.get_2dfield_i(othspin);
-    spin = deep_copy_2darr<int>(insize, othspin);
+    spin = deep_copy_2darr<int>(totsize, totsize, othspin);
 }
 
 field_2d_i::field_2d_i(const field_2d_i& other)
@@ -375,7 +392,7 @@ field_2d_i::field_2d_i(const field_2d_i& other)
     periodic = other.get_perio();
     int** othspin;
     other.get_2dfield_i(othspin);
-    spin = deep_copy_2darr<int>(insize, othspin);
+    spin = deep_copy_2darr<int>(totsize, totsize, othspin);
 }
 
 field_2d_i& field_2d_i::operator=(field_2d_i& other)
@@ -387,7 +404,7 @@ field_2d_i& field_2d_i::operator=(field_2d_i& other)
     periodic = other.get_perio();
     int** othspin;
     other.get_2dfield_i(othspin);
-    spin = deep_copy_2darr<int>(insize, othspin);
+    spin = deep_copy_2darr<int>(totsize, totsize, othspin);
     return *this;
 }
 
@@ -476,6 +493,404 @@ void field_2d_i::i_adjacent(vector<int>& position, int* &out)
     for (int i = 0; i < 4; i++)
     {
         out[i] = spin[dirsx[i]][dirsy[i]];
+    }
+
+    return out;
+}
+
+///////////////////////
+// 3d Heis-model
+///////////////////////
+
+field_3d_h::field_3d_h()
+{
+    dim = 3;
+    periodic = true;
+    ft = 3;
+}
+
+field_3d_h::field_3d_h(int size, bool isperio)
+{
+    dim = 3;
+    periodic = isperio;
+    insize = size;
+    ft = 3;
+    if(periodic)
+    {
+        totsize = insize;
+    }
+    else
+    {
+        totsize = insize + 2;
+    }
+    spinx = alloc_3darr<double>(totsize, totsize, totsize);
+    spiny = alloc_3darr<double>(totsize, totsize, totsize);
+    spinz = alloc_3darr<double>(totsize, totsize, totsize);
+}
+
+field_3d_h::field_3d_h(field_type& other)
+{
+    ft = 3;
+    if(other.ft != 3)
+    {
+        cout << "Cannot copy from other field type" << endl;
+        exit(104);
+    }
+    dim = 3;
+    insize = other.get_insize();
+    totsize = other.get_totsize();
+    periodic = other.get_perio();
+    double*** xoth, yoth, zoth;
+    other.get_3dfield_h(xoth, yoth, zoth);
+    spinx = deep_copy_3darr<double>(totsize, totsize, totsize, xoth);
+    spiny = deep_copy_3darr<double>(totsize, totsize, totsize, yoth);
+    spinz = deep_copy_3darr<double>(totsize, totsize, totsize, zoth);
+}
+
+field_3d_h::field_3d_h(const field_3d_h& other)
+{
+    ft = 3;
+    dim = 3;
+    insize = other.get_insize();
+    totsize = other.get_totsize();
+    periodic = other.get_perio();
+    double*** xoth, yoth, zoth;
+    other.get_3dfield_h(xoth, yoth, zoth);
+    spinx = deep_copy_3darr<double>(totsize, totsize, totsize, xoth);
+    spiny = deep_copy_3darr<double>(totsize, totsize, totsize, yoth);
+    spinz = deep_copy_3darr<double>(totsize, totsize, totsize, zoth);
+}
+
+field_3d_h& field_3d_h::operator=(field_3d_h& other)
+{
+    ft = 3;
+    dim = 3;
+    insize = other.get_insize();
+    totsize = other.get_totsize();
+    periodic = other.get_perio();
+    double*** xoth, yoth, zoth;
+    other.get_3dfield_h(xoth, yoth, zoth);
+    spinx = deep_copy_3darr<double>(totsize, totsize, totsize, xoth);
+    spiny = deep_copy_3darr<double>(totsize, totsize, totsize, yoth);
+    spinz = deep_copy_3darr<double>(totsize, totsize, totsize, zoth);
+    return *this;
+}
+
+field_3d_h::~field_3d_h()
+{
+    dealloc_3darr<double>(totsize, totsize, totsize, spinx);
+    dealloc_3darr<double>(totsize, totsize, totsize, spiny);
+    dealloc_3darr<double>(totsize, totsize, totsize, spinz);
+}
+
+void field_3d_h::h_access(vector<int>& position, vector<double>& out)
+{
+    out[0] = spinx[position[0]][position[1]][position[2]];
+    out[1] = spiny[position[0]][position[1]][position[2]];
+    out[2] = spinz[position[0]][position[1]][position[2]];
+}
+
+void field_3d_h::h_next(bool &finish, vector<int> &pos, vector<double> &out)
+{
+    int start = 0;
+    int end = totsize;
+    if(!periodic)
+    {
+        start++;
+        end--;
+    }
+    this->h_access(pos, out);
+    pos[2]++;
+    if(pos[2] == end)
+    {
+        pos[2] = start;
+        pos[1]++;
+        if(pos[1] == end)
+        {
+            pos[1] = start;
+            pos[0]++;
+            if(pos[0] == end;)
+            {
+                pos[0] = start;
+                finish = true;
+            }
+        }
+    }
+    return out;
+}
+
+void field_3d_h::fill_ghost()
+{
+    if(!periodic)
+    {
+        for(int i=0; i < totsize; i++)
+        {
+            for(int j=0; j < totsize; j++)
+            {
+                spinx[i][j][0] = 0;
+                spiny[i][j][0] = 0;
+                spinz[i][j][0] = 0;
+                spinx[0][i][j] = 0;
+                spiny[0][i][j] = 0;
+                spinz[0][i][j] = 0;
+                spinx[j][0][i] = 0;
+                spiny[j][0][i] = 0;
+                spinz[j][0][i] = 0;
+
+                spinx[i][j][totsize-1] = 0;
+                spiny[i][j][totsize-1] = 0;
+                spinz[i][j][totsize-1] = 0;
+                spinx[totsize-1][i][j] = 0;
+                spiny[totsize-1][i][j] = 0;
+                spinz[totsize-1][i][j] = 0;
+                spinx[j][totsize-1][i] = 0;
+                spiny[j][totsize-1][i] = 0;
+                spinz[j][totsize-1][i] = 0;
+            }
+        }
+    }
+}
+
+int field_3d_h::findnum()
+{
+    int c = 0;
+    for(int i = 0; i<totsize; i++)
+    {
+        for(int j = 0; j<totsize; j++)
+        {
+            for(int k = 0; k<totsize; k++)
+            {
+                if(spinx[i][j][k]!=0 || spiny[i][j][k]!=0 || spinz[i][j][k]!=0)
+                {
+                    c++;
+                }
+            }
+        }
+    }
+    return c;
+}
+
+void field_3d_h::get_3dfield_h(double*** &x, double*** &y, double*** &z)
+{
+    x = spinx;
+    y = spiny;
+    z = spinz;
+}
+
+void field_3d_h::h_adjacent(vector<int>& position, double** &out)
+{
+    int dirsx[6], dirsy[6], dirsz[6];
+    dirsx[0] = boundmovedown(position[0] - 1, totsize);
+    dirsx[1] = boundmoveup(position[0] + 1, totsize);
+    dirsx[2] = position[0];
+    dirsx[3] = position[0];
+    dirsx[4] = position[0];
+    dirsx[5] = position[0];
+
+    dirsy[0] = position[1];
+    dirsy[1] = position[1];
+    dirsy[2] = boundmovedown(position[1] - 1, totsize);
+    dirsy[3] = boundmoveup(position[1] + 1, totsize);
+    dirsx[4] = position[1];
+    dirsx[5] = position[1];
+
+    dirsz[0] = position[2];
+    dirsz[1] = position[2];
+    dirsz[2] = position[2];
+    dirsz[1] = position[2];
+    dirsz[4] = boundmovedown(position[2] - 1, totsize);
+    dirsz[3] = boundmoveup(position[2] + 1, totsize);
+
+    for (int i = 0; i < 6; i++)
+    {
+        out[i][0] = spinx[dirsx[i]][dirsy[i]][dirsz[i]];
+        out[i][1] = spiny[dirsx[i]][dirsy[i]][dirsz[i]];
+        out[i][2] = spinz[dirsx[i]][dirsy[i]][dirsz[i]];
+    }
+
+    return out;
+}
+
+///////////////////////
+// 3d Ising-model
+///////////////////////
+
+field_3d_i::field_3d_i()
+{
+    dim = 3;
+    periodic = true;
+    ft = 31;
+}
+
+field_3d_i::field_3d_i(int size, bool isperio)
+{
+    dim = 3;
+    periodic = isperio;
+    insize = size;
+    ft = 31;
+    if(periodic)
+    {
+        totsize = insize;
+    }
+    else
+    {
+        totsize = insize + 2;
+    }
+    spin = alloc_3darr<int>(totsize, totsize, totsize);
+}
+
+field_3d_i::field_3d_i(field_type& other)
+{
+    ft = 31;
+    if(other.ft != 31)
+    {
+        cout << "Cannot copy from other field type" << endl;
+        exit(104);
+    }
+    dim = 3;
+    insize = other.get_insize();
+    totsize = other.get_totsize();
+    periodic = other.get_perio();
+    int*** othspin;
+    other.get_3dfield_i(othspin);
+    spin = deep_copy_3darr<int>(totsize, totsize, totsize, othspin);
+}
+
+field_3d_i::field_3d_i(const field_3d_i& other)
+{
+    ft = 31;
+    dim = 3;
+    insize = other.get_insize();
+    totsize = other.get_totsize();
+    periodic = other.get_perio();
+    int*** othspin;
+    other.get_3dfield_i(othspin);
+    spin = deep_copy_3darr<int>(totsize, totsize, totsize, othspin);
+}
+
+field_3d_i& field_3d_i::operator=(field_3d_i& other)
+{
+    ft = 31;
+    dim = 3;
+    insize = other.get_insize();
+    totsize = other.get_totsize();
+    periodic = other.get_perio();
+    int*** othspin;
+    other.get_3dfield_i(othspin);
+    spin = deep_copy_3darr<int>(totsize, totsize, totsize, othspin);
+    return *this;
+}
+
+field_3d_i::~field_3d_i()
+{
+    dealloc_3darr<int>(totsize, totsize, totsize, spin);
+}
+
+void field_3d_i::i_access(vector<int>& position, int &out)
+{
+    out = spin[position[0]][position[1]][position[2]];
+}
+
+void field_3d_i::i_next(bool &finish, vector<int> &pos, int &out)
+{
+    int start = 0;
+    int end = totsize;
+    if(!periodic)
+    {
+        start++;
+        end--;
+    }
+    this->i_access(pos, out);
+    pos[2]++;
+    if(pos[2] == end)
+    {
+        pos[2] = start;
+        pos[1]++;
+        if(pos[1] == end)
+        {
+            pos[1] = start;
+            pos[0]++;
+            if(pos[0] == end;)
+            {
+                pos[0] = start;
+                finish = true;
+            }
+        }
+    }
+    return out;
+}
+
+void field_3d_i::fill_ghost()
+{
+    if(!periodic)
+    {
+        for(int i=0; i < totsize; i++)
+        {
+            for(int j=0; j < totsize; j++)
+            {
+                spin[i][j][0] = 0;
+                spin[0][i][j] = 0;
+                spin[j][0][i] = 0;
+
+                spin[i][j][totsize-1] = 0;
+                spin[totsize-1][i][j] = 0;
+                spin[j][totsize-1][i] = 0;
+            }
+        }
+    }
+}
+
+int field_3d_i::findnum()
+{
+    int c = 0;
+    for(int i = 0; i<totsize; i++)
+    {
+        for(int j = 0; j<totsize; j++)
+        {
+            for(int k = 0 ; k<totsize; k++)
+            {
+                if(spin[i][j]!=0)
+                {
+                    c++;
+                }
+            }
+        }
+    }
+    return c;
+}
+
+void field_3d_i::get_3dfield_i(int*** &x)
+{
+    x = spin;
+}
+
+void field_3d_i::i_adjacent(vector<int>& position, int* &out)
+{
+    int dirsx[6], dirsy[6], dirsz[6];
+    dirsx[0] = boundmovedown(position[0] - 1, totsize);
+    dirsx[1] = boundmoveup(position[0] + 1, totsize);
+    dirsx[2] = position[0];
+    dirsx[3] = position[0];
+    dirsx[4] = position[0];
+    dirsx[5] = position[0];
+
+    dirsy[0] = position[1];
+    dirsy[1] = position[1];
+    dirsy[2] = boundmovedown(position[1] - 1, totsize);
+    dirsy[3] = boundmoveup(position[1] + 1, totsize);
+    dirsx[4] = position[1];
+    dirsx[5] = position[1];
+
+    dirsz[0] = position[2];
+    dirsz[1] = position[2];
+    dirsz[2] = position[2];
+    dirsz[1] = position[2];
+    dirsz[4] = boundmovedown(position[2] - 1, totsize);
+    dirsz[3] = boundmoveup(position[2] + 1, totsize);
+
+    for (int i = 0; i < 4; i++)
+    {
+        out[i] = spin[dirsx[i]][dirsy[i]][dirsz[i]];
     }
 
     return out;

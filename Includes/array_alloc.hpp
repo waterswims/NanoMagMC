@@ -18,6 +18,6 @@ template <class T> T* deep_copy_1darr(int size_m, T* arr);
 
 template <class T> T** deep_copy_2darr(int size_m, int size_n, T** arr);
 
-template <class T> T*** deep_copy_3darr(int size_m, int size_n, T*** arr);
+template <class T> T*** deep_copy_3darr(int size_m, int size_n, int size_p, T*** arr);
 
 #endif

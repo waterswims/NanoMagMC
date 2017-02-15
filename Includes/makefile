@@ -13,12 +13,15 @@ endif
 INC_PATH = ../Includes
 CPPFLAGS = -O3 -I$(INC_PATH) -I${MKLROOT}/include
 
-OBJS = param_read.o mklrand.o spin_type.o field_type.o shape.o hamiltonian.o state.o functions.o cpoints.o output.o array_alloc.o
+OBJS = param_read.o mklrand.o spin_type.o field_type.o shape.o hamiltonian.o state.o functions.o cpoints.o output.o array_alloc.o field_type_new.o
 
 all: $(OBJS) main.o field_run.o
 
 array_alloc.o: array_alloc.cpp array_alloc.hpp
 	$(CXX) $(CPPFLAGS) -c array_alloc.cpp
+
+field_type_new.o: field_type_new.cpp field_type_new.hpp array_alloc.hpp
+	$(CXX) $(CPPFLAGS) -c field_type_new.cpp
 
 param_read.o: param_read.cpp param_read.hpp
 	$(CXX) $(CPPFLAGS) -c param_read.cpp
@@ -31,9 +34,6 @@ spin_type.o: spin_type.cpp spin_type.hpp mklrand.h
 
 field_type.o: field_type.cpp field_type.hpp
 	$(CXX) $(CPPFLAGS) -c field_type.cpp
-
-# FCC.o: FCC.cpp FCC.hpp field_type.hpp
-# 	$(CXX) $(CPPFLAGS) -c FCC.cpp
 
 shape.o: shape.cpp shape.hpp
 	$(CXX) $(CPPFLAGS) -c shape.cpp

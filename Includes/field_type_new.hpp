@@ -96,4 +96,44 @@ public:
     void i_adjacent(vector<int>& position, int* &out);
 };
 
+class field_3d_h: public field_type
+{
+protected:
+    double*** spinx;
+    double*** spiny;
+    double*** spinz;
+public:
+    field_3d_h();
+    field_3d_h(int size, bool isperio);
+    field_3d_h(field_type& other);
+    field_3d_h(const field_3d_h& other);
+    ~field_3d_h();
+    void h_access(vector<int>& position, vector<double>& out);
+    void h_next(bool &finish, vector<int> &pos, vector<double> &out);
+    void fill_ghost();
+    field_3d_h& operator=(field_3d_h& other);
+    int findnum();
+    void get_3dfield_h(double*** &x, double*** &y, double*** &z);
+    void h_adjacent(vector<int>& position, double** &out);
+};
+
+class field_3d_i: public field_type
+{
+protected:
+    int*** spin;
+public:
+    field_3d_i();
+    field_3d_i(int size, bool isperio);
+    field_3d_i(field_type& other);
+    field_3d_i(const field_3d_i& other);
+    ~field_3d_i();
+    void i_access(vector<int>& position, int &out);
+    void i_next(bool &finish, vector<int> &pos, int &out);
+    void fill_ghost();
+    field_3d_i& operator=(field_3d_i& other);
+    int findnum();
+    void get_3dfield_i(int*** &x);
+    void i_adjacent(vector<int>& position, int* &out);
+};
+
 #endif
