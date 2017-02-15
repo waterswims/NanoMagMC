@@ -20,7 +20,7 @@ all: $(OBJS) main.o field_run.o
 array_alloc.o: array_alloc.cpp array_alloc.hpp
 	$(CXX) $(CPPFLAGS) -c array_alloc.cpp
 
-field_type_new.o: field_type_new.cpp field_type_new.hpp array_alloc.hpp
+field_type_new.o: field_type_new.cpp field_type_new.hpp array_alloc.hpp mklrand.h
 	$(CXX) $(CPPFLAGS) -c field_type_new.cpp
 
 param_read.o: param_read.cpp param_read.hpp

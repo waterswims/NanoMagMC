@@ -1,10 +1,19 @@
 #include "field_type_new.hpp"
 #include "array_alloc.hpp"
+#include "mklrand.h"
 #include <fstream>
 #include <sstream>
+#include <iostream>
+#include <cstdlib>
+#include <cmath>
+
+///////////////////////
+// Global Variables
+///////////////////////
 
 extern mkl_irand st_rand_int;
 extern mkl_drand st_rand_double;
+const double pi = 3.141592653589793;
 
 ///////////////////////
 // Random Functions
@@ -55,13 +64,13 @@ field_cluster_h::field_cluster_h(string filename)
         exit(105);
     }
     insize = 0;
+    string line;
     while(getline(file, line))
     {
         insize++;
     }
     file.close();
 
-    string line;
     double temp_d;
     totsize=this->insize;
     spinx = alloc_1darr<double>(insize);
@@ -79,14 +88,16 @@ field_cluster_h::field_cluster_h(field_type& other)
     dim = 1;
     periodic = 1;
     ft = 1;
-    if(other.ft != 1)
+    if(other.get_ft() != 1)
     {
         cout << "Cannot copy from other field type" << endl;
         exit(104);
     }
     insize = other.get_insize();
     totsize = other.get_totsize();
-    double* xoth, yoth, zoth;
+    double* xoth;
+    double* yoth;
+    double* zoth;
     other.get_1dfield_h(xoth, yoth, zoth);
     spinx = deep_copy_1darr<double>(insize, xoth);
     spiny = deep_copy_1darr<double>(insize, yoth);
@@ -100,21 +111,25 @@ field_cluster_h::field_cluster_h(const field_cluster_h& other)
     ft = 1;
     insize = other.get_insize();
     totsize = other.get_totsize();
-    double* xoth, yoth, zoth;
+    double* xoth;
+    double* yoth;
+    double* zoth;
     other.get_1dfield_h(xoth, yoth, zoth);
     spinx = deep_copy_1darr<double>(insize, xoth);
     spiny = deep_copy_1darr<double>(insize, yoth);
     spinz = deep_copy_1darr<double>(insize, zoth);
 }
 
-field_cluster& field_cluster_h::operator=(field_cluster& other)
+field_cluster_h& field_cluster_h::operator=(field_cluster_h& other)
 {
     dim = 1;
     periodic = 1;
     ft = 1;
     insize = other.get_insize();
     totsize = other.get_totsize();
-    double* xoth, yoth, zoth;
+    double* xoth;
+    double* yoth;
+    double* zoth;
     other.get_1dfield_h(xoth, yoth, zoth);
     spinx = deep_copy_1darr<double>(insize, xoth);
     spiny = deep_copy_1darr<double>(insize, yoth);
@@ -122,14 +137,14 @@ field_cluster& field_cluster_h::operator=(field_cluster& other)
     return *this;
 }
 
-field_cluster_h::~field_cluster()
+field_cluster_h::~field_cluster_h()
 {
     dealloc_1darr<double>(insize, spinx);
     dealloc_1darr<double>(insize, spiny);
     dealloc_1darr<double>(insize, spinz);
 }
 
-void field_cluster_h::h_access(vector<int>& postion, vector<double>& out)
+void field_cluster_h::h_access(vector<int>& position, vector<double>& out)
 {
     out[0] = spinx[position[0]];
     out[1] = spiny[position[0]];
@@ -147,7 +162,7 @@ void field_cluster_h::h_next(bool &finish, vector<int> &pos, vector<double> &out
     }
 }
 
-void field_cluster_h::get_1dfield_h(double* &x, double* &y, double* &z)
+void field_cluster_h::get_1dfield_h(double* &x, double* &y, double* &z) const
 {
     x = spinx;
     y = spiny;
@@ -187,7 +202,7 @@ field_2d_h::field_2d_h(int size, bool isperio)
 field_2d_h::field_2d_h(field_type& other)
 {
     ft = 2;
-    if(other.ft != 2)
+    if(other.get_ft() != 2)
     {
         cout << "Cannot copy from other field type" << endl;
         exit(104);
@@ -196,7 +211,9 @@ field_2d_h::field_2d_h(field_type& other)
     insize = other.get_insize();
     totsize = other.get_totsize();
     periodic = other.get_perio();
-    double** xoth, yoth, zoth;
+    double** xoth;
+    double** yoth;
+    double** zoth;
     other.get_2dfield_h(xoth, yoth, zoth);
     spinx = deep_copy_2darr<double>(totsize, totsize, xoth);
     spiny = deep_copy_2darr<double>(totsize, totsize, yoth);
@@ -210,7 +227,9 @@ field_2d_h::field_2d_h(const field_2d_h& other)
     insize = other.get_insize();
     totsize = other.get_totsize();
     periodic = other.get_perio();
-    double** xoth, yoth, zoth;
+    double** xoth;
+    double** yoth;
+    double** zoth;
     other.get_2dfield_h(xoth, yoth, zoth);
     spinx = deep_copy_2darr<double>(totsize, totsize, xoth);
     spiny = deep_copy_2darr<double>(totsize, totsize, yoth);
@@ -224,7 +243,9 @@ field_2d_h& field_2d_h::operator=(field_2d_h& other)
     insize = other.get_insize();
     totsize = other.get_totsize();
     periodic = other.get_perio();
-    double** xoth, yoth, zoth;
+    double** xoth;
+    double** yoth;
+    double** zoth;
     other.get_2dfield_h(xoth, yoth, zoth);
     spinx = deep_copy_2darr<double>(totsize, totsize, xoth);
     spiny = deep_copy_2darr<double>(totsize, totsize, yoth);
@@ -261,13 +282,12 @@ void field_2d_h::h_next(bool &finish, vector<int> &pos, vector<double> &out)
     {
         pos[1] = start;
         pos[0]++;
-        if(pos[0] == end;)
+        if(pos[0] == end)
         {
             pos[0] = start;
             finish = true;
         }
     }
-    return out;
 }
 
 void field_2d_h::fill_ghost()
@@ -308,7 +328,7 @@ int field_2d_h::findnum()
     return c;
 }
 
-void field_2d_h::get_2dfield_h(double** &x, double** &y, double** &z)
+void field_2d_h::get_2dfield_h(double** &x, double** &y, double** &z) const
 {
     x = spinx;
     y = spiny;
@@ -334,8 +354,6 @@ void field_2d_h::h_adjacent(vector<int>& position, double** &out)
         out[i][1] = spiny[dirsx[i]][dirsy[i]];
         out[i][2] = spinz[dirsx[i]][dirsy[i]];
     }
-
-    return out;
 }
 
 ///////////////////////
@@ -369,7 +387,7 @@ field_2d_i::field_2d_i(int size, bool isperio)
 field_2d_i::field_2d_i(field_type& other)
 {
     ft = 21;
-    if(other.ft != 21)
+    if(other.get_ft() != 21)
     {
         cout << "Cannot copy from other field type" << endl;
         exit(104);
@@ -433,13 +451,12 @@ void field_2d_i::i_next(bool &finish, vector<int> &pos, int &out)
     {
         pos[1] = start;
         pos[0]++;
-        if(pos[0] == end;)
+        if(pos[0] == end)
         {
             pos[0] = start;
             finish = true;
         }
     }
-    return out;
 }
 
 void field_2d_i::fill_ghost()
@@ -472,7 +489,7 @@ int field_2d_i::findnum()
     return c;
 }
 
-void field_2d_i::get_2dfield_i(int** &x)
+void field_2d_i::get_2dfield_i(int** &x) const
 {
     x = spin;
 }
@@ -494,8 +511,6 @@ void field_2d_i::i_adjacent(vector<int>& position, int* &out)
     {
         out[i] = spin[dirsx[i]][dirsy[i]];
     }
-
-    return out;
 }
 
 ///////////////////////
@@ -531,7 +546,7 @@ field_3d_h::field_3d_h(int size, bool isperio)
 field_3d_h::field_3d_h(field_type& other)
 {
     ft = 3;
-    if(other.ft != 3)
+    if(other.get_ft() != 3)
     {
         cout << "Cannot copy from other field type" << endl;
         exit(104);
@@ -540,7 +555,9 @@ field_3d_h::field_3d_h(field_type& other)
     insize = other.get_insize();
     totsize = other.get_totsize();
     periodic = other.get_perio();
-    double*** xoth, yoth, zoth;
+    double*** xoth;
+    double*** yoth;
+    double*** zoth;
     other.get_3dfield_h(xoth, yoth, zoth);
     spinx = deep_copy_3darr<double>(totsize, totsize, totsize, xoth);
     spiny = deep_copy_3darr<double>(totsize, totsize, totsize, yoth);
@@ -554,7 +571,9 @@ field_3d_h::field_3d_h(const field_3d_h& other)
     insize = other.get_insize();
     totsize = other.get_totsize();
     periodic = other.get_perio();
-    double*** xoth, yoth, zoth;
+    double*** xoth;
+    double*** yoth;
+    double*** zoth;
     other.get_3dfield_h(xoth, yoth, zoth);
     spinx = deep_copy_3darr<double>(totsize, totsize, totsize, xoth);
     spiny = deep_copy_3darr<double>(totsize, totsize, totsize, yoth);
@@ -568,7 +587,9 @@ field_3d_h& field_3d_h::operator=(field_3d_h& other)
     insize = other.get_insize();
     totsize = other.get_totsize();
     periodic = other.get_perio();
-    double*** xoth, yoth, zoth;
+    double*** xoth;
+    double*** yoth;
+    double*** zoth;
     other.get_3dfield_h(xoth, yoth, zoth);
     spinx = deep_copy_3darr<double>(totsize, totsize, totsize, xoth);
     spiny = deep_copy_3darr<double>(totsize, totsize, totsize, yoth);
@@ -609,14 +630,13 @@ void field_3d_h::h_next(bool &finish, vector<int> &pos, vector<double> &out)
         {
             pos[1] = start;
             pos[0]++;
-            if(pos[0] == end;)
+            if(pos[0] == end)
             {
                 pos[0] = start;
                 finish = true;
             }
         }
     }
-    return out;
 }
 
 void field_3d_h::fill_ghost()
@@ -670,7 +690,7 @@ int field_3d_h::findnum()
     return c;
 }
 
-void field_3d_h::get_3dfield_h(double*** &x, double*** &y, double*** &z)
+void field_3d_h::get_3dfield_h(double*** &x, double*** &y, double*** &z) const
 {
     x = spinx;
     y = spiny;
@@ -707,8 +727,6 @@ void field_3d_h::h_adjacent(vector<int>& position, double** &out)
         out[i][1] = spiny[dirsx[i]][dirsy[i]][dirsz[i]];
         out[i][2] = spinz[dirsx[i]][dirsy[i]][dirsz[i]];
     }
-
-    return out;
 }
 
 ///////////////////////
@@ -742,7 +760,7 @@ field_3d_i::field_3d_i(int size, bool isperio)
 field_3d_i::field_3d_i(field_type& other)
 {
     ft = 31;
-    if(other.ft != 31)
+    if(other.get_ft() != 31)
     {
         cout << "Cannot copy from other field type" << endl;
         exit(104);
@@ -810,14 +828,13 @@ void field_3d_i::i_next(bool &finish, vector<int> &pos, int &out)
         {
             pos[1] = start;
             pos[0]++;
-            if(pos[0] == end;)
+            if(pos[0] == end)
             {
                 pos[0] = start;
                 finish = true;
             }
         }
     }
-    return out;
 }
 
 void field_3d_i::fill_ghost()
@@ -859,7 +876,7 @@ int field_3d_i::findnum()
     return c;
 }
 
-void field_3d_i::get_3dfield_i(int*** &x)
+void field_3d_i::get_3dfield_i(int*** &x) const
 {
     x = spin;
 }
@@ -892,6 +909,4 @@ void field_3d_i::i_adjacent(vector<int>& position, int* &out)
     {
         out[i] = spin[dirsx[i]][dirsy[i]][dirsz[i]];
     }
-
-    return out;
 }

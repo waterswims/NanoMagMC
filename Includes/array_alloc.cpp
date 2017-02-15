@@ -2,29 +2,29 @@
 #include <cstdlib>
 
 template <class T>
-T* arr_alloc_1darr(int size_m)
+T* alloc_1darr(int size_m)
 {
-    return malloc(sizeof(T)*size_m);
+    return (T*)malloc(sizeof(T)*size_m);
 }
 
 template <class T>
-T** arr_alloc_2darr(int size_m, int size_n)
+T** alloc_2darr(int size_m, int size_n)
 {
-    T** out = malloc(sizeof(T*)*size_m);
+    T** out = (T**)malloc(sizeof(T*)*size_m);
     for(int i=0; i < size_m; i++)
     {
-        out[i] = alloc_1darr(size_n);
+        out[i] = alloc_1darr<T>(size_n);
     }
-    return out
+    return out;
 }
 
 template <class T>
-T*** arr_alloc_3darr(int size_m, int size_n, int size_p)
+T*** alloc_3darr(int size_m, int size_n, int size_p)
 {
-    T*** out = malloc(sizeof(T**)*size_m);
+    T*** out = (T***)malloc(sizeof(T**)*size_m);
     for(int i=0; i < size_m; i++)
     {
-        out[i] = alloc_2darr(size_n, size_p);
+        out[i] = alloc_2darr<T>(size_n, size_p);
     }
     return out;
 }
@@ -56,7 +56,7 @@ void dealloc_3darr(int size_m, int size_n, int size_p, T*** arr)
 template <class T>
 T* deep_copy_1darr(int size_m, T* arr)
 {
-    T* out = alloc_1darr(size_m);
+    T* out = alloc_1darr<T>(size_m);
     for(int i = 0; i < size_m; i++)
     {
         out[i] = arr[i];
@@ -67,7 +67,7 @@ T* deep_copy_1darr(int size_m, T* arr)
 template <class T>
 T** deep_copy_2darr(int size_m, int size_n, T** arr)
 {
-    T** out = alloc_1darr(size_m);
+    T** out = alloc_2darr<T>(size_m, size_n);
     for(int i = 0; i < size_m; i++)
     {
         for(int j = 0; j < size_n; j++)
@@ -81,7 +81,7 @@ T** deep_copy_2darr(int size_m, int size_n, T** arr)
 template <class T>
 T*** deep_copy_3darr(int size_m, int size_n, int size_p, T*** arr)
 {
-    T*** out = alloc_1darr(size_m);
+    T*** out = alloc_3darr<T>(size_m, size_n, size_p);
     for(int i = 0; i < size_m; i++)
     {
         for(int j = 0; j < size_n; j++)
@@ -94,3 +94,23 @@ T*** deep_copy_3darr(int size_m, int size_n, int size_p, T*** arr)
     }
     return out;
 }
+
+template double* alloc_1darr<double>(int size_m);
+template double** alloc_2darr<double>(int size_m, int size_n);
+template double*** alloc_3darr<double>(int size_m, int size_n, int size_p);
+template void dealloc_1darr<double>(int size_m, double* arr);
+template void dealloc_2darr<double>(int size_m, int size_n, double** arr);
+template void dealloc_3darr<double>(int size_m, int size_n, int size_p, double*** arr);
+template double* deep_copy_1darr<double>(int size_m, double* arr);
+template double** deep_copy_2darr<double>(int size_m, int size_n, double** arr);
+template double*** deep_copy_3darr<double>(int size_m, int size_n, int size_p, double*** arr);
+
+template int* alloc_1darr<int>(int size_m);
+template int** alloc_2darr<int>(int size_m, int size_n);
+template int*** alloc_3darr<int>(int size_m, int size_n, int size_p);
+template void dealloc_1darr<int>(int size_m, int* arr);
+template void dealloc_2darr<int>(int size_m, int size_n, int** arr);
+template void dealloc_3darr<int>(int size_m, int size_n, int size_p, int*** arr);
+template int* deep_copy_1darr<int>(int size_m, int* arr);
+template int** deep_copy_2darr<int>(int size_m, int size_n, int** arr);
+template int*** deep_copy_3darr<int>(int size_m, int size_n, int size_p, int*** arr);
