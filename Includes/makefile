@@ -13,7 +13,8 @@ endif
 INC_PATH = ../Includes
 CPPFLAGS = -O3 -I$(INC_PATH) -I${MKLROOT}/include
 
-OBJS = param_read.o mklrand.o spin_type.o field_type.o shape.o hamiltonian.o state.o functions.o cpoints.o output.o array_alloc.o field_type_new.o
+OBJS = param_read.o mklrand.o spin_type.o field_type.o shape.o hamiltonian.o state.o functions.o cpoints.o output.o
+NEW_OBJS = array_alloc.o field_type_new.o hamiltonian_new.o
 
 all: $(OBJS) main.o field_run.o
 
@@ -41,6 +42,9 @@ shape.o: shape.cpp shape.hpp
 hamiltonian.o: hamiltonian.cpp hamiltonian.hpp field_type.hpp spin_type.hpp functions.h
 	$(CXX) $(CPPFLAGS) -c hamiltonian.cpp
 
+hamiltonian_new.o: hamiltonian_new.cpp hamiltonian_new.hpp field_type_new.hpp
+	$(CXX) $(CPPFLAGS) -c hamiltonian_new.cpp
+
 state.o: state.cpp state.hpp hamiltonian.hpp field_type.hpp shape.hpp
 	$(CXX) $(CPPFLAGS) -c state.cpp
 
@@ -59,7 +63,7 @@ main.o: main.cpp state.hpp spin_type.hpp mklrand.h functions.h cpoints.hpp outpu
 field_run.o: field_run.cpp state.hpp spin_type.hpp mklrand.h functions.h cpoints.hpp output.hpp
 	$(CXX) $(CPPFLAGS) -c field_run.cpp
 
-run: $(OBJS) main.o
+run: $(OBJS) $(NEW_OBJS) main.o
 	$(CXX) $(OBJS) main.o -o run $(LDFLAGS)
 
 f_run: $(OBJS) field_run.o
