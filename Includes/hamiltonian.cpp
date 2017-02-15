@@ -42,6 +42,7 @@ template <class T> double ham_ising<T>::calc_E(field_type<ising_spin>* lattice)
     }
 
     double E = -H * H_sum - 0.5 * J * J_sum;
+    return E;
 }
 
 template <class T> vector<double> ham_ising<T>::calc_M(field_type<ising_spin>* lattice)
@@ -655,7 +656,7 @@ template <class T> ham_cluster<T>& ham_cluster<T>::operator=(ham_type<T>& other)
     mu0 = 4e-7 * pi;
     ani_const = other.get_ani();
     Ms = other.get_Ms();
-    
+
     temp.resize(3);
     potential.resize(3);
     diff.resize(3);

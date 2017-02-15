@@ -42,7 +42,7 @@ shape.o: shape.cpp shape.hpp
 hamiltonian.o: hamiltonian.cpp hamiltonian.hpp field_type.hpp spin_type.hpp functions.h
 	$(CXX) $(CPPFLAGS) -c hamiltonian.cpp
 
-hamiltonian_new.o: hamiltonian_new.cpp hamiltonian_new.hpp field_type_new.hpp
+hamiltonian_new.o: hamiltonian_new.cpp hamiltonian_new.hpp field_type_new.hpp array_alloc.hpp functions.h
 	$(CXX) $(CPPFLAGS) -c hamiltonian_new.cpp
 
 state.o: state.cpp state.hpp hamiltonian.hpp field_type.hpp shape.hpp
