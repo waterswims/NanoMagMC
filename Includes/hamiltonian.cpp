@@ -323,6 +323,7 @@ template <class T> double ham_FePt<T>::calc_E(field_type<heis_spin>* lattice)
     Jx_sum = 0;
     Jy_sum = 0;
     d2_sum = 0;
+    d0_sum = 0;
 
     int t_size = lattice->get_totsize();
     int i_size = lattice->get_insize();
@@ -350,7 +351,7 @@ template <class T> double ham_FePt<T>::calc_E(field_type<heis_spin>* lattice)
 
             if(this->check_pos(start, fin))
             {
-                (lattice->access(pos2)).spin_access(adj_curr[0], adj_curr[1], adj_curr[2]);
+                (lattice->access(pos)).spin_access(adj_curr[0], adj_curr[1], adj_curr[2]);
 
                 Jx_sum += curr[0] * adj_curr[0] * Js[i];
                 Jy_sum += curr[1] * adj_curr[1] * Js[i];
@@ -485,8 +486,6 @@ template <class T> ham_FePt<T>::ham_FePt(ham_type<heis_spin>& other)
     vsum.resize(3);
     curr.resize(3);
     adj_curr.resize(3);
-    d_ijs.resize(3);
-    Js.resize(3);
     potential.resize(3);
     test = *(other.get_test());
 
@@ -499,8 +498,6 @@ template <class T> ham_FePt<T>::ham_FePt()
     vsum.resize(3);
     curr.resize(3);
     adj_curr.resize(3);
-    d_ijs.resize(3);
-    Js.resize(3);
     potential.resize(3);
 }
 
@@ -510,8 +507,6 @@ template <class T> ham_FePt<T>& ham_FePt<T>::operator=(ham_type<heis_spin>& othe
     vsum.resize(3);
     curr.resize(3);
     adj_curr.resize(3);
-    d_ijs.resize(3);
-    Js.resize(3);
     potential.resize(3);
     test = *(other.get_test());
     return *this;

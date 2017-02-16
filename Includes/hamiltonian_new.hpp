@@ -50,7 +50,7 @@ public:
 
 class ham_heis: public ham_type
 {
-private:
+protected:
     vector<double> H, J;
     double** adj;
     vector<double> vsum, curr, H_sum, J_sum, test;
@@ -67,6 +67,23 @@ public:
     vector<double> get_Js(){return J;}
     vector<double> get_Hs(){return H;}
     ham_heis& operator=(ham_type& other);
+};
+
+class ham_FePt: public ham_heis
+{
+private:
+    vector<int> pos2, dxs, dys, dzs;
+    vector<double> Js, adj_curr, d_ijs;
+    double d0;
+public:
+    ham_FePt();
+    ham_FePt(ham_type& other);
+    ~ham_FePt() {}
+    double calc_E(field_type* lattice);
+    double dE(field_type* lattice, vector<int>& position);
+    ham_FePt& operator=(ham_type& other);
+    void read_Js();
+    bool check_pos(int start, int fin);
 };
 
 #endif

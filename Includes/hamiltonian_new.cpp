@@ -4,6 +4,7 @@
 
 #include <iostream>
 #include <cstdlib>
+#include <algorithm>
 
 ///////////////////////////////////
 // Ising model hamiltonian
@@ -315,4 +316,197 @@ double ham_heis::dE(field_type* lattice, vector<int>& position)
     double dE = dEH + (J[0] * cmp1 * vsum[0] + J[1] * cmp2 * vsum[1] + J[2] * cmp3 * vsum[2]);
 
     return dE;
+}
+
+///////////////////////////////////
+//  FePt hamiltonian
+///////////////////////////////////
+
+ham_FePt::ham_FePt()
+{
+    this->read_Js();
+    vsum.resize(3);
+    curr.resize(3);
+    adj_curr.resize(3);
+    d_ijs.resize(3);
+    Js.resize(3);
+    test.resize(3);
+}
+
+ham_FePt::ham_FePt(ham_type& other)
+{
+    this->read_Js();
+    vsum.resize(3);
+    curr.resize(3);
+    adj_curr.resize(3);
+    d_ijs.resize(3);
+    Js.resize(3);
+    test.resize(3);
+}
+
+ham_FePt& ham_FePt::operator=(ham_type& other)
+{
+    this->read_Js();
+    vsum.resize(3);
+    curr.resize(3);
+    adj_curr.resize(3);
+    d_ijs.resize(3);
+    Js.resize(3);
+    test.resize(3);
+    return *this;
+}
+
+double ham_FePt::calc_E(field_type* lattice)
+{
+    double Jx_sum = 0;
+    double Jy_sum = 0;
+    double d2_sum = 0;
+    double d0_sum = 0;
+    int t_size = lattice->get_totsize();
+    int i_size = lattice->get_insize();
+    int start = (t_size-i_size)/2;
+    int fin = start+i_size;
+
+    int dim = lattice->get_dim();
+    pos2.resize(dim);
+    for (vector<int>::iterator it = pos2.begin(); it != pos2.end(); it++)
+    {
+        *it = start;
+    }
+    pos.resize(dim);
+    int nN = dxs.size();
+    bool finished = false;
+    while (!finished)
+    {
+        lattice->h_next(finished, pos2, curr);
+        // All neighbour interactions
+        for(int i = 0; i < nN; i++)
+        {
+            // if version
+            // pos[0] = pos2[0] + dxs[i];
+            // pos[1] = pos2[1] + dys[i];
+            // pos[2] = pos2[2] + dzs[i];
+            //
+            // if(this->check_pos(start, fin))
+            // {
+            //     lattice->h_access(pos, adj_curr);
+            //
+            //     Jx_sum += curr[0] * adj_curr[0] * Js[i];
+            //     Jy_sum += curr[1] * adj_curr[1] * Js[i];
+            //
+            //     d2_sum += curr[2] * adj_curr[2] * d_ijs[i];
+            // }
+
+            // ternary version
+            pos[0] = max(0, (pos2[0] + dxs[i])%t_size);
+            pos[1] = max(0, (pos2[1] + dys[i])%t_size);
+            pos[2] = max(0, (pos2[2] + dzs[i])%t_size);
+            lattice->h_access(pos, adj_curr);
+            Jx_sum += curr[0] * adj_curr[0] * Js[i];
+            Jy_sum += curr[1] * adj_curr[1] * Js[i];
+            d2_sum += curr[2] * adj_curr[2] * d_ijs[i];
+        }
+
+        // 1 ion anisotropy
+        d0_sum += curr[2]*curr[2];
+    }
+
+    // totals
+    double E = -(d0 * d0_sum + 0.5 * (Jx_sum + Jy_sum + d2_sum));
+
+    return E;
+}
+
+double ham_FePt::dE(field_type* lattice, vector<int>& position)
+{
+    double Jx_sum = 0;
+    double Jy_sum = 0;
+    double d2_sum = 0;
+    int t_size = lattice->get_totsize();
+    // int i_size = lattice->get_insize();
+    // int start = (t_size-i_size)/2;
+    // int fin = start+i_size;
+
+    rand_spin_h(test[0], test[1], test[2]);
+    lattice->h_access(position, curr);
+    double cmp1 = curr[0] - test[0];
+    double cmp2 = curr[1] - test[1];
+    double cmp3 = curr[2] - test[2];
+
+    int nN = dxs.size();
+    // All neighbour interactions
+    for(int i = 0; i < nN; i++)
+    {
+        // if version
+        // pos[0] = position[0] + dxs[i];
+        // pos[1] = position[1] + dys[i];
+        // pos[2] = position[2] + dzs[i];
+        //
+        // if(this->check_pos(start, fin))
+        // {
+        //     lattice->h_access(pos, adj_curr);
+        //
+        //     Jx_sum += adj_curr[0] * Js[i];
+        //     Jy_sum += adj_curr[1] * Js[i];
+        //
+        //     d2_sum += adj_curr[2] * d_ijs[i];
+        // }
+
+        // ternary version
+        pos[0] = max(0, (position[0] + dxs[i])%t_size);
+        pos[1] = max(0, (position[1] + dys[i])%t_size);
+        pos[2] = max(0, (position[2] + dzs[i])%t_size);
+        lattice->h_access(pos, adj_curr);
+        Jx_sum += curr[0] * adj_curr[0] * Js[i];
+        Jy_sum += curr[1] * adj_curr[1] * Js[i];
+        d2_sum += curr[2] * adj_curr[2] * d_ijs[i];
+    }
+
+    // 1 ion anisotropy
+    double d0_sum = curr[2]*curr[2] - test[2]*test[2];
+
+    // totals
+    double dE = (d0 * d0_sum + cmp1 * Jx_sum + cmp2 * Jy_sum + cmp3 * d2_sum);
+
+    return dE;
+}
+
+void ham_FePt::read_Js()
+{
+    ifstream Jstream, d_ijstream;
+    Jstream.open("Includes/Js/FePt_cut_1e-3.txt");
+    d_ijstream.open("Includes/Js/FePt_2ion_cut_1e-3.txt");
+    int icurr;
+    double dcurr;
+    while(Jstream >> icurr)
+    {
+        dxs.push_back(icurr);
+        Jstream >> icurr;
+        dys.push_back(icurr);
+        Jstream >> icurr;
+        dzs.push_back(icurr);
+        Jstream >> dcurr;
+        Js.push_back(dcurr);
+
+        d_ijstream >> icurr;
+        d_ijstream >> icurr;
+        d_ijstream >> icurr;
+        d_ijstream >> dcurr;
+        d_ijs.push_back(dcurr);
+    }
+    Jstream.close();
+    d_ijstream.close();
+
+    d0 = 8.42603732e-5;
+}
+
+bool ham_FePt::check_pos(int start, int fin)
+{
+    if(pos[0] < start) return false;
+    if(pos[1] < start) return false;
+    if(pos[2] < start) return false;
+    if(pos[0] >= fin) return false;
+    if(pos[1] >= fin) return false;
+    if(pos[2] >= fin) return false;
+    return true;
 }
