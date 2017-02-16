@@ -26,14 +26,83 @@ state::state(double size, bool isPerio, char shape_code, char ham_code, double J
         case 'F':
             hamil = new ham_FePt();
             break;
-        case 'c':
-        case 'C':
-            hamil = new ham_cluster("Includes/Js/cluster.txt");
-            break;
         default:
             cerr << "Incorrect hamiltonian, exiting..." << endl;
             exit(102);
     }
+    switch (ham_code)
+    {
+        case 'h':
+        case 'H':
+        case 'f':
+        case 'F':
+        switch (shape_code)
+        {
+            case 's':
+            case 'S':
+                field = new field_2d_h(int(size), isPerio);
+                shape = new square;
+                break;
+            case 'w':
+            case 'W':
+                field = new field_2d_h(int(2*size+10), isPerio);
+                shape = new weibull((size), args[0]);
+                break;
+            case 'c':
+            case 'C':
+                field = new field_3d_h(int(size), isPerio, args[1]);
+                shape = new cube;
+                break;
+            case 'x':
+            case 'X':
+                field = new field_3d_h(int(2*size+10), isPerio);
+                shape = new weibull((size), args[0]);
+                break;
+            default:
+                cerr << "Incorrect shape code, exiting" << endl;
+                exit(103);
+        }
+        break;
+
+        case 'i':
+        case 'I':
+        switch (shape_code)
+        {
+            case 's':
+            case 'S':
+                field = new field_2d_i(int(size), isPerio);
+                shape = new square;
+                break;
+            case 'w':
+            case 'W':
+                field = new field_2d_i(int(2*size+10), isPerio);
+                shape = new weibull((size), args[0]);
+                break;
+            case 'c':
+            case 'C':
+                field = new field_3d_i(int(size), isPerio, args[1]);
+                shape = new cube;
+                break;
+            case 'x':
+            case 'X':
+                field = new field_3d_i(int(2*size+10), isPerio);
+                shape = new weibull((size), args[0]);
+                break;
+            default:
+                cerr << "Incorrect shape code, exiting" << endl;
+                exit(103);
+        }
+        break;
+    }
+
+    k_b = k;
+    if (Temp <= 0)
+    {
+        cerr << "Invalid temperature, exiting" << endl;
+        exit(104);
+    }
+    beta = 1 / (k_b * Temp);
+    this->init_lattice();
 }
 
 state::state(const state& other)
