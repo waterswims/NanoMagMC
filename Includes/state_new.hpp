@@ -28,6 +28,8 @@ public:
         double H, double k, double Temp, double* args);
     state(const state& other);
     ~state();
+    void copy_points(const state& other);
+    void init_points(double size, bool isPerio, double H, double J, double* args);
     void equil(int iter);
     vector<double> magnetisation();
     vector<double> submag(int subnumber);

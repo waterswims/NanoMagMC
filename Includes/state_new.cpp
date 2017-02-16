@@ -1,4 +1,4 @@
-#include "state.hpp"
+#include "state_new.hpp"
 #include "mklrand.h"
 #include "functions.h"
 #include <iostream>
@@ -12,7 +12,46 @@ state::state(double size, bool isPerio, char shape_code, char ham_code, double J
 {
     h_code = ham_code;
     s_code = shape_code;
-    switch(ham_code)
+
+    this->init_points(size, isPerio, H, J, args);
+
+    k_b = k;
+    if (Temp <= 0)
+    {
+        cerr << "Invalid temperature, exiting" << endl;
+        exit(104);
+    }
+    beta = 1 / (k_b * Temp);
+    this->init_lattice();
+}
+
+state::state(const state& other)
+{
+    E = other.E;
+    M = other.M;
+    beta = other.beta;
+    k_b = other.k_b;
+    num = other.num;
+    h_code = other.h_code;
+    s_code = other.s_code;
+    this->copy_points(other);
+}
+
+state& state::operator=(const state& other)
+{
+    E = other.E;
+    M = other.M;
+    beta = other.beta;
+    k_b = other.k_b;
+    num = other.num;
+    h_code = other.h_code;
+    s_code = other.s_code;
+    this->copy_points(other);
+}
+
+void state::init_points(double size, bool isPerio, double H, double J, double* args)
+{
+    switch(h_code)
     {
         case 'i':
         case 'I':
@@ -30,13 +69,13 @@ state::state(double size, bool isPerio, char shape_code, char ham_code, double J
             cerr << "Incorrect hamiltonian, exiting..." << endl;
             exit(102);
     }
-    switch (ham_code)
+    switch (h_code)
     {
         case 'h':
         case 'H':
         case 'f':
         case 'F':
-        switch (shape_code)
+        switch (s_code)
         {
             case 's':
             case 'S':
@@ -50,7 +89,7 @@ state::state(double size, bool isPerio, char shape_code, char ham_code, double J
                 break;
             case 'c':
             case 'C':
-                field = new field_3d_h(int(size), isPerio, args[1]);
+                field = new field_3d_h(int(size), isPerio);
                 shape = new cube;
                 break;
             case 'x':
@@ -66,7 +105,7 @@ state::state(double size, bool isPerio, char shape_code, char ham_code, double J
 
         case 'i':
         case 'I':
-        switch (shape_code)
+        switch (s_code)
         {
             case 's':
             case 'S':
@@ -80,7 +119,7 @@ state::state(double size, bool isPerio, char shape_code, char ham_code, double J
                 break;
             case 'c':
             case 'C':
-                field = new field_3d_i(int(size), isPerio, args[1]);
+                field = new field_3d_i(int(size), isPerio);
                 shape = new cube;
                 break;
             case 'x':
@@ -94,25 +133,128 @@ state::state(double size, bool isPerio, char shape_code, char ham_code, double J
         }
         break;
     }
-
-    k_b = k;
-    if (Temp <= 0)
-    {
-        cerr << "Invalid temperature, exiting" << endl;
-        exit(104);
-    }
-    beta = 1 / (k_b * Temp);
-    this->init_lattice();
 }
 
-state::state(const state& other)
+void state::copy_points(const state& other)
 {
+    switch(h_code)
+    {
+        case 'i':
+        case 'I':
+            hamil = new ham_ising(*(other.hamil));
+            break;
+        case 'h':
+        case 'H':
+            hamil = new ham_heis(*(other.hamil));
+            break;
+        case 'f':
+        case 'F':
+            hamil = new ham_FePt(*(other.hamil));
+            break;
+        default:
+            cerr << "Incorrect hamiltonian, exiting..." << endl;
+            exit(102);
+    }
+    switch (h_code)
+    {
+        case 'h':
+        case 'H':
+        case 'f':
+        case 'F':
+        switch (s_code)
+        {
+            case 's':
+            case 'S':
+                field = new field_2d_h(*(other.field));
+                shape = new square;
+                break;
+            case 'w':
+            case 'W':
+                field = new field_2d_h(*(other.field));
+                shape = new weibull(*(other.shape));
+                break;
+            case 'c':
+            case 'C':
+                field = new field_3d_h(*(other.field));
+                shape = new cube;
+                break;
+            case 'x':
+            case 'X':
+                field = new field_3d_h(*(other.field));
+                shape = new weibull(*(other.shape));
+                break;
+            default:
+                cerr << "Incorrect shape code, exiting" << endl;
+                exit(103);
+        }
+        break;
 
+        case 'i':
+        case 'I':
+        switch (s_code)
+        {
+            case 's':
+            case 'S':
+                field = new field_2d_i(*(other.field));
+                shape = new square;
+                break;
+            case 'w':
+            case 'W':
+                field = new field_2d_i(*(other.field));
+                shape = new weibull(*(other.shape));
+                break;
+            case 'c':
+            case 'C':
+                field = new field_3d_i(*(other.field));
+                shape = new cube;
+                break;
+            case 'x':
+            case 'X':
+                field = new field_3d_i(*(other.field));
+                shape = new weibull(*(other.shape));
+                break;
+            default:
+                cerr << "Incorrect shape code, exiting" << endl;
+                exit(103);
+        }
+        break;
+    }
 }
 
 state::~state()
 {
+    delete hamil;
+    delete field;
+    delete shape;
+}
 
+void state::init_lattice()
+{
+    num = 0;
+    snum = 0;
+    int start = 0;
+    if(!field->get_perio()){start++;}
+    int dim = field->get_dim();
+    vector<int> pos(dim);
+    for (vector<int>::iterator it = pos.begin(); it != pos.end(); it++)
+    {
+        *it = start;
+    }
+    bool finished = false;
+    while (!finished)
+    {
+        bool fillspin = shape->check(pos, field->get_totsize());
+        int possum = sum(pos);
+        if (fillspin)
+        {
+            field->fill_rand(pos);
+            num++;
+            if (possum%2 == 0){snum++;}
+        }
+        else{field->fill_zero(pos);}
+        field->next(finished, pos);
+    }
+    field->fill_ghost();
 }
 
 void state::equil(int iter)
@@ -145,17 +287,7 @@ int state::sub_num(int subnumber)
 
 }
 
-void state::init_lattice()
-{
-
-}
-
 void state::change_temp(double T)
-{
-
-}
-
-state& state::operator=(const state& other)
 {
 
 }

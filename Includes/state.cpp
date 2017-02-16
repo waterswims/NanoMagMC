@@ -161,16 +161,6 @@ template <class T> state<T>::state(const state<T>& other)
             field = new hex_3d<T>(*(other.field));
             shape = new cube;
             break;
-        // case 'f':
-        // case 'F':
-        //     field = new FC_Tetr<T>(*(other.field));
-        //     shape = new cube;
-        //     break;
-        // case 'l':
-        // case 'L':
-        //     field = new L10<T>(*(other.field));
-        //     shape = new cube;
-        //     break;
         case '1':
             field = new field_cluster<T>(*(other.field));
             shape = new cube;
@@ -179,9 +169,6 @@ template <class T> state<T>::state(const state<T>& other)
             cout << "Incorrect shape code, exiting" << endl;
             exit(103);
     }
-    //(*hamil) = *(other.hamil);
-    //(*shape) = *(other.shape);
-    //(*field) = *(other.field);
 }
 
 template <class T> state<T>::~state()

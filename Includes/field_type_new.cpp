@@ -170,6 +170,33 @@ void field_cluster_h::get_1dfield_h(double* &x, double* &y, double* &z) const
 }
 
 ///////////////////////
+// 2d general
+///////////////////////
+
+void field_2d::next(bool &finish, vector<int> &pos)
+{
+    int start = 0;
+    int end = totsize;
+    if(!periodic)
+    {
+        start++;
+        end--;
+    }
+
+    pos[1]++;
+    if(pos[1] == end)
+    {
+        pos[1] = start;
+        pos[0]++;
+        if(pos[0] == end)
+        {
+            pos[0] = start;
+            finish = true;
+        }
+    }
+}
+
+///////////////////////
 // 2d Heis-model
 ///////////////////////
 
@@ -269,25 +296,8 @@ void field_2d_h::h_access(vector<int>& position, vector<double>& out)
 
 void field_2d_h::h_next(bool &finish, vector<int> &pos, vector<double> &out)
 {
-    int start = 0;
-    int end = totsize;
-    if(!periodic)
-    {
-        start++;
-        end--;
-    }
     this->h_access(pos, out);
-    pos[1]++;
-    if(pos[1] == end)
-    {
-        pos[1] = start;
-        pos[0]++;
-        if(pos[0] == end)
-        {
-            pos[0] = start;
-            finish = true;
-        }
-    }
+    this->next(finish, pos);
 }
 
 void field_2d_h::fill_ghost()
@@ -438,25 +448,8 @@ void field_2d_i::i_access(vector<int>& position, int &out)
 
 void field_2d_i::i_next(bool &finish, vector<int> &pos, int &out)
 {
-    int start = 0;
-    int end = totsize;
-    if(!periodic)
-    {
-        start++;
-        end--;
-    }
     this->i_access(pos, out);
-    pos[1]++;
-    if(pos[1] == end)
-    {
-        pos[1] = start;
-        pos[0]++;
-        if(pos[0] == end)
-        {
-            pos[0] = start;
-            finish = true;
-        }
-    }
+    this->next(finish, pos);
 }
 
 void field_2d_i::fill_ghost()
@@ -510,6 +503,37 @@ void field_2d_i::i_adjacent(vector<int>& position, int* &out)
     for (int i = 0; i < 4; i++)
     {
         out[i] = spin[dirsx[i]][dirsy[i]];
+    }
+}
+
+///////////////////////
+// 3d general
+///////////////////////
+
+void field_3d::next(bool &finish, vector<int> &pos)
+{
+    int start = 0;
+    int end = totsize;
+    if(!periodic)
+    {
+        start++;
+        end--;
+    }
+    pos[2]++;
+    if(pos[2] == end)
+    {
+        pos[2] = start;
+        pos[1]++;
+        if(pos[1] == end)
+        {
+            pos[1] = start;
+            pos[0]++;
+            if(pos[0] == end)
+            {
+                pos[0] = start;
+                finish = true;
+            }
+        }
     }
 }
 
@@ -613,30 +637,8 @@ void field_3d_h::h_access(vector<int>& position, vector<double>& out)
 
 void field_3d_h::h_next(bool &finish, vector<int> &pos, vector<double> &out)
 {
-    int start = 0;
-    int end = totsize;
-    if(!periodic)
-    {
-        start++;
-        end--;
-    }
     this->h_access(pos, out);
-    pos[2]++;
-    if(pos[2] == end)
-    {
-        pos[2] = start;
-        pos[1]++;
-        if(pos[1] == end)
-        {
-            pos[1] = start;
-            pos[0]++;
-            if(pos[0] == end)
-            {
-                pos[0] = start;
-                finish = true;
-            }
-        }
-    }
+    this->next(finish, pos);
 }
 
 void field_3d_h::fill_ghost()
@@ -811,30 +813,8 @@ void field_3d_i::i_access(vector<int>& position, int &out)
 
 void field_3d_i::i_next(bool &finish, vector<int> &pos, int &out)
 {
-    int start = 0;
-    int end = totsize;
-    if(!periodic)
-    {
-        start++;
-        end--;
-    }
     this->i_access(pos, out);
-    pos[2]++;
-    if(pos[2] == end)
-    {
-        pos[2] = start;
-        pos[1]++;
-        if(pos[1] == end)
-        {
-            pos[1] = start;
-            pos[0]++;
-            if(pos[0] == end)
-            {
-                pos[0] = start;
-                finish = true;
-            }
-        }
-    }
+    this->next(finish, pos);
 }
 
 void field_3d_i::fill_ghost()

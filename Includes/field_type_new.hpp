@@ -21,6 +21,7 @@ public:
     virtual void i_adjacent(vector<int>& position, int* &out){}
     virtual void h_access(vector<int>& position, vector<double>& out){}
     virtual void h_adjacent(vector<int>& position, double** &out){}
+    virtual void next(bool &finish, vector<int> &pos){}
     virtual void i_next(bool &finish, vector<int> &pos, int &out){}
     virtual void h_next(bool &finish, vector<int> &pos, vector<double> &out){}
     int get_insize() const {return insize;}
@@ -28,6 +29,8 @@ public:
     bool get_perio() const {return periodic;}
     int get_dim() const {return dim;}
     virtual void fill_ghost(){}
+    virtual void fill_rand(vector<int>& position){}
+    virtual void fill_zero(vector<int>& position){}
     virtual void new_mem(){}
     virtual int findnum(){return 0;}
     virtual void get_2dfield_i(int** &x) const{}
@@ -58,7 +61,15 @@ public:
     void get_1dfield_h(double* &x, double* &y, double* &z) const;
 };
 
-class field_2d_h: public field_type
+class field_2d: public field_type
+{
+public:
+    field_2d() {}
+    ~field_2d() {}
+    void next(bool &finish, vector<int> &pos);
+};
+
+class field_2d_h: public field_2d
 {
 protected:
     double** spinx;
@@ -79,7 +90,7 @@ public:
     void h_adjacent(vector<int>& position, double** &out);
 };
 
-class field_2d_i: public field_type
+class field_2d_i: public field_2d
 {
 protected:
     int** spin;
@@ -98,7 +109,15 @@ public:
     void i_adjacent(vector<int>& position, int* &out);
 };
 
-class field_3d_h: public field_type
+class field_3d: public field_type
+{
+public:
+    field_3d() {}
+    ~field_3d() {}
+    void next(bool &finish, vector<int> &pos);
+};
+
+class field_3d_h: public field_3d
 {
 protected:
     double*** spinx;
@@ -119,7 +138,7 @@ public:
     void h_adjacent(vector<int>& position, double** &out);
 };
 
-class field_3d_i: public field_type
+class field_3d_i: public field_3d
 {
 protected:
     int*** spin;
