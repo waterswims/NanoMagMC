@@ -12,9 +12,9 @@ class ham_type
 {
 public:
     virtual double calc_E(field_type* lattice) {return 0;}
+    virtual double dE(field_type* lattice, vector<int>& position) {return 0;}
     virtual vector<double> calc_M(field_type* lattice) {}
     virtual vector<double> calc_subM(field_type* lattice, int subnumber) {}
-    double dE(field_type* lattice, vector<int>& position);
     virtual double get_J(){return 0;}
     virtual double get_H(){return 0;}
     virtual vector<double> get_Js(){}

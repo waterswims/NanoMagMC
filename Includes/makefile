@@ -14,7 +14,7 @@ INC_PATH = ../Includes
 CPPFLAGS = -O3 -I$(INC_PATH) -I${MKLROOT}/include
 
 OBJS = param_read.o mklrand.o spin_type.o field_type.o shape.o hamiltonian.o state.o functions.o cpoints.o output.o
-NEW_OBJS = array_alloc.o field_type_new.o hamiltonian_new.o state_new.o shape.o
+NEW_OBJS = functions.o cpoints.o output.o param_read.o mklrand.o array_alloc.o field_type_new.o hamiltonian_new.o state_new.o shape.o
 
 all: $(OBJS) $(NEW_OBJS) main.o main_new.o field_run.o
 

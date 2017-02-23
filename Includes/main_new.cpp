@@ -17,9 +17,6 @@ mkl_drand st_rand_double(1e8, 1);
 
 const double Ry = 13.606;
 
-// define the type of spin
-typedef heis_spin sp_typ;
-
 int main(int argc, char **argv)
 {
     //Start MPI off
@@ -41,7 +38,7 @@ int main(int argc, char **argv)
 	string temp_name;
 	read_all_vars(argv[1], size, J, H, k, periodic, shape, hamil, N_av,
 		Nsingle, padding, beta, distributed, amean, asd, temp_name);
-	double args[] = {beta, padding};
+	double args[] = {beta};
 	AtoLn(amean, asd, lmean, lsd);
 
 	// load temperatures
@@ -145,7 +142,7 @@ int main(int argc, char **argv)
 		{
 			s_size = size;
 		}
-        state<sp_typ> curr_state(s_size, periodic, shape, hamil, J, H, k, Tmax, args);
+        state curr_state(s_size, periodic, shape, hamil, J, H, k, Tmax, args);
         nums[j] = curr_state.num_spins();
 		s_nums[j] = curr_state.sub_num(0);
 		curr_state.equil(5*Nsingle*nums[j]);
