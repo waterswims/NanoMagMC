@@ -3,6 +3,7 @@
 #include "functions.h"
 #include <iostream>
 #include <fstream>
+#include <cmath>
 
 extern mkl_irand st_rand_int;
 extern mkl_drand st_rand_double;
@@ -16,12 +17,7 @@ state::state(double size, bool isPerio, char shape_code, char ham_code, double J
     this->init_points(size, isPerio, H, J, args);
 
     k_b = k;
-    if (Temp <= 0)
-    {
-        cerr << "Invalid temperature, exiting" << endl;
-        exit(104);
-    }
-    beta = 1 / (k_b * Temp);
+    this->change_temp(Temp);
     this->init_lattice();
 }
 
@@ -259,37 +255,82 @@ void state::init_lattice()
 
 void state::equil(int iter)
 {
+    int dim = field->get_dim();
+    int size = field->get_insize();
+    int tsize = field->get_totsize();
+    int per = field->get_perio();
 
+    int s_start = (tsize-size)/2;
+
+    // create some variables
+    vector<int> r_choice(dim);
+    double dE = 0;
+    double log_eta = 0;
+
+    for (int i=0; i<iter; i++)
+    {
+        for (vector<int>::iterator it=r_choice.begin(), end=r_choice.end(); it!=end; it++)
+        {
+            *it = int(st_rand_double.gen() * size)+s_start;
+        }
+
+        if(field->check_zero(r_choice))
+        {
+            i--;
+            continue;
+        }
+
+        //check dE
+        dE = hamil->dE(field, r_choice);
+        //check if flip
+        if(dE <= 0)
+        {
+            field->change_to_test(r_choice, hamil);
+        }
+        else
+        {
+            log_eta = log(st_rand_double.gen());
+			if ((-dE * beta) > log_eta)
+			{
+                field->change_to_test(r_choice, hamil);
+			}
+        }
+    }
 }
 
 vector<double> state::magnetisation()
 {
-
+    return hamil->calc_M(field);
 }
 
 vector<double> state::submag(int subnumber)
 {
-
+    return hamil->calc_subM(field, 0);
 }
 
 double state::energy()
 {
-
+    return hamil->calc_E(field);
 }
 
 int state::num_spins()
 {
-
+    return num;
 }
 
 int state::sub_num(int subnumber)
 {
-
+    return snum;
 }
 
 void state::change_temp(double T)
 {
-
+    if (T <= 0)
+    {
+        cerr << "Invalid temperature, exiting" << endl;
+        exit(104);
+    }
+    beta = 1 / (k_b * T);
 }
 
 void state::print_latt()

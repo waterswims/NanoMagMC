@@ -39,6 +39,11 @@ void rand_spin_h(double &x, double &y, double &z)
     z = cthet;
 }
 
+void rand_spin_i(int &x)
+{
+    x = st_rand_int.gen();
+}
+
 ///////////////////////
 // 1d Heis-model
 ///////////////////////
@@ -167,6 +172,17 @@ void field_cluster_h::get_1dfield_h(double* &x, double* &y, double* &z) const
     x = spinx;
     y = spiny;
     z = spinz;
+}
+
+bool field_cluster_h::check_zero(vector<int>& position)
+{
+    return (spinx[position[0]] == 0 && spiny[position[0]] == 0 &&
+            spinz[position[0]] == 0);
+}
+
+void field_cluster_h::change_to_test(vector<int>& position, ham_type* hamil)
+{
+    hamil->get_test(spinx[position[0]],spiny[position[0]],spinz[position[0]]);
 }
 
 ///////////////////////
@@ -366,6 +382,34 @@ void field_2d_h::h_adjacent(vector<int>& position, double** &out)
     }
 }
 
+void field_2d_h::fill_rand(vector<int>& position)
+{
+    rand_spin_h(spinx[position[0]][position[1]],
+                spiny[position[0]][position[1]],
+                spinz[position[0]][position[1]]);
+}
+
+void field_2d_h::fill_zero(vector<int>& position)
+{
+    spinx[position[0]][position[1]] = 0;
+    spiny[position[0]][position[1]] = 0;
+    spinz[position[0]][position[1]] = 0;
+}
+
+bool field_2d_h::check_zero(vector<int>& position)
+{
+    return (spinx[position[0]][position[1]] == 0 &&
+            spiny[position[0]][position[1]] == 0 &&
+            spinz[position[0]][position[1]] == 0);
+}
+
+void field_2d_h::change_to_test(vector<int>& position, ham_type* hamil)
+{
+    hamil->get_test(spinx[position[0]][position[1]],
+                    spiny[position[0]][position[1]],
+                    spinz[position[0]][position[1]]);
+}
+
 ///////////////////////
 // 2d Ising-model
 ///////////////////////
@@ -504,6 +548,26 @@ void field_2d_i::i_adjacent(vector<int>& position, int* &out)
     {
         out[i] = spin[dirsx[i]][dirsy[i]];
     }
+}
+
+void field_2d_i::fill_rand(vector<int>& position)
+{
+    rand_spin_i(spin[position[0]][position[1]]);
+}
+
+void field_2d_i::fill_zero(vector<int>& position)
+{
+    spin[position[0]][position[1]] = 0;
+}
+
+bool field_2d_i::check_zero(vector<int>& position)
+{
+    return (spin[position[0]][position[1]] == 0);
+}
+
+void field_2d_i::change_to_test(vector<int>& position, ham_type* hamil)
+{
+    spin[position[0]][position[1]] = -spin[position[0]][position[1]];
 }
 
 ///////////////////////
@@ -731,6 +795,34 @@ void field_3d_h::h_adjacent(vector<int>& position, double** &out)
     }
 }
 
+void field_3d_h::fill_rand(vector<int>& position)
+{
+    rand_spin_h(spinx[position[0]][position[1]][position[2]],
+                spiny[position[0]][position[1]][position[2]],
+                spinz[position[0]][position[1]][position[2]]);
+}
+
+void field_3d_h::fill_zero(vector<int>& position)
+{
+    spinx[position[0]][position[1]][position[2]] = 0;
+    spiny[position[0]][position[1]][position[2]] = 0;
+    spinz[position[0]][position[1]][position[2]] = 0;
+}
+
+bool field_3d_h::check_zero(vector<int>& position)
+{
+    return (spinx[position[0]][position[1]][position[2]] == 0 &&
+            spiny[position[0]][position[1]][position[2]] == 0 &&
+            spinz[position[0]][position[1]][position[2]] == 0);
+}
+
+void field_3d_h::change_to_test(vector<int>& position, ham_type* hamil)
+{
+    hamil->get_test(spinx[position[0]][position[1]][position[2]],
+                    spiny[position[0]][position[1]][position[2]],
+                    spinz[position[0]][position[1]][position[2]]);
+}
+
 ///////////////////////
 // 3d Ising-model
 ///////////////////////
@@ -889,4 +981,24 @@ void field_3d_i::i_adjacent(vector<int>& position, int* &out)
     {
         out[i] = spin[dirsx[i]][dirsy[i]][dirsz[i]];
     }
+}
+
+void field_3d_i::fill_rand(vector<int>& position)
+{
+    rand_spin_i(spin[position[0]][position[1]][position[2]]);
+}
+
+void field_3d_i::fill_zero(vector<int>& position)
+{
+    spin[position[0]][position[1]][position[2]] = 0;
+}
+
+bool field_3d_i::check_zero(vector<int>& position)
+{
+    return (spin[position[0]][position[1]][position[2]] == 0);
+}
+
+void field_3d_i::change_to_test(vector<int>& position, ham_type* hamil)
+{
+    spin[position[0]][position[1]][position[2]] = -spin[position[0]][position[1]][position[2]];
 }

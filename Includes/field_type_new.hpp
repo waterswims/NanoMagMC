@@ -1,8 +1,11 @@
 #ifndef _FIELD
 #define _FIELD
 
+#include "hamiltonian_new.hpp"
 #include <vector>
 #include <string>
+
+class ham_type;
 
 using namespace std;
 
@@ -31,6 +34,8 @@ public:
     virtual void fill_ghost(){}
     virtual void fill_rand(vector<int>& position){}
     virtual void fill_zero(vector<int>& position){}
+    virtual bool check_zero(vector<int>& position){return true;}
+    virtual void change_to_test(vector<int>& position, ham_type* hamil){}
     virtual void new_mem(){}
     virtual int findnum(){return 0;}
     virtual void get_2dfield_i(int** &x) const{}
@@ -59,6 +64,9 @@ public:
     field_cluster_h& operator=(field_cluster_h& other);
     int findnum(){return insize;}
     void get_1dfield_h(double* &x, double* &y, double* &z) const;
+    void fill_rand(vector<int>& position){}
+    bool check_zero(vector<int>& position);
+    void change_to_test(vector<int>& position, ham_type* hamil);
 };
 
 class field_2d: public field_type
@@ -88,6 +96,10 @@ public:
     int findnum();
     void get_2dfield_h(double** &x, double** &y, double** &z) const;
     void h_adjacent(vector<int>& position, double** &out);
+    void fill_rand(vector<int>& position);
+    void fill_zero(vector<int>& position);
+    bool check_zero(vector<int>& position);
+    void change_to_test(vector<int>& position, ham_type* hamil);
 };
 
 class field_2d_i: public field_2d
@@ -107,6 +119,10 @@ public:
     int findnum();
     void get_2dfield_i(int** &x) const;
     void i_adjacent(vector<int>& position, int* &out);
+    void fill_rand(vector<int>& position);
+    void fill_zero(vector<int>& position);
+    bool check_zero(vector<int>& position);
+    void change_to_test(vector<int>& position, ham_type* hamil);
 };
 
 class field_3d: public field_type
@@ -136,6 +152,10 @@ public:
     int findnum();
     void get_3dfield_h(double*** &x, double*** &y, double*** &z) const;
     void h_adjacent(vector<int>& position, double** &out);
+    void fill_rand(vector<int>& position);
+    void fill_zero(vector<int>& position);
+    bool check_zero(vector<int>& position);
+    void change_to_test(vector<int>& position, ham_type* hamil);
 };
 
 class field_3d_i: public field_3d
@@ -155,6 +175,10 @@ public:
     int findnum();
     void get_3dfield_i(int*** &x) const;
     void i_adjacent(vector<int>& position, int* &out);
+    void fill_rand(vector<int>& position);
+    void fill_zero(vector<int>& position);
+    bool check_zero(vector<int>& position);
+    void change_to_test(vector<int>& position, ham_type* hamil);
 };
 
 #endif

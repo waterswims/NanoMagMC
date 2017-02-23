@@ -2,6 +2,9 @@
 #define _HAMIL
 
 #include "field_type_new.hpp"
+#include <vector>
+
+class field_type;
 
 using namespace std;
 
@@ -16,6 +19,7 @@ public:
     virtual double get_H(){return 0;}
     virtual vector<double> get_Js(){}
     virtual vector<double> get_Hs(){}
+    virtual void get_test(double &x, double &y, double &z){}
     // virtual double get_Dx(){return 0;}
     // virtual double get_Dy(){return 0;}
     // virtual vector<double>* get_xs(){return NULL;}
@@ -67,6 +71,8 @@ public:
     vector<double> get_Js(){return J;}
     vector<double> get_Hs(){return H;}
     ham_heis& operator=(ham_type& other);
+    void get_test(double &x, double &y, double &z)
+        {x = test[0]; y = test[1]; z = test[2];}
 };
 
 class ham_FePt: public ham_heis
