@@ -144,9 +144,9 @@ field_cluster_h& field_cluster_h::operator=(field_cluster_h& other)
 
 field_cluster_h::~field_cluster_h()
 {
-    dealloc_1darr<double>(insize, spinx);
-    dealloc_1darr<double>(insize, spiny);
-    dealloc_1darr<double>(insize, spinz);
+    dealloc_1darr<double>(spinx);
+    dealloc_1darr<double>(spiny);
+    dealloc_1darr<double>(spinz);
 }
 
 void field_cluster_h::h_access(vector<int>& position, vector<double>& out)
@@ -298,9 +298,9 @@ field_2d_h& field_2d_h::operator=(field_2d_h& other)
 
 field_2d_h::~field_2d_h()
 {
-    dealloc_2darr<double>(totsize, totsize, spinx);
-    dealloc_2darr<double>(totsize, totsize, spiny);
-    dealloc_2darr<double>(totsize, totsize, spinz);
+    dealloc_2darr<double>(totsize, spinx);
+    dealloc_2darr<double>(totsize, spiny);
+    dealloc_2darr<double>(totsize, spinz);
 }
 
 void field_2d_h::h_access(vector<int>& position, vector<double>& out)
@@ -361,7 +361,7 @@ void field_2d_h::get_2dfield_h(double** &x, double** &y, double** &z) const
     z = spinz;
 }
 
-void field_2d_h::h_adjacent(vector<int>& position, double** &out)
+void field_2d_h::h_adjacent(vector<int>& position, double** out)
 {
     int dirsx[4], dirsy[4];
     dirsx[0] = boundmovedown(position[0] - 1, totsize);
@@ -482,7 +482,7 @@ field_2d_i& field_2d_i::operator=(field_2d_i& other)
 
 field_2d_i::~field_2d_i()
 {
-    dealloc_2darr<int>(totsize, totsize, spin);
+    dealloc_2darr<int>(totsize, spin);
 }
 
 void field_2d_i::i_access(vector<int>& position, int &out)
@@ -531,7 +531,7 @@ void field_2d_i::get_2dfield_i(int** &x) const
     x = spin;
 }
 
-void field_2d_i::i_adjacent(vector<int>& position, int* &out)
+void field_2d_i::i_adjacent(vector<int>& position, int* out)
 {
     int dirsx[4], dirsy[4];
     dirsx[0] = boundmovedown(position[0] - 1, totsize);
@@ -687,9 +687,9 @@ field_3d_h& field_3d_h::operator=(field_3d_h& other)
 
 field_3d_h::~field_3d_h()
 {
-    dealloc_3darr<double>(totsize, totsize, totsize, spinx);
-    dealloc_3darr<double>(totsize, totsize, totsize, spiny);
-    dealloc_3darr<double>(totsize, totsize, totsize, spinz);
+    dealloc_3darr<double>(totsize, totsize, spinx);
+    dealloc_3darr<double>(totsize, totsize, spiny);
+    dealloc_3darr<double>(totsize, totsize, spinz);
 }
 
 void field_3d_h::h_access(vector<int>& position, vector<double>& out)
@@ -763,7 +763,7 @@ void field_3d_h::get_3dfield_h(double*** &x, double*** &y, double*** &z) const
     z = spinz;
 }
 
-void field_3d_h::h_adjacent(vector<int>& position, double** &out)
+void field_3d_h::h_adjacent(vector<int>& position, double** out)
 {
     int dirsx[6], dirsy[6], dirsz[6];
     dirsx[0] = boundmovedown(position[0] - 1, totsize);
@@ -777,15 +777,15 @@ void field_3d_h::h_adjacent(vector<int>& position, double** &out)
     dirsy[1] = position[1];
     dirsy[2] = boundmovedown(position[1] - 1, totsize);
     dirsy[3] = boundmoveup(position[1] + 1, totsize);
-    dirsx[4] = position[1];
-    dirsx[5] = position[1];
+    dirsy[4] = position[1];
+    dirsy[5] = position[1];
 
     dirsz[0] = position[2];
     dirsz[1] = position[2];
     dirsz[2] = position[2];
-    dirsz[1] = position[2];
+    dirsz[3] = position[2];
     dirsz[4] = boundmovedown(position[2] - 1, totsize);
-    dirsz[3] = boundmoveup(position[2] + 1, totsize);
+    dirsz[5] = boundmoveup(position[2] + 1, totsize);
 
     for (int i = 0; i < 6; i++)
     {
@@ -895,7 +895,7 @@ field_3d_i& field_3d_i::operator=(field_3d_i& other)
 
 field_3d_i::~field_3d_i()
 {
-    dealloc_3darr<int>(totsize, totsize, totsize, spin);
+    dealloc_3darr<int>(totsize, totsize, spin);
 }
 
 void field_3d_i::i_access(vector<int>& position, int &out)
@@ -953,7 +953,7 @@ void field_3d_i::get_3dfield_i(int*** &x) const
     x = spin;
 }
 
-void field_3d_i::i_adjacent(vector<int>& position, int* &out)
+void field_3d_i::i_adjacent(vector<int>& position, int* out)
 {
     int dirsx[6], dirsy[6], dirsz[6];
     dirsx[0] = boundmovedown(position[0] - 1, totsize);

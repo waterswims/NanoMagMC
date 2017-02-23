@@ -130,6 +130,11 @@ int main(int argc, char **argv)
 		rand_ln.fill();
 	}
 
+	if (rank == 0)
+	{
+		cout << "Passed Checkpoint Reading..." << endl;
+	}
+
 	// main loop
 	for (; j < N_av; j++)
 	{
@@ -143,9 +148,17 @@ int main(int argc, char **argv)
 			s_size = size;
 		}
         state curr_state(s_size, periodic, shape, hamil, J, H, k, Tmax, args);
-        nums[j] = curr_state.num_spins();
+		if (rank == 0)
+		{
+			cout << "Generated State..." << endl;
+		}
+		nums[j] = curr_state.num_spins();
 		s_nums[j] = curr_state.sub_num(0);
 		curr_state.equil(5*Nsingle*nums[j]);
+		if (rank == 0)
+		{
+			cout << "Completed Equillibriation..." << endl;
+		}
         for (int i = 0; i < num_Ts; i++)
         {
             double T = Ts[i];

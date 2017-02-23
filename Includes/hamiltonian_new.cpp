@@ -51,7 +51,7 @@ double ham_ising::calc_E(field_type* lattice)
             J_sum += curr*adj[i];
         }
     }
-    dealloc_1darr<int>(dim*2, adj);
+    dealloc_1darr<int>(adj);
 
     double E = -H * H_sum - 0.5 * J * J_sum;
     return E;
@@ -133,7 +133,7 @@ double ham_ising::dE(field_type* lattice, vector<int>& position)
     {
         sum += adj[i];
     }
-    dealloc_1darr<int>(dim*2, adj);
+    dealloc_1darr<int>(adj);
 
     double dE = dEH + 2 * J * val * sum;
     return dE;
@@ -220,7 +220,7 @@ double ham_heis::calc_E(field_type* lattice)
             }
         }
     }
-    dealloc_2darr<double>(3, arrsize, adj);
+    dealloc_2darr<double>(3, adj);
     for (int j = 0; j < 3; j++)
     {
         H_sum[j] = H_sum[j] * H[j];
@@ -295,8 +295,8 @@ double ham_heis::dE(field_type* lattice, vector<int>& position)
     rand_spin_h(test[0], test[1], test[2]);
     lattice->h_access(position, curr);
     double cmp1 = curr[0] - test[0];
-    double cmp2 = curr[1] - test[2];
-    double cmp3 = curr[2] - test[3];
+    double cmp2 = curr[1] - test[1];
+    double cmp3 = curr[2] - test[2];
     double dEH = H[0] * cmp1 + H[1] * cmp2 + H[2] * cmp3;
 
     int dim = lattice->get_dim();
@@ -311,7 +311,7 @@ double ham_heis::dE(field_type* lattice, vector<int>& position)
             vsum[j] += adj[j][i];
         }
     }
-    dealloc_2darr<double>(3, arrsize, adj);
+    dealloc_2darr<double>(3, adj);
 
     double dE = dEH + (J[0] * cmp1 * vsum[0] + J[1] * cmp2 * vsum[1] + J[2] * cmp3 * vsum[2]);
 

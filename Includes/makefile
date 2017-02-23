@@ -63,7 +63,7 @@ output.o: output.cpp output.hpp functions.h
 main.o: main.cpp state.hpp spin_type.hpp mklrand.h functions.h cpoints.hpp output.hpp
 	$(CXX) $(CPPFLAGS) -c main.cpp
 
-main_new.o: main.cpp state_new.hpp mklrand.h functions.h cpoints.hpp output.hpp
+main_new.o: main_new.cpp state_new.hpp mklrand.h functions.h cpoints.hpp output.hpp
 	$(CXX) $(CPPFLAGS) -c main_new.cpp
 
 field_run.o: field_run.cpp state.hpp spin_type.hpp mklrand.h functions.h cpoints.hpp output.hpp
