@@ -16,7 +16,7 @@ CPPFLAGS = -O3 -I$(INC_PATH) -I${MKLROOT}/include
 OBJS = param_read.o mklrand.o spin_type.o field_type.o shape.o hamiltonian.o state.o functions.o cpoints.o output.o
 NEW_OBJS = array_alloc.o field_type_new.o hamiltonian_new.o state_new.o shape.o
 
-all: $(OBJS) main.o field_run.o
+all: $(OBJS) $(NEW_OBJS) main.o main_new.o field_run.o
 
 array_alloc.o: array_alloc.cpp array_alloc.hpp
 	$(CXX) $(CPPFLAGS) -c array_alloc.cpp
@@ -63,11 +63,17 @@ output.o: output.cpp output.hpp functions.h
 main.o: main.cpp state.hpp spin_type.hpp mklrand.h functions.h cpoints.hpp output.hpp
 	$(CXX) $(CPPFLAGS) -c main.cpp
 
+main_new.o: main.cpp state_new.hpp mklrand.h functions.h cpoints.hpp output.hpp
+	$(CXX) $(CPPFLAGS) -c main_new.cpp
+
 field_run.o: field_run.cpp state.hpp spin_type.hpp mklrand.h functions.h cpoints.hpp output.hpp
 	$(CXX) $(CPPFLAGS) -c field_run.cpp
 
-run: $(OBJS) $(NEW_OBJS) main.o
+run: $(OBJS) main.o
 	$(CXX) $(OBJS) main.o -o run $(LDFLAGS)
+
+run_new: $(NEW_OBJS) main_new.o
+	$(CXX) $(NEW_OBJS) main_new.o -o run_new $(LDFLAGS)
 
 f_run: $(OBJS) field_run.o
 	$(CXX) $(OBJS) field_run.o -o f_run $(LDFLAGS)

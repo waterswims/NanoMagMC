@@ -1,4 +1,4 @@
-RUN_TYPES = run f_run test
+RUN_TYPES = run f_run test run_new
 .PHONY: $(RUN_TYPES)
 
 $(RUN_TYPES):
