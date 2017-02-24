@@ -5,6 +5,7 @@
 #include <cmath>
 #include <string>
 #include <fstream>
+#include <stdio.h>
 
 using namespace std;
 
@@ -174,7 +175,44 @@ TEST(Parameter_Checkpointing, Read_arrs)
 
 TEST(Parameter_Checkpointing, Write_vals)
 {
-    
+    string filename = "Includes/Test_Files/val_save_test.cp";
+    remove(filename.c_str());
+    fstream stream;
+    for(int i = 0; i < 100; i++)
+    {
+        print_cval(stream, filename, i);
+    }
+    int invals[100];
+    EXPECT_EQ(100, read_cval(stream, filename, invals));
+    for(int i = 0; i < 100; i++)
+    {
+        EXPECT_EQ(i, invals[i]);
+    }
+}
+
+TEST(Parameter_Checkpointing, Write_arr)
+{
+    string filename = "Includes/Test_Files/arr_save_test.cp";
+    remove(filename.c_str());
+    fstream stream;
+    double outvals[100];
+    for(int i = 0; i < 5; i++)
+    {
+        for(int j = 0; j < 100; j++)
+        {
+            outvals[j] = i*j;
+        }
+        print_clist(stream, filename, outvals, 100);
+    }
+    double invals[5][100];
+    EXPECT_EQ(5, read_clist(stream, filename, invals));
+    for(int i = 0; i < 5; i++)
+    {
+        for(int j = 0; j < 100; j++)
+        {
+            EXPECT_EQ(i*j, invals[i][j]);
+        }
+    }
 }
 
 int main(int argc, char **argv)
