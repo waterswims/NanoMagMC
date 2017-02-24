@@ -116,3 +116,13 @@ template void dealloc_3darr<int>(int size_m, int size_n, int*** arr);
 template int* deep_copy_1darr<int>(int size_m, int* arr);
 template int** deep_copy_2darr<int>(int size_m, int size_n, int** arr);
 template int*** deep_copy_3darr<int>(int size_m, int size_n, int size_p, int*** arr);
+
+template bool* alloc_1darr<bool>(int size_m);
+template bool** alloc_2darr<bool>(int size_m, int size_n);
+template bool*** alloc_3darr<bool>(int size_m, int size_n, int size_p);
+template void dealloc_1darr<bool>(bool* arr);
+template void dealloc_2darr<bool>(int size_m, bool** arr);
+template void dealloc_3darr<bool>(int size_m, int size_n, bool*** arr);
+template bool* deep_copy_1darr<bool>(int size_m, bool* arr);
+template bool** deep_copy_2darr<bool>(int size_m, int size_n, bool** arr);
+template bool*** deep_copy_3darr<bool>(int size_m, int size_n, int size_p, bool*** arr);

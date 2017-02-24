@@ -174,12 +174,6 @@ void field_cluster_h::get_1dfield_h(double* &x, double* &y, double* &z) const
     z = spinz;
 }
 
-bool field_cluster_h::check_zero(vector<int>& position)
-{
-    return (spinx[position[0]] == 0 && spiny[position[0]] == 0 &&
-            spinz[position[0]] == 0);
-}
-
 void field_cluster_h::change_to_test(vector<int>& position, ham_type* hamil)
 {
     hamil->get_test(spinx[position[0]],spiny[position[0]],spinz[position[0]]);
@@ -212,6 +206,22 @@ void field_2d::next(bool &finish, vector<int> &pos)
     }
 }
 
+int field_2d::findnum()
+{
+    int c = 0;
+    for(int i = 0; i<totsize; i++)
+    {
+        for(int j = 0; j<totsize; j++)
+        {
+            if(!(iszero[i][j]))
+            {
+                c++;
+            }
+        }
+    }
+    return c;
+}
+
 ///////////////////////
 // 2d Heis-model
 ///////////////////////
@@ -240,6 +250,7 @@ field_2d_h::field_2d_h(int size, bool isperio)
     spinx = alloc_2darr<double>(totsize, totsize);
     spiny = alloc_2darr<double>(totsize, totsize);
     spinz = alloc_2darr<double>(totsize, totsize);
+    iszero = alloc_2darr<bool>(totsize, totsize);
 }
 
 field_2d_h::field_2d_h(field_type& other)
@@ -257,10 +268,13 @@ field_2d_h::field_2d_h(field_type& other)
     double** xoth;
     double** yoth;
     double** zoth;
+    bool** zero_oth;
     other.get_2dfield_h(xoth, yoth, zoth);
+    other.get_2dzero(zero_oth);
     spinx = deep_copy_2darr<double>(totsize, totsize, xoth);
     spiny = deep_copy_2darr<double>(totsize, totsize, yoth);
     spinz = deep_copy_2darr<double>(totsize, totsize, zoth);
+    iszero = deep_copy_2darr<bool>(totsize, totsize, zero_oth);
 }
 
 field_2d_h::field_2d_h(const field_2d_h& other)
@@ -273,10 +287,13 @@ field_2d_h::field_2d_h(const field_2d_h& other)
     double** xoth;
     double** yoth;
     double** zoth;
+    bool** zero_oth;
     other.get_2dfield_h(xoth, yoth, zoth);
+    other.get_2dzero(zero_oth);
     spinx = deep_copy_2darr<double>(totsize, totsize, xoth);
     spiny = deep_copy_2darr<double>(totsize, totsize, yoth);
     spinz = deep_copy_2darr<double>(totsize, totsize, zoth);
+    iszero = deep_copy_2darr<bool>(totsize, totsize, zero_oth);
 }
 
 field_2d_h& field_2d_h::operator=(field_2d_h& other)
@@ -289,10 +306,13 @@ field_2d_h& field_2d_h::operator=(field_2d_h& other)
     double** xoth;
     double** yoth;
     double** zoth;
+    bool** zero_oth;
     other.get_2dfield_h(xoth, yoth, zoth);
+    other.get_2dzero(zero_oth);
     spinx = deep_copy_2darr<double>(totsize, totsize, xoth);
     spiny = deep_copy_2darr<double>(totsize, totsize, yoth);
     spinz = deep_copy_2darr<double>(totsize, totsize, zoth);
+    iszero = deep_copy_2darr<bool>(totsize, totsize, zero_oth);
     return *this;
 }
 
@@ -301,6 +321,7 @@ field_2d_h::~field_2d_h()
     dealloc_2darr<double>(totsize, spinx);
     dealloc_2darr<double>(totsize, spiny);
     dealloc_2darr<double>(totsize, spinz);
+    dealloc_2darr<bool>(totsize, iszero);
 }
 
 void field_2d_h::h_access(vector<int>& position, vector<double>& out)
@@ -325,33 +346,21 @@ void field_2d_h::fill_ghost()
             spinx[i][0] = 0;
             spiny[i][0] = 0;
             spinz[i][0] = 0;
+            iszero[i][0] = true;
             spinx[0][i] = 0;
             spiny[0][i] = 0;
             spinz[0][i] = 0;
+            iszero[0][i] = true;
             spinx[i][totsize-1] = 0;
             spiny[i][totsize-1] = 0;
             spinz[i][totsize-1] = 0;
+            iszero[i][totsize-1] = true;
             spinx[totsize-1][i] = 0;
             spiny[totsize-1][i] = 0;
             spinz[totsize-1][i] = 0;
+            iszero[totsize-1][i] = true;
         }
     }
-}
-
-int field_2d_h::findnum()
-{
-    int c = 0;
-    for(int i = 0; i<totsize; i++)
-    {
-        for(int j = 0; j<totsize; j++)
-        {
-            if(spinx[i][j]!=0 || spiny[i][j]!=0 || spinz[i][j]!=0)
-            {
-                c++;
-            }
-        }
-    }
-    return c;
 }
 
 void field_2d_h::get_2dfield_h(double** &x, double** &y, double** &z) const
@@ -387,6 +396,7 @@ void field_2d_h::fill_rand(vector<int>& position)
     rand_spin_h(spinx[position[0]][position[1]],
                 spiny[position[0]][position[1]],
                 spinz[position[0]][position[1]]);
+    iszero[position[0]][position[1]] = false;
 }
 
 void field_2d_h::fill_zero(vector<int>& position)
@@ -394,13 +404,7 @@ void field_2d_h::fill_zero(vector<int>& position)
     spinx[position[0]][position[1]] = 0;
     spiny[position[0]][position[1]] = 0;
     spinz[position[0]][position[1]] = 0;
-}
-
-bool field_2d_h::check_zero(vector<int>& position)
-{
-    return (spinx[position[0]][position[1]] == 0 &&
-            spiny[position[0]][position[1]] == 0 &&
-            spinz[position[0]][position[1]] == 0);
+    iszero[position[0]][position[1]] = true;
 }
 
 void field_2d_h::change_to_test(vector<int>& position, ham_type* hamil)
@@ -436,6 +440,7 @@ field_2d_i::field_2d_i(int size, bool isperio)
         totsize = insize + 2;
     }
     spin = alloc_2darr<int>(totsize, totsize);
+    iszero = alloc_2darr<bool>(totsize, totsize);
 }
 
 field_2d_i::field_2d_i(field_type& other)
@@ -451,8 +456,11 @@ field_2d_i::field_2d_i(field_type& other)
     totsize = other.get_totsize();
     periodic = other.get_perio();
     int** othspin;
+    bool** zero_oth;
     other.get_2dfield_i(othspin);
+    other.get_2dzero(zero_oth);
     spin = deep_copy_2darr<int>(totsize, totsize, othspin);
+    iszero = deep_copy_2darr<bool>(totsize, totsize, zero_oth);
 }
 
 field_2d_i::field_2d_i(const field_2d_i& other)
@@ -463,8 +471,11 @@ field_2d_i::field_2d_i(const field_2d_i& other)
     totsize = other.get_totsize();
     periodic = other.get_perio();
     int** othspin;
+    bool** zero_oth;
     other.get_2dfield_i(othspin);
+    other.get_2dzero(zero_oth);
     spin = deep_copy_2darr<int>(totsize, totsize, othspin);
+    iszero = deep_copy_2darr<bool>(totsize, totsize, zero_oth);
 }
 
 field_2d_i& field_2d_i::operator=(field_2d_i& other)
@@ -475,14 +486,18 @@ field_2d_i& field_2d_i::operator=(field_2d_i& other)
     totsize = other.get_totsize();
     periodic = other.get_perio();
     int** othspin;
+    bool** zero_oth;
     other.get_2dfield_i(othspin);
+    other.get_2dzero(zero_oth);
     spin = deep_copy_2darr<int>(totsize, totsize, othspin);
+    iszero = deep_copy_2darr<bool>(totsize, totsize, zero_oth);
     return *this;
 }
 
 field_2d_i::~field_2d_i()
 {
     dealloc_2darr<int>(totsize, spin);
+    dealloc_2darr<bool>(totsize, iszero);
 }
 
 void field_2d_i::i_access(vector<int>& position, int &out)
@@ -503,27 +518,15 @@ void field_2d_i::fill_ghost()
         for(int i=0; i < totsize; i++)
         {
             spin[i][0] = 0;
+            iszero[i][0] = true;
             spin[0][i] = 0;
+            iszero[0][i] = true;
             spin[i][totsize-1] = 0;
+            iszero[i][totsize-1] = true;
             spin[totsize-1][i] = 0;
+            iszero[totsize-1][i] = true;
         }
     }
-}
-
-int field_2d_i::findnum()
-{
-    int c = 0;
-    for(int i = 0; i<totsize; i++)
-    {
-        for(int j = 0; j<totsize; j++)
-        {
-            if(spin[i][j]!=0)
-            {
-                c++;
-            }
-        }
-    }
-    return c;
 }
 
 void field_2d_i::get_2dfield_i(int** &x) const
@@ -553,16 +556,13 @@ void field_2d_i::i_adjacent(vector<int>& position, int* out)
 void field_2d_i::fill_rand(vector<int>& position)
 {
     rand_spin_i(spin[position[0]][position[1]]);
+    iszero[position[0]][position[1]] = false;
 }
 
 void field_2d_i::fill_zero(vector<int>& position)
 {
     spin[position[0]][position[1]] = 0;
-}
-
-bool field_2d_i::check_zero(vector<int>& position)
-{
-    return (spin[position[0]][position[1]] == 0);
+    iszero[position[0]][position[1]] = true;
 }
 
 void field_2d_i::change_to_test(vector<int>& position, ham_type* hamil)
@@ -601,6 +601,25 @@ void field_3d::next(bool &finish, vector<int> &pos)
     }
 }
 
+int field_3d::findnum()
+{
+    int c = 0;
+    for(int i = 0; i<totsize; i++)
+    {
+        for(int j = 0; j<totsize; j++)
+        {
+            for(int k = 0; k<totsize; k++)
+            {
+                if(!(iszero[i][j][k]))
+                {
+                    c++;
+                }
+            }
+        }
+    }
+    return c;
+}
+
 ///////////////////////
 // 3d Heis-model
 ///////////////////////
@@ -629,6 +648,7 @@ field_3d_h::field_3d_h(int size, bool isperio)
     spinx = alloc_3darr<double>(totsize, totsize, totsize);
     spiny = alloc_3darr<double>(totsize, totsize, totsize);
     spinz = alloc_3darr<double>(totsize, totsize, totsize);
+    iszero = alloc_3darr<bool>(totsize, totsize, totsize);
 }
 
 field_3d_h::field_3d_h(field_type& other)
@@ -646,10 +666,13 @@ field_3d_h::field_3d_h(field_type& other)
     double*** xoth;
     double*** yoth;
     double*** zoth;
+    bool*** zero_oth;
     other.get_3dfield_h(xoth, yoth, zoth);
+    other.get_3dzero(zero_oth);
     spinx = deep_copy_3darr<double>(totsize, totsize, totsize, xoth);
     spiny = deep_copy_3darr<double>(totsize, totsize, totsize, yoth);
     spinz = deep_copy_3darr<double>(totsize, totsize, totsize, zoth);
+    iszero = deep_copy_3darr<bool>(totsize, totsize, totsize, zero_oth);
 }
 
 field_3d_h::field_3d_h(const field_3d_h& other)
@@ -662,10 +685,13 @@ field_3d_h::field_3d_h(const field_3d_h& other)
     double*** xoth;
     double*** yoth;
     double*** zoth;
+    bool*** zero_oth;
     other.get_3dfield_h(xoth, yoth, zoth);
+    other.get_3dzero(zero_oth);
     spinx = deep_copy_3darr<double>(totsize, totsize, totsize, xoth);
     spiny = deep_copy_3darr<double>(totsize, totsize, totsize, yoth);
     spinz = deep_copy_3darr<double>(totsize, totsize, totsize, zoth);
+    iszero = deep_copy_3darr<bool>(totsize, totsize, totsize, zero_oth);
 }
 
 field_3d_h& field_3d_h::operator=(field_3d_h& other)
@@ -678,10 +704,13 @@ field_3d_h& field_3d_h::operator=(field_3d_h& other)
     double*** xoth;
     double*** yoth;
     double*** zoth;
+    bool*** zero_oth;
     other.get_3dfield_h(xoth, yoth, zoth);
+    other.get_3dzero(zero_oth);
     spinx = deep_copy_3darr<double>(totsize, totsize, totsize, xoth);
     spiny = deep_copy_3darr<double>(totsize, totsize, totsize, yoth);
     spinz = deep_copy_3darr<double>(totsize, totsize, totsize, zoth);
+    iszero = deep_copy_3darr<bool>(totsize, totsize, totsize, zero_oth);
     return *this;
 }
 
@@ -690,6 +719,7 @@ field_3d_h::~field_3d_h()
     dealloc_3darr<double>(totsize, totsize, spinx);
     dealloc_3darr<double>(totsize, totsize, spiny);
     dealloc_3darr<double>(totsize, totsize, spinz);
+    dealloc_3darr<bool>(totsize, totsize, iszero);
 }
 
 void field_3d_h::h_access(vector<int>& position, vector<double>& out)
@@ -716,44 +746,31 @@ void field_3d_h::fill_ghost()
                 spinx[i][j][0] = 0;
                 spiny[i][j][0] = 0;
                 spinz[i][j][0] = 0;
+                iszero[i][j][0] = true;
                 spinx[0][i][j] = 0;
                 spiny[0][i][j] = 0;
                 spinz[0][i][j] = 0;
+                iszero[0][i][j] = true;
                 spinx[j][0][i] = 0;
                 spiny[j][0][i] = 0;
                 spinz[j][0][i] = 0;
+                iszero[j][0][i] = true;
 
                 spinx[i][j][totsize-1] = 0;
                 spiny[i][j][totsize-1] = 0;
                 spinz[i][j][totsize-1] = 0;
+                iszero[i][j][totsize-1] = true;
                 spinx[totsize-1][i][j] = 0;
                 spiny[totsize-1][i][j] = 0;
                 spinz[totsize-1][i][j] = 0;
+                iszero[totsize-1][i][j] = true;
                 spinx[j][totsize-1][i] = 0;
                 spiny[j][totsize-1][i] = 0;
                 spinz[j][totsize-1][i] = 0;
+                iszero[j][totsize-1][i] = true;
             }
         }
     }
-}
-
-int field_3d_h::findnum()
-{
-    int c = 0;
-    for(int i = 0; i<totsize; i++)
-    {
-        for(int j = 0; j<totsize; j++)
-        {
-            for(int k = 0; k<totsize; k++)
-            {
-                if(spinx[i][j][k]!=0 || spiny[i][j][k]!=0 || spinz[i][j][k]!=0)
-                {
-                    c++;
-                }
-            }
-        }
-    }
-    return c;
 }
 
 void field_3d_h::get_3dfield_h(double*** &x, double*** &y, double*** &z) const
@@ -800,6 +817,7 @@ void field_3d_h::fill_rand(vector<int>& position)
     rand_spin_h(spinx[position[0]][position[1]][position[2]],
                 spiny[position[0]][position[1]][position[2]],
                 spinz[position[0]][position[1]][position[2]]);
+    iszero[position[0]][position[1]][position[2]] = false;
 }
 
 void field_3d_h::fill_zero(vector<int>& position)
@@ -807,13 +825,7 @@ void field_3d_h::fill_zero(vector<int>& position)
     spinx[position[0]][position[1]][position[2]] = 0;
     spiny[position[0]][position[1]][position[2]] = 0;
     spinz[position[0]][position[1]][position[2]] = 0;
-}
-
-bool field_3d_h::check_zero(vector<int>& position)
-{
-    return (spinx[position[0]][position[1]][position[2]] == 0 &&
-            spiny[position[0]][position[1]][position[2]] == 0 &&
-            spinz[position[0]][position[1]][position[2]] == 0);
+    iszero[position[0]][position[1]][position[2]] = true;
 }
 
 void field_3d_h::change_to_test(vector<int>& position, ham_type* hamil)
@@ -849,6 +861,7 @@ field_3d_i::field_3d_i(int size, bool isperio)
         totsize = insize + 2;
     }
     spin = alloc_3darr<int>(totsize, totsize, totsize);
+    iszero = alloc_3darr<bool>(totsize, totsize, totsize);
 }
 
 field_3d_i::field_3d_i(field_type& other)
@@ -864,8 +877,11 @@ field_3d_i::field_3d_i(field_type& other)
     totsize = other.get_totsize();
     periodic = other.get_perio();
     int*** othspin;
+    bool*** zero_oth;
     other.get_3dfield_i(othspin);
+    other.get_3dzero(zero_oth);
     spin = deep_copy_3darr<int>(totsize, totsize, totsize, othspin);
+    iszero = deep_copy_3darr<bool>(totsize, totsize, totsize, zero_oth);
 }
 
 field_3d_i::field_3d_i(const field_3d_i& other)
@@ -876,8 +892,11 @@ field_3d_i::field_3d_i(const field_3d_i& other)
     totsize = other.get_totsize();
     periodic = other.get_perio();
     int*** othspin;
+    bool*** zero_oth;
     other.get_3dfield_i(othspin);
+    other.get_3dzero(zero_oth);
     spin = deep_copy_3darr<int>(totsize, totsize, totsize, othspin);
+    iszero = deep_copy_3darr<bool>(totsize, totsize, totsize, zero_oth);
 }
 
 field_3d_i& field_3d_i::operator=(field_3d_i& other)
@@ -888,14 +907,18 @@ field_3d_i& field_3d_i::operator=(field_3d_i& other)
     totsize = other.get_totsize();
     periodic = other.get_perio();
     int*** othspin;
+    bool*** zero_oth;
     other.get_3dfield_i(othspin);
+    other.get_3dzero(zero_oth);
     spin = deep_copy_3darr<int>(totsize, totsize, totsize, othspin);
+    iszero = deep_copy_3darr<bool>(totsize, totsize, totsize, zero_oth);
     return *this;
 }
 
 field_3d_i::~field_3d_i()
 {
     dealloc_3darr<int>(totsize, totsize, spin);
+    dealloc_3darr<bool>(totsize, totsize, iszero);
 }
 
 void field_3d_i::i_access(vector<int>& position, int &out)
@@ -918,34 +941,21 @@ void field_3d_i::fill_ghost()
             for(int j=0; j < totsize; j++)
             {
                 spin[i][j][0] = 0;
+                iszero[i][j][0] = true;
                 spin[0][i][j] = 0;
+                iszero[0][i][j] = true;
                 spin[j][0][i] = 0;
+                iszero[j][0][i] = true;
 
                 spin[i][j][totsize-1] = 0;
+                iszero[i][j][totsize-1] = true;
                 spin[totsize-1][i][j] = 0;
+                iszero[totsize-1][i][j] = true;
                 spin[j][totsize-1][i] = 0;
+                iszero[j][totsize-1][i] = true;
             }
         }
     }
-}
-
-int field_3d_i::findnum()
-{
-    int c = 0;
-    for(int i = 0; i<totsize; i++)
-    {
-        for(int j = 0; j<totsize; j++)
-        {
-            for(int k = 0 ; k<totsize; k++)
-            {
-                if(spin[i][j]!=0)
-                {
-                    c++;
-                }
-            }
-        }
-    }
-    return c;
 }
 
 void field_3d_i::get_3dfield_i(int*** &x) const
@@ -986,16 +996,13 @@ void field_3d_i::i_adjacent(vector<int>& position, int* out)
 void field_3d_i::fill_rand(vector<int>& position)
 {
     rand_spin_i(spin[position[0]][position[1]][position[2]]);
+    iszero[position[0]][position[1]][position[2]] = false;
 }
 
 void field_3d_i::fill_zero(vector<int>& position)
 {
     spin[position[0]][position[1]][position[2]] = 0;
-}
-
-bool field_3d_i::check_zero(vector<int>& position)
-{
-    return (spin[position[0]][position[1]][position[2]] == 0);
+    iszero[position[0]][position[1]][position[2]] = true;
 }
 
 void field_3d_i::change_to_test(vector<int>& position, ham_type* hamil)

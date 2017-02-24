@@ -43,6 +43,8 @@ public:
     virtual void get_1dfield_h(double* &x, double* &y, double* &z) const{}
     virtual void get_2dfield_h(double** &x, double** &y, double** &z) const{}
     virtual void get_3dfield_h(double*** &x, double*** &y, double*** &z) const{}
+    virtual void get_2dzero(bool** &x) const{}
+    virtual void get_3dzero(bool*** &x) const{}
     virtual void print(){}
     int get_ft() const {return ft;}
 };
@@ -65,16 +67,22 @@ public:
     int findnum(){return insize;}
     void get_1dfield_h(double* &x, double* &y, double* &z) const;
     void fill_rand(vector<int>& position){}
-    bool check_zero(vector<int>& position);
+    bool check_zero(vector<int>& position){return false;}
     void change_to_test(vector<int>& position, ham_type* hamil);
 };
 
 class field_2d: public field_type
 {
+protected:
+    bool** iszero;
 public:
     field_2d() {}
     ~field_2d() {}
     void next(bool &finish, vector<int> &pos);
+    bool check_zero(vector<int>& position)
+        {return iszero[position[0]][position[1]];}
+    void get_2dzero(bool** &x) const {x = iszero;}
+    int findnum();
 };
 
 class field_2d_h: public field_2d
@@ -93,12 +101,10 @@ public:
     void h_next(bool &finish, vector<int> &pos, vector<double> &out);
     void fill_ghost();
     field_2d_h& operator=(field_2d_h& other);
-    int findnum();
     void get_2dfield_h(double** &x, double** &y, double** &z) const;
     void h_adjacent(vector<int>& position, double** out);
     void fill_rand(vector<int>& position);
     void fill_zero(vector<int>& position);
-    bool check_zero(vector<int>& position);
     void change_to_test(vector<int>& position, ham_type* hamil);
 };
 
@@ -116,21 +122,25 @@ public:
     void i_next(bool &finish, vector<int> &pos, int &out);
     void fill_ghost();
     field_2d_i& operator=(field_2d_i& other);
-    int findnum();
     void get_2dfield_i(int** &x) const;
     void i_adjacent(vector<int>& position, int* out);
     void fill_rand(vector<int>& position);
     void fill_zero(vector<int>& position);
-    bool check_zero(vector<int>& position);
     void change_to_test(vector<int>& position, ham_type* hamil);
 };
 
 class field_3d: public field_type
 {
+protected:
+    bool*** iszero;
 public:
     field_3d() {}
     ~field_3d() {}
     void next(bool &finish, vector<int> &pos);
+    bool check_zero(vector<int>& position)
+        {return iszero[position[0]][position[1]][position[2]];}
+    void get_3dzero(bool*** &x) const {x = iszero;}
+    int findnum();
 };
 
 class field_3d_h: public field_3d
@@ -149,12 +159,10 @@ public:
     void h_next(bool &finish, vector<int> &pos, vector<double> &out);
     void fill_ghost();
     field_3d_h& operator=(field_3d_h& other);
-    int findnum();
     void get_3dfield_h(double*** &x, double*** &y, double*** &z) const;
     void h_adjacent(vector<int>& position, double** out);
     void fill_rand(vector<int>& position);
     void fill_zero(vector<int>& position);
-    bool check_zero(vector<int>& position);
     void change_to_test(vector<int>& position, ham_type* hamil);
 };
 
@@ -172,12 +180,10 @@ public:
     void i_next(bool &finish, vector<int> &pos, int &out);
     void fill_ghost();
     field_3d_i& operator=(field_3d_i& other);
-    int findnum();
     void get_3dfield_i(int*** &x) const;
     void i_adjacent(vector<int>& position, int* out);
     void fill_rand(vector<int>& position);
     void fill_zero(vector<int>& position);
-    bool check_zero(vector<int>& position);
     void change_to_test(vector<int>& position, ham_type* hamil);
 };
 
