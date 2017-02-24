@@ -2,6 +2,7 @@
 #define _HAMIL
 
 #include "field_type_new.hpp"
+#include "array_alloc.hpp"
 #include <vector>
 
 class field_type;
@@ -10,6 +11,8 @@ using namespace std;
 
 class ham_type
 {
+protected:
+    int dim;
 public:
     virtual double calc_E(field_type* lattice) {return 0;}
     virtual double dE(field_type* lattice, vector<int>& position) {return 0;}
@@ -20,6 +23,7 @@ public:
     virtual vector<double> get_Js(){}
     virtual vector<double> get_Hs(){}
     virtual void get_test(double &x, double &y, double &z){}
+    virtual void init_dim(field_type* field) {}
     // virtual double get_Dx(){return 0;}
     // virtual double get_Dy(){return 0;}
     // virtual vector<double>* get_xs(){return NULL;}
@@ -42,7 +46,7 @@ public:
     ham_ising(){}
     ham_ising(double Hin, double Jin){H = Hin; J = Jin;}
     ham_ising(ham_type& other);
-    ~ham_ising(){}
+    ~ham_ising(){dealloc_1darr<int>(adj);}
     double calc_E(field_type* lattice);
     vector<double> calc_M(field_type* lattice);
     vector<double> calc_subM(field_type* lattice, int subnumber);
@@ -50,6 +54,7 @@ public:
     double get_J(){return J;}
     double get_H(){return H;}
     ham_ising& operator=(ham_type& other);
+    void init_dim(field_type* field);
 };
 
 class ham_heis: public ham_type
@@ -63,7 +68,7 @@ public:
     ham_heis(){}
     ham_heis(double Hin, double Jin);
     ham_heis(ham_type& other);
-    ~ham_heis(){}
+    ~ham_heis(){dealloc_2darr<double>(4, adj);}
     virtual double calc_E(field_type* lattice);
     vector<double> calc_M(field_type* lattice);
     vector<double> calc_subM(field_type* lattice, int subnumber);
@@ -71,6 +76,7 @@ public:
     vector<double> get_Js(){return J;}
     vector<double> get_Hs(){return H;}
     ham_heis& operator=(ham_type& other);
+    void init_dim(field_type* field);
     void get_test(double &x, double &y, double &z)
         {x = test[0]; y = test[1]; z = test[2];}
 };

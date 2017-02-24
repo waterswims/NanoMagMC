@@ -129,6 +129,7 @@ void state::init_points(double size, bool isPerio, double H, double J, double* a
         }
         break;
     }
+    hamil->init_dim(field);
 }
 
 void state::copy_points(const state& other)
@@ -215,6 +216,7 @@ void state::copy_points(const state& other)
         }
         break;
     }
+    hamil->init_dim(field);
 }
 
 state::~state()
@@ -269,9 +271,9 @@ void state::equil(int iter)
 
     for (int i=0; i<iter; i++)
     {
-        for (vector<int>::iterator it=r_choice.begin(), end=r_choice.end(); it!=end; it++)
+        for (int j=0; j < dim; j++)
         {
-            *it = int(st_rand_double.gen() * size)+s_start;
+            r_choice[j] = int(st_rand_double.gen() * size)+s_start;
         }
 
         if(field->check_zero(r_choice))
