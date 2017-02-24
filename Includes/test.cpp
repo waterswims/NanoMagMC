@@ -1,6 +1,5 @@
 #include "mklrand.h"
 #include "cpoints.hpp"
-#include "boost/math/special_functions/binomial.hpp"
 #include <gtest/gtest.h>
 #include <vector>
 #include <cmath>
@@ -31,6 +30,16 @@ double chi2(vector<int>& count, vector<double>& expect)
     return ans / (count.size() - 1 - skip);
 }
 
+double beta(int a, int b)
+{
+    return tgamma(a)*tgamma(b)/(tgamma(a+b));
+}
+
+double binomial(int n, int k)
+{
+    return 1 / (k * beta(k, n-k+1));
+}
+
 TEST(Random_Numbers, Integer_Test)
 {
     int N_atts = 1e6, N_toss = 100;
@@ -47,7 +56,7 @@ TEST(Random_Numbers, Integer_Test)
     vector<double> expect(N_toss/2);
     for(int i = 0; i < N_toss/2; i++)
     {
-        expect[i] = boost::math::binomial_coefficient<double>(N_toss, (N_toss/2)-i) * N_atts / float(pow(2, (N_toss - 1)));
+        expect[i] = binomial(N_toss, (N_toss/2)-i) * N_atts / float(pow(2, (N_toss - 1)));
     }
     expect[0] = expect[0] / 2;
     double chi2_test = chi2(bins, expect);
