@@ -1,5 +1,5 @@
 #include "functions.h"
-#include "boost/assign.hpp"
+// #include "boost/assign.hpp"
 #include <stdexcept>
 #include <iostream>
 #include <cmath>
@@ -58,13 +58,19 @@ double mag_sus(vector<double> magx, vector<double> magy, vector<double> magz, do
     double s_magz = sum(magz);
     int s_num = sum(nums);
     double s_m2ovn = 0;
-    vector<double> mvec;
+    vector<double> mvec(3);
     for (int i(0); i < N; i++)
     {
-        mvec = boost::assign::list_of(magx[i])(magy[i])(magz[i]).convert_to_container<vector<double> >();
+        mvec[0] = magx[i];
+        mvec[1] = magy[i];
+        mvec[2] = magz[i];
+        // mvec = boost::assign::list_of(magx[i])(magy[i])(magz[i]).convert_to_container<vector<double> >();
         s_m2ovn += pow(norm(mvec), 2) / nums[i];
     }
-    mvec = boost::assign::list_of(s_magx)(s_magy)(s_magz).convert_to_container<vector<double> >();
+    mvec[0] = s_magx;
+    mvec[1] = s_magy;
+    mvec[2] = s_magz;
+    // mvec = boost::assign::list_of(s_magx)(s_magy)(s_magz).convert_to_container<vector<double> >();
     double ms = (s_m2ovn / s_num - pow(norm(mvec) / s_num, 2)) / T;
     return ms;
 }
