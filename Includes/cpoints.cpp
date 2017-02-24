@@ -1,10 +1,9 @@
 #include "functions.h"
-#include "boost/algorithm/string/split.hpp"
-#include "boost/algorithm/string/classification.hpp"
 #include <iostream>
 #include <cmath>
 #include <sstream>
 #include <vector>
+#include <cstdlib>
 
 
 void print_cval(fstream &stream, string fname, double cval)
@@ -53,10 +52,14 @@ int read_clist(fstream &stream, string fname, double clist[][100])
 
     for(i=0; getline(stream, line); i++)
     {
-        boost::algorithm::split(vals, line, boost::algorithm::is_any_of(" "));
-        for(int j=0; j<vals.size();j++)
+        char* in = new char[line.size()+1];
+        memcpy(in, line.c_str(), line.size()+1);
+        char* pch;
+        pch = strtok(in, " ");
+        for (int j = 0; pch != NULL; j++)
         {
-            clist[i][j] = atof(vals[j].c_str());
+            clist[i][j] = atof(pch);
+            pch = strtok(NULL, " ");
         }
     }
     stream.close();

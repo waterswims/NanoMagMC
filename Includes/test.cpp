@@ -172,6 +172,11 @@ TEST(Parameter_Checkpointing, Read_arrs)
     }
 }
 
+TEST(Parameter_Checkpointing, Write_vals)
+{
+    
+}
+
 int main(int argc, char **argv)
 {
     ::testing::InitGoogleTest(&argc, argv);
