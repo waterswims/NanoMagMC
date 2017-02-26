@@ -78,11 +78,11 @@ run_new: $(NEW_OBJS) main_new.o
 f_run: $(OBJS) field_run.o
 	$(CXX) $(OBJS) field_run.o -o f_run $(LDFLAGS)
 
-test.o: test.cpp mklrand.h cpoints.hpp
+test.o: test.cpp mklrand.h cpoints.hpp hamiltonian_new.hpp field_type_new.hpp
 	$(CXX) $(CPPFLAGS) -c test.cpp -lgtest
 
-test: $(OBJS) test.o
-	$(CXX) $(OBJS) test.o -o test -lgtest $(LDFLAGS)
+test: $(NEW_OBJS) test.o
+	$(CXX) $(NEW_OBJS) test.o -o test -lgtest $(LDFLAGS)
 
 clean:
 	-rm *.o
