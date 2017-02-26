@@ -34,6 +34,7 @@ public:
     virtual void fill_ghost(){}
     virtual void fill_rand(vector<int>& position){}
     virtual void fill_zero(vector<int>& position){}
+    virtual void fill_val_i(vector<int>& position, int val){}
     virtual bool check_zero(vector<int>& position){return true;}
     virtual void change_to_test(vector<int>& position, ham_type* hamil){}
     virtual void new_mem(){}
@@ -127,6 +128,7 @@ public:
     void fill_rand(vector<int>& position);
     void fill_zero(vector<int>& position);
     void change_to_test(vector<int>& position, ham_type* hamil);
+    void fill_val_i(vector<int>& position, int val);
 };
 
 class field_3d: public field_type
@@ -185,6 +187,7 @@ public:
     void fill_rand(vector<int>& position);
     void fill_zero(vector<int>& position);
     void change_to_test(vector<int>& position, ham_type* hamil);
+    void fill_val_i(vector<int>& position, int val);
 };
 
 #endif

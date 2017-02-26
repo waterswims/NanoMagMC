@@ -565,6 +565,11 @@ void field_2d_i::fill_zero(vector<int>& position)
     iszero[position[0]][position[1]] = true;
 }
 
+void field_2d_i::fill_val_i(vector<int>& position, int val)
+{
+    spin[position[0]][position[1]] = val;
+}
+
 void field_2d_i::change_to_test(vector<int>& position, ham_type* hamil)
 {
     spin[position[0]][position[1]] = -spin[position[0]][position[1]];
@@ -1003,6 +1008,11 @@ void field_3d_i::fill_zero(vector<int>& position)
 {
     spin[position[0]][position[1]][position[2]] = 0;
     iszero[position[0]][position[1]][position[2]] = true;
+}
+
+void field_3d_i::fill_val_i(vector<int>& position, int val)
+{
+    spin[position[0]][position[1]][position[2]] = val;
 }
 
 void field_3d_i::change_to_test(vector<int>& position, ham_type* hamil)
