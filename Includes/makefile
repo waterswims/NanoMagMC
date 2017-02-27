@@ -15,6 +15,7 @@ CPPFLAGS = -O3 -I$(INC_PATH) -I${MKLROOT}/include
 
 OBJS = param_read.o mklrand.o spin_type.o field_type.o shape.o hamiltonian.o state.o functions.o cpoints.o output.o
 NEW_OBJS = functions.o cpoints.o output.o param_read.o mklrand.o array_alloc.o field_type_new.o hamiltonian_new.o state_new.o shape.o
+TEST_FILES = cpoint_test.hpp mklrand_test.hpp ising_test.hpp
 
 all: $(OBJS) $(NEW_OBJS) main.o main_new.o field_run.o
 
@@ -78,7 +79,7 @@ run_new: $(NEW_OBJS) main_new.o
 f_run: $(OBJS) field_run.o
 	$(CXX) $(OBJS) field_run.o -o f_run $(LDFLAGS)
 
-test.o: test.cpp mklrand.h cpoints.hpp hamiltonian_new.hpp field_type_new.hpp
+test.o: test.cpp mklrand.h cpoints.hpp hamiltonian_new.hpp field_type_new.hpp $(TEST_FILES)
 	$(CXX) $(CPPFLAGS) -c test.cpp -lgtest
 
 test: $(NEW_OBJS) test.o
