@@ -229,4 +229,13 @@ TEST(Ising_model, 3d_ferromagnetic_submag)
     EXPECT_EQ(500, hamil.calc_subM(&field, 1)[0]);
 }
 
+TEST(Ising_model, 3d_ferromagnetic_dE)
+{
+    field_3d_i field = gen_3d_ising_fm();
+    ham_ising hamil(0, 1);
+    hamil.init_dim(&field);
+    vector<int> pos(3,5);
+    EXPECT_EQ(12, hamil.dE(&field, pos));
+}
+
 #endif
