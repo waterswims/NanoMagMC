@@ -26,7 +26,7 @@ double ham_ising::calc_E(field_type* lattice)
 {
     int sum=0;
     int start = 0;
-    if(lattice->get_perio())
+    if(!(lattice->get_perio()))
     {
         start++;
     }
@@ -38,6 +38,7 @@ double ham_ising::calc_E(field_type* lattice)
     bool finished = false;
     int curr;
     int H_sum(0), J_sum(0);
+
     while (!finished)
     {
         lattice->i_adjacent(pos, adj);
@@ -57,7 +58,7 @@ vector<double> ham_ising::calc_M(field_type* lattice)
 {
     int sum=0;
     int start = 0;
-    if(lattice->get_perio())
+    if(!(lattice->get_perio()))
     {
         start++;
     }
@@ -87,7 +88,7 @@ vector<double> ham_ising::calc_subM(field_type* lattice, int subnumber)
     }
     int tsum=0;
     int start = 0;
-    if(lattice->get_perio())
+    if(!(lattice->get_perio()))
     {
         start++;
     }
@@ -185,7 +186,7 @@ double ham_heis::calc_E(field_type* lattice)
 {
     int sum=0;
     int start = 0;
-    if(lattice->get_perio())
+    if(!(lattice->get_perio()))
     {
         start++;
     }
@@ -232,7 +233,7 @@ vector<double> ham_heis::calc_M(field_type* lattice)
     #pragma simd
     for (int i = 0; i < 4; i++) {vsum[i] += 0;}
     int start = 0;
-    if(lattice->get_perio())
+    if(!(lattice->get_perio()))
     {
         start++;
     }
@@ -253,7 +254,7 @@ vector<double> ham_heis::calc_subM(field_type* lattice, int subnumber)
     #pragma simd
     for (int i = 0; i < 4; i++) {vsum[i] += 0;}
     int start = 0;
-    if(lattice->get_perio())
+    if(!(lattice->get_perio()))
     {
         start++;
     }

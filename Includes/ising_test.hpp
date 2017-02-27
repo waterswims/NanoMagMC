@@ -48,39 +48,45 @@ field_2d_i gen_2d_ising_afm()
 
 field_3d_i gen_3d_ising_fm()
 {
-    field_2d_i field(10, false);
-    vector<int> pos(2);
+    field_3d_i field(10, false);
+    vector<int> pos(3);
     for(int i = 1; i < 11; i++)
     {
         pos[0] = i;
         for(int j = 1; j < 11; j++)
         {
             pos[1] = j;
-            field.fill_val_i(pos, 1);
+            for(int k = 1; k < 11; k++)
+            {
+                pos[2] = k;
+                field.fill_val_i(pos, 1);
+            }
         }
     }
     field.fill_ghost();
     return field;
 }
 
-field_2d_i gen_3d_ising_afm()
+field_3d_i gen_3d_ising_afm()
 {
-    field_2d_i field(10, false);
-    vector<int> pos(2);
+    field_3d_i field(10, false);
+    vector<int> pos(3);
     for(int i = 1; i < 11; i++)
     {
         pos[0] = i;
         for(int j = 1; j < 11; j++)
         {
             pos[1] = j;
-            field.fill_val_i(pos, ((i+j)%2)*2-1);
+            for(int k = 1; k < 11; k++)
+            {
+                pos[2] = k;
+                field.fill_val_i(pos, ((i+j+k)%2)*2-1);
+            }
         }
     }
     field.fill_ghost();
     return field;
 }
-
-
 
 ///////////////////////////////////////////////////////
 // Ising model tests - 2D
@@ -185,6 +191,42 @@ TEST(Ising_model, 2d_dE_consist)
         EXPECT_EQ(old_E + dE, new_E);
         old_E = new_E;
     }
+}
+
+///////////////////////////////////////////////////////
+// Ising model tests - 3D
+///////////////////////////////////////////////////////
+
+TEST(Ising_model, 3d_ferromagnetic_energy_zero_field)
+{
+    field_3d_i field = gen_3d_ising_fm();
+    ham_ising hamil(0, 1);
+    hamil.init_dim(&field);
+    EXPECT_EQ(-2700, hamil.calc_E(&field));
+}
+
+TEST(Ising_model, 3d_ferromagnetic_energy_ext_field)
+{
+    field_3d_i field = gen_3d_ising_fm();
+    ham_ising hamil(0.1, 1);
+    hamil.init_dim(&field);
+    EXPECT_EQ(-2800, hamil.calc_E(&field));
+}
+
+TEST(Ising_model, 3d_ferromagnetic_mag)
+{
+    field_3d_i field = gen_3d_ising_fm();
+    ham_ising hamil(0, 1);
+    hamil.init_dim(&field);
+    EXPECT_EQ(1000, hamil.calc_M(&field)[0]);
+}
+
+TEST(Ising_model, 3d_ferromagnetic_submag)
+{
+    field_3d_i field = gen_3d_ising_fm();
+    ham_ising hamil(0, 1);
+    hamil.init_dim(&field);
+    EXPECT_EQ(500, hamil.calc_subM(&field, 1)[0]);
 }
 
 #endif

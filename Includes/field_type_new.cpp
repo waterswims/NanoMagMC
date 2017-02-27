@@ -982,17 +982,17 @@ void field_3d_i::i_adjacent(vector<int>& position, int* out)
     dirsy[1] = position[1];
     dirsy[2] = boundmovedown(position[1] - 1, totsize);
     dirsy[3] = boundmoveup(position[1] + 1, totsize);
-    dirsx[4] = position[1];
-    dirsx[5] = position[1];
+    dirsy[4] = position[1];
+    dirsy[5] = position[1];
 
     dirsz[0] = position[2];
     dirsz[1] = position[2];
     dirsz[2] = position[2];
-    dirsz[1] = position[2];
+    dirsz[3] = position[2];
     dirsz[4] = boundmovedown(position[2] - 1, totsize);
-    dirsz[3] = boundmoveup(position[2] + 1, totsize);
+    dirsz[5] = boundmoveup(position[2] + 1, totsize);
 
-    for (int i = 0; i < 4; i++)
+    for (int i = 0; i < 6; i++)
     {
         out[i] = spin[dirsx[i]][dirsy[i]][dirsz[i]];
     }
