@@ -414,6 +414,13 @@ void field_2d_h::change_to_test(vector<int>& position, ham_type* hamil)
                     spinz[position[0]][position[1]]);
 }
 
+void field_2d_h::fill_val_h(vector<int>& position, double x, double y, double z)
+{
+    spinx[position[0]][position[1]] = x;
+    spiny[position[0]][position[1]] = y;
+    spinz[position[0]][position[1]] = z;
+}
+
 ///////////////////////
 // 2d Ising-model
 ///////////////////////
@@ -831,6 +838,13 @@ void field_3d_h::fill_zero(vector<int>& position)
     spiny[position[0]][position[1]][position[2]] = 0;
     spinz[position[0]][position[1]][position[2]] = 0;
     iszero[position[0]][position[1]][position[2]] = true;
+}
+
+void field_3d_h::fill_val_h(vector<int>& position, double x, double y, double z)
+{
+    spinx[position[0]][position[1]][position[2]] = x;
+    spiny[position[0]][position[1]][position[2]] = y;
+    spinz[position[0]][position[1]][position[2]] = z;
 }
 
 void field_3d_h::change_to_test(vector<int>& position, ham_type* hamil)

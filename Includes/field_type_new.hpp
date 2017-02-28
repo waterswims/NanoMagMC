@@ -35,6 +35,7 @@ public:
     virtual void fill_rand(vector<int>& position){}
     virtual void fill_zero(vector<int>& position){}
     virtual void fill_val_i(vector<int>& position, int val){}
+    virtual void fill_val_h(vector<int>& position, double x, double y, double z){}
     virtual bool check_zero(vector<int>& position){return true;}
     virtual void change_to_test(vector<int>& position, ham_type* hamil){}
     virtual void new_mem(){}
@@ -106,6 +107,7 @@ public:
     void h_adjacent(vector<int>& position, double** out);
     void fill_rand(vector<int>& position);
     void fill_zero(vector<int>& position);
+    void fill_val_h(vector<int>& position, double x, double y, double z);
     void change_to_test(vector<int>& position, ham_type* hamil);
 };
 
@@ -165,6 +167,7 @@ public:
     void h_adjacent(vector<int>& position, double** out);
     void fill_rand(vector<int>& position);
     void fill_zero(vector<int>& position);
+    void fill_val_h(vector<int>& position, double x, double y, double z);
     void change_to_test(vector<int>& position, ham_type* hamil);
 };
 
