@@ -65,7 +65,7 @@ public:
     ~field_cluster_h();
     void h_access(vector<int>& position, vector<double>& out);
     void h_next(bool &finish, vector<int> &pos, vector<double> &out);
-    field_cluster_h& operator=(field_cluster_h& other);
+    field_cluster_h& operator=(const field_cluster_h& other);
     int findnum(){return insize;}
     void get_1dfield_h(double* &x, double* &y, double* &z) const;
     void fill_rand(vector<int>& position){}
@@ -102,7 +102,7 @@ public:
     void h_access(vector<int>& position, vector<double>& out);
     void h_next(bool &finish, vector<int> &pos, vector<double> &out);
     void fill_ghost();
-    field_2d_h& operator=(field_2d_h& other);
+    field_2d_h& operator=(const field_2d_h& other);
     void get_2dfield_h(double** &x, double** &y, double** &z) const;
     void h_adjacent(vector<int>& position, double** out);
     void fill_rand(vector<int>& position);
@@ -124,7 +124,7 @@ public:
     void i_access(vector<int>& position, int &out);
     void i_next(bool &finish, vector<int> &pos, int &out);
     void fill_ghost();
-    field_2d_i& operator=(field_2d_i& other);
+    field_2d_i& operator=(const field_2d_i& other);
     void get_2dfield_i(int** &x) const;
     void i_adjacent(vector<int>& position, int* out);
     void fill_rand(vector<int>& position);
@@ -162,7 +162,7 @@ public:
     void h_access(vector<int>& position, vector<double>& out);
     void h_next(bool &finish, vector<int> &pos, vector<double> &out);
     void fill_ghost();
-    field_3d_h& operator=(field_3d_h& other);
+    field_3d_h& operator=(const field_3d_h& other);
     void get_3dfield_h(double*** &x, double*** &y, double*** &z) const;
     void h_adjacent(vector<int>& position, double** out);
     void fill_rand(vector<int>& position);
@@ -184,7 +184,7 @@ public:
     void i_access(vector<int>& position, int &out);
     void i_next(bool &finish, vector<int> &pos, int &out);
     void fill_ghost();
-    field_3d_i& operator=(field_3d_i& other);
+    field_3d_i& operator=(const field_3d_i& other);
     void get_3dfield_i(int*** &x) const;
     void i_adjacent(vector<int>& position, int* out);
     void fill_rand(vector<int>& position);

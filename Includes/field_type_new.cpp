@@ -125,7 +125,7 @@ field_cluster_h::field_cluster_h(const field_cluster_h& other)
     spinz = deep_copy_1darr<double>(insize, zoth);
 }
 
-field_cluster_h& field_cluster_h::operator=(field_cluster_h& other)
+field_cluster_h& field_cluster_h::operator=(const field_cluster_h& other)
 {
     dim = 1;
     periodic = 1;
@@ -296,7 +296,7 @@ field_2d_h::field_2d_h(const field_2d_h& other)
     iszero = deep_copy_2darr<bool>(totsize, totsize, zero_oth);
 }
 
-field_2d_h& field_2d_h::operator=(field_2d_h& other)
+field_2d_h& field_2d_h::operator=(const field_2d_h& other)
 {
     ft = 2;
     dim = 2;
@@ -387,7 +387,7 @@ void field_2d_h::h_adjacent(vector<int>& position, double** out)
     {
         out[0][i] = spinx[dirsx[i]][dirsy[i]];
         out[1][i] = spiny[dirsx[i]][dirsy[i]];
-        out[3][i] = spinz[dirsx[i]][dirsy[i]];
+        out[2][i] = spinz[dirsx[i]][dirsy[i]];
     }
 }
 
@@ -485,7 +485,7 @@ field_2d_i::field_2d_i(const field_2d_i& other)
     iszero = deep_copy_2darr<bool>(totsize, totsize, zero_oth);
 }
 
-field_2d_i& field_2d_i::operator=(field_2d_i& other)
+field_2d_i& field_2d_i::operator=(const field_2d_i& other)
 {
     ft = 21;
     dim = 2;
@@ -706,7 +706,7 @@ field_3d_h::field_3d_h(const field_3d_h& other)
     iszero = deep_copy_3darr<bool>(totsize, totsize, totsize, zero_oth);
 }
 
-field_3d_h& field_3d_h::operator=(field_3d_h& other)
+field_3d_h& field_3d_h::operator=(const field_3d_h& other)
 {
     ft = 3;
     dim = 3;
@@ -918,7 +918,7 @@ field_3d_i::field_3d_i(const field_3d_i& other)
     iszero = deep_copy_3darr<bool>(totsize, totsize, totsize, zero_oth);
 }
 
-field_3d_i& field_3d_i::operator=(field_3d_i& other)
+field_3d_i& field_3d_i::operator=(const field_3d_i& other)
 {
     ft = 31;
     dim = 3;

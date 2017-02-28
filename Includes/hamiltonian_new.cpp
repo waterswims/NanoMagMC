@@ -231,7 +231,7 @@ double ham_heis::calc_E(field_type* lattice)
 vector<double> ham_heis::calc_M(field_type* lattice)
 {
     #pragma simd
-    for (int i = 0; i < 4; i++) {vsum[i] += 0;}
+    for (int i = 0; i < 4; i++) {vsum[i] = 0;}
     int start = 0;
     if(!(lattice->get_perio()))
     {
@@ -252,7 +252,7 @@ vector<double> ham_heis::calc_M(field_type* lattice)
 vector<double> ham_heis::calc_subM(field_type* lattice, int subnumber)
 {
     #pragma simd
-    for (int i = 0; i < 4; i++) {vsum[i] += 0;}
+    for (int i = 0; i < 4; i++) {vsum[i] = 0;}
     int start = 0;
     if(!(lattice->get_perio()))
     {
