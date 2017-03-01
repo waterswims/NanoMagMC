@@ -354,8 +354,6 @@ double ham_FePt::calc_E(field_type* lattice)
     int t_size = lattice->get_totsize();
     int i_size = lattice->get_insize();
     int start = (t_size-i_size)/2;
-    int fin = start+i_size;
-
     pos2.resize(dim);
     for (vector<int>::iterator it = pos2.begin(); it != pos2.end(); it++)
     {
@@ -364,6 +362,7 @@ double ham_FePt::calc_E(field_type* lattice)
     pos.resize(dim);
     int nN = dxs.size();
     bool finished = false;
+    int c = 0;
     while (!finished)
     {
         lattice->h_next(finished, pos2, curr);
@@ -386,18 +385,20 @@ double ham_FePt::calc_E(field_type* lattice)
             // }
 
             // ternary version
-            pos[0] = max(0, (pos2[0] + dxs[i])%t_size);
-            pos[1] = max(0, (pos2[1] + dys[i])%t_size);
-            pos[2] = max(0, (pos2[2] + dzs[i])%t_size);
+            pos[0] = min(max(0, (pos2[0] + dxs[i])), t_size-1);
+            pos[1] = min(max(0, (pos2[1] + dxs[i])), t_size-1);
+            pos[2] = min(max(0, (pos2[2] + dxs[i])), t_size-1);
             lattice->h_access(pos, adj_curr);
             Jx_sum += curr[0] * adj_curr[0] * Js[i];
             Jy_sum += curr[1] * adj_curr[1] * Js[i];
             d2_sum += curr[2] * adj_curr[2] * d_ijs[i];
+            if (pos[0] != 0 && pos[1] != 0 && pos[2] != 0 && pos[0] != t_size-1 && pos[1] != t_size-1 && pos[2] != t_size-1) {c++;}
         }
 
         // 1 ion anisotropy
         d0_sum += curr[2]*curr[2];
     }
+    cout << c << endl;
 
     // totals
     double E = -(d0 * d0_sum + 0.5 * (Jx_sum + Jy_sum + d2_sum));
