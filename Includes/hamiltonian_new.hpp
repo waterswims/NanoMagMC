@@ -95,7 +95,6 @@ public:
     double dE(field_type* lattice, vector<int>& position);
     ham_FePt& operator=(ham_type& other);
     void read_Js();
-    bool check_pos(int start, int fin);
 };
 
 #endif
