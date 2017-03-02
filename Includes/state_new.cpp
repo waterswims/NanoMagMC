@@ -281,7 +281,6 @@ void state::equil(int iter)
             i--;
             continue;
         }
-
         //check dE
         dE = hamil->dE(field, r_choice);
         //check if flip

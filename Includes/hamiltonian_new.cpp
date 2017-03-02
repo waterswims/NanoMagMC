@@ -395,7 +395,12 @@ double ham_FePt::dE(field_type* lattice, vector<int>& position)
     double cmp2 = curr[1] - test[1];
     double cmp3 = curr[2] - test[2];
 
+    // cout << dxs[0] <<  endl;
+    // cout << position[0] << endl;
+    // cout << position[1] << endl;
+    // cout << position[2] << endl;
     int nN = dxs.size();
+    pos.resize(dim);
     // All neighbour interactions
     for(int i = 0; i < nN; i++)
     {
@@ -403,10 +408,13 @@ double ham_FePt::dE(field_type* lattice, vector<int>& position)
         pos[0] = min(max(0, (position[0] + dxs[i])), t_size-1);
         pos[1] = min(max(0, (position[1] + dys[i])), t_size-1);
         pos[2] = min(max(0, (position[2] + dzs[i])), t_size-1);
+        // cout << i << endl;
         lattice->h_access(pos, adj_curr);
+
         Jx_sum += adj_curr[0] * Js[i];
         Jy_sum += adj_curr[1] * Js[i];
         d2_sum += adj_curr[2] * d_ijs[i];
+
     }
 
     // 1 ion anisotropy
