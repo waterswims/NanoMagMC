@@ -18,10 +18,11 @@ public:
     virtual double dE(field_type* lattice, vector<int>& position) {return 0;}
     virtual vector<double> calc_M(field_type* lattice) {}
     virtual vector<double> calc_subM(field_type* lattice, int subnumber) {}
-    virtual double get_J(){return 0;}
-    virtual double get_H(){return 0;}
-    virtual vector<double> get_Js(){}
-    virtual vector<double> get_Hs(){}
+    virtual double get_J() const {return 0;}
+    virtual double get_H() const {return 0;}
+    virtual vector<double> get_Js() const {}
+    virtual vector<double> get_Hs() const {}
+    virtual double get_K() const {return 0;}
     virtual void get_test(double &x, double &y, double &z){}
     virtual void init_dim(field_type* field) {}
     // virtual double get_Dx(){return 0;}
@@ -51,8 +52,8 @@ public:
     vector<double> calc_M(field_type* lattice);
     vector<double> calc_subM(field_type* lattice, int subnumber);
     double dE(field_type* lattice, vector<int>& position);
-    double get_J(){return J;}
-    double get_H(){return H;}
+    double get_J() const {return J;}
+    double get_H() const {return H;}
     ham_ising& operator=(ham_type& other);
     void init_dim(field_type* field);
 };
@@ -73,8 +74,8 @@ public:
     vector<double> calc_M(field_type* lattice);
     vector<double> calc_subM(field_type* lattice, int subnumber);
     virtual double dE(field_type* lattice, vector<int>& position);
-    vector<double> get_Js(){return J;}
-    vector<double> get_Hs(){return H;}
+    vector<double> get_Js() const {return J;}
+    vector<double> get_Hs() const {return H;}
     ham_heis& operator=(ham_type& other);
     void init_dim(field_type* field);
     void get_test(double &x, double &y, double &z)
@@ -95,6 +96,25 @@ public:
     double dE(field_type* lattice, vector<int>& position);
     ham_FePt& operator=(ham_type& other);
     void read_Js();
+};
+
+class ham_skyrm: public ham_heis
+{
+private:
+    double K;
+    int dirs[6];
+    int mod[6];
+    vector<double> cmp;
+public:
+    ham_skyrm(){}
+    ham_skyrm(double Hin, double Jin, double Kin);
+    ham_skyrm(const ham_type& other);
+    ~ham_skyrm() {}
+    virtual double calc_E(field_type* lattice);
+    virtual double dE(field_type* lattice, vector<int>& position);
+    ham_skyrm& operator=(const ham_type& other);
+    double get_K() const {return K;}
+    void set_dirs();
 };
 
 #endif

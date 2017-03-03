@@ -394,11 +394,6 @@ double ham_FePt::dE(field_type* lattice, vector<int>& position)
     double cmp1 = curr[0] - test[0];
     double cmp2 = curr[1] - test[1];
     double cmp3 = curr[2] - test[2];
-
-    // cout << dxs[0] <<  endl;
-    // cout << position[0] << endl;
-    // cout << position[1] << endl;
-    // cout << position[2] << endl;
     int nN = dxs.size();
     pos.resize(dim);
     // All neighbour interactions
@@ -455,4 +450,172 @@ void ham_FePt::read_Js()
     d_ijstream.close();
 
     d0 = 8.42603732e-5;
+}
+
+///////////////////////////////////
+//  Skyrmion hamiltonian
+///////////////////////////////////
+
+void ham_skyrm::set_dirs()
+{
+    dirs[0] = 0;
+    dirs[1] = 0;
+    dirs[2] = 1;
+    dirs[3] = 1;
+    dirs[4] = 2;
+    dirs[5] = 2;
+    mod[0] = -1;
+    mod[1] = 1;
+    mod[2] = -1;
+    mod[3] = 1;
+    mod[4] = -1;
+    mod[5] = 1;
+}
+
+ham_skyrm::ham_skyrm(double Hin, double Jin, double Kin)
+{
+    H.resize(4);
+    J.resize(4);
+    H[0] = 0;
+    H[1] = 0;
+    H[2] = Hin;
+    J[0] = Jin;
+    J[1] = Jin;
+    J[2] = Jin;
+    K = Kin;
+    vsum.resize(4);
+    curr.resize(4);
+    H_sum.resize(4);
+    J_sum.resize(4);
+    cmp.resize(4);
+    test.resize(3);
+    this->set_dirs();
+}
+
+ham_skyrm::ham_skyrm(const ham_type& other)
+{
+    H = other.get_Hs();
+    J = other.get_Js();
+    K = other.get_K();
+    vsum.resize(4);
+    curr.resize(4);
+    H_sum.resize(4);
+    J_sum.resize(4);
+    test.resize(3);
+    cmp.resize(4);
+    this->set_dirs();
+}
+
+ham_skyrm& ham_skyrm::operator=(const ham_type& other)
+{
+    H = other.get_Hs();
+    J = other.get_Js();
+    K = other.get_K();
+    vsum.resize(4);
+    curr.resize(4);
+    H_sum.resize(4);
+    J_sum.resize(4);
+    cmp.resize(4);
+    test.resize(3);
+    this->set_dirs();
+
+    return *this;
+}
+
+double ham_skyrm::calc_E(field_type* lattice)
+{
+    int sum=0;
+    int start = 0;
+    double D_sum = 0;
+    if(!(lattice->get_perio()))
+    {
+        start++;
+    }
+    pos.resize(dim);
+    for (vector<int>::iterator it = pos.begin(); it != pos.end(); it++)
+    {
+        *it = start;
+    }
+    bool finished = false;
+    H_sum[0] = 0;
+    H_sum[1] = 0;
+    H_sum[2] = 0;
+    J_sum[0] = 0;
+    J_sum[1] = 0;
+    J_sum[2] = 0;
+    int arrsize = dim*2;
+    while (!finished)
+    {
+        lattice->h_adjacent(pos, adj);
+        lattice->h_next(finished, pos, curr);
+        #pragma simd
+        for (int j = 0; j < 4; j++)
+        {
+            H_sum[j] += curr[j];
+            for (int i = 0; i < arrsize; i++)
+            {
+                J_sum[j] += curr[j]*adj[j][i];
+            }
+        }
+        // #pragma simd
+        cout << "New center" << endl;
+        for (int i = 0; i < arrsize; i++)
+        {
+            D_sum += (curr[(dirs[i]+1)%3]*adj[(dirs[i]+2)%3][i] -
+                     curr[(dirs[i]+2)%3]*adj[(dirs[i]+1)%3][i]);
+
+            if (i == 4 || i == 5)
+            {
+                cout << curr[(dirs[i]+1)%3] << endl;
+                cout << curr[(dirs[i]+2)%3] << endl;
+                cout << adj[(dirs[i]+1)%3][i] << endl;
+                cout << adj[(dirs[i]+2)%3][i] << endl;
+                cout << (curr[(dirs[i]+1)%3]*adj[(dirs[i]+2)%3][i] -
+                     curr[(dirs[i]+2)%3]*adj[(dirs[i]+1)%3][i]) << endl;
+            }
+        }
+    }
+    #pragma simd
+    for (int j = 0; j < 4; j++)
+    {
+        H_sum[j] = H_sum[j] * H[j];
+        J_sum[j] = J_sum[j] * J[j];
+    }
+    double E = -(H_sum[0] + H_sum[1] + H_sum[2]) -
+                0.5*(J_sum[0] + J_sum[1] + J_sum[2]) - 0.5*K*D_sum;
+
+    return E;
+}
+
+double ham_skyrm::dE(field_type* lattice, vector<int>& position)
+{
+    double D_sum = 0;
+    rand_spin_h(test[0], test[1], test[2]);
+    lattice->h_access(position, curr);
+    cmp[0] = curr[0] - test[0];
+    cmp[1] = curr[1] - test[1];
+    cmp[2] = curr[2] - test[2];
+    double dEH = H[0] * cmp[0] + H[1] * cmp[1] + H[2] * cmp[2];
+
+    int arrsize = dim*2;
+    lattice->h_adjacent(position, adj);
+    #pragma simd
+    for(int j = 0; j < 4; j++)
+    {
+        vsum[j] = 0;
+        for(int i = 0; i < arrsize; i++)
+        {
+            vsum[j] += adj[j][i];
+        }
+    }
+    #pragma simd
+    for (int i = 0; i < arrsize; i++)
+    {
+        D_sum += mod[i]*(cmp[(dirs[i]+1)%3]*adj[(dirs[i]+2)%3][i] -
+                 cmp[(dirs[i]+2)%3]*adj[(dirs[i]+1)%3][i]);
+    }
+
+    double dE = dEH + (J[0] * cmp[0] * vsum[0] + J[1] * cmp[1] * vsum[1] + J[2] * cmp[2] * vsum[2]) + K * D_sum;
+
+    return dE;
 }
