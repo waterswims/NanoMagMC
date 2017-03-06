@@ -22,7 +22,7 @@ INC_PATH = ../Includes
 ifeq ($(HOST),JWaters-Ubuntu)
 CPPFLAGS = -O3 -g -I$(INC_PATH) -I${MKLROOT}/include -xCORE-AVX2
 else
-CPPFLAGS = -O3 -g -I$(INC_PATH) -I${MKLROOT}/include -xAVX
+CPPFLAGS = -O3 -g -I$(INC_PATH) -I${MKLROOT}/include
 endif
 
 OBJS = param_read.o mklrand.o spin_type.o field_type.o shape.o hamiltonian.o state.o functions.o cpoints.o output.o
