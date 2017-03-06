@@ -9,6 +9,7 @@ CXX = mpic++
 LDFLAGS =  ${MKLROOT}/lib/libmkl_intel_lp64.a ${MKLROOT}/lib/libmkl_sequential.a ${MKLROOT}/lib/libmkl_core.a -lpthread -lm -ldl
 else
 # Check if ARCHER
+@echo $(findstring eslogin, $(HOST))
 ifeq (,$(findstring eslogin, $(HOST)))
 CXX = CC
 LDFLAGS =  -L${MKLROOT}/lib/intel64 -lmkl_intel_lp64 -lmkl_sequential -lmkl_core -lpthread
