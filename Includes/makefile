@@ -19,16 +19,16 @@ endif
 endif
 
 INC_PATH = ../Includes
+# Check for systems I know have AVX2
 ifeq ($(HOST),JWaters-Ubuntu)
-CPPFLAGS = -O3 -g -I$(INC_PATH) -I${MKLROOT}/include -xCORE-AVX2
+CPPFLAGS = -O3 -I$(INC_PATH) -I${MKLROOT}/include -xCORE-AVX2
 else
-CPPFLAGS = -O3 -g -I$(INC_PATH) -I${MKLROOT}/include
+CPPFLAGS = -O3 -I$(INC_PATH) -I${MKLROOT}/include
 endif
 
 OBJS = param_read.o mklrand.o spin_type.o field_type.o shape.o hamiltonian.o state.o functions.o cpoints.o output.o
 NEW_OBJS = functions.o cpoints.o output.o param_read.o mklrand.o array_alloc.o field_type_new.o hamiltonian_new.o state_new.o shape.o
-# TEST_FILES = cpoint_test.hpp mklrand_test.hpp ising_test.hpp heis_test.hpp fept_test.hpp test_functions.hpp skyrm_test.hpp
-TEST_FILES = cpoint_test.hpp mklrand_test.hpp ising_test.hpp heis_test.hpp fept_test.hpp test_functions.hpp
+TEST_FILES = cpoint_test.hpp mklrand_test.hpp ising_test.hpp heis_test.hpp fept_test.hpp test_functions.hpp skyrm_test.hpp
 
 all: $(OBJS) $(NEW_OBJS) main.o main_new.o field_run.o
 
