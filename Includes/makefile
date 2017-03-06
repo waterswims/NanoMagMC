@@ -32,11 +32,6 @@ TEST_FILES = cpoint_test.hpp mklrand_test.hpp ising_test.hpp heis_test.hpp fept_
 
 all: $(OBJS) $(NEW_OBJS) main.o main_new.o field_run.o
 
-# .PHONY: Check
-#
-# Check:
-# 	@echo $(findstring eslogin, $(HOST))
-
 array_alloc.o: array_alloc.cpp array_alloc.hpp
 	$(CXX) $(CPPFLAGS) -c array_alloc.cpp
 
