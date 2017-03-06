@@ -77,7 +77,7 @@ public:
     vector<double> get_Js() const {return J;}
     vector<double> get_Hs() const {return H;}
     ham_heis& operator=(ham_type& other);
-    void init_dim(field_type* field);
+    virtual void init_dim(field_type* field);
     void get_test(double &x, double &y, double &z)
         {x = test[0]; y = test[1]; z = test[2];}
 };
@@ -96,6 +96,7 @@ public:
     double dE(field_type* lattice, vector<int>& position);
     ham_FePt& operator=(ham_type& other);
     void read_Js();
+    void init_dim(field_type* field);
 };
 
 class ham_skyrm: public ham_heis

@@ -163,6 +163,7 @@ int main(int argc, char **argv)
         {
             double T = Ts[i];
             curr_state.change_temp(T);
+
             curr_state.equil(Nsingle*nums[j]);
             mtemp = curr_state.magnetisation();
 			if (hamil != 'i' && hamil != 'I')
@@ -171,6 +172,7 @@ int main(int argc, char **argv)
 				magy1[j][i] = mtemp[1];
 				magz1[j][i] = mtemp[2];
 			}
+
 			mag1[j][i] = norm(mtemp);
 			ener1[j][i] = curr_state.energy();
 

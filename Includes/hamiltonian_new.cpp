@@ -238,7 +238,7 @@ vector<double> ham_heis::calc_M(field_type* lattice)
         start++;
     }
     pos.resize(dim);
-    for (int i = 0; i < dim; i++) {pos[i] += 0;}
+    for (int i = 0; i < dim; i++) {pos[i] = start;}
     bool finished = false;
     while (!finished)
     {
@@ -259,7 +259,7 @@ vector<double> ham_heis::calc_subM(field_type* lattice, int subnumber)
         start++;
     }
     pos.resize(dim);
-    for (int i = 0; i < dim; i++) {pos[i] += 0;}
+    for (int i = 0; i < dim; i++) {pos[i] = start;}
     bool finished = false;
     int possum = 0;
     while (!finished)
@@ -359,17 +359,13 @@ double ham_FePt::calc_E(field_type* lattice)
     while (!finished)
     {
         lattice->h_access(pos2, curr);
-        // All neighbour interactions
+        lattice->h_arb_adj(pos2, dxs, dys, dzs, adj, nN);
+        #pragma simd
         for(int i = 0; i < nN; i++)
         {
-            // ternary version
-            pos[0] = min(max(0, (pos2[0] + dxs[i])), t_size-1);
-            pos[1] = min(max(0, (pos2[1] + dys[i])), t_size-1);
-            pos[2] = min(max(0, (pos2[2] + dzs[i])), t_size-1);
-            lattice->h_access(pos, adj_curr);
-            Jx_sum += curr[0] * adj_curr[0] * Js[i];
-            Jy_sum += curr[1] * adj_curr[1] * Js[i];
-            d2_sum += curr[2] * adj_curr[2] * d_ijs[i];
+            Jx_sum += curr[0] * adj[0][i] * Js[i];
+            Jy_sum += curr[1] * adj[1][i] * Js[i];
+            d2_sum += curr[2] * adj[2][i] * d_ijs[i];
         }
         lattice->next(finished, pos2);
         // 1 ion anisotropy
@@ -396,20 +392,13 @@ double ham_FePt::dE(field_type* lattice, vector<int>& position)
     double cmp3 = curr[2] - test[2];
     int nN = dxs.size();
     pos.resize(dim);
-    // All neighbour interactions
+    lattice->h_arb_adj(position, dxs, dys, dzs, adj, nN);
+    #pragma simd
     for(int i = 0; i < nN; i++)
     {
-        // ternary version
-        pos[0] = min(max(0, (position[0] + dxs[i])), t_size-1);
-        pos[1] = min(max(0, (position[1] + dys[i])), t_size-1);
-        pos[2] = min(max(0, (position[2] + dzs[i])), t_size-1);
-        // cout << i << endl;
-        lattice->h_access(pos, adj_curr);
-
-        Jx_sum += adj_curr[0] * Js[i];
-        Jy_sum += adj_curr[1] * Js[i];
-        d2_sum += adj_curr[2] * d_ijs[i];
-
+        Jx_sum += adj[0][i] * Js[i];
+        Jy_sum += adj[1][i] * Js[i];
+        d2_sum += adj[2][i] * d_ijs[i];
     }
 
     // 1 ion anisotropy
@@ -450,6 +439,12 @@ void ham_FePt::read_Js()
     d_ijstream.close();
 
     d0 = 8.42603732e-5;
+}
+
+void ham_FePt::init_dim(field_type* field)
+{
+    dim = field->get_dim();
+    adj = alloc_2darr<double>(4, dxs.size());
 }
 
 ///////////////////////////////////

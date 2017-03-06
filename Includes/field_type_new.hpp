@@ -24,6 +24,7 @@ public:
     virtual void i_adjacent(vector<int>& position, int* out){}
     virtual void h_access(vector<int>& position, vector<double>& out){}
     virtual void h_adjacent(vector<int>& position, double** out){}
+    virtual void h_arb_adj(vector<int>& position, vector<int>& dxs, vector<int>& dys, vector<int>& dzs, double** out, int num){}
     virtual void next(bool &finish, vector<int> &pos){}
     virtual void i_next(bool &finish, vector<int> &pos, int &out){}
     virtual void h_next(bool &finish, vector<int> &pos, vector<double> &out){}
@@ -153,6 +154,7 @@ protected:
     double*** spinx;
     double*** spiny;
     double*** spinz;
+    int** pos;
 public:
     field_3d_h();
     field_3d_h(int size, bool isperio);
@@ -169,6 +171,7 @@ public:
     void fill_zero(vector<int>& position);
     void fill_val_h(vector<int>& position, double x, double y, double z);
     void change_to_test(vector<int>& position, ham_type* hamil);
+    void h_arb_adj(vector<int>& position, vector<int>& dxs, vector<int>& dys, vector<int>& dzs, double** out, int num);
 };
 
 class field_3d_i: public field_3d

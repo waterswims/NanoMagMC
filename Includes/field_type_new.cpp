@@ -5,6 +5,7 @@
 #include <sstream>
 #include <iostream>
 #include <cstdlib>
+#include <algorithm>
 #include <cmath>
 
 ///////////////////////
@@ -661,6 +662,7 @@ field_3d_h::field_3d_h(int size, bool isperio)
     spiny = alloc_3darr<double>(totsize, totsize, totsize);
     spinz = alloc_3darr<double>(totsize, totsize, totsize);
     iszero = alloc_3darr<bool>(totsize, totsize, totsize);
+    pos = alloc_2darr<int>(3, 956);
 }
 
 field_3d_h::field_3d_h(field_type& other)
@@ -685,6 +687,7 @@ field_3d_h::field_3d_h(field_type& other)
     spiny = deep_copy_3darr<double>(totsize, totsize, totsize, yoth);
     spinz = deep_copy_3darr<double>(totsize, totsize, totsize, zoth);
     iszero = deep_copy_3darr<bool>(totsize, totsize, totsize, zero_oth);
+    pos = alloc_2darr<int>(3, 956);
 }
 
 field_3d_h::field_3d_h(const field_3d_h& other)
@@ -704,6 +707,7 @@ field_3d_h::field_3d_h(const field_3d_h& other)
     spiny = deep_copy_3darr<double>(totsize, totsize, totsize, yoth);
     spinz = deep_copy_3darr<double>(totsize, totsize, totsize, zoth);
     iszero = deep_copy_3darr<bool>(totsize, totsize, totsize, zero_oth);
+    pos = alloc_2darr<int>(3, 956);
 }
 
 field_3d_h& field_3d_h::operator=(const field_3d_h& other)
@@ -723,6 +727,7 @@ field_3d_h& field_3d_h::operator=(const field_3d_h& other)
     spiny = deep_copy_3darr<double>(totsize, totsize, totsize, yoth);
     spinz = deep_copy_3darr<double>(totsize, totsize, totsize, zoth);
     iszero = deep_copy_3darr<bool>(totsize, totsize, totsize, zero_oth);
+    pos = alloc_2darr<int>(3, 956);
     return *this;
 }
 
@@ -732,6 +737,7 @@ field_3d_h::~field_3d_h()
     dealloc_3darr<double>(totsize, totsize, spiny);
     dealloc_3darr<double>(totsize, totsize, spinz);
     dealloc_3darr<bool>(totsize, totsize, iszero);
+    dealloc_2darr<int>(3, pos);
 }
 
 void field_3d_h::h_access(vector<int>& position, vector<double>& out)
@@ -821,6 +827,49 @@ void field_3d_h::h_adjacent(vector<int>& position, double** out)
         out[0][i] = spinx[dirsx[i]][dirsy[i]][dirsz[i]];
         out[1][i] = spiny[dirsx[i]][dirsy[i]][dirsz[i]];
         out[2][i] = spinz[dirsx[i]][dirsy[i]][dirsz[i]];
+    }
+}
+
+void field_3d_h::h_arb_adj(vector<int>& position, vector<int>& dxs, vector<int>& dys, vector<int>& dzs, double** out, int num)
+{
+    #pragma simd
+    for(int i = 0; i < num; i++)
+    {
+        pos[0][i] = min(max(0, (position[0] + dxs[i])), totsize-1);
+    }
+    #pragma simd
+    for(int i = 0; i < num; i++)
+    {
+        pos[1][i] = min(max(0, (position[1] + dys[i])), totsize-1);
+    }
+    #pragma simd
+    for(int i = 0; i < num; i++)
+    {
+        pos[2][i] = min(max(0, (position[2] + dzs[i])), totsize-1);
+    }
+
+    // #pragma simd
+    // for(int i = 0; i < num; i++)
+    // {
+    //     out[0][i] = spinx[pos[0][i]][pos[1][i]][pos[2][i]];
+    // }
+    // #pragma simd
+    // for(int i = 0; i < num; i++)
+    // {
+    //     out[1][i] = spiny[pos[0][i]][pos[1][i]][pos[2][i]];
+    // }
+    // #pragma simd
+    // for(int i = 0; i < num; i++)
+    // {
+    //     out[2][i] = spinz[pos[0][i]][pos[1][i]][pos[2][i]];
+    // }
+
+    // #pragma simd
+    for(int i = 0; i < num; i++)
+    {
+        out[0][i] = spinx[pos[0][i]][pos[1][i]][pos[2][i]];
+        out[1][i] = spiny[pos[0][i]][pos[1][i]][pos[2][i]];
+        out[2][i] = spinz[pos[0][i]][pos[1][i]][pos[2][i]];
     }
 }
 
