@@ -20,7 +20,7 @@ endif
 
 INC_PATH = ../Includes
 # Check for systems I know have AVX2
-ifeq ($(HOST),JWaters-Ubuntu)
+ifneq (,$(shell grep avx2 /proc/cpuinfo))
 CPPFLAGS = -O3 -I${MKLROOT}/include -xCORE-AVX2
 else
 CPPFLAGS = -O3 -I${MKLROOT}/include
