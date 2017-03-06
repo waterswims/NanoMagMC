@@ -3,14 +3,17 @@
 OS := $(shell uname)
 HOST := $(shell hostname)
 
+# Check if mac
 ifeq ($(OS),Darwin)
 CXX = mpic++
 LDFLAGS =  ${MKLROOT}/lib/libmkl_intel_lp64.a ${MKLROOT}/lib/libmkl_sequential.a ${MKLROOT}/lib/libmkl_core.a -lpthread -lm -ldl
 else
-CXX = mpiicpc
+# Check if ARCHER
 ifeq (,$(findstring eslogin, $(HOST)))
+CXX = CC
 LDFLAGS =  -L${MKLROOT}/lib/intel64 -lmkl_intel_lp64 -lmkl_sequential -lmkl_core -lpthread
 else
+CXX = mpiicpc
 LDFLAGS =  -L${MKLROOT}/lib/intel64 -lmkl_intel_lp64 -lmkl_sequential -lmkl_core -lpthread -lm -ldl
 endif
 endif
