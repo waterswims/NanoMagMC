@@ -1,9 +1,10 @@
 #include "output.hpp"
 #include "functions.h"
-#include "boost/assign.hpp"
+// #include "boost/assign.hpp"
 #include <iostream>
 #include <cmath>
 #include <sstream>
+#include <cstdlib>
 
 string main_name(double H, double J, int size, double k, char shape, char hamil)
 {
@@ -110,7 +111,11 @@ void print_avs(string avname, vector<double>& allener, vector<double>& allmag,
     double My = sum(allmagy)/g_lattsize;
     double Mz = sum(allmagz)/g_lattsize;
     double M, MS;
-    vector<double> Mvec = boost::assign::list_of(Mx)(My)(Mz);
+    // vector<double> Mvec = boost::assign::list_of(Mx)(My)(Mz);
+    vector<double> Mvec(3);
+    Mvec[0] = Mx;
+    Mvec[1] = My;
+    Mvec[2] = Mz;
     double sMx = sum(allsmagx)/g_slattsize;
     double sMy = sum(allsmagy)/g_slattsize;
     double sMz = sum(allsmagz)/g_slattsize;

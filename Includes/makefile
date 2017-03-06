@@ -21,9 +21,9 @@ endif
 INC_PATH = ../Includes
 # Check for systems I know have AVX2
 ifeq ($(HOST),JWaters-Ubuntu)
-CPPFLAGS = -O3 -I$(INC_PATH) -I${MKLROOT}/include -xCORE-AVX2
+CPPFLAGS = -O3 -I${MKLROOT}/include -xCORE-AVX2
 else
-CPPFLAGS = -O3 -I$(INC_PATH) -I${MKLROOT}/include
+CPPFLAGS = -O3 -I${MKLROOT}/include
 endif
 
 OBJS = param_read.o mklrand.o spin_type.o field_type.o shape.o hamiltonian.o state.o functions.o cpoints.o output.o
