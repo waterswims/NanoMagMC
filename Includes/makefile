@@ -9,7 +9,7 @@ CXX = mpic++
 LDFLAGS =  ${MKLROOT}/lib/libmkl_intel_lp64.a ${MKLROOT}/lib/libmkl_sequential.a ${MKLROOT}/lib/libmkl_core.a -lpthread -lm -ldl
 else
 # Check if ARCHER
-ifeq (,$(findstring eslogin, $(HOST)))
+ifneq (,$(findstring eslogin, $(HOST)))
 CXX = CC
 LDFLAGS =  -L${MKLROOT}/lib/intel64 -lmkl_intel_lp64 -lmkl_sequential -lmkl_core -lpthread
 else
@@ -32,10 +32,10 @@ TEST_FILES = cpoint_test.hpp mklrand_test.hpp ising_test.hpp heis_test.hpp fept_
 
 all: $(OBJS) $(NEW_OBJS) main.o main_new.o field_run.o
 
-.PHONY: Check
-
-Check:
-	@echo $(findstring eslogin, $(HOST))
+# .PHONY: Check
+#
+# Check:
+# 	@echo $(findstring eslogin, $(HOST))
 
 array_alloc.o: array_alloc.cpp array_alloc.hpp
 	$(CXX) $(CPPFLAGS) -c array_alloc.cpp
