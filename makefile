@@ -11,3 +11,4 @@ clean:
 	-rm run
 	-rm f_run
 	-rm test
+	-rm run_new

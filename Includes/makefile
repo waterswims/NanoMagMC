@@ -14,7 +14,7 @@ CXX = CC
 LDFLAGS = -Wl,--start-group ${MKLROOT}/lib/intel64/libmkl_intel_lp64.a ${MKLROOT}/lib/intel64/libmkl_sequential.a ${MKLROOT}/lib/intel64/libmkl_core.a -Wl,--end-group -lpthread
 else
 CXX = mpiicpc
-LDFLAGS = -L${MKLROOT}/lib/intel64 -lmkl_intel_lp64 -lmkl_sequential -lmkl_core -lpthread -lm -ldl
+LDFLAGS = -L${MKLROOT}/lib/intel64 -lmkl_intel_lp64 -lmkl_sequential -lmkl_core -lpthread -lm -ldl -ipo
 endif
 endif
 
@@ -23,7 +23,7 @@ INC_PATH = ../Includes
 ifneq (,$(shell grep avx2 /proc/cpuinfo))
 CPPFLAGS = -O3 -I${MKLROOT}/include -xCORE-AVX2
 else
-CPPFLAGS = -O3 -I${MKLROOT}/include
+CPPFLAGS = -O3 -I${MKLROOT}/include -ipo
 endif
 
 OBJS = param_read.o mklrand.o spin_type.o field_type.o shape.o hamiltonian.o state.o functions.o cpoints.o output.o
@@ -103,3 +103,4 @@ clean:
 	-rm run
 	-rm f_run
 	-rm test
+	-rm run_new
