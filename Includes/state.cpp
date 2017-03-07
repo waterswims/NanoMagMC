@@ -1,103 +1,27 @@
 #include "state.hpp"
 #include "mklrand.h"
 #include "functions.h"
-// #include "FCC.hpp"
 #include <iostream>
 #include <fstream>
+#include <cmath>
 
 extern mkl_irand st_rand_int;
 extern mkl_drand st_rand_double;
 
-template <class T> state<T>::state(double size, bool isPerio, char shape_code,
-    char ham_code, double J, double H, double k, double Temp, double* args)
+state::state(double size, bool isPerio, char shape_code, char ham_code, double J,
+    double H, double k, double Temp, double* args)
 {
     h_code = ham_code;
     s_code = shape_code;
-    switch (ham_code)
-    {
-        case 'i':
-        case 'I':
-            hamil = new ham_ising<T>(H, J);
-            break;
-        case 'h':
-        case 'H':
-            hamil = new ham_heis<T>(H, J);
-            break;
-        case 'f':
-        case 'F':
-            hamil = new ham_FePt<T>();
-            break;
-        case 'c':
-        case 'C':
-            hamil  = new ham_cluster<T>("Includes/Js/cluster.txt");
-            break;
-        default:
-            cout << "Incorrect Hamiltonian exiting" << endl;
-            exit(102);
-    }
-    switch (shape_code)
-    {
-        case 's':
-        case 'S':
-            field = new field_2d<T>(int(size), isPerio);
-            shape = new square;
-            break;
-        case 'w':
-        case 'W':
-            field = new field_2d<T>(int(2*size+10), isPerio);
-            shape = new weibull((size), args[0]);
-            break;
-        case 'c':
-        case 'C':
-            field = new field_3d<T>(int(size), isPerio, args[1]);
-            shape = new cube;
-            break;
-        case 'x':
-        case 'X':
-            field = new field_3d<T>(int(2*size+10), isPerio);
-            shape = new weibull((size), args[0]);
-            break;
-        case 'h':
-        case 'H':
-            field = new hex_2d<T>(int(size), isPerio);
-            shape = new square;
-            break;
-        case 'o':
-        case 'O':
-            field = new hex_3d<T>(int(size), isPerio);
-            shape = new cube;
-            break;
-        // case 'f':
-        // case 'F':
-        //     field = new FC_Tetr<T>(int(size), isPerio);
-        //     shape = new cube;
-        //     break;
-        // case 'l':
-        // case 'L':
-        //     field = new L10<T>(int(size), isPerio);
-        //     shape = new cube;
-        //     break;
-        case '1':
-            field = new field_cluster<T>("Includes/Js/cluster.txt");
-            shape = new cube;
-            break;
-        default:
-            cout << "Incorrect shape code, exiting" << endl;
-            exit(103);
-    }
+
+    this->init_points(size, isPerio, H, J, args);
+
     k_b = k;
-    if (Temp <= 0)
-    {
-        cout << "Invalid temperature, exiting" << endl;
-        exit(104);
-    }
-    beta = 1 / (k_b * Temp);
+    this->change_temp(Temp);
     this->init_lattice();
-    E = hamil->calc_E(field);
-    M = hamil->calc_M(field);
 }
 
-template <class T> state<T>::state(const state<T>& other)
+state::state(const state& other)
 {
     E = other.E;
     M = other.M;
@@ -106,87 +30,208 @@ template <class T> state<T>::state(const state<T>& other)
     num = other.num;
     h_code = other.h_code;
     s_code = other.s_code;
+    this->copy_points(other);
+}
 
-    switch (h_code)
+state& state::operator=(const state& other)
+{
+    E = other.E;
+    M = other.M;
+    beta = other.beta;
+    k_b = other.k_b;
+    num = other.num;
+    h_code = other.h_code;
+    s_code = other.s_code;
+    this->copy_points(other);
+}
+
+void state::init_points(double size, bool isPerio, double H, double J, double* args)
+{
+    switch(h_code)
     {
         case 'i':
         case 'I':
-            hamil = new ham_ising<T>(*(other.hamil));
+            hamil = new ham_ising(H, J);
             break;
         case 'h':
         case 'H':
-            hamil = new ham_heis<T>(*(other.hamil));
+            hamil = new ham_heis(H, J);
             break;
         case 'f':
         case 'F':
-            hamil = new ham_FePt<T>(*(other.hamil));
-            break;
-        case 'c':
-        case 'C':
-            hamil = new ham_cluster<T>(*(other.hamil));
+            hamil = new ham_FePt(H);
             break;
         default:
-            cout << "Incorrect Hamiltonian exiting" << endl;
+            cerr << "Incorrect hamiltonian, exiting..." << endl;
             exit(102);
     }
-    switch (s_code)
+    switch (h_code)
     {
-        case 's':
-        case 'S':
-            field = new field_2d<T>(*(other.field));
-            shape = new square;
-            break;
-        case 'w':
-        case 'W':
-            field = new field_2d<T>(*(other.field));
-            shape = new weibull(*(other.shape));
-            break;
-        case 'c':
-        case 'C':
-            field = new field_3d<T>(*(other.field));
-            shape = new cube;
-            break;
-        case 'x':
-        case 'X':
-            field = new field_3d<T>(*(other.field));
-            shape = new weibull(*(other.shape));
+        case 'h':
+        case 'H':
+        case 'f':
+        case 'F':
+        switch (s_code)
+        {
+            case 's':
+            case 'S':
+                field = new field_2d_h(int(size), isPerio);
+                shape = new square;
+                break;
+            case 'w':
+            case 'W':
+                field = new field_2d_h(int(2*size+10), isPerio);
+                shape = new weibull((size), args[0]);
+                break;
+            case 'c':
+            case 'C':
+                field = new field_3d_h(int(size), isPerio);
+                shape = new cube;
+                break;
+            case 'x':
+            case 'X':
+                field = new field_3d_h(int(2*size+10), isPerio);
+                shape = new weibull((size), args[0]);
+                break;
+            default:
+                cerr << "Incorrect shape code, exiting" << endl;
+                exit(103);
+        }
+        break;
+
+        case 'i':
+        case 'I':
+        switch (s_code)
+        {
+            case 's':
+            case 'S':
+                field = new field_2d_i(int(size), isPerio);
+                shape = new square;
+                break;
+            case 'w':
+            case 'W':
+                field = new field_2d_i(int(2*size+10), isPerio);
+                shape = new weibull((size), args[0]);
+                break;
+            case 'c':
+            case 'C':
+                field = new field_3d_i(int(size), isPerio);
+                shape = new cube;
+                break;
+            case 'x':
+            case 'X':
+                field = new field_3d_i(int(2*size+10), isPerio);
+                shape = new weibull((size), args[0]);
+                break;
+            default:
+                cerr << "Incorrect shape code, exiting" << endl;
+                exit(103);
+        }
+        break;
+    }
+    hamil->init_dim(field);
+}
+
+void state::copy_points(const state& other)
+{
+    switch(h_code)
+    {
+        case 'i':
+        case 'I':
+            hamil = new ham_ising(*(other.hamil));
             break;
         case 'h':
         case 'H':
-            field = new hex_2d<T>(*(other.field));
-            shape = new square;
+            hamil = new ham_heis(*(other.hamil));
             break;
-        case 'o':
-        case 'O':
-            field = new hex_3d<T>(*(other.field));
-            shape = new cube;
-            break;
-        case '1':
-            field = new field_cluster<T>(*(other.field));
-            shape = new cube;
+        case 'f':
+        case 'F':
+            hamil = new ham_FePt(*(other.hamil));
             break;
         default:
-            cout << "Incorrect shape code, exiting" << endl;
-            exit(103);
+            cerr << "Incorrect hamiltonian, exiting..." << endl;
+            exit(102);
     }
+    switch (h_code)
+    {
+        case 'h':
+        case 'H':
+        case 'f':
+        case 'F':
+        switch (s_code)
+        {
+            case 's':
+            case 'S':
+                field = new field_2d_h(*(other.field));
+                shape = new square;
+                break;
+            case 'w':
+            case 'W':
+                field = new field_2d_h(*(other.field));
+                shape = new weibull(*(other.shape));
+                break;
+            case 'c':
+            case 'C':
+                field = new field_3d_h(*(other.field));
+                shape = new cube;
+                break;
+            case 'x':
+            case 'X':
+                field = new field_3d_h(*(other.field));
+                shape = new weibull(*(other.shape));
+                break;
+            default:
+                cerr << "Incorrect shape code, exiting" << endl;
+                exit(103);
+        }
+        break;
+
+        case 'i':
+        case 'I':
+        switch (s_code)
+        {
+            case 's':
+            case 'S':
+                field = new field_2d_i(*(other.field));
+                shape = new square;
+                break;
+            case 'w':
+            case 'W':
+                field = new field_2d_i(*(other.field));
+                shape = new weibull(*(other.shape));
+                break;
+            case 'c':
+            case 'C':
+                field = new field_3d_i(*(other.field));
+                shape = new cube;
+                break;
+            case 'x':
+            case 'X':
+                field = new field_3d_i(*(other.field));
+                shape = new weibull(*(other.shape));
+                break;
+            default:
+                cerr << "Incorrect shape code, exiting" << endl;
+                exit(103);
+        }
+        break;
+    }
+    hamil->init_dim(field);
 }
 
-template <class T> state<T>::~state()
+state::~state()
 {
     delete hamil;
     delete field;
     delete shape;
 }
 
-template <class T> void state<T>::init_lattice()
+void state::init_lattice()
 {
     num = 0;
     snum = 0;
     int start = 0;
-    if(!field->get_perio())
-    {
-        start++;
-    }
+    if(!field->get_perio()){start++;}
     int dim = field->get_dim();
     vector<int> pos(dim);
     for (vector<int>::iterator it = pos.begin(); it != pos.end(); it++)
@@ -198,62 +243,20 @@ template <class T> void state<T>::init_lattice()
     {
         bool fillspin = shape->check(pos, field->get_totsize());
         int possum = sum(pos);
-        T* curr = &(field->next(finished, pos));
         if (fillspin)
         {
-            curr->rand_spin();
+            field->fill_rand(pos);
             num++;
-            if (possum%2 == 0)
-            {
-                snum++;
-            }
+            if (possum%2 == 0){snum++;}
         }
-        else
-        {
-            curr->zero_spin();
-        }
+        else{field->fill_zero(pos);}
+        field->next(finished, pos);
     }
-    field->fill_ghost(num);
+    field->fill_ghost();
 }
 
-template <class T> vector<double> state<T>::magnetisation()
+void state::equil(int iter)
 {
-    M = hamil->calc_M(field);
-    return M;
-}
-
-template <class T> vector<double> state<T>::submag(int subnumber)
-{
-    subM = hamil->calc_subM(field, subnumber);
-    return subM;
-}
-
-template <class T> double state<T>::energy()
-{
-    E = hamil->calc_E(field);
-    return E;
-}
-
-template <class T> int state<T>::num_spins()
-{
-    return num;
-}
-
-template <class T> int state<T>::sub_num(int subnumber)
-{
-    if (subnumber==0)
-    {
-        return snum;
-    }
-    else
-    {
-        return num-snum;
-    }
-}
-
-template <class T> void state<T>::equil(int iter)
-{
-    // get info of the problem
     int dim = field->get_dim();
     int size = field->get_insize();
     int tsize = field->get_totsize();
@@ -266,181 +269,77 @@ template <class T> void state<T>::equil(int iter)
     double dE = 0;
     double log_eta = 0;
 
-    // counting for checks
-    // int eflips=0, neflips=0, rflips=0;
-    // double dEav = 0;
-
-    // cout << "beta = " << beta << endl;
-
     for (int i=0; i<iter; i++)
     {
-        //choose a random spin
-        for (vector<int>::iterator it=r_choice.begin(), end=r_choice.end(); it!=end; it++)
+        for (int j=0; j < dim; j++)
         {
-            *it = int(st_rand_double.gen() * size)+s_start;
+            r_choice[j] = int(st_rand_double.gen() * size)+s_start;
         }
 
-        //if a zero spin try again
-        if((field->access(r_choice)).is_zero())
+        if(field->check_zero(r_choice))
         {
             i--;
             continue;
         }
-
         //check dE
         dE = hamil->dE(field, r_choice);
         //check if flip
         if(dE <= 0)
         {
-            //cout << "Energy flip" << endl;
-            (field->access(r_choice)).change_spin(hamil->get_test());
-            // eflips++;
-            //E += dE;
+            field->change_to_test(r_choice, hamil);
         }
         else
         {
-            // dEav += dE;
-            // neflips++;
             log_eta = log(st_rand_double.gen());
 			if ((-dE * beta) > log_eta)
 			{
-                // rflips++;
-                (field->access(r_choice)).change_spin(hamil->get_test());
-				//E += dE;
+                field->change_to_test(r_choice, hamil);
 			}
         }
     }
-    // cout << "Number of Energy flips:" << eflips << endl;
-    // cout << "Number of Random flips:" << rflips << endl;
-    // cout << "Average dE:" << dEav / neflips << endl;
 }
 
-template <class T> void state<T>::change_temp(double Temp)
+vector<double> state::magnetisation()
 {
-    beta = 1./(k_b*Temp);
+    return hamil->calc_M(field);
 }
 
-template <class T> state<T>& state<T>::operator=(const state<T>& other)
+vector<double> state::submag(int subnumber)
 {
-    E = other.E;
-    M = other.M;
-    beta = other.beta;
-    k_b = other.k_b;
-    num = other.num;
-    h_code = other.h_code;
-    s_code = other.s_code;
-
-    switch (h_code)
-    {
-        case 'i':
-        case 'I':
-            hamil = new ham_ising<T>(*(other.hamil));
-            break;
-        case 'h':
-        case 'H':
-            hamil = new ham_heis<T>(*(other.hamil));
-            break;
-        case 'f':
-        case 'F':
-            hamil = new ham_FePt<T>(*(other.hamil));
-            break;
-        case 'c':
-        case 'C':
-            hamil = new ham_cluster<T>(*(other.hamil));
-            break;
-        default:
-            cout << "Incorrect Hamiltonian exiting" << endl;
-            exit(102);
-    }
-    switch (s_code)
-    {
-        case 's':
-        case 'S':
-            field = new field_2d<T>(*(other.field));
-            shape = new square;
-            break;
-        case 'w':
-        case 'W':
-            field = new field_2d<T>(*(other.field));
-            shape = new weibull(*(other.shape));
-            break;
-        case 'c':
-        case 'C':
-            field = new field_3d<T>(*(other.field));
-            shape = new cube;
-            break;
-        case 'x':
-        case 'X':
-            field = new field_3d<T>(*(other.field));
-            shape = new weibull(*(other.shape));
-            break;
-        case 'h':
-        case 'H':
-            field = new hex_2d<T>(*(other.field));
-            shape = new square;
-            break;
-        case 'o':
-        case 'O':
-            field = new hex_3d<T>(*(other.field));
-            shape = new cube;
-            break;
-        // case 'f':
-        // case 'F':
-        //     field = new FC_Tetr<T>(*(other.field));
-        //     shape = new cube;
-        //     break;
-        // case 'l':
-        // case 'L':
-        //     field = new L10<T>(*(other.field));
-        //     shape = new cube;
-        //     break;
-        case '1':
-            field = new field_cluster<T>(*(other.field));
-            shape = new cube;
-            break;
-        default:
-            cout << "Incorrect shape code, exiting" << endl;
-            exit(103);
-    }
-
-    //(*hamil) = *(other.hamil);
-    //(*shape) = *(other.shape);
-    //(*field) = *(other.field);
-    return *this;
+    return hamil->calc_subM(field, 0);
 }
 
-template <class T> void state<T>::print_latt()
+double state::energy()
 {
-    field->print();
+    return hamil->calc_E(field);
 }
 
-template <class T> void state<T>::ptf(string fname)
+int state::num_spins()
 {
-    ofstream ofile;
-    ofile.open(fname.c_str());
-    bool finished = false;
-    int sum=0;
-    int start = 0;
-    if(!field->get_perio())
-    {
-        start++;
-    }
-    int dim = field->get_dim();
-    vector<int> pos(dim);
-    for (vector<int>::iterator it = pos.begin(); it != pos.end(); it++)
-    {
-        *it = start;
-    }
-    while (!finished)
-    {
-        for (vector<int>::iterator it = pos.begin(); it != pos.end(); it++)
-        {
-            ofile << *it << " ";
-        }
-        ofile << (field->next(finished, pos)).i_access() << endl;
-    }
-    ofile.close();
+    return num;
 }
 
-template class state<ising_spin>;
-template class state<heis_spin>;
+int state::sub_num(int subnumber)
+{
+    return snum;
+}
+
+void state::change_temp(double T)
+{
+    if (T <= 0)
+    {
+        cerr << "Invalid temperature, exiting" << endl;
+        exit(104);
+    }
+    beta = 1 / (k_b * T);
+}
+
+void state::print_latt()
+{
+
+}
+
+void state::ptf(string fname)
+{
+
+}

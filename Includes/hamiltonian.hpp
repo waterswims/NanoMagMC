@@ -2,143 +2,121 @@
 #define _HAMIL
 
 #include "field_type.hpp"
-// #include "FCC.hpp"
-#include "spin_type.hpp"
-#include "boost/assign.hpp"
+#include "array_alloc.hpp"
 #include <vector>
-#include <iostream>
-#include <string>
+
+class field_type;
 
 using namespace std;
 
-
-template <class T> class ham_type
+class ham_type
 {
+protected:
+    int dim;
 public:
-    ham_type(){}
-    ~ham_type(){}
-    virtual double calc_E(field_type<T>* lattice){return 0;}
-    virtual vector<double> calc_M(field_type<T>* lattice){}
-    virtual vector<double> calc_subM(field_type<T>* lattice, int subnumber){}
-    virtual double dE(field_type<T>* lattice, vector<int>& position){return 0;}
-    virtual double get_J(){return 0;}
-    virtual double get_H(){return 0;}
-    virtual vector<double> get_Js(){}
-    virtual vector<double> get_Hs(){}
-    virtual T* get_test(){}
-    virtual double get_Dx(){return 0;}
-    virtual double get_Dy(){return 0;}
-    virtual vector<double>* get_xs(){return NULL;}
-    virtual vector<double>* get_ys(){return NULL;}
-    virtual vector<double>* get_zs(){return NULL;}
-    virtual vector<double>* get_hs(){return NULL;}
-    virtual vector<double>* get_Rms(){return NULL;}
-    virtual vector<double>* get_Rns(){return NULL;}
-    virtual vector<heis_spin>* get_ks(){return NULL;}
-    virtual double get_ani(){return 0;}
-    virtual double get_Ms(){return 0;}
+    virtual double calc_E(field_type* lattice) {return 0;}
+    virtual double dE(field_type* lattice, vector<int>& position) {return 0;}
+    virtual vector<double> calc_M(field_type* lattice) {}
+    virtual vector<double> calc_subM(field_type* lattice, int subnumber) {}
+    virtual double get_J() const {return 0;}
+    virtual double get_H() const {return 0;}
+    virtual vector<double> get_Js() const {}
+    virtual vector<double> get_Hs() const {}
+    virtual double get_K() const {return 0;}
+    virtual void get_test(double &x, double &y, double &z){}
+    virtual void init_dim(field_type* field) {}
+    // virtual double get_Dx(){return 0;}
+    // virtual double get_Dy(){return 0;}
+    // virtual vector<double>* get_xs(){return NULL;}
+    // virtual vector<double>* get_ys(){return NULL;}
+    // virtual vector<double>* get_zs(){return NULL;}
+    // virtual vector<double>* get_hs(){return NULL;}
+    // virtual vector<double>* get_Rms(){return NULL;}
+    // virtual vector<double>* get_Rns(){return NULL;}
+    // virtual vector<heis_spin>* get_ks(){return NULL;}
+    // virtual double get_ani(){return 0;}
+    // virtual double get_Ms(){return 0;}
 };
 
-template <class T> class ham_ising: public ham_type<T>
+class ham_ising: public ham_type
 {
 private:
     double H, J;
-    vector<ising_spin*> adj;
-    T test;
+    int* adj;
 public:
     ham_ising(){}
     ham_ising(double Hin, double Jin){H = Hin; J = Jin;}
-    ham_ising(ham_type<ising_spin>& other);
-    ham_ising(ham_type<heis_spin>& other){cout << "Error" << endl; exit(201);}
-    ~ham_ising(){}
-    double calc_E(field_type<ising_spin>* lattice);
-    vector<double> calc_M(field_type<ising_spin>* lattice);
-    vector<double> calc_subM(field_type<ising_spin>* lattice, int subnumber);
-    double dE(field_type<ising_spin>* lattice, vector<int>& position);
-    double get_J(){return J;}
-    double get_H(){return H;}
-    ham_ising<T>& operator=(ham_type<ising_spin>& other);
-    T* get_test(){return &test;}
+    ham_ising(ham_type& other);
+    ~ham_ising(){dealloc_1darr<int>(adj);}
+    double calc_E(field_type* lattice);
+    vector<double> calc_M(field_type* lattice);
+    vector<double> calc_subM(field_type* lattice, int subnumber);
+    double dE(field_type* lattice, vector<int>& position);
+    double get_J() const {return J;}
+    double get_H() const {return H;}
+    ham_ising& operator=(ham_type& other);
+    void init_dim(field_type* field);
 };
 
-template <class T> class ham_heis: public ham_type<T>
+class ham_heis: public ham_type
 {
 protected:
     vector<double> H, J;
-    vector<heis_spin*> adj;
-    T test;
-    vector<double> vsum, curr, adj_curr, H_sum, J_sum, potential;
+    double** adj;
+    vector<double> vsum, curr, H_sum, J_sum, test;
     vector<int> pos;
 public:
     ham_heis(){}
     ham_heis(double Hin, double Jin);
-    ham_heis(ham_type<ising_spin>& other){cout << "Error" << endl; exit(201);}
-    ham_heis(ham_type<heis_spin>& other);
-    ~ham_heis(){}
-    virtual double calc_E(field_type<heis_spin>* lattice);
-    vector<double> calc_M(field_type<heis_spin>* lattice);
-    vector<double> calc_subM(field_type<heis_spin>* lattice, int subnumber);
-    virtual double dE(field_type<heis_spin>* lattice, vector<int>& position);
-    vector<double> get_Js(){return J;}
-    vector<double> get_Hs(){return H;}
-    T* get_test(){return &test;}
-    ham_heis<T>& operator=(ham_type<heis_spin>& other);
+    ham_heis(ham_type& other);
+    ~ham_heis(){dealloc_2darr<double>(4, adj);}
+    virtual double calc_E(field_type* lattice);
+    vector<double> calc_M(field_type* lattice);
+    vector<double> calc_subM(field_type* lattice, int subnumber);
+    virtual double dE(field_type* lattice, vector<int>& position);
+    vector<double> get_Js() const {return J;}
+    vector<double> get_Hs() const {return H;}
+    ham_heis& operator=(ham_type& other);
+    virtual void init_dim(field_type* field);
+    void get_test(double &x, double &y, double &z)
+        {x = test[0]; y = test[1]; z = test[2];}
 };
 
-template <class T> class ham_FePt: public ham_type<T>
+class ham_FePt: public ham_heis
 {
 private:
-    T test;
-    double Jx_sum, Jy_sum, Jz_sum, d2_sum, d0_sum, d0;
-    vector<double> vsum, curr, adj_curr, potential, Js, d_ijs;
-    vector<int> pos, dxs, dys, dzs, pos2;
-    vector<vector<int> > posvec;
-    vector<vector<double> > adjvec;
+    vector<int> pos2, dxs, dys, dzs;
+    vector<double> Js, adj_curr, d_ijs;
+    double d0;
 public:
     ham_FePt();
-    ham_FePt(ham_type<ising_spin>& other){cout << "Error" << endl; exit(201);}
-    ham_FePt(ham_type<heis_spin>& other);
-    ~ham_FePt(){}
-    double calc_E(field_type<heis_spin>* lattice);
-    vector<double> calc_M(field_type<heis_spin>* lattice);
-    double dE(field_type<heis_spin>* lattice, vector<int>& position);
-    T* get_test(){return &test;}
-    ham_FePt<T>& operator=(ham_type<heis_spin>& other);
-    vector<double> calc_subM(field_type<heis_spin>* lattice, int subnumber);
+    ham_FePt(double Hin);
+    ham_FePt(ham_type& other);
+    ~ham_FePt() {}
+    double calc_E(field_type* lattice);
+    double dE(field_type* lattice, vector<int>& position);
+    ham_FePt& operator=(ham_type& other);
     void read_Js();
-    bool check_pos(int start, int fin);
+    void init_dim(field_type* field);
 };
 
-template <class T> class ham_cluster: public ham_type<T>
+class ham_skyrm: public ham_heis
 {
 private:
-    T test;
-    vector<double> xs, ys, zs, Rms, Rns, Vms, Vs, h;
-    vector<double> temp, potential, diff;
-    vector<double> curr, curr2, curr_ani;
-    vector<heis_spin> ks;
-    vector<int> pos, pos2;
-    double ani_const, Ms, mu0;
+    double K;
+    int dirs[6];
+    int mod[6];
+    vector<double> cmp;
 public:
-    ham_cluster(){}
-    ham_cluster(string filename);
-    ham_cluster(ham_type<ising_spin>& other){cout << "Error" << endl; exit(201);}
-    ham_cluster(ham_type<heis_spin>& other);
-    ~ham_cluster(){}
-    double calc_E(field_type<T>* lattice);
-    vector<double> calc_M(field_type<T>* lattice);
-    double dE(field_type<T>* lattice, vector<int>& position);
-    T* get_test(){return &test;}
-    ham_cluster<T>& operator=(ham_type<T>& other);
-    vector<double>* get_xs(){return &xs;}
-    vector<double>* get_ys(){return &ys;}
-    vector<double>* get_zs(){return &zs;}
-    vector<double>* get_Rms(){return &Rms;}
-    vector<double>* get_Rns(){return &Rns;}
-    vector<double>* get_hs(){return &h;}
-    vector<heis_spin>* get_ks(){return &ks;}
-    double get_ani(){return ani_const;}
-    double get_Ms(){return Ms;}
+    ham_skyrm(){}
+    ham_skyrm(double Hin, double Jin, double Kin);
+    ham_skyrm(const ham_type& other);
+    ~ham_skyrm() {}
+    virtual double calc_E(field_type* lattice);
+    virtual double dE(field_type* lattice, vector<int>& position);
+    ham_skyrm& operator=(const ham_type& other);
+    double get_K() const {return K;}
+    void set_dirs();
 };
 
 #endif

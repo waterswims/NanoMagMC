@@ -1,43 +1,52 @@
 #include "hamiltonian.hpp"
 #include "functions.h"
-#include <sstream>
+
 #include <iostream>
-#include <fstream>
+#include <cstdlib>
+#include <algorithm>
 
-const double pi = 3.141592653589793;
+///////////////////////////////////
+// Ising model hamiltonian
+///////////////////////////////////
 
-template <class T> ham_ising<T>::ham_ising(ham_type<ising_spin>& other)
+ham_ising::ham_ising(ham_type& other)
 {
-    H = other.get_H();
-    J = other.get_J();
+    H = other.get_J();
+    J = other.get_H();
 }
 
-template <class T> double ham_ising<T>::calc_E(field_type<ising_spin>* lattice)
+ham_ising& ham_ising::operator=(ham_type& other)
+{
+    H = other.get_J();
+    J = other.get_H();
+    return *this;
+}
+
+double ham_ising::calc_E(field_type* lattice)
 {
     int sum=0;
     int start = 0;
-    if(lattice->get_perio())
+    if(!(lattice->get_perio()))
     {
         start++;
     }
-    int dim = lattice->get_dim();
     vector<int> pos(dim);
     for (vector<int>::iterator it = pos.begin(); it != pos.end(); it++)
     {
         *it = start;
     }
     bool finished = false;
-    int curr, adj_curr;
+    int curr;
     int H_sum(0), J_sum(0);
+
     while (!finished)
     {
-        lattice->adjacent(pos, adj);
-        curr = (lattice->next(finished, pos)).i_access();
+        lattice->i_adjacent(pos, adj);
+        lattice->i_next(finished, pos, curr);
         H_sum += curr;
-        for (vector<ising_spin*>::iterator it = adj.begin(); it != adj.end(); it++)
+        for (int i = 0; i < 2*dim; i++)
         {
-            adj_curr = (*it)->i_access();
-            J_sum += curr*adj_curr;
+            J_sum += curr*adj[i];
         }
     }
 
@@ -45,31 +54,32 @@ template <class T> double ham_ising<T>::calc_E(field_type<ising_spin>* lattice)
     return E;
 }
 
-template <class T> vector<double> ham_ising<T>::calc_M(field_type<ising_spin>* lattice)
+vector<double> ham_ising::calc_M(field_type* lattice)
 {
     int sum=0;
     int start = 0;
-    if(lattice->get_perio())
+    if(!(lattice->get_perio()))
     {
         start++;
     }
-    int dim = lattice->get_dim();
     vector<int> pos(dim);
     for (vector<int>::iterator it = pos.begin(); it != pos.end(); it++)
     {
         *it = start;
     }
     bool finished = false;
+    int curr;
     while (!finished)
     {
-        sum += (lattice->next(finished, pos)).i_access();
+        lattice->i_next(finished, pos, curr);
+        sum += curr;
     }
-
-    vector<double> mag = boost::assign::list_of(sum);
+    vector<double> mag(1);
+    mag[0] = sum;
     return mag;
 }
 
-template <class T> vector<double> ham_ising<T>::calc_subM(field_type<ising_spin>* lattice, int subnumber)
+vector<double> ham_ising::calc_subM(field_type* lattice, int subnumber)
 {
     if (subnumber > 1)
     {
@@ -78,11 +88,10 @@ template <class T> vector<double> ham_ising<T>::calc_subM(field_type<ising_spin>
     }
     int tsum=0;
     int start = 0;
-    if(lattice->get_perio())
+    if(!(lattice->get_perio()))
     {
         start++;
     }
-    int dim = lattice->get_dim();
     vector<int> pos(dim);
     for (vector<int>::iterator it = pos.begin(); it != pos.end(); it++)
     {
@@ -90,208 +99,201 @@ template <class T> vector<double> ham_ising<T>::calc_subM(field_type<ising_spin>
     }
     bool finished = false;
     int possum = 0;
-    T temp;
+    int curr;
     while (!finished)
     {
         possum = sum(pos);
-        temp = lattice->next(finished, pos);
+        lattice->i_next(finished, pos, curr);
         if (possum%2 == subnumber)
         {
-            tsum += (temp).i_access();
+            tsum += curr;
         }
     }
 
-    vector<double> mag = boost::assign::list_of(tsum);
+    vector<double> mag(1);
+    mag[0] = tsum;
     return mag;
 }
 
-template <class T> double ham_ising<T>::dE(field_type<ising_spin>* lattice, vector<int>& position)
+double ham_ising::dE(field_type* lattice, vector<int>& position)
 {
-    int val = (lattice->access(position)).i_access();
+    int val;
+    lattice->i_access(position, val);
     double dEH = 2 * H * val;
-
     int sum = 0;
-    lattice->adjacent(position, adj);
-    //printv(position);
-    //cout << adj.size() << endl;
-    for(vector<ising_spin*>::iterator it = adj.begin(), end = adj.end(); it != end; it++)
+    lattice->i_adjacent(position, adj);
+    for(int i = 0; i < dim*2; i++)
     {
-        sum += (*it)->i_access();
+        sum += adj[i];
     }
 
     double dE = dEH + 2 * J * val * sum;
     return dE;
 }
 
-template <class T> ham_ising<T>& ham_ising<T>::operator=(ham_type<ising_spin>& other)
+void ham_ising::init_dim(field_type* field)
 {
-    H = other.get_H();
-    J = other.get_J();
-    return *this;
+    dim = field->get_dim();
+    adj = alloc_1darr<int>(dim*2);
 }
 
-template <class T> ham_heis<T>::ham_heis(double Hin, double Jin)
+///////////////////////////////////
+// Heis model hamiltonian
+///////////////////////////////////
+
+ham_heis::ham_heis(double Hin, double Jin)
 {
-    H = vector<double>(3);
-    J = vector<double>(3);
+    H.resize(4);
+    J.resize(4);
     H[0] = 0;
     H[1] = 0;
     H[2] = Hin;
     J[0] = Jin;
     J[1] = Jin;
     J[2] = Jin;
-    test = T();
-    vsum.resize(3);
-    curr.resize(3);
-    adj_curr.resize(3);
-    H_sum.resize(3);
-    J_sum.resize(3);
-    potential.resize(3);
+    vsum.resize(4);
+    curr.resize(4);
+    H_sum.resize(4);
+    J_sum.resize(4);
+    test.resize(3);
 }
 
-template <class T> ham_heis<T>::ham_heis(ham_type<heis_spin>& other)
+ham_heis::ham_heis(ham_type& other)
 {
     H = other.get_Hs();
     J = other.get_Js();
-    test = *(other.get_test());
-    vsum.resize(3);
-    curr.resize(3);
-    adj_curr.resize(3);
-    H_sum.resize(3);
-    J_sum.resize(3);
-    potential.resize(3);
+    vsum.resize(4);
+    curr.resize(4);
+    H_sum.resize(4);
+    J_sum.resize(4);
+    test.resize(3);
 }
 
-template <class T> double ham_heis<T>::calc_E(field_type<heis_spin>* lattice)
+ham_heis& ham_heis::operator=(ham_type& other)
+{
+    H = other.get_Hs();
+    J = other.get_Js();
+    vsum.resize(4);
+    curr.resize(4);
+    H_sum.resize(4);
+    J_sum.resize(4);
+    test.resize(3);
+
+    return *this;
+}
+
+double ham_heis::calc_E(field_type* lattice)
 {
     int sum=0;
     int start = 0;
-    if(lattice->get_perio())
+    if(!(lattice->get_perio()))
     {
         start++;
     }
-    int dim = lattice->get_dim();
     pos.resize(dim);
     for (vector<int>::iterator it = pos.begin(); it != pos.end(); it++)
     {
         *it = start;
     }
     bool finished = false;
-    H_sum.resize(3);
-    J_sum.resize(3);
     H_sum[0] = 0;
     H_sum[1] = 0;
     H_sum[2] = 0;
     J_sum[0] = 0;
     J_sum[1] = 0;
     J_sum[2] = 0;
+    int arrsize = dim*2;
     while (!finished)
     {
-        lattice->adjacent(pos, adj);
-        (lattice->next(finished, pos)).spin_access(curr[0], curr[1], curr[2]);
-        H_sum[0] += curr[0];
-        H_sum[1] += curr[1];
-        H_sum[2] += curr[2];
-        for (vector<heis_spin*>::iterator it = adj.begin(); it != adj.end(); it++)
+        lattice->h_adjacent(pos, adj);
+        lattice->h_next(finished, pos, curr);
+        #pragma simd
+        for (int j = 0; j < 4; j++)
         {
-            (*it)->spin_access(adj_curr[0], adj_curr[1], adj_curr[2]);
-            J_sum[0] += curr[0]*adj_curr[0];
-            J_sum[1] += curr[1]*adj_curr[1];
-            J_sum[2] += curr[2]*adj_curr[2];
+            H_sum[j] += curr[j];
+            for (int i = 0; i < arrsize; i++)
+            {
+                J_sum[j] += curr[j]*adj[j][i];
+            }
         }
     }
-    H_sum[0] = H_sum[0] * H[0];
-    H_sum[1] = H_sum[1] * H[1];
-    H_sum[2] = H_sum[2] * H[2];
-    J_sum[0] = J_sum[0] * J[0];
-    J_sum[1] = J_sum[1] * J[1];
-    J_sum[2] = J_sum[2] * J[2];
+    #pragma simd
+    for (int j = 0; j < 4; j++)
+    {
+        H_sum[j] = H_sum[j] * H[j];
+        J_sum[j] = J_sum[j] * J[j];
+    }
     double E = -(H_sum[0] + H_sum[1] + H_sum[2]) - 0.5*(J_sum[0] + J_sum[1] + J_sum[2]);
 
     return E;
 }
 
-template <class T> vector<double> ham_heis<T>::calc_M(field_type<heis_spin>* lattice)
+vector<double> ham_heis::calc_M(field_type* lattice)
 {
-    vsum.resize(3);
-    vsum[0] = 0;
-    vsum[1] = 0;
-    vsum[2] = 0;
+    #pragma simd
+    for (int i = 0; i < 4; i++) {vsum[i] = 0;}
     int start = 0;
-    if(lattice->get_perio())
+    if(!(lattice->get_perio()))
     {
         start++;
     }
-    int dim = lattice->get_dim();
     pos.resize(dim);
-    for (vector<int>::iterator it = pos.begin(); it != pos.end(); it++)
-    {
-        *it = start;
-    }
+    for (int i = 0; i < dim; i++) {pos[i] = start;}
     bool finished = false;
     while (!finished)
     {
-        (lattice->next(finished, pos)).spin_access(curr[0], curr[1], curr[2]);
-        vsum[0] += curr[0];
-        vsum[1] += curr[1];
-        vsum[2] += curr[2];
+        lattice->h_next(finished, pos, curr);
+        #pragma simd
+        for (int i = 0; i < 4; i++) {vsum[i] += curr[i];}
     }
     return vsum;
 }
 
-template <class T> vector<double> ham_heis<T>::calc_subM(field_type<heis_spin>* lattice, int subnumber)
+vector<double> ham_heis::calc_subM(field_type* lattice, int subnumber)
 {
-    vsum.resize(3);
-    vsum[0] = 0;
-    vsum[1] = 0;
-    vsum[2] = 0;
+    #pragma simd
+    for (int i = 0; i < 4; i++) {vsum[i] = 0;}
     int start = 0;
-    if(lattice->get_perio())
+    if(!(lattice->get_perio()))
     {
         start++;
     }
-    int dim = lattice->get_dim();
     pos.resize(dim);
-    for (vector<int>::iterator it = pos.begin(); it != pos.end(); it++)
-    {
-        *it = start;
-    }
+    for (int i = 0; i < dim; i++) {pos[i] = start;}
     bool finished = false;
     int possum = 0;
     while (!finished)
     {
         possum = sum(pos);
-        (lattice->next(finished, pos)).spin_access(curr[0], curr[1], curr[2]);
+        lattice->h_next(finished, pos, curr);
         if (possum%2 == subnumber)
         {
-            vsum[0] += curr[0];
-            vsum[1] += curr[1];
-            vsum[2] += curr[2];
+            #pragma simd
+            for (int i = 0; i < 4; i++) {vsum[i] += curr[i];}
         }
     }
     return vsum;
 }
 
-template <class T> double ham_heis<T>::dE(field_type<heis_spin>* lattice, vector<int>& position)
+double ham_heis::dE(field_type* lattice, vector<int>& position)
 {
-    test.rand_spin();
-    (lattice->access(position)).spin_access(curr[0], curr[1], curr[2]);
-    test.spin_access(adj_curr[0], adj_curr[1], adj_curr[2]);
-    double cmp1 = curr[0] - adj_curr[0];
-    double cmp2 = curr[1] - adj_curr[2];
-    double cmp3 = curr[2] - adj_curr[3];
+    rand_spin_h(test[0], test[1], test[2]);
+    lattice->h_access(position, curr);
+    double cmp1 = curr[0] - test[0];
+    double cmp2 = curr[1] - test[1];
+    double cmp3 = curr[2] - test[2];
     double dEH = H[0] * cmp1 + H[1] * cmp2 + H[2] * cmp3;
 
-    lattice->adjacent(position, adj);
-    vsum[0] = 0;
-    vsum[1] = 0;
-    vsum[2] = 0;
-    for(vector<heis_spin*>::iterator it = adj.begin(), end = adj.end(); it != end; it++)
+    int arrsize = dim*2;
+    lattice->h_adjacent(position, adj);
+    #pragma simd
+    for(int j = 0; j < 4; j++)
     {
-        (*it)->spin_access(curr[0], curr[1], curr[2]);
-        vsum[0] += curr[0];
-        vsum[1] += curr[1];
-        vsum[2] += curr[2];
+        vsum[j] = 0;
+        for(int i = 0; i < arrsize; i++)
+        {
+            vsum[j] += adj[j][i];
+        }
     }
 
     double dE = dEH + (J[0] * cmp1 * vsum[0] + J[1] * cmp2 * vsum[1] + J[2] * cmp3 * vsum[2]);
@@ -299,224 +301,139 @@ template <class T> double ham_heis<T>::dE(field_type<heis_spin>* lattice, vector
     return dE;
 }
 
-template <class T> ham_heis<T>& ham_heis<T>::operator=(ham_type<heis_spin>& other)
+void ham_heis::init_dim(field_type* field)
 {
+    dim = field->get_dim();
+    adj = alloc_2darr<double>(4, dim*2);
+}
+
+///////////////////////////////////
+//  FePt hamiltonian
+///////////////////////////////////
+
+ham_FePt::ham_FePt()
+{
+    this->read_Js();
+    vsum.resize(4);
+    curr.resize(4);
+    adj_curr.resize(4);
+    test.resize(4);
+    H.resize(4);
+    H[2] = 0;
+}
+
+ham_FePt::ham_FePt(double Hin)
+{
+    this->read_Js();
+    vsum.resize(4);
+    curr.resize(4);
+    adj_curr.resize(4);
+    test.resize(4);
+    H.resize(4);
+    H[2] = Hin;
+}
+
+ham_FePt::ham_FePt(ham_type& other)
+{
+    this->read_Js();
+    vsum.resize(4);
+    curr.resize(4);
+    adj_curr.resize(4);
+    test.resize(4);
     H = other.get_Hs();
-    J = other.get_Js();
-    test = *(other.get_test());
-    vsum.resize(3);
-    curr.resize(3);
-    adj_curr.resize(3);
-    H_sum.resize(3);
-    J_sum.resize(3);
-    potential.resize(3);
+}
+
+ham_FePt& ham_FePt::operator=(ham_type& other)
+{
+    this->read_Js();
+    vsum.resize(4);
+    curr.resize(4);
+    adj_curr.resize(4);
+    test.resize(4);
+    H = other.get_Hs();
     return *this;
 }
 
-template class ham_ising<ising_spin>;
-template class ham_ising<heis_spin>;
-template class ham_heis<ising_spin>;
-template class ham_heis<heis_spin>;
-
-template <class T> double ham_FePt<T>::calc_E(field_type<heis_spin>* lattice)
+double ham_FePt::calc_E(field_type* lattice)
 {
-    Jx_sum = 0;
-    Jy_sum = 0;
-    d2_sum = 0;
-    d0_sum = 0;
-
+    double Jx_sum = 0;
+    double Jy_sum = 0;
+    double d2_sum = 0;
+    double d0_sum = 0;
+    double H_sum = 0;
     int t_size = lattice->get_totsize();
     int i_size = lattice->get_insize();
     int start = (t_size-i_size)/2;
-    int fin = start+i_size;
-
-    int dim = lattice->get_dim();
     pos2.resize(dim);
     for (vector<int>::iterator it = pos2.begin(); it != pos2.end(); it++)
     {
         *it = start;
     }
-    pos = pos2;
+    pos.resize(dim);
     int nN = dxs.size();
     bool finished = false;
     while (!finished)
     {
-        (lattice->next(finished, pos2)).spin_access(curr[0], curr[1], curr[2]);
-        // All neighbour interactions
+        lattice->h_access(pos2, curr);
+        lattice->h_arb_adj(pos2, dxs, dys, dzs, adj, nN);
+        #pragma simd
         for(int i = 0; i < nN; i++)
         {
-            pos[0] = pos2[0] + dxs[i];
-            pos[1] = pos2[1] + dys[i];
-            pos[2] = pos2[2] + dzs[i];
-
-            if(this->check_pos(start, fin))
-            {
-                (lattice->access(pos)).spin_access(adj_curr[0], adj_curr[1], adj_curr[2]);
-
-                Jx_sum += curr[0] * adj_curr[0] * Js[i];
-                Jy_sum += curr[1] * adj_curr[1] * Js[i];
-
-                d2_sum += curr[2] * adj_curr[2] * d_ijs[i];
-            }
+            Jx_sum += curr[0] * adj[0][i] * Js[i];
+            Jy_sum += curr[1] * adj[1][i] * Js[i];
+            d2_sum += curr[2] * adj[2][i] * d_ijs[i];
         }
+        lattice->next(finished, pos2);
         // 1 ion anisotropy
         d0_sum += curr[2]*curr[2];
+        H_sum += curr[2];
     }
 
     // totals
-    double E = -(d0 * d0_sum + 0.5 * (Jx_sum + Jy_sum + d2_sum));
+    double E = -(H[2] * H_sum + d0 * d0_sum + 0.5 * (Jx_sum + Jy_sum + d2_sum));
 
     return E;
 }
 
-template <class T> vector<double> ham_FePt<T>::calc_M(field_type<heis_spin>* lattice)
+double ham_FePt::dE(field_type* lattice, vector<int>& position)
 {
-    vsum.resize(3);
-    vsum[0] = 0;
-    vsum[1] = 0;
-    vsum[2] = 0;
-    int start = 0;
-    if(lattice->get_perio())
-    {
-        start++;
-    }
-    int dim = lattice->get_dim();
-    pos.resize(dim);
-    for (vector<int>::iterator it = pos.begin(); it != pos.end(); it++)
-    {
-        *it = start;
-    }
-    bool finished = false;
-    while (!finished)
-    {
-        (lattice->next(finished, pos)).spin_access(curr[0], curr[1], curr[2]);
-        vsum[0] += curr[0];
-        vsum[1] += curr[1];
-        vsum[2] += curr[2];
-    }
-    return vsum;
-}
-
-template <class T> vector<double> ham_FePt<T>::calc_subM(field_type<heis_spin>* lattice, int subnumber)
-{
-    vsum.resize(3);
-    vsum[0] = 0;
-    vsum[1] = 0;
-    vsum[2] = 0;
-    int start = 0;
-    if(lattice->get_perio())
-    {
-        start++;
-    }
-    int dim = lattice->get_dim();
-    pos.resize(dim);
-    for (vector<int>::iterator it = pos.begin(); it != pos.end(); it++)
-    {
-        *it = start;
-    }
-    bool finished = false;
-    int possum = 0;
-    while (!finished)
-    {
-        possum = sum(pos);
-        (lattice->next(finished, pos)).spin_access(curr[0], curr[1], curr[2]);
-        if (possum%2 == subnumber)
-        {
-            vsum[0] += curr[0];
-            vsum[1] += curr[1];
-            vsum[2] += curr[2];
-        }
-    }
-    return vsum;
-}
-
-template <class T> double ham_FePt<T>::dE(field_type<heis_spin>* lattice, vector<int>& position)
-{
-    Jx_sum = 0;
-    Jy_sum = 0;
-    // Jz_sum = 0;
-    d2_sum = 0;
-
+    double Jx_sum = 0;
+    double Jy_sum = 0;
+    double d2_sum = 0;
     int t_size = lattice->get_totsize();
-    int i_size = lattice->get_insize();
-    int start = (t_size-i_size)/2;
-    int fin = start+i_size;
 
-    test.rand_spin();
-    test.spin_access(potential[0], potential[1], potential[2]);
-    (lattice->access(position)).spin_access(curr[0], curr[1], curr[2]);
-    double cmp1 = curr[0] - potential[0];
-    double cmp2 = curr[1] - potential[1];
-    double cmp3 = curr[2] - potential[2];
-
+    rand_spin_h(test[0], test[1], test[2]);
+    lattice->h_access(position, curr);
+    double cmp1 = curr[0] - test[0];
+    double cmp2 = curr[1] - test[1];
+    double cmp3 = curr[2] - test[2];
     int nN = dxs.size();
-
-    // All neighbour interactions
-
+    pos.resize(dim);
+    lattice->h_arb_adj(position, dxs, dys, dzs, adj, nN);
+    #pragma simd
     for(int i = 0; i < nN; i++)
     {
-        pos[0] = position[0] + dxs[i];
-        pos[1] = position[1] + dys[i];
-        pos[2] = position[2] + dzs[i];
-
-        if(this->check_pos(start, fin))
-        {
-            (lattice->access(pos)).spin_access(adj_curr[0], adj_curr[1], adj_curr[2]);
-
-            Jx_sum += adj_curr[0] * Js[i];
-            Jy_sum += adj_curr[1] * Js[i];
-            // Jz_sum += adj_curr[2] * Js[i];
-
-            d2_sum += adj_curr[2] * d_ijs[i];
-        }
+        Jx_sum += adj[0][i] * Js[i];
+        Jy_sum += adj[1][i] * Js[i];
+        d2_sum += adj[2][i] * d_ijs[i];
     }
 
     // 1 ion anisotropy
-    d0_sum = (curr[2]*curr[2] - potential[2]*potential[2]) * d0;
+    double d0_sum = curr[2]*curr[2] - test[2]*test[2];
 
     // totals
-    double dE = d0_sum + cmp1 * Jx_sum + cmp2 * Jy_sum + cmp3 * (d2_sum);
+    double dE = (H[2] * cmp3 + d0 * d0_sum + cmp1 * Jx_sum + cmp2 * Jy_sum + cmp3 * d2_sum);
 
     return dE;
 }
 
-template <class T> ham_FePt<T>::ham_FePt(ham_type<heis_spin>& other)
-{
-    this->read_Js();
-    vsum.resize(3);
-    curr.resize(3);
-    adj_curr.resize(3);
-    potential.resize(3);
-    test = *(other.get_test());
-
-}
-
-template <class T> ham_FePt<T>::ham_FePt()
-{
-    this->read_Js();
-    test = T();
-    vsum.resize(3);
-    curr.resize(3);
-    adj_curr.resize(3);
-    potential.resize(3);
-}
-
-template <class T> ham_FePt<T>& ham_FePt<T>::operator=(ham_type<heis_spin>& other)
-{
-    this->read_Js();
-    vsum.resize(3);
-    curr.resize(3);
-    adj_curr.resize(3);
-    potential.resize(3);
-    test = *(other.get_test());
-    return *this;
-}
-
-template <class T> void ham_FePt<T>::read_Js()
+void ham_FePt::read_Js()
 {
     ifstream Jstream, d_ijstream;
-    Jstream.open("Includes/Js/FePt_cut_1e-3.txt");
-    d_ijstream.open("Includes/Js/FePt_2ion_cut_1e-3.txt");
+    string Jname = "Includes/Js/FePt_cut_1e-3.txt";
+    string dname = "Includes/Js/FePt_2ion_cut_1e-3.txt";
+    Jstream.open(Jname.c_str());
+    d_ijstream.open(dname.c_str());
     int icurr;
     double dcurr;
     while(Jstream >> icurr)
@@ -539,268 +456,178 @@ template <class T> void ham_FePt<T>::read_Js()
     d_ijstream.close();
 
     d0 = 8.42603732e-5;
-
-    // posvec.resize(dxs.size());
-    // adjvec.resize(dxs.size());
-    // for (int i = 0; i < dxs.size(); i++) {
-    //     posvec[i].resize(3);
-    //     adjvec[i].resize(3);
-    // }
 }
 
-template <class T> bool ham_FePt<T>::check_pos(int start, int fin)
+void ham_FePt::init_dim(field_type* field)
 {
-    if(pos[0] < start) return false;
-    if(pos[1] < start) return false;
-    if(pos[2] < start) return false;
-    if(pos[0] >= fin) return false;
-    if(pos[1] >= fin) return false;
-    if(pos[2] >= fin) return false;
-    return true;
+    dim = field->get_dim();
+    adj = alloc_2darr<double>(4, dxs.size());
 }
 
-template class ham_FePt<ising_spin>;
-template class ham_FePt<heis_spin>;
+///////////////////////////////////
+//  Skyrmion hamiltonian
+///////////////////////////////////
 
-template <class T> ham_cluster<T>::ham_cluster(string filename)
+void ham_skyrm::set_dirs()
 {
-    ifstream file;
-    file.open(filename.c_str());
-    if(!file.is_open())
-    {
-        cout << "Input file not opened" << endl;
-        exit(105);
-    }
-    string line;
-    double temp_d;
-    while(getline(file, line))
-    {
-        istringstream stream(line);
-        stream >> temp_d;
-        (xs).push_back(temp_d);
-        stream >> temp_d;
-        (ys).push_back(temp_d);
-        stream >> temp_d;
-        (zs).push_back(temp_d);
-        stream >> temp_d;
-        (Rms).push_back(temp_d);
-        stream >> temp_d;
-        (Rns).push_back(temp_d);
-    }
-    file.close();
-
-    ks = vector<heis_spin>((xs).size());
-    for(int i=0; i < xs.size(); i++)
-    {
-        (ks)[i].rand_spin();
-        (Vms).push_back(4.0*pi*pow(Rms[i], 3.0) / 3.0);
-        (Vs).push_back(4.0*pi*pow(Rns[i], 3.0) / 3.0);
-    }
-    mu0 = 4e-7 * pi;
-
-    temp.resize(3);
-    potential.resize(3);
-    diff.resize(3);
-    curr.resize(3);
-    curr2.resize(3);
-    curr_ani.resize(3);
+    dirs[0] = 0;
+    dirs[1] = 0;
+    dirs[2] = 1;
+    dirs[3] = 1;
+    dirs[4] = 2;
+    dirs[5] = 2;
+    mod[0] = -1;
+    mod[1] = 1;
+    mod[2] = -1;
+    mod[3] = 1;
+    mod[4] = -1;
+    mod[5] = 1;
 }
 
-template <class T> ham_cluster<T>::ham_cluster(ham_type<heis_spin>& other)
+ham_skyrm::ham_skyrm(double Hin, double Jin, double Kin)
 {
-    xs = *(other.get_xs());
-    ys = *(other.get_ys());
-    zs = *(other.get_zs());
-    Rms = *(other.get_Rms());
-    Rns = *(other.get_Rns());
-    ks = *(other.get_ks());
-    h = *(other.get_hs());
-
-    for(int i=0; i < xs.size(); i++)
-    {
-        (Vms).push_back(4.0*pi*pow(Rms[i], 3.0) / 3.0);
-        (Vs).push_back(4.0*pi*pow(Rns[i], 3.0) / 3.0);
-    }
-    mu0 = 4e-7 * pi;
-    ani_const = other.get_ani();
-    Ms = other.get_Ms();
-
-    temp.resize(3);
-    potential.resize(3);
-    diff.resize(3);
-    curr.resize(3);
-    curr2.resize(3);
-    curr_ani.resize(3);
+    H.resize(4);
+    J.resize(4);
+    H[0] = 0;
+    H[1] = 0;
+    H[2] = Hin;
+    J[0] = Jin;
+    J[1] = Jin;
+    J[2] = Jin;
+    K = Kin;
+    vsum.resize(4);
+    curr.resize(4);
+    H_sum.resize(4);
+    J_sum.resize(4);
+    cmp.resize(4);
+    test.resize(3);
+    this->set_dirs();
 }
 
-template <class T> ham_cluster<T>& ham_cluster<T>::operator=(ham_type<T>& other)
+ham_skyrm::ham_skyrm(const ham_type& other)
 {
-    xs = *(other.get_xs());
-    ys = *(other.get_ys());
-    zs = *(other.get_zs());
-    Rms = *(other.get_Rms());
-    Rns = *(other.get_Rns());
-    ks = *(other.get_ks());
-    h = *(other.get_hs());
+    H = other.get_Hs();
+    J = other.get_Js();
+    K = other.get_K();
+    vsum.resize(4);
+    curr.resize(4);
+    H_sum.resize(4);
+    J_sum.resize(4);
+    test.resize(3);
+    cmp.resize(4);
+    this->set_dirs();
+}
 
-    for(int i=0; i < xs.size(); i++)
-    {
-        (Vms).push_back(4.0*pi*pow(Rms[i], 3.0) / 3.0);
-        (Vs).push_back(4.0*pi*pow(Rns[i], 3.0) / 3.0);
-    }
-    mu0 = 4e-7 * pi;
-    ani_const = other.get_ani();
-    Ms = other.get_Ms();
-
-    temp.resize(3);
-    potential.resize(3);
-    diff.resize(3);
-    curr.resize(3);
-    curr2.resize(3);
-    curr_ani.resize(3);
+ham_skyrm& ham_skyrm::operator=(const ham_type& other)
+{
+    H = other.get_Hs();
+    J = other.get_Js();
+    K = other.get_K();
+    vsum.resize(4);
+    curr.resize(4);
+    H_sum.resize(4);
+    J_sum.resize(4);
+    cmp.resize(4);
+    test.resize(3);
+    this->set_dirs();
 
     return *this;
 }
 
-template <class T> double ham_cluster<T>::calc_E(field_type<T>* lattice)
+double ham_skyrm::calc_E(field_type* lattice)
 {
-    double ani_sum = 0, mag_sum = 0, di_sum = 0;
-
-    int n_parts = lattice->get_totsize();
-    pos.resize(1);
-    pos2.resize(1);
-    temp.resize(3);
-
-    for (pos[0] = 0; pos[0] < n_parts; pos[0]++)
+    int sum=0;
+    int start = 0;
+    double D_sum = 0;
+    if(!(lattice->get_perio()))
     {
-        (lattice->access(pos)).spin_access(curr[0], curr[1], curr[2]);
-        ks[pos[0]].spin_access(curr_ani[0], curr_ani[1], curr_ani[2]);
-
-        ani_sum += (pow((curr_ani[1]*curr[2] - curr[1]*curr_ani[2]), 2) +
-                   pow((curr_ani[2]*curr[0] - curr[2]*curr_ani[0]), 2) +
-                   pow((curr_ani[0]*curr[1] - curr[0]*curr_ani[1]), 2)) *
-                   Vms[pos[0]];
-
-        mag_sum -= Vms[pos[0]] * (curr[0] * (h)[0] + curr[1] *
-                                  (h)[1] + curr[2] * (h)[2]);
-
-        temp[0] = 0;
-        temp[1] = 0;
-        temp[2] = 0;
-        for(pos2[0] = 0; pos2[0] < pos[0]; pos2[0]++)
-        {
-            (lattice->access(pos2)).spin_access(curr2[0], curr2[1], curr2[2]);
-            double dx = xs[pos[0]] - xs[pos2[0]];
-            double dy = ys[pos[0]] - ys[pos2[0]];
-            double dz = zs[pos[0]] - zs[pos2[0]];
-
-            double modr = pow((pow(dx, 2) + pow(dy, 2) + pow(dz, 2)), 0.5);
-
-            dx = dx / modr;
-            dy = dy / modr;
-            dz = dz / modr;
-
-            double invr3 = pow(modr, -3);
-
-            double mr = curr2[0] * dx + curr2[1] * dy + curr2[2] * dz;
-
-            temp[0] += Vms[pos2[0]] * invr3 * (-curr2[0] + dx * mr);
-            temp[1] += Vms[pos2[0]] * invr3 * (-curr2[1] + dy * mr);
-            temp[2] += Vms[pos2[0]] * invr3 * (-curr2[2] + dz * mr);
-        }
-
-        di_sum -= Vms[pos[0]] * Ms * (curr[0] * temp[0] + curr[1] * temp[1] +
-                                      curr[2] * temp[2]);
+        start++;
     }
+    pos.resize(dim);
+    for (vector<int>::iterator it = pos.begin(); it != pos.end(); it++)
+    {
+        *it = start;
+    }
+    bool finished = false;
+    H_sum[0] = 0;
+    H_sum[1] = 0;
+    H_sum[2] = 0;
+    J_sum[0] = 0;
+    J_sum[1] = 0;
+    J_sum[2] = 0;
+    int arrsize = dim*2;
+    while (!finished)
+    {
+        lattice->h_adjacent(pos, adj);
+        lattice->h_next(finished, pos, curr);
+        #pragma simd
+        for (int j = 0; j < 4; j++)
+        {
+            H_sum[j] += curr[j];
+            for (int i = 0; i < arrsize; i++)
+            {
+                J_sum[j] += curr[j]*adj[j][i];
+            }
+        }
+        // #pragma simd
+        cout << "New center" << endl;
+        for (int i = 0; i < arrsize; i++)
+        {
+            D_sum += (curr[(dirs[i]+1)%3]*adj[(dirs[i]+2)%3][i] -
+                     curr[(dirs[i]+2)%3]*adj[(dirs[i]+1)%3][i]);
 
-    double E = ani_const * ani_sum + mu0 * Ms * (mag_sum + di_sum * Ms /
-                                                 (4.0 * pi));
+            if (i == 4 || i == 5)
+            {
+                cout << curr[(dirs[i]+1)%3] << endl;
+                cout << curr[(dirs[i]+2)%3] << endl;
+                cout << adj[(dirs[i]+1)%3][i] << endl;
+                cout << adj[(dirs[i]+2)%3][i] << endl;
+                cout << (curr[(dirs[i]+1)%3]*adj[(dirs[i]+2)%3][i] -
+                     curr[(dirs[i]+2)%3]*adj[(dirs[i]+1)%3][i]) << endl;
+            }
+        }
+    }
+    #pragma simd
+    for (int j = 0; j < 4; j++)
+    {
+        H_sum[j] = H_sum[j] * H[j];
+        J_sum[j] = J_sum[j] * J[j];
+    }
+    double E = -(H_sum[0] + H_sum[1] + H_sum[2]) -
+                0.5*(J_sum[0] + J_sum[1] + J_sum[2]) - 0.5*K*D_sum;
 
     return E;
 }
 
-template <class T> double ham_cluster<T>::dE(field_type<T>* lattice, vector<int>& position)
+double ham_skyrm::dE(field_type* lattice, vector<int>& position)
 {
-    int n_parts = lattice->get_totsize();
-    pos2.resize(1);
-    temp.resize(3);
-    diff.resize(3);
+    double D_sum = 0;
+    rand_spin_h(test[0], test[1], test[2]);
+    lattice->h_access(position, curr);
+    cmp[0] = curr[0] - test[0];
+    cmp[1] = curr[1] - test[1];
+    cmp[2] = curr[2] - test[2];
+    double dEH = H[0] * cmp[0] + H[1] * cmp[1] + H[2] * cmp[2];
 
-    test.rand_spin();
-    test.spin_access(potential[0], potential[1], potential[2]);
-
-    (lattice->access(position)).spin_access(curr[0], curr[1], curr[2]);
-    ks[position[0]].spin_access(curr_ani[0], curr_ani[1], curr_ani[2]);
-
-    diff[0] = potential[0] - curr[0];
-    diff[1] = potential[1] - curr[1];
-    diff[2] = potential[2] - curr[2];
-
-    double diff_ani_sum = (pow((curr_ani[1]*diff[2] - diff[1]*curr_ani[2]), 2) +
-                          pow((curr_ani[2]*diff[0] - diff[2]*curr_ani[0]), 2) +
-                          pow((curr_ani[0]*diff[1] - diff[0]*curr_ani[1]), 2)) *
-                          Vms[position[0]];
-
-    double diff_mag_sum = -Vms[position[0]] * (diff[0] * (h)[0] + diff[1] *
-                                          (h)[1] + diff[2] * (h)[2]);
-
-    temp[0] = 0;
-    temp[1] = 0;
-    temp[2] = 0;
-    for(pos2[0] = 0; pos2[0] < n_parts; pos2[0]++)
+    int arrsize = dim*2;
+    lattice->h_adjacent(position, adj);
+    #pragma simd
+    for(int j = 0; j < 4; j++)
     {
-        if (pos2[0] == position[0]) {continue;}
-
-        (lattice->access(pos2)).spin_access(curr2[0], curr2[1], curr2[2]);
-        double dx = xs[position[0]] - xs[pos2[0]];
-        double dy = ys[position[0]] - ys[pos2[0]];
-        double dz = zs[position[0]] - zs[pos2[0]];
-
-        double modr = pow((pow(dx, 2) + pow(dy, 2) + pow(dz, 2)), 0.5);
-
-        dx = dx / modr;
-        dy = dy / modr;
-        dz = dz / modr;
-
-        double invr3 = pow(modr, -3);
-
-        double mr = curr2[0] * dx + curr2[1] * dy + curr2[2] * dz;
-
-        temp[0] += Vms[pos2[0]] * invr3 * (-curr2[0] + dx * mr);
-        temp[1] += Vms[pos2[0]] * invr3 * (-curr2[1] + dy * mr);
-        temp[2] += Vms[pos2[0]] * invr3 * (-curr2[2] + dz * mr);
+        vsum[j] = 0;
+        for(int i = 0; i < arrsize; i++)
+        {
+            vsum[j] += adj[j][i];
+        }
+    }
+    #pragma simd
+    for (int i = 0; i < arrsize; i++)
+    {
+        D_sum += mod[i]*(cmp[(dirs[i]+1)%3]*adj[(dirs[i]+2)%3][i] -
+                 cmp[(dirs[i]+2)%3]*adj[(dirs[i]+1)%3][i]);
     }
 
-    double diff_di_sum = -Vms[position[0]] * Ms * (diff[0] * temp[0] +
-                                                  diff[1] * temp[1] +
-                                                  diff[2] * temp[2]);
-
-    double dE = ani_const * diff_ani_sum + mu0 * Ms * (diff_mag_sum +
-                                                       diff_di_sum * Ms /
-                                                       (4.0 * pi));
+    double dE = dEH + (J[0] * cmp[0] * vsum[0] + J[1] * cmp[1] * vsum[1] + J[2] * cmp[2] * vsum[2]) + K * D_sum;
 
     return dE;
 }
-
-template <class T> vector<double> ham_cluster<T>::calc_M(field_type<T>* lattice)
-{
-    temp.resize(3);
-    vector<T>* field_point = lattice->get_1dfield();
-
-    temp[0] = 0;
-    temp[1] = 0;
-    temp[2] = 0;
-
-    for(int i = 0; i < (*field_point).size(); i++)
-    {
-        (*field_point)[i].spin_access(curr[0], curr[1], curr[2]);
-        temp[0] += curr[0];
-        temp[1] += curr[1];
-        temp[2] += curr[2];
-    }
-
-    return temp;
-}
-
-template class ham_cluster<ising_spin>;
-template class ham_cluster<heis_spin>;

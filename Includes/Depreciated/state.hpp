@@ -4,13 +4,12 @@
 #include "hamiltonian.hpp"
 #include "field_type.hpp"
 #include "shape.hpp"
-
 #include <string.h>
 #include <vector>
 
 using namespace std;
 
-class state
+template <class T> class state
 {
 private:
     double E, beta, k_b;
@@ -18,18 +17,15 @@ private:
     vector<double> subM;
     int num, snum;
     char s_code, h_code;
-    ham_type* hamil;
-    field_type* field;
+    ham_type<T>* hamil;
+    field_type<T>* field;
     shape_type* shape;
-
 public:
-    state(){}
+    state(){hamil=NULL; field=NULL; shape=NULL;}
     state(double size, bool isPerio, char shape_code, char ham_code, double J,
         double H, double k, double Temp, double* args);
-    state(const state& other);
+    state(const state<T>& other);
     ~state();
-    void copy_points(const state& other);
-    void init_points(double size, bool isPerio, double H, double J, double* args);
     void equil(int iter);
     vector<double> magnetisation();
     vector<double> submag(int subnumber);
@@ -38,7 +34,7 @@ public:
     int sub_num(int subnumber);
     void init_lattice();
     void change_temp(double T);
-    state& operator=(const state& other);
+    state<T>& operator=(const state<T>& other);
     void print_latt();
     void ptf(string fname);
 };

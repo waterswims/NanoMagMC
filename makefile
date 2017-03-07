@@ -1,4 +1,4 @@
-RUN_TYPES = run f_run test run_new
+RUN_TYPES = run test
 .PHONY: $(RUN_TYPES)
 
 $(RUN_TYPES):
@@ -9,6 +9,4 @@ $(RUN_TYPES):
 clean:
 	make -C Includes clean
 	-rm run
-	-rm f_run
 	-rm test
-	-rm run_new

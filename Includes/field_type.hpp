@@ -1,124 +1,199 @@
 #ifndef _FIELD
 #define _FIELD
 
-#define BOOST_DISABLE_ASSERTS
-
-#include "boost/multi_array.hpp"
+#include "hamiltonian.hpp"
 #include <vector>
 #include <string>
 
+class ham_type;
+
 using namespace std;
 
-template <class T> class field_type
+void rand_spin_h(double &x, double &y, double &z);
+
+class field_type
 {
 protected:
+    int ft;
     int dim, insize, totsize;
     bool periodic;
 public:
     field_type(){}
     ~field_type(){}
-    virtual T& access(vector<int>& position){}
-    virtual void adjacent(vector<int>& position, vector<T*>& out){}
-    virtual T& next(bool &finish, vector<int> &pos){}
-    int get_insize(){return insize;}
-    int get_totsize(){return totsize;}
-    bool get_perio(){return periodic;}
-    int get_num(){return pow(insize, dim);}
-    int get_dim(){return dim;}
-    virtual void fill_ghost(int &num){}
+    virtual void i_access(vector<int>& postion, int &out){}
+    virtual void i_adjacent(vector<int>& position, int* out){}
+    virtual void h_access(vector<int>& position, vector<double>& out){}
+    virtual void h_adjacent(vector<int>& position, double** out){}
+    virtual void h_arb_adj(vector<int>& position, vector<int>& dxs, vector<int>& dys, vector<int>& dzs, double** out, int num){}
+    virtual void next(bool &finish, vector<int> &pos){}
+    virtual void i_next(bool &finish, vector<int> &pos, int &out){}
+    virtual void h_next(bool &finish, vector<int> &pos, vector<double> &out){}
+    int get_insize() const {return insize;}
+    int get_totsize() const {return totsize;}
+    bool get_perio() const {return periodic;}
+    int get_dim() const {return dim;}
+    virtual void fill_ghost(){}
+    virtual void fill_rand(vector<int>& position){}
+    virtual void fill_zero(vector<int>& position){}
+    virtual void fill_val_i(vector<int>& position, int val){}
+    virtual void fill_val_h(vector<int>& position, double x, double y, double z){}
+    virtual bool check_zero(vector<int>& position){return true;}
+    virtual void change_to_test(vector<int>& position, ham_type* hamil){}
     virtual void new_mem(){}
     virtual int findnum(){return 0;}
-    virtual vector<T>* get_1dfield(){return NULL;}
-    virtual boost::multi_array<T, 2>* get_2dfield(){return NULL;}
-    virtual boost::multi_array<T, 3>* get_3dfield(){return NULL;}
+    virtual void get_2dfield_i(int** &x) const{}
+    virtual void get_3dfield_i(int*** &x) const{}
+    virtual void get_1dfield_h(double* &x, double* &y, double* &z) const{}
+    virtual void get_2dfield_h(double** &x, double** &y, double** &z) const{}
+    virtual void get_3dfield_h(double*** &x, double*** &y, double*** &z) const{}
+    virtual void get_2dzero(bool** &x) const{}
+    virtual void get_3dzero(bool*** &x) const{}
     virtual void print(){}
+    int get_ft() const {return ft;}
 };
 
-template <class T> class field_2d: public field_type<T>
+class field_cluster_h: public field_type
 {
 protected:
-    boost::multi_array<T, 2>* field;
+    double* spinx;
+    double* spiny;
+    double* spinz;
 public:
-    field_2d();
-    field_2d(int size, bool isperio);
-    field_2d(field_type<T>& other);
-    field_2d(const field_2d<T>& other);
-    ~field_2d(){delete field;}
-    T& access(vector<int>& position);
-    virtual void adjacent(vector<int>& position, vector<T*>& out);
-    T& next(bool &finish, vector<int> &pos);
-    void fill_ghost(int &num);
-    void new_mem();
-    field_2d<T>& operator=(field_2d<T>& other);
+    field_cluster_h();
+    field_cluster_h(string filename);
+    field_cluster_h(field_type& other);
+    field_cluster_h(const field_cluster_h& other);
+    ~field_cluster_h();
+    void h_access(vector<int>& position, vector<double>& out);
+    void h_next(bool &finish, vector<int> &pos, vector<double> &out);
+    field_cluster_h& operator=(const field_cluster_h& other);
+    int findnum(){return insize;}
+    void get_1dfield_h(double* &x, double* &y, double* &z) const;
+    void fill_rand(vector<int>& position){}
+    bool check_zero(vector<int>& position){return false;}
+    void change_to_test(vector<int>& position, ham_type* hamil);
+};
+
+class field_2d: public field_type
+{
+protected:
+    bool** iszero;
+public:
+    field_2d() {}
+    ~field_2d() {}
+    void next(bool &finish, vector<int> &pos);
+    bool check_zero(vector<int>& position)
+        {return iszero[position[0]][position[1]];}
+    void get_2dzero(bool** &x) const {x = iszero;}
     int findnum();
-    boost::multi_array<T, 2>* get_2dfield(){return field;}
-    void print();
 };
 
-template <class T> class field_3d: public field_type<T>
+class field_2d_h: public field_2d
 {
 protected:
-    boost::multi_array<T, 3>* field;
+    double** spinx;
+    double** spiny;
+    double** spinz;
 public:
-    field_3d();
-    field_3d(int size, bool isperio);
-    field_3d(int size, bool isperio, int pad);
-    field_3d(field_type<T>& other);
-    field_3d(const field_3d<T>& other);
-    ~field_3d(){delete field;}
-    T& access(vector<int>& position);
-    virtual void adjacent(vector<int>& position, vector<T*>& out);
-    T& next(bool &finish, vector<int> &pos);
-    void fill_ghost(int &num);
-    void new_mem();
-    field_3d<T>& operator=(field_3d<T>& other);
+    field_2d_h();
+    field_2d_h(int size, bool isperio);
+    field_2d_h(field_type& other);
+    field_2d_h(const field_2d_h& other);
+    ~field_2d_h();
+    void h_access(vector<int>& position, vector<double>& out);
+    void h_next(bool &finish, vector<int> &pos, vector<double> &out);
+    void fill_ghost();
+    field_2d_h& operator=(const field_2d_h& other);
+    void get_2dfield_h(double** &x, double** &y, double** &z) const;
+    void h_adjacent(vector<int>& position, double** out);
+    void fill_rand(vector<int>& position);
+    void fill_zero(vector<int>& position);
+    void fill_val_h(vector<int>& position, double x, double y, double z);
+    void change_to_test(vector<int>& position, ham_type* hamil);
+};
+
+class field_2d_i: public field_2d
+{
+protected:
+    int** spin;
+public:
+    field_2d_i();
+    field_2d_i(int size, bool isperio);
+    field_2d_i(field_type& other);
+    field_2d_i(const field_2d_i& other);
+    ~field_2d_i();
+    void i_access(vector<int>& position, int &out);
+    void i_next(bool &finish, vector<int> &pos, int &out);
+    void fill_ghost();
+    field_2d_i& operator=(const field_2d_i& other);
+    void get_2dfield_i(int** &x) const;
+    void i_adjacent(vector<int>& position, int* out);
+    void fill_rand(vector<int>& position);
+    void fill_zero(vector<int>& position);
+    void change_to_test(vector<int>& position, ham_type* hamil);
+    void fill_val_i(vector<int>& position, int val);
+};
+
+class field_3d: public field_type
+{
+protected:
+    bool*** iszero;
+public:
+    field_3d() {}
+    ~field_3d() {}
+    void next(bool &finish, vector<int> &pos);
+    bool check_zero(vector<int>& position)
+        {return iszero[position[0]][position[1]][position[2]];}
+    void get_3dzero(bool*** &x) const {x = iszero;}
     int findnum();
-    boost::multi_array<T, 3>* get_3dfield(){return field;}
 };
 
-template <class T> class hex_2d: public field_2d<T>
-{
-public:
-    hex_2d():field_2d<T>(){}
-    hex_2d(int size, bool isperio):field_2d<T>(size, isperio){}
-    hex_2d(field_type<T>& other):field_2d<T>(other){}
-    hex_2d(const hex_2d<T>& other);
-    ~hex_2d(){delete this->field;}
-    void adjacent(vector<int> &position, vector<T*> &out);
-    hex_2d<T>& operator=(hex_2d<T>& other);
-    boost::multi_array<T,2>* get_2dfield(){return this->field;}
-};
-
-template <class T> class hex_3d: public field_3d<T>
-{
-public:
-    hex_3d():field_3d<T>(){}
-    hex_3d(int size, bool isperio):field_3d<T>(size, isperio){}
-    hex_3d(field_type<T>& other):field_3d<T>(other){}
-    hex_3d(const hex_3d<T>& other);
-    ~hex_3d(){delete this->field;}
-    void adjacent(vector<int> &position, vector<T*> &out);
-    hex_3d<T>& operator=(hex_3d<T>& other);
-    boost::multi_array<T,3>* get_3dfield(){return this->field;}
-};
-
-template <class T> class field_cluster: public field_type<T>
+class field_3d_h: public field_3d
 {
 protected:
-    vector<double>* xs;
-    vector<double>* temp;
-    vector<T>* field;
+    double*** spinx;
+    double*** spiny;
+    double*** spinz;
+    int** pos;
 public:
-    field_cluster();
-    field_cluster(string filename);
-    field_cluster(field_type<T>& other);
-    field_cluster(const field_cluster<T>& other);
-    ~field_cluster(){delete xs; delete temp; delete field;}
-    T& access(vector<int>& position){return (*field)[position[0]];}
-    T& next(bool &finish, vector<int> &pos);
-    field_cluster<T>& operator=(field_cluster<T>& other);
-    int findnum(){return (*field).size();}
-    vector<T>* get_1dfield(){return field;}
+    field_3d_h();
+    field_3d_h(int size, bool isperio);
+    field_3d_h(field_type& other);
+    field_3d_h(const field_3d_h& other);
+    ~field_3d_h();
+    void h_access(vector<int>& position, vector<double>& out);
+    void h_next(bool &finish, vector<int> &pos, vector<double> &out);
+    void fill_ghost();
+    field_3d_h& operator=(const field_3d_h& other);
+    void get_3dfield_h(double*** &x, double*** &y, double*** &z) const;
+    void h_adjacent(vector<int>& position, double** out);
+    void fill_rand(vector<int>& position);
+    void fill_zero(vector<int>& position);
+    void fill_val_h(vector<int>& position, double x, double y, double z);
+    void change_to_test(vector<int>& position, ham_type* hamil);
+    void h_arb_adj(vector<int>& position, vector<int>& dxs, vector<int>& dys, vector<int>& dzs, double** out, int num);
+};
+
+class field_3d_i: public field_3d
+{
+protected:
+    int*** spin;
+public:
+    field_3d_i();
+    field_3d_i(int size, bool isperio);
+    field_3d_i(field_type& other);
+    field_3d_i(const field_3d_i& other);
+    ~field_3d_i();
+    void i_access(vector<int>& position, int &out);
+    void i_next(bool &finish, vector<int> &pos, int &out);
+    void fill_ghost();
+    field_3d_i& operator=(const field_3d_i& other);
+    void get_3dfield_i(int*** &x) const;
+    void i_adjacent(vector<int>& position, int* out);
+    void fill_rand(vector<int>& position);
+    void fill_zero(vector<int>& position);
+    void change_to_test(vector<int>& position, ham_type* hamil);
+    void fill_val_i(vector<int>& position, int val);
 };
 
 #endif

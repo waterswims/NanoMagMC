@@ -1,5 +1,6 @@
 
 #include "state.hpp"
+#include "spin_type.hpp"
 #include "mklrand.h"
 #include "functions.h"
 #include "cpoints.hpp"
@@ -16,6 +17,9 @@ mkl_irand st_rand_int(1e7, 1);
 mkl_drand st_rand_double(1e8, 1);
 
 const double Ry = 13.606;
+
+// define the type of spin
+typedef heis_spin sp_typ;
 
 int main(int argc, char **argv)
 {
@@ -38,7 +42,7 @@ int main(int argc, char **argv)
 	string temp_name;
 	read_all_vars(argv[1], size, J, H, k, periodic, shape, hamil, N_av,
 		Nsingle, padding, beta, distributed, amean, asd, temp_name);
-	double args[] = {beta};
+	double args[] = {beta, padding};
 	AtoLn(amean, asd, lmean, lsd);
 
 	// load temperatures
@@ -130,11 +134,6 @@ int main(int argc, char **argv)
 		rand_ln.fill();
 	}
 
-	if (rank == 0)
-	{
-		cout << "Passed Checkpoint Reading..." << endl;
-	}
-
 	// main loop
 	for (; j < N_av; j++)
 	{
@@ -147,23 +146,14 @@ int main(int argc, char **argv)
 		{
 			s_size = size;
 		}
-        state curr_state(s_size, periodic, shape, hamil, J, H, k, Tmax, args);
-		if (rank == 0)
-		{
-			cout << "Generated State..." << endl;
-		}
-		nums[j] = curr_state.num_spins();
+        state<sp_typ> curr_state(s_size, periodic, shape, hamil, J, H, k, Tmax, args);
+        nums[j] = curr_state.num_spins();
 		s_nums[j] = curr_state.sub_num(0);
 		curr_state.equil(5*Nsingle*nums[j]);
-		if (rank == 0)
-		{
-			cout << "Completed Equillibriation..." << endl;
-		}
         for (int i = 0; i < num_Ts; i++)
         {
             double T = Ts[i];
             curr_state.change_temp(T);
-
             curr_state.equil(Nsingle*nums[j]);
             mtemp = curr_state.magnetisation();
 			if (hamil != 'i' && hamil != 'I')
@@ -172,7 +162,6 @@ int main(int argc, char **argv)
 				magy1[j][i] = mtemp[1];
 				magz1[j][i] = mtemp[2];
 			}
-
 			mag1[j][i] = norm(mtemp);
 			ener1[j][i] = curr_state.energy();
 

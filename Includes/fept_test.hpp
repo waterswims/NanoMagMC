@@ -49,6 +49,48 @@ TEST(FePt, 3d_energy_zero_field)
     EXPECT_NEAR(14483.704452943366, hamil.calc_E(&field), 14483.704452943366 * 1e-10);
 }
 
+TEST(FePt, 3d_energy_ext_field)
+{
+    field_3d_h field = gen_3d_heis_fm(1, 0, 0);
+    ham_FePt hamil(1);
+    hamil.init_dim(&field);
+    EXPECT_NEAR(-94841.48988451372, hamil.calc_E(&field), 94841.48988451372 * 1e-10);
+
+    field = gen_3d_heis_fm(0, 1, 0);
+    EXPECT_NEAR(-94841.48988451372, hamil.calc_E(&field), 94841.48988451372 * 1e-10);
+
+    field = gen_3d_heis_fm(0, 0, 1);
+    EXPECT_NEAR(-97042.14066455598, hamil.calc_E(&field), 97042.14066455598 * 1e-10);
+
+    field = gen_3d_heis_fm(-1, 0, 0);
+    EXPECT_NEAR(-94841.48988451372, hamil.calc_E(&field), 94841.48988451372 * 1e-10);
+
+    field = gen_3d_heis_fm(0, -1, 0);
+    EXPECT_NEAR(-94841.48988451372, hamil.calc_E(&field), 94841.48988451372 * 1e-10);
+
+    field = gen_3d_heis_fm(0, 0, -1);
+    EXPECT_NEAR(-95042.14066455598, hamil.calc_E(&field), 95042.14066455598 * 1e-10);
+
+    // Anti
+    field = gen_3d_heis_afm(1, 0, 0);
+    EXPECT_NEAR(14351.171641248506, hamil.calc_E(&field), 14351.171641248506 * 1e-10);
+
+    field = gen_3d_heis_afm(0, 1, 0);
+    EXPECT_NEAR(14351.171641248506, hamil.calc_E(&field), 14351.171641248506 * 1e-10);
+
+    field = gen_3d_heis_afm(0, 0, 1);
+    EXPECT_NEAR(14483.704452943366, hamil.calc_E(&field), 14483.704452943366 * 1e-10);
+
+    field = gen_3d_heis_afm(-1, 0, 0);
+    EXPECT_NEAR(14351.171641248506, hamil.calc_E(&field), 14351.171641248506 * 1e-10);
+
+    field = gen_3d_heis_afm(0, -1, 0);
+    EXPECT_NEAR(14351.171641248506, hamil.calc_E(&field), 14351.171641248506 * 1e-10);
+
+    field = gen_3d_heis_afm(0, 0, -1);
+    EXPECT_NEAR(14483.704452943366, hamil.calc_E(&field), 14483.704452943366 * 1e-10);
+}
+
 TEST(FePt, 3d_mag)
 {
     field_3d_h field = gen_3d_heis_fm(1, 0, 0);
@@ -206,7 +248,7 @@ TEST(FePt, 3d_submag)
 TEST(FePt, 3d_dE_consist)
 {
     field_3d_h field = gen_3d_heis_fm(1, 0, 0);
-    ham_FePt hamil;
+    ham_FePt hamil(4);
     hamil.init_dim(&field);
     vector<int> pos(3);
     double old_E = hamil.calc_E(&field);
