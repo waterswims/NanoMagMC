@@ -1,0 +1,9 @@
+/Includes/*.o
+/Includes/run
+/Includes/test
+/run
+/test
+/Includes/Test_Files/arr_save_test.cp
+/Includes/Test_Files/double_save_test.cp
+/Includes/Test_Files/val_save_test.cp
+*.DS_Store
