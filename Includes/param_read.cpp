@@ -1,4 +1,5 @@
 #include "param_read.hpp"
+#include "array_alloc.hpp"
 #include <fstream>
 #include <sstream>
 #include <iostream>
@@ -93,4 +94,39 @@ void read_all_vars(string f_name, int& size, double& J, double& H, double& k,
     N_single = read_var<int>("MCSWEEPS", f_name);
     pad = read_var<int>("LATTPADDING", f_name);
     temp_name = read_var<string>("TEMPNAME", f_name);
+}
+
+void load_temps(string prefix, double* &Ts, int& num)
+{
+    stringstream loadstream;
+    string loadname;
+    loadstream << "Includes/Temps/" << prefix << ".txt" << endl;
+    loadstream >> loadname;
+
+    ifstream f;
+    f.open(loadname.c_str());
+    double curr;
+    bool cont = false;
+    if(f >> curr) {cont = true;}
+    int i = 0;
+    for (; cont; i++)
+    {
+        if(f >> curr) {}
+        else {cont = false;}
+    }
+    num = i;
+    f.close();
+
+    Ts = alloc_1darr<double>(num);
+
+    f.open(loadname.c_str());
+    cont = false;
+    if(f >> curr) {cont = true;}
+    for (int i = 0; cont; i++)
+    {
+        Ts[i] = curr;
+        if(f >> curr) {}
+        else {cont = false;}
+    }
+    f.close();
 }

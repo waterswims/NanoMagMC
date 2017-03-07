@@ -20,7 +20,7 @@ void print_cval(fstream &stream, string fname, int cval)
     stream.close();
 }
 
-void print_clist(fstream &stream, string fname, double clist[], int l)
+void print_clist(fstream &stream, string fname, double* clist, int l)
 {
     stream.open(fname.c_str(), fstream::out | fstream::app);
     for(int i = 0; i < l; i++)
@@ -31,7 +31,7 @@ void print_clist(fstream &stream, string fname, double clist[], int l)
     stream.close();
 }
 
-int read_cval(fstream &stream, string fname, int cvals[])
+int read_cval(fstream &stream, string fname, int* cvals)
 {
     stream.open(fname.c_str(), fstream::in);
     int curr, i;
@@ -43,7 +43,7 @@ int read_cval(fstream &stream, string fname, int cvals[])
     return i;
 }
 
-int read_clist(fstream &stream, string fname, double clist[][100])
+int read_clist(fstream &stream, string fname, double** clist)
 {
     stream.open(fname.c_str(), fstream::in);
     int i;

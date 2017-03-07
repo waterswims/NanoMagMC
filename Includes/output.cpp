@@ -149,24 +149,3 @@ void init_avs(string avname, double H, double J, double k, int size, double Tmin
 
     f.close();
 }
-
-void load_temps(string prefix, double Ts[])
-{
-    stringstream loadstream;
-    string loadname;
-    loadstream << "Includes/Temps/" << prefix << ".txt" << endl;
-    loadstream >> loadname;
-
-    ifstream f;
-    f.open(loadname.c_str());
-    double curr;
-    bool cont = false;
-    if(f >> curr) {cont = true;}
-    for (int i=0; cont; i++)
-    {
-        Ts[i] = curr;
-        if(f >> curr) {}
-        else {cont = false;}
-    }
-    f.close();
-}

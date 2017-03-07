@@ -33,8 +33,8 @@ TEST(Parameter_Checkpointing, Read_arrs)
 {
     string filename = "Includes/Test_Files/arr_load_test.cp";
     fstream str;
-    double testvals[2][100];
-    double corrvals[2][3];
+    double** testvals = alloc_2darr<double>(2, 3);
+    double** corrvals = alloc_2darr<double>(2, 3);
     corrvals[0][0] = 2.4;
     corrvals[0][1] = 4.6;
     corrvals[0][2] = 6.7;
@@ -49,6 +49,8 @@ TEST(Parameter_Checkpointing, Read_arrs)
             EXPECT_EQ(testvals[i][j], corrvals[i][j]);
         }
     }
+    dealloc_2darr<double>(2, testvals);
+    dealloc_2darr<double>(2, corrvals);
 }
 
 TEST(Parameter_Checkpointing, Write_vals)
@@ -82,7 +84,7 @@ TEST(Parameter_Checkpointing, Write_arr)
         }
         print_clist(stream, filename, outvals, 100);
     }
-    double invals[5][100];
+    double** invals = alloc_2darr<double>(5, 100);
     EXPECT_EQ(5, read_clist(stream, filename, invals));
     for(int i = 0; i < 5; i++)
     {
@@ -91,6 +93,7 @@ TEST(Parameter_Checkpointing, Write_arr)
             EXPECT_EQ(i*j, invals[i][j]);
         }
     }
+    dealloc_2darr<double>(5, invals);
 }
 
 #endif

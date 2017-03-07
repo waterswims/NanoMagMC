@@ -37,7 +37,7 @@ array_alloc.o: array_alloc.cpp array_alloc.hpp
 field_type.o: field_type.cpp field_type.hpp array_alloc.hpp mklrand.h hamiltonian.hpp
 	$(CXX) $(CPPFLAGS) -c field_type.cpp
 
-param_read.o: param_read.cpp param_read.hpp
+param_read.o: param_read.cpp param_read.hpp array_alloc.hpp
 	$(CXX) $(CPPFLAGS) -c param_read.cpp
 
 mklrand.o: mklrand.cpp mklrand.h
@@ -61,7 +61,7 @@ cpoints.o: cpoints.cpp cpoints.hpp functions.h
 output.o: output.cpp output.hpp functions.h
 	$(CXX) $(CPPFLAGS) -c output.cpp
 
-main.o: main.cpp state.hpp mklrand.h functions.h cpoints.hpp output.hpp
+main.o: main.cpp state.hpp mklrand.h functions.h cpoints.hpp output.hpp array_alloc.hpp
 	$(CXX) $(CPPFLAGS) -c main.cpp
 
 run: $(OBJS) main.o

@@ -33,6 +33,4 @@ void print_avs(string avname, vector<double>& allener, vector<double>& allmag,
 void init_avs(string avname, double H, double J, double k, int size, double Tmin,
     double Tmax);
 
-void load_temps(string prefix, double Ts[]);
-
 #endif

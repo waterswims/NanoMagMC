@@ -1,4 +1,4 @@
-
+#include "array_alloc.hpp"
 #include "state.hpp"
 #include "mklrand.h"
 #include "functions.h"
@@ -42,9 +42,9 @@ int main(int argc, char **argv)
 	AtoLn(amean, asd, lmean, lsd);
 
 	// load temperatures
-	double Ts[100];
-	load_temps(temp_name, Ts);
-	int num_Ts = 100;
+	double* Ts;
+	int num_Ts;
+	load_temps(temp_name, Ts, num_Ts);
 	double Tmin(Ts[num_Ts-1]), Tmax(Ts[0]);
 
 	//Set the random seeds of the generators
@@ -56,16 +56,24 @@ int main(int argc, char **argv)
 
     if(rank==0)
     {
+		cout << num_Ts << " temperatures" << endl;
         cout << N_av << " lattices per process" << endl;
         cout << Nsingle << " equillibriation steps per spin per temperature step" << endl;
     }
 
 	// Storage Variables
-	int nums[N_av], s_nums[N_av];
-	double mag1[N_av][num_Ts], ener1[N_av][num_Ts],
-		magx1[N_av][num_Ts], magy1[N_av][num_Ts], magz1[N_av][num_Ts],
-		smag1[N_av][num_Ts], smagx1[N_av][num_Ts], smagy1[N_av][num_Ts],
-		smagz1[N_av][num_Ts];
+	int* nums = alloc_1darr<int>(N_av);
+	int* s_nums = alloc_1darr<int>(N_av);
+	double** mag1 = alloc_2darr<double>(N_av, num_Ts);
+	double** ener1 = alloc_2darr<double>(N_av, num_Ts);
+	double** magx1 = alloc_2darr<double>(N_av, num_Ts);
+	double** magy1 = alloc_2darr<double>(N_av, num_Ts);
+	double** magz1 = alloc_2darr<double>(N_av, num_Ts);
+	double** smag1 = alloc_2darr<double>(N_av, num_Ts);
+	double** smagx1 = alloc_2darr<double>(N_av, num_Ts);
+	double** smagy1 = alloc_2darr<double>(N_av, num_Ts);
+	double** smagz1 = alloc_2darr<double>(N_av, num_Ts);
+
 	vector<vector<double> > allmag, allener, allmagx, allmagy, allmagz, allsmag,
 		allsmagx, allsmagy, allsmagz;
 	vector<int> allnums, allsnums;
@@ -218,10 +226,17 @@ int main(int argc, char **argv)
 
 	// Prep for printing and stuff
 	int tmax = num_Ts;
-	double mag[num_Ts][N_av], ener[num_Ts][N_av],
-		magx[num_Ts][N_av], magy[num_Ts][N_av], magz[num_Ts][N_av],
-		smag[num_Ts][N_av], smagx[num_Ts][N_av], smagy[num_Ts][N_av],
-		smagz[num_Ts][N_av];
+
+	double** mag = alloc_2darr<double>(num_Ts, N_av);
+	double** ener = alloc_2darr<double>(num_Ts, N_av);
+	double** magx = alloc_2darr<double>(num_Ts, N_av);
+	double** magy = alloc_2darr<double>(num_Ts, N_av);
+	double** magz = alloc_2darr<double>(num_Ts, N_av);
+	double** smag = alloc_2darr<double>(num_Ts, N_av);
+	double** smagx = alloc_2darr<double>(num_Ts, N_av);
+	double** smagy = alloc_2darr<double>(num_Ts, N_av);
+	double** smagz = alloc_2darr<double>(num_Ts, N_av);
+
 	for (int i = 0; i < N_av; i++)
 	{
 		for (int j = 0; j < num_Ts; j++)
@@ -240,13 +255,12 @@ int main(int argc, char **argv)
 
 	if(rank==0)
 	{
-		// all_states[0].ptf("latt2.txt");
 		cout << "Reducing Data..." << endl;
 	}
 
 	vector<double> temp;
-	double temparr[N_av];
-	int temparr2[N_av];
+	double* temparr = alloc_1darr<double>(N_av);
+	int* temparr2 = alloc_1darr<int>(N_av);
 
 	// Reduce data
 	for(int t=0; t < num_Ts; t++)
@@ -286,7 +300,6 @@ int main(int argc, char **argv)
 				for(int j=0; j < N_av; j++)
 				{
 					allmag[t].push_back(temparr[j]);
-					//cout << "Got here" << endl;
 				}
 				MPI_Recv(temparr, N_av, MPI_DOUBLE, i, 0, MPI_COMM_WORLD, &status);
 				for(int j=0; j < N_av; j++)
@@ -297,46 +310,38 @@ int main(int argc, char **argv)
 				for(int j=0; j < N_av; j++)
 				{
 					allmagx[t].push_back(temparr[j]);
-					//cout << "Got here" << endl;
 				}
 				MPI_Recv(temparr, N_av, MPI_DOUBLE, i, 0, MPI_COMM_WORLD, &status);
 				for(int j=0; j < N_av; j++)
 				{
 					allmagy[t].push_back(temparr[j]);
-					//cout << "Got here" << endl;
 				}
 				MPI_Recv(temparr, N_av, MPI_DOUBLE, i, 0, MPI_COMM_WORLD, &status);
 				for(int j=0; j < N_av; j++)
 				{
 					allmagz[t].push_back(temparr[j]);
-					//cout << "Got here" << endl;
 				}
 
 				MPI_Recv(temparr, N_av, MPI_DOUBLE, i, 0, MPI_COMM_WORLD, &status);
 				for(int j=0; j < N_av; j++)
 				{
 					allsmag[t].push_back(temparr[j]);
-					//cout << "Got here" << endl;
 				}
 				MPI_Recv(temparr, N_av, MPI_DOUBLE, i, 0, MPI_COMM_WORLD, &status);
 				for(int j=0; j < N_av; j++)
 				{
 					allsmagx[t].push_back(temparr[j]);
-					//cout << "Got here" << endl;
 				}
 				MPI_Recv(temparr, N_av, MPI_DOUBLE, i, 0, MPI_COMM_WORLD, &status);
 				for(int j=0; j < N_av; j++)
 				{
 					allsmagy[t].push_back(temparr[j]);
-					//cout << "Got here" << endl;
 				}
 				MPI_Recv(temparr, N_av, MPI_DOUBLE, i, 0, MPI_COMM_WORLD, &status);
 				for(int j=0; j < N_av; j++)
 				{
 					allsmagz[t].push_back(temparr[j]);
-					//cout << "Got here" << endl;
 				}
-				//cout << "Two recieved" << endl;
 				if(t==0)
 				{
 					MPI_Recv(temparr2, N_av, MPI_INT, i, 0, MPI_COMM_WORLD, &status);
@@ -440,6 +445,30 @@ int main(int argc, char **argv)
 	remove(smagypoint.c_str());
 	remove(smagzpoint.c_str());
 	remove(snumpoint.c_str());
+
+	dealloc_1darr<double>(Ts);
+	dealloc_1darr<double>(temparr);
+	dealloc_1darr<int>(temparr2);
+	dealloc_1darr<int>(nums);
+	dealloc_1darr<int>(s_nums);
+	dealloc_2darr<double>(num_Ts, mag);
+	dealloc_2darr<double>(num_Ts, ener);
+	dealloc_2darr<double>(num_Ts, magx);
+	dealloc_2darr<double>(num_Ts, magy);
+	dealloc_2darr<double>(num_Ts, magz);
+	dealloc_2darr<double>(num_Ts, smag);
+	dealloc_2darr<double>(num_Ts, smagx);
+	dealloc_2darr<double>(num_Ts, smagy);
+	dealloc_2darr<double>(num_Ts, smagz);
+	dealloc_2darr<double>(N_av, mag1);
+	dealloc_2darr<double>(N_av, ener1);
+	dealloc_2darr<double>(N_av, magx1);
+	dealloc_2darr<double>(N_av, magy1);
+	dealloc_2darr<double>(N_av, magz1);
+	dealloc_2darr<double>(N_av, smag1);
+	dealloc_2darr<double>(N_av, smagx1);
+	dealloc_2darr<double>(N_av, smagy1);
+	dealloc_2darr<double>(N_av, smagz1);
 
     // Finish program
 	MPI_Finalize();

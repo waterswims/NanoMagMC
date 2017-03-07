@@ -28,10 +28,6 @@ After compilation an executable file will be placed in the root folder named "ru
 
     * x: Weibull (swiss cheese) sphere (Requires WEIBULLFACT)
 
-    * o: Hexagonal columns in a rough cube
-
-    * f: Face Centered Tetragonal in a cube
-
 * ISPERIO: Boolean value to determine if the boundary conditions of the lattice are periodic or not. 0 for non=periodic, 1 for periodic. (Note, for some shapes this makes little or no difference. i.e. A Weibull shape.)
 
 * LATTPADDING: Adds a 'pad' of empty lattice sites around your lattice. Takes a number signifying the depth of this pad.
@@ -47,6 +43,8 @@ After compilation an executable file will be placed in the root folder named "ru
     * h: Heisenburg Model
 
     * f: FePt parameterised Hamiltonian
+
+    * s: Skyrmion Hamiltonian
 
 * ISDISTRIB: A boolean value which defines whether or not the sizes of the realisations of each lattice are fixed or distributed. The only distribution of sizes which has so far been implemented is a log-normal distribution.
 
@@ -66,4 +64,4 @@ After compilation an executable file will be placed in the root folder named "ru
 
 * MAGFIELD: The external magnetic field that is present when using the Ising, Heisenberg and FePt models.
 
-* DMISTREN: The strength of the DMI interaction for a skyrmion hamiltonian. 
+* DMISTREN: The strength of the DMI interaction for a skyrmion hamiltonian.
