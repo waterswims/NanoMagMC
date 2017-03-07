@@ -107,6 +107,7 @@ private:
     int dirs[6];
     int mod[6];
     vector<double> cmp;
+    vector<double> J2_sum;
 public:
     ham_skyrm(){}
     ham_skyrm(double Hin, double Jin, double Kin);

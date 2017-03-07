@@ -12,40 +12,40 @@ TEST(Skyrmion, 3d_energy_zero_field)
     field_3d_h field = gen_3d_heis_fm(1, 0, 0);
     ham_skyrm hamil(0, 1, 0.75);
     hamil.init_dim(&field);
-    EXPECT_EQ(-2700, hamil.calc_E(&field));
+    EXPECT_EQ(-2850, hamil.calc_E(&field));
 
     field = gen_3d_heis_fm(-1, 0, 0);
-    EXPECT_EQ(-2700, hamil.calc_E(&field));
+    EXPECT_EQ(-2850, hamil.calc_E(&field));
 
     field = gen_3d_heis_fm(0, 1, 0);
-    EXPECT_EQ(-2700, hamil.calc_E(&field));
+    EXPECT_EQ(-2850, hamil.calc_E(&field));
 
     field = gen_3d_heis_fm(0, -1, 0);
-    EXPECT_EQ(-2700, hamil.calc_E(&field));
+    EXPECT_EQ(-2850, hamil.calc_E(&field));
 
     field = gen_3d_heis_fm(0, 0, 1);
-    EXPECT_EQ(-2700, hamil.calc_E(&field));
+    EXPECT_EQ(-2850, hamil.calc_E(&field));
 
     field = gen_3d_heis_fm(0, 0, -1);
-    EXPECT_EQ(-2700, hamil.calc_E(&field));
+    EXPECT_EQ(-2850, hamil.calc_E(&field));
 
     field = gen_3d_heis_afm(1, 0, 0);
-    EXPECT_EQ(2700, hamil.calc_E(&field));
+    EXPECT_EQ(2550, hamil.calc_E(&field));
 
     field = gen_3d_heis_afm(-1, 0, 0);
-    EXPECT_EQ(2700, hamil.calc_E(&field));
+    EXPECT_EQ(2550, hamil.calc_E(&field));
 
     field = gen_3d_heis_afm(0, 1, 0);
-    EXPECT_EQ(2700, hamil.calc_E(&field));
+    EXPECT_EQ(2550, hamil.calc_E(&field));
 
     field = gen_3d_heis_afm(0, -1, 0);
-    EXPECT_EQ(2700, hamil.calc_E(&field));
+    EXPECT_EQ(2550, hamil.calc_E(&field));
 
     field = gen_3d_heis_afm(0, 0, 1);
-    EXPECT_EQ(2700, hamil.calc_E(&field));
+    EXPECT_EQ(2550, hamil.calc_E(&field));
 
     field = gen_3d_heis_afm(0, 0, -1);
-    EXPECT_EQ(2700, hamil.calc_E(&field));
+    EXPECT_EQ(2550, hamil.calc_E(&field));
 
     vector<int> pos(3);
     for(int i = 1; i < 11; i++)
@@ -62,7 +62,7 @@ TEST(Skyrmion, 3d_energy_zero_field)
         }
     }
     field.fill_ghost();
-    EXPECT_EQ(-1800, hamil.calc_E(&field));
+    EXPECT_EQ(-1850, hamil.calc_E(&field));
 
     for(int i = 1; i < 11; i++)
     {
@@ -77,7 +77,7 @@ TEST(Skyrmion, 3d_energy_zero_field)
             }
         }
     }
-    EXPECT_EQ(-2475, hamil.calc_E(&field));
+    EXPECT_EQ(-2525, hamil.calc_E(&field));
 }
 
 TEST(Skyrmion, 3d_energy_ext_field)
@@ -85,40 +85,40 @@ TEST(Skyrmion, 3d_energy_ext_field)
     field_3d_h field = gen_3d_heis_fm(1, 0, 0);
     ham_skyrm hamil(0.1, 1, 0.75);
     hamil.init_dim(&field);
-    EXPECT_EQ(-2700, hamil.calc_E(&field));
+    EXPECT_EQ(-2850, hamil.calc_E(&field));
 
     field = gen_3d_heis_fm(-1, 0, 0);
-    EXPECT_EQ(-2700, hamil.calc_E(&field));
+    EXPECT_EQ(-2850, hamil.calc_E(&field));
 
     field = gen_3d_heis_fm(0, 1, 0);
-    EXPECT_EQ(-2700, hamil.calc_E(&field));
+    EXPECT_EQ(-2850, hamil.calc_E(&field));
 
     field = gen_3d_heis_fm(0, -1, 0);
-    EXPECT_EQ(-2700, hamil.calc_E(&field));
+    EXPECT_EQ(-2850, hamil.calc_E(&field));
 
     field = gen_3d_heis_fm(0, 0, 1);
-    EXPECT_EQ(-2800, hamil.calc_E(&field));
+    EXPECT_EQ(-2950, hamil.calc_E(&field));
 
     field = gen_3d_heis_fm(0, 0, -1);
-    EXPECT_EQ(-2600, hamil.calc_E(&field));
+    EXPECT_EQ(-2750, hamil.calc_E(&field));
 
     field = gen_3d_heis_afm(1, 0, 0);
-    EXPECT_EQ(2700, hamil.calc_E(&field));
+    EXPECT_EQ(2550, hamil.calc_E(&field));
 
     field = gen_3d_heis_afm(-1, 0, 0);
-    EXPECT_EQ(2700, hamil.calc_E(&field));
+    EXPECT_EQ(2550, hamil.calc_E(&field));
 
     field = gen_3d_heis_afm(0, 1, 0);
-    EXPECT_EQ(2700, hamil.calc_E(&field));
+    EXPECT_EQ(2550, hamil.calc_E(&field));
 
     field = gen_3d_heis_afm(0, -1, 0);
-    EXPECT_EQ(2700, hamil.calc_E(&field));
+    EXPECT_EQ(2550, hamil.calc_E(&field));
 
     field = gen_3d_heis_afm(0, 0, 1);
-    EXPECT_EQ(2700, hamil.calc_E(&field));
+    EXPECT_EQ(2550, hamil.calc_E(&field));
 
     field = gen_3d_heis_afm(0, 0, -1);
-    EXPECT_EQ(2700, hamil.calc_E(&field));
+    EXPECT_EQ(2550, hamil.calc_E(&field));
 
     vector<int> pos(3);
     for(int i = 1; i < 11; i++)
@@ -135,7 +135,7 @@ TEST(Skyrmion, 3d_energy_ext_field)
         }
     }
     field.fill_ghost();
-    EXPECT_EQ(-1800, hamil.calc_E(&field));
+    EXPECT_EQ(-1850, hamil.calc_E(&field));
 
     for(int i = 1; i < 11; i++)
     {
@@ -150,7 +150,7 @@ TEST(Skyrmion, 3d_energy_ext_field)
             }
         }
     }
-    EXPECT_EQ(-2485, hamil.calc_E(&field));
+    EXPECT_EQ(-2535, hamil.calc_E(&field));
 }
 
 TEST(Skyrmion, 3d_mag)

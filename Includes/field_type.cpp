@@ -837,6 +837,38 @@ void field_3d_h::h_adjacent(vector<int>& position, double** out)
     }
 }
 
+void field_3d_h::h_2adjacent(vector<int>& position, double** out)
+{
+    int dirsx[6], dirsy[6], dirsz[6];
+    dirsx[0] = boundmovedown(position[0] - 2, totsize);
+    dirsx[1] = boundmoveup(position[0] + 2, totsize);
+    dirsx[2] = position[0];
+    dirsx[3] = position[0];
+    dirsx[4] = position[0];
+    dirsx[5] = position[0];
+
+    dirsy[0] = position[1];
+    dirsy[1] = position[1];
+    dirsy[2] = boundmovedown(position[1] - 2, totsize);
+    dirsy[3] = boundmoveup(position[1] + 2, totsize);
+    dirsy[4] = position[1];
+    dirsy[5] = position[1];
+
+    dirsz[0] = position[2];
+    dirsz[1] = position[2];
+    dirsz[2] = position[2];
+    dirsz[3] = position[2];
+    dirsz[4] = boundmovedown(position[2] - 2, totsize);
+    dirsz[5] = boundmoveup(position[2] + 2, totsize);
+
+    for (int i = 0; i < 6; i++)
+    {
+        out[0][i] = spinx[dirsx[i]][dirsy[i]][dirsz[i]];
+        out[1][i] = spiny[dirsx[i]][dirsy[i]][dirsz[i]];
+        out[2][i] = spinz[dirsx[i]][dirsy[i]][dirsz[i]];
+    }
+}
+
 void field_3d_h::h_arb_adj(vector<int>& position, vector<int>& dxs, vector<int>& dys, vector<int>& dzs, double** out, int num)
 {
     #pragma simd

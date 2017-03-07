@@ -24,6 +24,7 @@ public:
     virtual void i_adjacent(vector<int>& position, int* out){}
     virtual void h_access(vector<int>& position, vector<double>& out){}
     virtual void h_adjacent(vector<int>& position, double** out){}
+    virtual void h_2adjacent(vector<int>& position, double** out){}
     virtual void h_arb_adj(vector<int>& position, vector<int>& dxs, vector<int>& dys, vector<int>& dzs, double** out, int num){}
     virtual void next(bool &finish, vector<int> &pos){}
     virtual void i_next(bool &finish, vector<int> &pos, int &out){}
@@ -169,6 +170,7 @@ public:
     field_3d_h& operator=(const field_3d_h& other);
     void get_3dfield_h(double*** &x, double*** &y, double*** &z) const;
     void h_adjacent(vector<int>& position, double** out);
+    void h_2adjacent(vector<int>& position, double** out);
     void fill_rand(vector<int>& position);
     void fill_zero(vector<int>& position);
     void fill_val_h(vector<int>& position, double x, double y, double z);
