@@ -73,6 +73,12 @@ test.o: test.cpp mklrand.h cpoints.hpp hamiltonian.hpp field_type.hpp $(TEST_FIL
 test: $(OBJS) test.o
 	$(CXX) $(OBJS) test.o -o test -lgtest $(LDFLAGS)
 
+1skrm.o: 1skrm.cpp state.hpp mklrand.h functions.h output.hpp array_alloc.hpp
+	$(CXX) $(CPPFLAGS) -c 1skrm.cpp
+
+skyrm_print: $(OBJS) 1skrm.o
+	$(CXX) $(OBJS) 1skrm.o -o skyrm_print $(LDFLAGS)
+
 clean:
 	-rm *.o
 	-rm run

@@ -15,8 +15,6 @@
 mkl_irand st_rand_int(1e7, 1);
 mkl_drand st_rand_double(1e8, 1);
 
-const double Ry = 13.606;
-
 int main(int argc, char **argv)
 {
     //Start MPI off

@@ -41,6 +41,7 @@ public:
     state& operator=(const state& other);
     void print_latt();
     void ptf(string fname);
+    void add_to_av(field_type* other_field);
 };
 
 #endif

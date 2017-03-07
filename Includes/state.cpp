@@ -354,3 +354,21 @@ void state::ptf(string fname)
 {
 
 }
+
+void state::add_to_av(field_type* other_field)
+{
+    int i_size = field->get_insize();
+    int t_size = field->get_totsize();
+    int start = (t_size - i_size) / 2;
+    int dim = field->get_dim();
+    vector<int> pos(3, start);
+    bool finished = false;
+    vector<double> curr(3);
+
+    while(!finished)
+    {
+        field->h_access(pos, curr);
+        other_field->add_val_h(pos, curr);
+        field->next(finished, pos);
+    }
+}

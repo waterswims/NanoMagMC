@@ -37,6 +37,7 @@ public:
     virtual void fill_zero(vector<int>& position){}
     virtual void fill_val_i(vector<int>& position, int val){}
     virtual void fill_val_h(vector<int>& position, double x, double y, double z){}
+    virtual void add_val_h(vector<int>& position, vector<double> &in){}
     virtual bool check_zero(vector<int>& position){return true;}
     virtual void change_to_test(vector<int>& position, ham_type* hamil){}
     virtual void new_mem(){}
@@ -48,7 +49,7 @@ public:
     virtual void get_3dfield_h(double*** &x, double*** &y, double*** &z) const{}
     virtual void get_2dzero(bool** &x) const{}
     virtual void get_3dzero(bool*** &x) const{}
-    virtual void print(){}
+    virtual void print(string filename){}
     int get_ft() const {return ft;}
 };
 
@@ -109,6 +110,7 @@ public:
     void fill_rand(vector<int>& position);
     void fill_zero(vector<int>& position);
     void fill_val_h(vector<int>& position, double x, double y, double z);
+    void add_val_h(vector<int>& position, vector<double> &in);
     void change_to_test(vector<int>& position, ham_type* hamil);
 };
 
@@ -170,8 +172,10 @@ public:
     void fill_rand(vector<int>& position);
     void fill_zero(vector<int>& position);
     void fill_val_h(vector<int>& position, double x, double y, double z);
+    void add_val_h(vector<int>& position, vector<double> &in);
     void change_to_test(vector<int>& position, ham_type* hamil);
     void h_arb_adj(vector<int>& position, vector<int>& dxs, vector<int>& dys, vector<int>& dzs, double** out, int num);
+    void print(string filename);
 };
 
 class field_3d_i: public field_3d

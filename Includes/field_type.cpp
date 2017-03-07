@@ -422,6 +422,13 @@ void field_2d_h::fill_val_h(vector<int>& position, double x, double y, double z)
     spinz[position[0]][position[1]] = z;
 }
 
+void field_2d_h::add_val_h(vector<int>& position, vector<double> &in)
+{
+    spinx[position[0]][position[1]] += in[0];
+    spiny[position[0]][position[1]] += in[1];
+    spinz[position[0]][position[1]] += in[2];
+}
+
 ///////////////////////
 // 2d Ising-model
 ///////////////////////
@@ -849,22 +856,6 @@ void field_3d_h::h_arb_adj(vector<int>& position, vector<int>& dxs, vector<int>&
     }
 
     // #pragma simd
-    // for(int i = 0; i < num; i++)
-    // {
-    //     out[0][i] = spinx[pos[0][i]][pos[1][i]][pos[2][i]];
-    // }
-    // #pragma simd
-    // for(int i = 0; i < num; i++)
-    // {
-    //     out[1][i] = spiny[pos[0][i]][pos[1][i]][pos[2][i]];
-    // }
-    // #pragma simd
-    // for(int i = 0; i < num; i++)
-    // {
-    //     out[2][i] = spinz[pos[0][i]][pos[1][i]][pos[2][i]];
-    // }
-
-    // #pragma simd
     for(int i = 0; i < num; i++)
     {
         out[0][i] = spinx[pos[0][i]][pos[1][i]][pos[2][i]];
@@ -901,6 +892,56 @@ void field_3d_h::change_to_test(vector<int>& position, ham_type* hamil)
     hamil->get_test(spinx[position[0]][position[1]][position[2]],
                     spiny[position[0]][position[1]][position[2]],
                     spinz[position[0]][position[1]][position[2]]);
+}
+
+void field_3d_h::add_val_h(vector<int>& position, vector<double> &in)
+{
+    spinx[position[0]][position[1]][position[2]] += in[0];
+    spiny[position[0]][position[1]][position[2]] += in[1];
+    spinz[position[0]][position[1]][position[2]] += in[2];
+}
+
+void field_3d_h::print(string filename)
+{
+    stringstream namestream;
+    string xname, yname, zname;
+    ofstream xfile, yfile, zfile;
+    int start = (totsize - insize)/2;
+    for(int k = start; k < insize+start; k++)
+    {
+        namestream << filename << "_spinx_" << k << ".dat";
+        namestream >> xname;
+        namestream.clear();
+        namestream << filename << "_spiny_" << k << ".dat";
+        namestream >> yname;
+        namestream.clear();
+        namestream << filename << "_spinz_" << k << ".dat";
+        namestream >> zname;
+        namestream.clear();
+        xfile.open(xname.c_str());
+        yfile.open(yname.c_str());
+        zfile.open(zname.c_str());
+
+        for(int i = start; i < insize+start; i++)
+        {
+            for(int j = start; j < insize+start; j++)
+            {
+                xfile << spinx[i][j][k] << " ";
+                yfile << spiny[i][j][k] << " ";
+                zfile << spinz[i][j][k] << " ";
+            }
+            xfile << endl;
+            yfile << endl;
+            zfile << endl;
+        }
+
+        xfile.close();
+        xfile.clear();
+        yfile.close();
+        yfile.clear();
+        zfile.close();
+        zfile.clear();
+    }
 }
 
 ///////////////////////

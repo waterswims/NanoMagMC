@@ -1,4 +1,4 @@
-RUN_TYPES = run test
+RUN_TYPES = run test skyrm_print
 .PHONY: $(RUN_TYPES)
 
 $(RUN_TYPES):
