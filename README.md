@@ -1,4 +1,4 @@
-# Monte Carlo Simulation Software for Atomistis Models of Magnetic Materials
+# MC_HAMR: Monte Carlo Simulation Software for Atomistic Models of Magnetic Materials for Heat Assisted Magnetic Recording
 
 ## Requirements
 
@@ -50,6 +50,8 @@ After compilation an executable file will be placed in the root folder named "ru
 
 * ISDISTRIB: A boolean value which defines whether or not the sizes of the realisations of each lattice are fixed or distributed. The only distribution of sizes which has so far been implemented is a log-normal distribution.
 
+* TEMPNAME: In the folder "Includes/Temps/" there are a number of example text files containing the temperatures which the simulation will run. This option is used to specify which file is to be used without the ".txt".
+
 ### Optional/Situational Settings
 
 * SIZE: If ISDISTRIB is set to false then the fixed size of the lattice being run must be given.
@@ -62,12 +64,4 @@ After compilation an executable file will be placed in the root folder named "ru
 
 * EXCHANGE: The inter-atomic exchange coupling constant J between coupled atoms in the Ising and Heisenberg models.
 
-* MAGFIELD: The external magnetic field that is present when using the Ising and Heisenberg models.
-
-## Spin Types
-
-Unfortunately at this early stage in the code, the user must manually define the type of spin to be used by hard coding it (future versions will seek to address this issue). This can be done by defining spin_type as one of the following:
-
-ising_spin: Discrete 2-state Ising model spin type
-
-heis_spin: Continuous Heisenburg model spin type
+* MAGFIELD: The external magnetic field that is present when using the Ising, Heisenberg and FePt models.
