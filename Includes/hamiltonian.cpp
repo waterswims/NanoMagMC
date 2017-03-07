@@ -570,21 +570,10 @@ double ham_skyrm::calc_E(field_type* lattice)
             }
         }
         // #pragma simd
-        cout << "New center" << endl;
         for (int i = 0; i < arrsize; i++)
         {
-            D_sum += (curr[(dirs[i]+1)%3]*adj[(dirs[i]+2)%3][i] -
+            D_sum += mod[i]*(curr[(dirs[i]+1)%3]*adj[(dirs[i]+2)%3][i] -
                      curr[(dirs[i]+2)%3]*adj[(dirs[i]+1)%3][i]);
-
-            if (i == 4 || i == 5)
-            {
-                cout << curr[(dirs[i]+1)%3] << endl;
-                cout << curr[(dirs[i]+2)%3] << endl;
-                cout << adj[(dirs[i]+1)%3][i] << endl;
-                cout << adj[(dirs[i]+2)%3][i] << endl;
-                cout << (curr[(dirs[i]+1)%3]*adj[(dirs[i]+2)%3][i] -
-                     curr[(dirs[i]+2)%3]*adj[(dirs[i]+1)%3][i]) << endl;
-            }
         }
     }
     #pragma simd
