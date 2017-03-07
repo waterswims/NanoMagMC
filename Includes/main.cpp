@@ -32,12 +32,12 @@ int main(int argc, char **argv)
 
 	// setup arguments
 	int padding, size, N_av, Nsingle;
-	double J, H, k, beta, amean, asd, lmean, lsd;
+	double J, H, K, k, beta, amean, asd, lmean, lsd;
 	bool periodic, distributed;
 	char shape, hamil;
 	string temp_name;
 	read_all_vars(argv[1], size, J, H, k, periodic, shape, hamil, N_av,
-		Nsingle, padding, beta, distributed, amean, asd, temp_name);
+		Nsingle, padding, beta, distributed, amean, asd, temp_name, K);
 	double args[] = {beta};
 	AtoLn(amean, asd, lmean, lsd);
 
@@ -147,7 +147,7 @@ int main(int argc, char **argv)
 		{
 			s_size = size;
 		}
-        state curr_state(s_size, periodic, shape, hamil, J, H, k, Tmax, args);
+        state curr_state(s_size, periodic, shape, hamil, J, H, k, Tmax, K, args);
 		if (rank == 0)
 		{
 			cout << "Generated State..." << endl;

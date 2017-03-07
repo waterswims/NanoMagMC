@@ -9,12 +9,12 @@ extern mkl_irand st_rand_int;
 extern mkl_drand st_rand_double;
 
 state::state(double size, bool isPerio, char shape_code, char ham_code, double J,
-    double H, double k, double Temp, double* args)
+    double H, double k, double Temp, double K, double* args)
 {
     h_code = ham_code;
     s_code = shape_code;
 
-    this->init_points(size, isPerio, H, J, args);
+    this->init_points(size, isPerio, H, J, K, args);
 
     k_b = k;
     this->change_temp(Temp);
@@ -45,7 +45,7 @@ state& state::operator=(const state& other)
     this->copy_points(other);
 }
 
-void state::init_points(double size, bool isPerio, double H, double J, double* args)
+void state::init_points(double size, bool isPerio, double H, double J, double K, double* args)
 {
     switch(h_code)
     {
@@ -61,6 +61,10 @@ void state::init_points(double size, bool isPerio, double H, double J, double* a
         case 'F':
             hamil = new ham_FePt(H);
             break;
+        case 's':
+        case 'S':
+            hamil = new ham_skyrm(H, J, K);
+            break;
         default:
             cerr << "Incorrect hamiltonian, exiting..." << endl;
             exit(102);
@@ -71,6 +75,8 @@ void state::init_points(double size, bool isPerio, double H, double J, double* a
         case 'H':
         case 'f':
         case 'F':
+        case 's':
+        case 'S':
         switch (s_code)
         {
             case 's':
@@ -148,6 +154,9 @@ void state::copy_points(const state& other)
         case 'F':
             hamil = new ham_FePt(*(other.hamil));
             break;
+        case 's':
+        case 'S':
+            hamil = new ham_skyrm(*(other.hamil));
         default:
             cerr << "Incorrect hamiltonian, exiting..." << endl;
             exit(102);
@@ -158,6 +167,8 @@ void state::copy_points(const state& other)
         case 'H':
         case 'f':
         case 'F':
+        case 's':
+        case 'S':
         switch (s_code)
         {
             case 's':

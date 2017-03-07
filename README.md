@@ -65,3 +65,5 @@ After compilation an executable file will be placed in the root folder named "ru
 * EXCHANGE: The inter-atomic exchange coupling constant J between coupled atoms in the Ising and Heisenberg models.
 
 * MAGFIELD: The external magnetic field that is present when using the Ising, Heisenberg and FePt models.
+
+* DMISTREN: The strength of the DMI interaction for a skyrmion hamiltonian. 

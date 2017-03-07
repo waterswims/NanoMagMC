@@ -111,7 +111,7 @@ public:
     ham_skyrm(){}
     ham_skyrm(double Hin, double Jin, double Kin);
     ham_skyrm(const ham_type& other);
-    ~ham_skyrm() {}
+    ~ham_skyrm(){}
     virtual double calc_E(field_type* lattice);
     virtual double dE(field_type* lattice, vector<int>& position);
     ham_skyrm& operator=(const ham_type& other);

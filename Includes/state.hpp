@@ -25,11 +25,11 @@ private:
 public:
     state(){}
     state(double size, bool isPerio, char shape_code, char ham_code, double J,
-        double H, double k, double Temp, double* args);
+        double H, double k, double Temp, double K, double* args);
     state(const state& other);
     ~state();
     void copy_points(const state& other);
-    void init_points(double size, bool isPerio, double H, double J, double* args);
+    void init_points(double size, bool isPerio, double H, double J, double K, double* args);
     void equil(int iter);
     vector<double> magnetisation();
     vector<double> submag(int subnumber);

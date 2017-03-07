@@ -35,7 +35,7 @@ template <class T> T read_var(string v_name, string f_name)
 void read_all_vars(string f_name, int& size, double& J, double& H, double& k,
     bool& periodic, char& shape, char& hamil, int& N_av, int& N_single,
     int& pad, double& beta, bool& distrib, double& amean, double& asd,
-    string& temp_name)
+    string& temp_name, double& K)
 {
     shape = read_var<char>("LATTSHAPE", f_name);
     switch(shape)
@@ -59,9 +59,20 @@ void read_all_vars(string f_name, int& size, double& J, double& H, double& k,
             J = read_var<double>("EXCHANGE", f_name);
             H = read_var<double>("MAGFIELD", f_name);
             break;
+        case 'f':
+        case 'F':
+            H = read_var<double>("MAGFIELD", f_name);
+            break;
+        case 's':
+        case 'S':
+            J = read_var<double>("EXCHANGE", f_name);
+            H = read_var<double>("MAGFIELD", f_name);
+            K = read_var<double>("DMISTREN", f_name);
+            break;
         default:
             J = 1;
             H = 0;
+            K = 0;
     }
     distrib = read_var<int>("ISDISTRIB", f_name);
     if(distrib)
