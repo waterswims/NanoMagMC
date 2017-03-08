@@ -5,10 +5,10 @@
 #include "cpoints.hpp"
 #include "output.hpp"
 #include "param_read.hpp"
+#include "mpifuncs.hpp"
 
 #include <iostream>
 #include <vector>
-#include <mpi.h>
 #include <fstream>
 #include <cstring>
 
@@ -256,125 +256,17 @@ int main(int argc, char **argv)
 		cout << "Reducing Data..." << endl;
 	}
 
-	vector<double> temp;
-	double* temparr = alloc_1darr<double>(N_av);
-	int* temparr2 = alloc_1darr<int>(N_av);
-
-	// Reduce data
-	for(int t=0; t < num_Ts; t++)
-	{
-		if(rank==0)
-		{
-			allmag.push_back(temp);
-			allener.push_back(temp);
-			allmagx.push_back(temp);
-			allmagy.push_back(temp);
-			allmagz.push_back(temp);
-			allsmag.push_back(temp);
-			allsmagx.push_back(temp);
-			allsmagy.push_back(temp);
-			allsmagz.push_back(temp);
-			for(int i=0; i < N_av; i++)
-			{
-				allmag[t].push_back(mag[t][i]);
-				allener[t].push_back(ener[t][i]);
-				allmagx[t].push_back(magx[t][i]);
-				allmagy[t].push_back(magy[t][i]);
-				allmagz[t].push_back(magz[t][i]);
-
-				allsmag[t].push_back(smag[t][i]);
-				allsmagx[t].push_back(smagx[t][i]);
-				allsmagy[t].push_back(smagy[t][i]);
-				allsmagz[t].push_back(smagz[t][i]);
-				if(t==0)
-				{
-					allnums.push_back(nums[i]);
-					allsnums.push_back(s_nums[i]);
-				}
-			}
-			for(int i=1; i < comm_size; i++)
-			{
-				MPI_Recv(temparr, N_av, MPI_DOUBLE, i, 0, MPI_COMM_WORLD, &status);
-				for(int j=0; j < N_av; j++)
-				{
-					allmag[t].push_back(temparr[j]);
-				}
-				MPI_Recv(temparr, N_av, MPI_DOUBLE, i, 0, MPI_COMM_WORLD, &status);
-				for(int j=0; j < N_av; j++)
-				{
-					allener[t].push_back(temparr[j]);
-				}
-				MPI_Recv(temparr, N_av, MPI_DOUBLE, i, 0, MPI_COMM_WORLD, &status);
-				for(int j=0; j < N_av; j++)
-				{
-					allmagx[t].push_back(temparr[j]);
-				}
-				MPI_Recv(temparr, N_av, MPI_DOUBLE, i, 0, MPI_COMM_WORLD, &status);
-				for(int j=0; j < N_av; j++)
-				{
-					allmagy[t].push_back(temparr[j]);
-				}
-				MPI_Recv(temparr, N_av, MPI_DOUBLE, i, 0, MPI_COMM_WORLD, &status);
-				for(int j=0; j < N_av; j++)
-				{
-					allmagz[t].push_back(temparr[j]);
-				}
-
-				MPI_Recv(temparr, N_av, MPI_DOUBLE, i, 0, MPI_COMM_WORLD, &status);
-				for(int j=0; j < N_av; j++)
-				{
-					allsmag[t].push_back(temparr[j]);
-				}
-				MPI_Recv(temparr, N_av, MPI_DOUBLE, i, 0, MPI_COMM_WORLD, &status);
-				for(int j=0; j < N_av; j++)
-				{
-					allsmagx[t].push_back(temparr[j]);
-				}
-				MPI_Recv(temparr, N_av, MPI_DOUBLE, i, 0, MPI_COMM_WORLD, &status);
-				for(int j=0; j < N_av; j++)
-				{
-					allsmagy[t].push_back(temparr[j]);
-				}
-				MPI_Recv(temparr, N_av, MPI_DOUBLE, i, 0, MPI_COMM_WORLD, &status);
-				for(int j=0; j < N_av; j++)
-				{
-					allsmagz[t].push_back(temparr[j]);
-				}
-				if(t==0)
-				{
-					MPI_Recv(temparr2, N_av, MPI_INT, i, 0, MPI_COMM_WORLD, &status);
-					for(int j=0; j < N_av; j++)
-					{
-						allnums.push_back(temparr2[j]);
-					}
-
-					MPI_Recv(temparr2, N_av, MPI_INT, i, 0, MPI_COMM_WORLD, &status);
-					for(int j=0; j < N_av; j++)
-					{
-						allsnums.push_back(temparr2[j]);
-					}
-				}
-			}
-		}
-		else
-		{
-			MPI_Ssend(&mag[t][0], N_av, MPI_DOUBLE, 0, 0, MPI_COMM_WORLD);
-			MPI_Ssend(&ener[t][0], N_av, MPI_DOUBLE, 0, 0, MPI_COMM_WORLD);
-			MPI_Ssend(&magx[t][0], N_av, MPI_DOUBLE, 0, 0, MPI_COMM_WORLD);
-			MPI_Ssend(&magy[t][0], N_av, MPI_DOUBLE, 0, 0, MPI_COMM_WORLD);
-			MPI_Ssend(&magz[t][0], N_av, MPI_DOUBLE, 0, 0, MPI_COMM_WORLD);
-
-			MPI_Ssend(&smag[t][0], N_av, MPI_DOUBLE, 0, 0, MPI_COMM_WORLD);
-			MPI_Ssend(&smagx[t][0], N_av, MPI_DOUBLE, 0, 0, MPI_COMM_WORLD);
-			MPI_Ssend(&smagy[t][0], N_av, MPI_DOUBLE, 0, 0, MPI_COMM_WORLD);
-			MPI_Ssend(&smagz[t][0], N_av, MPI_DOUBLE, 0, 0, MPI_COMM_WORLD);
-			if(t==0)
-			{
-				MPI_Ssend(nums, N_av, MPI_INT, 0, 0, MPI_COMM_WORLD);
-				MPI_Ssend(s_nums, N_av, MPI_INT, 0, 0, MPI_COMM_WORLD);
-			}
-		}
-	}
+	allmag = gather2darr(num_Ts, N_av, mag, 0, comm_size);
+	allener = gather2darr(num_Ts, N_av, ener, 0, comm_size);
+	allmagx = gather2darr(num_Ts, N_av, magx, 0, comm_size);
+	allmagy = gather2darr(num_Ts, N_av, magy, 0, comm_size);
+	allmagz = gather2darr(num_Ts, N_av, magz, 0, comm_size);
+	allsmag = gather2darr(num_Ts, N_av, smag, 0, comm_size);
+	allsmagx = gather2darr(num_Ts, N_av, smagz, 0, comm_size);
+	allsmagy = gather2darr(num_Ts, N_av, smagy, 0, comm_size);
+	allsmagz = gather2darr(num_Ts, N_av, smagz, 0, comm_size);
+	allnums = gather1darr(N_av, nums, 0, comm_size);
+	allsnums = gather1darr(N_av, s_nums, 0, comm_size);
 
 	if(rank==0)
 	{
@@ -445,8 +337,6 @@ int main(int argc, char **argv)
 	remove(snumpoint.c_str());
 
 	dealloc_1darr<double>(Ts);
-	dealloc_1darr<double>(temparr);
-	dealloc_1darr<int>(temparr2);
 	dealloc_1darr<int>(nums);
 	dealloc_1darr<int>(s_nums);
 	dealloc_2darr<double>(num_Ts, mag);

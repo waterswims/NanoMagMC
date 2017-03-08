@@ -39,6 +39,7 @@ public:
     virtual void fill_val_i(vector<int>& position, int val){}
     virtual void fill_val_h(vector<int>& position, double x, double y, double z){}
     virtual void add_val_h(vector<int>& position, vector<double> &in){}
+    void allzero();
     virtual bool check_zero(vector<int>& position){return true;}
     virtual void change_to_test(vector<int>& position, ham_type* hamil){}
     virtual void new_mem(){}

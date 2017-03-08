@@ -4,10 +4,10 @@
 #include "functions.h"
 #include "output.hpp"
 #include "param_read.hpp"
+#include "mpifuncs.hpp"
 
 #include <iostream>
 #include <vector>
-#include <mpi.h>
 #include <fstream>
 #include <cstring>
 
@@ -77,19 +77,7 @@ int main(int argc, char **argv)
 	}
 
 	field_3d_h totfield(size, periodic);
-	int i_size = totfield.get_insize();
-    int t_size = totfield.get_totsize();
-    int start = (t_size - i_size) / 2;
-    int dim = totfield.get_dim();
-    vector<int> pos(dim, start);
-    bool finished = false;
-    vector<double> curr(3);
-
-    while(!finished)
-    {
-        totfield.fill_zero(pos);
-        totfield.next(finished, pos);
-    }
+	totfield.allzero();
 
 	// main loop
 	for (int j = 0; j < N_av; j++)
@@ -113,7 +101,36 @@ int main(int argc, char **argv)
         }
 	}
 
-	totfield.print("Output/Skyrm_Print/latt");
+	double*** xsout;
+	double*** ysout;
+	double*** zsout;
+	totfield.get_3dfield_h(xsout, ysout, zsout);
+	int tsize = totfield.get_totsize();
+	double*** gxspin = redc3darr(tsize, tsize, tsize, xsout, 0);
+	double*** gyspin = redc3darr(tsize, tsize, tsize, ysout, 0);
+	double*** gzspin = redc3darr(tsize, tsize, tsize, zsout, 0);
+	vector<int> pos(3);
+	for(int i = 0; i < tsize; i++)
+	{
+		pos[0] = i;
+		for(int j = 0; j < tsize; j++)
+		{
+			pos[1] = j;
+			for(int k = 0; k < tsize; k++)
+			{
+				pos[2] = k;
+				totfield.fill_val_h(pos, gxspin[i][j][k], gyspin[i][j][k], gzspin[i][j][k]);
+			}
+		}
+	}
+	dealloc_3darr<double>(tsize, tsize, gxspin);
+	dealloc_3darr<double>(tsize, tsize, gyspin);
+	dealloc_3darr<double>(tsize, tsize, gzspin);
+
+	if(rank == 0)
+	{
+		totfield.print("Output/Skyrm_Print/latt");
+	}
 
     // Finish program
 	MPI_Finalize();

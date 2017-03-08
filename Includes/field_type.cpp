@@ -46,6 +46,23 @@ void rand_spin_i(int &x)
 }
 
 ///////////////////////
+// All models
+///////////////////////
+
+void field_type::allzero()
+{
+    int start = (totsize - insize) / 2;
+    vector<int> pos(dim, start);
+    bool finished = false;
+
+    while(!finished)
+    {
+        this->fill_zero(pos);
+        this->next(finished, pos);
+    }
+}
+
+///////////////////////
 // 1d Heis-model
 ///////////////////////
 

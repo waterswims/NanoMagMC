@@ -26,10 +26,13 @@ else
 CPPFLAGS = -O3 -I${MKLROOT}/include -ipo
 endif
 
-OBJS = functions.o cpoints.o output.o param_read.o mklrand.o array_alloc.o field_type.o hamiltonian.o state.o shape.o
+OBJS = functions.o cpoints.o output.o param_read.o mklrand.o array_alloc.o field_type.o hamiltonian.o state.o shape.o mpifuncs.o
 TEST_FILES = cpoint_test.hpp mklrand_test.hpp ising_test.hpp heis_test.hpp fept_test.hpp test_functions.hpp skyrm_test.hpp
 
 all: $(OBJS) main.o
+
+mpifuncs.o: mpifuncs.cpp mpifuncs.hpp array_alloc.hpp
+	$(CXX) $(CPPFLAGS) -c mpifuncs.cpp
 
 array_alloc.o: array_alloc.cpp array_alloc.hpp
 	$(CXX) $(CPPFLAGS) -c array_alloc.cpp
@@ -61,7 +64,7 @@ cpoints.o: cpoints.cpp cpoints.hpp functions.h
 output.o: output.cpp output.hpp functions.h
 	$(CXX) $(CPPFLAGS) -c output.cpp
 
-main.o: main.cpp state.hpp mklrand.h functions.h cpoints.hpp output.hpp array_alloc.hpp
+main.o: main.cpp state.hpp mklrand.h functions.h cpoints.hpp output.hpp array_alloc.hpp mpifuncs.hpp
 	$(CXX) $(CPPFLAGS) -c main.cpp
 
 run: $(OBJS) main.o
@@ -73,7 +76,7 @@ test.o: test.cpp mklrand.h cpoints.hpp hamiltonian.hpp field_type.hpp $(TEST_FIL
 test: $(OBJS) test.o
 	$(CXX) $(OBJS) test.o -o test -lgtest $(LDFLAGS)
 
-1skrm.o: 1skrm.cpp state.hpp mklrand.h functions.h output.hpp array_alloc.hpp
+1skrm.o: 1skrm.cpp state.hpp mklrand.h functions.h output.hpp array_alloc.hpp mpifuncs.hpp
 	$(CXX) $(CPPFLAGS) -c 1skrm.cpp
 
 skyrm_print: $(OBJS) 1skrm.o
