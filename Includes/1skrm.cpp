@@ -45,11 +45,6 @@ int main(int argc, char **argv)
 	double Tmin(Ts[num_Ts-1]), Tmax(Ts[0]);
 
 	// Check correct inputs
-	if(num_Ts != 1)
-	{
-		cout << "Skyrmion can only be printed for a single temperature" <<endl;
-		exit(1000);
-	}
 	if(distributed)
 	{
 		cout << "Skyrmion can only be printed for non-distributed sizes" <<endl;
@@ -79,14 +74,22 @@ int main(int argc, char **argv)
 	field_3d_h totfield(size, periodic);
 	totfield.allzero();
 
+	state curr_state(size, periodic, shape, hamil, J, H, k, Tmax, K, args);
+
+	for(int i=0; i < num_Ts; i++)
+	{
+		double T = Ts[i];
+		curr_state.change_temp(T);
+		curr_state.equil(3000*curr_state.num_spins());
+		if (rank==0)
+		{
+			cout << "Temp " << i << " of " << num_Ts << " completed" << endl;
+		}
+	}
+
 	// main loop
 	for (int j = 0; j < N_av; j++)
 	{
-        state curr_state(size, periodic, shape, hamil, J, H, k, Tmax, K, args);
-		if (rank == 0)
-		{
-			cout << "Generated State..." << endl;
-		}
 		curr_state.equil(Nsingle*curr_state.num_spins());
 		if (rank == 0)
 		{
