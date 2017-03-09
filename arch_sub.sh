@@ -13,4 +13,4 @@ cd $PBS_O_WORKDIR
 module swap Prg-Env-cray PrgEnv-intel
 
 # Run my_prog taking input from file input_file and send output to output_file
-aprun -n 1008 ./run_new ARC_INPUT.dat
+aprun -n 1008 ./run ARC_INPUT.dat
