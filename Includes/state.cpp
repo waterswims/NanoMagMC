@@ -345,6 +345,11 @@ void state::change_temp(double T)
     beta = 1 / (k_b * T);
 }
 
+void state::change_field(double H)
+{
+    hamil->set_H(H);
+}
+
 void state::print_latt()
 {
 

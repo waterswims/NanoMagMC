@@ -38,6 +38,7 @@ public:
     int sub_num(int subnumber);
     void init_lattice();
     void change_temp(double T);
+    void change_field(double H);
     state& operator=(const state& other);
     void print_latt();
     void ptf(string fname);

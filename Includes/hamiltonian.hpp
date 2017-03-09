@@ -25,6 +25,7 @@ public:
     virtual double get_K() const {return 0;}
     virtual void get_test(double &x, double &y, double &z){}
     virtual void init_dim(field_type* field) {}
+    virtual void set_H(double Hin) {}
     // virtual double get_Dx(){return 0;}
     // virtual double get_Dy(){return 0;}
     // virtual vector<double>* get_xs(){return NULL;}
@@ -56,6 +57,7 @@ public:
     double get_H() const {return H;}
     ham_ising& operator=(ham_type& other);
     void init_dim(field_type* field);
+    void set_H(double Hin) {H = Hin;}
 };
 
 class ham_heis: public ham_type
@@ -80,6 +82,7 @@ public:
     virtual void init_dim(field_type* field);
     void get_test(double &x, double &y, double &z)
         {x = test[0]; y = test[1]; z = test[2];}
+    void set_H(double Hin) {H[2] = Hin;}
 };
 
 class ham_FePt: public ham_heis

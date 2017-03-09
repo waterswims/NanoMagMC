@@ -83,9 +83,20 @@ int main(int argc, char **argv)
 		curr_state.equil(3000*curr_state.num_spins());
 		if (rank==0)
 		{
-			cout << "Temp " << i << " of " << num_Ts << " completed" << endl;
+			cout << "Temp " << i + 1 << " of " << num_Ts << " completed" << endl;
 		}
 	}
+
+	// for(int i=0; i < 32; i++)
+	// {
+	// 	double currH = 0.5-0.01*(i+1);
+	// 	curr_state.change_field(currH);
+	// 	curr_state.equil(3000*curr_state.num_spins());
+	// 	if (rank==0)
+	// 	{
+	// 		cout << "Field " << i + 1 << " of " << 17 << " completed" << endl;
+	// 	}
+	// }
 
 	// main loop
 	for (int j = 0; j < N_av; j++)
