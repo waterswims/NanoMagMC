@@ -69,34 +69,36 @@ void state::init_points(double size, bool isPerio, double H, double J, double K,
             cerr << "Incorrect hamiltonian, exiting..." << endl;
             exit(102);
     }
+    int pad = 1;
     switch (h_code)
     {
+        case 's':
+        case 'S':
+        pad = 2;
         case 'h':
         case 'H':
         case 'f':
         case 'F':
-        case 's':
-        case 'S':
         switch (s_code)
         {
             case 's':
             case 'S':
-                field = new field_2d_h(int(size), isPerio);
+                field = new field_2d_h(int(size), isPerio, pad);
                 shape = new square;
                 break;
             case 'w':
             case 'W':
-                field = new field_2d_h(int(2*size+10), isPerio);
+                field = new field_2d_h(int(2*size+10), isPerio, pad);
                 shape = new weibull((size), args[0]);
                 break;
             case 'c':
             case 'C':
-                field = new field_3d_h(int(size), isPerio);
+                field = new field_3d_h(int(size), isPerio, pad);
                 shape = new cube;
                 break;
             case 'x':
             case 'X':
-                field = new field_3d_h(int(2*size+10), isPerio);
+                field = new field_3d_h(int(2*size+10), isPerio, pad);
                 shape = new weibull((size), args[0]);
                 break;
             default:
@@ -241,14 +243,9 @@ void state::init_lattice()
 {
     num = 0;
     snum = 0;
-    int start = 0;
-    if(!field->get_perio()){start++;}
+    int start = (field->get_totsize() - field->get_insize()) / 2;
     int dim = field->get_dim();
-    vector<int> pos(dim);
-    for (vector<int>::iterator it = pos.begin(); it != pos.end(); it++)
-    {
-        *it = start;
-    }
+    vector<int> pos(dim, start);
     bool finished = false;
     while (!finished)
     {
@@ -263,7 +260,7 @@ void state::init_lattice()
         else{field->fill_zero(pos);}
         field->next(finished, pos);
     }
-    field->fill_ghost();
+    field->fill_ghost(start);
 }
 
 void state::equil(int iter)

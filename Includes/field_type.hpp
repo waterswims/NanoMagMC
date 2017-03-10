@@ -33,7 +33,7 @@ public:
     int get_totsize() const {return totsize;}
     bool get_perio() const {return periodic;}
     int get_dim() const {return dim;}
-    virtual void fill_ghost(){}
+    virtual void fill_ghost(int num_rows){}
     virtual void fill_rand(vector<int>& position){}
     virtual void fill_zero(vector<int>& position){}
     virtual void fill_val_i(vector<int>& position, int val){}
@@ -100,12 +100,13 @@ protected:
 public:
     field_2d_h();
     field_2d_h(int size, bool isperio);
+    field_2d_h(int size, bool isperio, int p_pad);
     field_2d_h(field_type& other);
     field_2d_h(const field_2d_h& other);
     ~field_2d_h();
     void h_access(vector<int>& position, vector<double>& out);
     void h_next(bool &finish, vector<int> &pos, vector<double> &out);
-    void fill_ghost();
+    void fill_ghost(int num_rows);
     field_2d_h& operator=(const field_2d_h& other);
     void get_2dfield_h(double** &x, double** &y, double** &z) const;
     void h_adjacent(vector<int>& position, double** out);
@@ -128,7 +129,7 @@ public:
     ~field_2d_i();
     void i_access(vector<int>& position, int &out);
     void i_next(bool &finish, vector<int> &pos, int &out);
-    void fill_ghost();
+    void fill_ghost(int num_rows);
     field_2d_i& operator=(const field_2d_i& other);
     void get_2dfield_i(int** &x) const;
     void i_adjacent(vector<int>& position, int* out);
@@ -162,12 +163,13 @@ protected:
 public:
     field_3d_h();
     field_3d_h(int size, bool isperio);
+    field_3d_h(int size, bool isperio, int p_pad);
     field_3d_h(field_type& other);
     field_3d_h(const field_3d_h& other);
     ~field_3d_h();
     void h_access(vector<int>& position, vector<double>& out);
     void h_next(bool &finish, vector<int> &pos, vector<double> &out);
-    void fill_ghost();
+    void fill_ghost(int num_rows);
     field_3d_h& operator=(const field_3d_h& other);
     void get_3dfield_h(double*** &x, double*** &y, double*** &z) const;
     void h_adjacent(vector<int>& position, double** out);
@@ -193,7 +195,7 @@ public:
     ~field_3d_i();
     void i_access(vector<int>& position, int &out);
     void i_next(bool &finish, vector<int> &pos, int &out);
-    void fill_ghost();
+    void fill_ghost(int num_rows);
     field_3d_i& operator=(const field_3d_i& other);
     void get_3dfield_i(int*** &x) const;
     void i_adjacent(vector<int>& position, int* out);

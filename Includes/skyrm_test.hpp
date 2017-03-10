@@ -61,7 +61,7 @@ TEST(Skyrmion, 3d_energy_zero_field)
             }
         }
     }
-    field.fill_ghost();
+    field.fill_ghost(1);
     EXPECT_EQ(-1850, hamil.calc_E(&field));
 
     for(int i = 1; i < 11; i++)
@@ -134,7 +134,7 @@ TEST(Skyrmion, 3d_energy_ext_field)
             }
         }
     }
-    field.fill_ghost();
+    field.fill_ghost(1);
     EXPECT_EQ(-1850, hamil.calc_E(&field));
 
     for(int i = 1; i < 11; i++)

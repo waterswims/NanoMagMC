@@ -24,7 +24,7 @@ field_2d_i gen_2d_ising_fm()
             field.fill_val_i(pos, 1);
         }
     }
-    field.fill_ghost();
+    field.fill_ghost(1);
     return field;
 }
 
@@ -41,7 +41,7 @@ field_2d_i gen_2d_ising_afm()
             field.fill_val_i(pos, ((i+j)%2)*2-1);
         }
     }
-    field.fill_ghost();
+    field.fill_ghost(1);
     return field;
 }
 
@@ -62,7 +62,7 @@ field_3d_i gen_3d_ising_fm()
             }
         }
     }
-    field.fill_ghost();
+    field.fill_ghost(1);
     return field;
 }
 
@@ -83,7 +83,7 @@ field_3d_i gen_3d_ising_afm()
             }
         }
     }
-    field.fill_ghost();
+    field.fill_ghost(1);
     return field;
 }
 
@@ -100,7 +100,7 @@ field_2d_h gen_2d_heis_fm(double x, double y, double z)
             field.fill_val_h(pos, x, y, z);
         }
     }
-    field.fill_ghost();
+    field.fill_ghost(1);
     return field;
 }
 
@@ -118,7 +118,7 @@ field_2d_h gen_2d_heis_afm(double x, double y, double z)
                              (((i+j)%2)*2-1)*z);
         }
     }
-    field.fill_ghost();
+    field.fill_ghost(1);
     return field;
 }
 
@@ -139,7 +139,7 @@ field_3d_h gen_3d_heis_fm(double x, double y, double z)
             }
         }
     }
-    field.fill_ghost();
+    field.fill_ghost(1);
     return field;
 }
 
@@ -161,7 +161,7 @@ field_3d_h gen_3d_heis_afm(double x, double y, double z)
             }
         }
     }
-    field.fill_ghost();
+    field.fill_ghost(1);
     return field;
 }
 

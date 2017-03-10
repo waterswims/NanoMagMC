@@ -203,13 +203,8 @@ void field_cluster_h::change_to_test(vector<int>& position, ham_type* hamil)
 
 void field_2d::next(bool &finish, vector<int> &pos)
 {
-    int start = 0;
-    int end = totsize;
-    if(!periodic)
-    {
-        start++;
-        end--;
-    }
+    int start = (totsize - insize) / 2;
+    int end = start + insize;
 
     pos[1]++;
     if(pos[1] == end)
@@ -264,6 +259,26 @@ field_2d_h::field_2d_h(int size, bool isperio)
     else
     {
         totsize = insize + 2;
+    }
+    spinx = alloc_2darr<double>(totsize, totsize);
+    spiny = alloc_2darr<double>(totsize, totsize);
+    spinz = alloc_2darr<double>(totsize, totsize);
+    iszero = alloc_2darr<bool>(totsize, totsize);
+}
+
+field_2d_h::field_2d_h(int size, bool isperio, int p_pad)
+{
+    dim = 2;
+    periodic = isperio;
+    insize = size;
+    ft = 2;
+    if(periodic)
+    {
+        totsize = insize;
+    }
+    else
+    {
+        totsize = insize + 2 * p_pad;
     }
     spinx = alloc_2darr<double>(totsize, totsize);
     spiny = alloc_2darr<double>(totsize, totsize);
@@ -355,28 +370,28 @@ void field_2d_h::h_next(bool &finish, vector<int> &pos, vector<double> &out)
     this->next(finish, pos);
 }
 
-void field_2d_h::fill_ghost()
+void field_2d_h::fill_ghost(int num_rows)
 {
-    if(!periodic)
+    for(int r = 0; r < num_rows; r++)
     {
         for(int i=0; i < totsize; i++)
         {
-            spinx[i][0] = 0;
-            spiny[i][0] = 0;
-            spinz[i][0] = 0;
-            iszero[i][0] = true;
-            spinx[0][i] = 0;
-            spiny[0][i] = 0;
-            spinz[0][i] = 0;
-            iszero[0][i] = true;
-            spinx[i][totsize-1] = 0;
-            spiny[i][totsize-1] = 0;
-            spinz[i][totsize-1] = 0;
-            iszero[i][totsize-1] = true;
-            spinx[totsize-1][i] = 0;
-            spiny[totsize-1][i] = 0;
-            spinz[totsize-1][i] = 0;
-            iszero[totsize-1][i] = true;
+            spinx[i][r] = 0;
+            spiny[i][r] = 0;
+            spinz[i][r] = 0;
+            iszero[i][r] = true;
+            spinx[r][i] = 0;
+            spiny[r][i] = 0;
+            spinz[r][i] = 0;
+            iszero[r][i] = true;
+            spinx[i][totsize-1-r] = 0;
+            spiny[i][totsize-1-r] = 0;
+            spinz[i][totsize-1-r] = 0;
+            iszero[i][totsize-1-r] = true;
+            spinx[totsize-1-r][i] = 0;
+            spiny[totsize-1-r][i] = 0;
+            spinz[totsize-1-r][i] = 0;
+            iszero[totsize-1-r][i] = true;
         }
     }
 }
@@ -543,20 +558,20 @@ void field_2d_i::i_next(bool &finish, vector<int> &pos, int &out)
     this->next(finish, pos);
 }
 
-void field_2d_i::fill_ghost()
+void field_2d_i::fill_ghost(int num_rows)
 {
-    if(!periodic)
+    for(int r = 0; r < num_rows; r++)
     {
         for(int i=0; i < totsize; i++)
         {
-            spin[i][0] = 0;
-            iszero[i][0] = true;
-            spin[0][i] = 0;
-            iszero[0][i] = true;
-            spin[i][totsize-1] = 0;
-            iszero[i][totsize-1] = true;
-            spin[totsize-1][i] = 0;
-            iszero[totsize-1][i] = true;
+            spin[i][r] = 0;
+            iszero[i][r] = true;
+            spin[r][i] = 0;
+            iszero[r][i] = true;
+            spin[i][totsize-1-r] = 0;
+            iszero[i][totsize-1-r] = true;
+            spin[totsize-1-r][i] = 0;
+            iszero[totsize-1-r][i] = true;
         }
     }
 }
@@ -613,13 +628,9 @@ void field_2d_i::change_to_test(vector<int>& position, ham_type* hamil)
 
 void field_3d::next(bool &finish, vector<int> &pos)
 {
-    int start = 0;
-    int end = totsize;
-    if(!periodic)
-    {
-        start++;
-        end--;
-    }
+    int start = (totsize - insize) / 2;
+    int end = start + insize;
+
     pos[2]++;
     if(pos[2] == end)
     {
@@ -681,6 +692,27 @@ field_3d_h::field_3d_h(int size, bool isperio)
     else
     {
         totsize = insize + 2;
+    }
+    spinx = alloc_3darr<double>(totsize, totsize, totsize);
+    spiny = alloc_3darr<double>(totsize, totsize, totsize);
+    spinz = alloc_3darr<double>(totsize, totsize, totsize);
+    iszero = alloc_3darr<bool>(totsize, totsize, totsize);
+    pos = alloc_2darr<int>(3, 956);
+}
+
+field_3d_h::field_3d_h(int size, bool isperio, int p_pad)
+{
+    dim = 3;
+    periodic = isperio;
+    insize = size;
+    ft = 3;
+    if(periodic)
+    {
+        totsize = insize;
+    }
+    else
+    {
+        totsize = insize + 2*p_pad;
     }
     spinx = alloc_3darr<double>(totsize, totsize, totsize);
     spiny = alloc_3darr<double>(totsize, totsize, totsize);
@@ -777,39 +809,39 @@ void field_3d_h::h_next(bool &finish, vector<int> &pos, vector<double> &out)
     this->next(finish, pos);
 }
 
-void field_3d_h::fill_ghost()
+void field_3d_h::fill_ghost(int num_rows)
 {
-    if(!periodic)
+    for(int r = 0; r < num_rows; r++)
     {
         for(int i=0; i < totsize; i++)
         {
             for(int j=0; j < totsize; j++)
             {
-                spinx[i][j][0] = 0;
-                spiny[i][j][0] = 0;
-                spinz[i][j][0] = 0;
-                iszero[i][j][0] = true;
-                spinx[0][i][j] = 0;
-                spiny[0][i][j] = 0;
-                spinz[0][i][j] = 0;
-                iszero[0][i][j] = true;
-                spinx[j][0][i] = 0;
-                spiny[j][0][i] = 0;
-                spinz[j][0][i] = 0;
-                iszero[j][0][i] = true;
+                spinx[i][j][r] = 0;
+                spiny[i][j][r] = 0;
+                spinz[i][j][r] = 0;
+                iszero[i][j][r] = true;
+                spinx[r][i][j] = 0;
+                spiny[r][i][j] = 0;
+                spinz[r][i][j] = 0;
+                iszero[r][i][j] = true;
+                spinx[j][r][i] = 0;
+                spiny[j][r][i] = 0;
+                spinz[j][r][i] = 0;
+                iszero[j][r][i] = true;
 
-                spinx[i][j][totsize-1] = 0;
-                spiny[i][j][totsize-1] = 0;
-                spinz[i][j][totsize-1] = 0;
-                iszero[i][j][totsize-1] = true;
-                spinx[totsize-1][i][j] = 0;
-                spiny[totsize-1][i][j] = 0;
-                spinz[totsize-1][i][j] = 0;
-                iszero[totsize-1][i][j] = true;
-                spinx[j][totsize-1][i] = 0;
-                spiny[j][totsize-1][i] = 0;
-                spinz[j][totsize-1][i] = 0;
-                iszero[j][totsize-1][i] = true;
+                spinx[i][j][totsize-1-r] = 0;
+                spiny[i][j][totsize-1-r] = 0;
+                spinz[i][j][totsize-1-r] = 0;
+                iszero[i][j][totsize-1-r] = true;
+                spinx[totsize-1-r][i][j] = 0;
+                spiny[totsize-1-r][i][j] = 0;
+                spinz[totsize-1-r][i][j] = 0;
+                iszero[totsize-1-r][i][j] = true;
+                spinx[j][totsize-1-r][i] = 0;
+                spiny[j][totsize-1-r][i] = 0;
+                spinz[j][totsize-1-r][i] = 0;
+                iszero[j][totsize-1-r][i] = true;
             }
         }
     }
@@ -1090,27 +1122,27 @@ void field_3d_i::i_next(bool &finish, vector<int> &pos, int &out)
     this->next(finish, pos);
 }
 
-void field_3d_i::fill_ghost()
+void field_3d_i::fill_ghost(int num_rows)
 {
-    if(!periodic)
+    for(int r = 0; r < num_rows; r++)
     {
         for(int i=0; i < totsize; i++)
         {
             for(int j=0; j < totsize; j++)
             {
-                spin[i][j][0] = 0;
-                iszero[i][j][0] = true;
-                spin[0][i][j] = 0;
-                iszero[0][i][j] = true;
-                spin[j][0][i] = 0;
-                iszero[j][0][i] = true;
+                spin[i][j][r] = 0;
+                iszero[i][j][r] = true;
+                spin[r][i][j] = 0;
+                iszero[r][i][j] = true;
+                spin[j][r][i] = 0;
+                iszero[j][r][i] = true;
 
-                spin[i][j][totsize-1] = 0;
-                iszero[i][j][totsize-1] = true;
-                spin[totsize-1][i][j] = 0;
-                iszero[totsize-1][i][j] = true;
-                spin[j][totsize-1][i] = 0;
-                iszero[j][totsize-1][i] = true;
+                spin[i][j][totsize-1-r] = 0;
+                iszero[i][j][totsize-1-r] = true;
+                spin[totsize-1-r][i][j] = 0;
+                iszero[totsize-1-r][i][j] = true;
+                spin[j][totsize-1-r][i] = 0;
+                iszero[j][totsize-1-r][i] = true;
             }
         }
     }
