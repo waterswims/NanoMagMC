@@ -71,7 +71,7 @@ int main(int argc, char **argv)
 		cout << "Running MC..." << endl;
 	}
 
-	field_3d_h totfield(size, periodic);
+	field_3d_h totfield(size, periodic, 2);
 	totfield.allzero();
 
 	state curr_state(size, periodic, shape, hamil, J, H, k, Tmax, K, args);
