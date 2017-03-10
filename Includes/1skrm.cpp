@@ -86,6 +86,11 @@ int main(int argc, char **argv)
 			cout << "Temp " << i + 1 << " of " << num_Ts << " completed" << endl;
 		}
 	}
+	for(int i = 0; i < 1000; i++)
+	{
+		curr_state.equil(curr_state.num_spins());
+		cout << curr_state.energy() << endl;
+	}
 
 	// for(int i=0; i < 32; i++)
 	// {
