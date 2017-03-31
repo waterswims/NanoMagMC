@@ -1,6 +1,6 @@
 source load_compilers.sh
 
-make f_run
+make run
 
 for FIELD in 0.18
 do
