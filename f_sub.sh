@@ -2,7 +2,7 @@
 
 # set default resource requirements for job
 # - these can be overridden on the qsub command line (this is for a 4 hour job)
-#PBS -l walltime=60:00:00
+#PBS -l walltime=24:00:00
 #PBS -l nodes=32:ppn=16
 #PBS -j oe
 

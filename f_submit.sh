@@ -1,12 +1,12 @@
 source load_compilers.sh
 
-make f_run
+make run
 
-for FIELD in $(seq -0.005 0.0005 0.005)
+for FIELD in 0.18
 do
-	for SIZE in 25 50 75 100
+	for SIZE in 20
 	do
-		cp F_INPUT.dat F_INPUT_"$SIZE"_"$FIELD"
+		cp INPUT.dat F_INPUT_"$SIZE"_"$FIELD"
 		sed -i "s/SIZE .*/SIZE ${SIZE}/g" F_INPUT_"$SIZE"_"$FIELD"
 		sed -i "s/MAGFIELD .*/MAGFIELD ${FIELD}/g" F_INPUT_"$SIZE"_"$FIELD"
 
