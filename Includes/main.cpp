@@ -30,7 +30,7 @@ int main(int argc, char **argv)
 
 	// setup arguments
 	int padding, size, N_av, Nsingle;
-	double J, H, K, k, beta, amean, asd, lmean, lsd;
+	double J=1, H=0, K=0, k=1, beta=50, amean, asd, lmean, lsd;
 	bool periodic, distributed;
 	char shape, hamil;
 	string temp_name;
