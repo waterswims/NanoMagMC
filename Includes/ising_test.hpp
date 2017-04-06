@@ -205,7 +205,7 @@ TEST(Ising_model, 3d_dE_consist)
     {
         pos[0] = int(st_rand_double.gen()*10 + 1);
         pos[1] = int(st_rand_double.gen()*10 + 1);
-        pos[3] = int(st_rand_double.gen()*10 + 1);
+        pos[2] = int(st_rand_double.gen()*10 + 1);
         int dE = hamil.dE(&field, pos);
         field.change_to_test(pos, &hamil);
         int new_E = hamil.calc_E(&field);

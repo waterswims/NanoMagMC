@@ -22,6 +22,7 @@ INC_PATH = ../Includes
 # Check for systems I know have AVX2
 ifneq (,$(shell grep avx2 /proc/cpuinfo))
 CPPFLAGS = -O3 -I${MKLROOT}/include -xCORE-AVX2 -ipo
+# CPPFLAGS = -I${MKLROOT}/include
 else
 CPPFLAGS = -O3 -I${MKLROOT}/include -ipo
 endif

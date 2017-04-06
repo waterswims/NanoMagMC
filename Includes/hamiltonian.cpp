@@ -275,6 +275,7 @@ void ham_heis::init_dim(field_type* field)
 {
     dim = field->get_dim();
     adj = alloc_2darr<double>(4, dim*2);
+    // field->alloc_pos(1);
 }
 
 ///////////////////////////////////
@@ -399,8 +400,8 @@ double ham_FePt::dE(field_type* lattice, vector<int>& position)
 void ham_FePt::read_Js()
 {
     ifstream Jstream, d_ijstream;
-    string Jname = "Includes/Js/FePt_cut_1e-3.txt";
-    string dname = "Includes/Js/FePt_2ion_cut_1e-3.txt";
+    string Jname = "Includes/Js/FePt_nocut.txt";
+    string dname = "Includes/Js/FePt_2ion_nocut.txt";
     Jstream.open(Jname.c_str());
     d_ijstream.open(dname.c_str());
     int icurr;
@@ -431,6 +432,7 @@ void ham_FePt::init_dim(field_type* field)
 {
     dim = field->get_dim();
     adj = alloc_2darr<double>(4, dxs.size());
+    // field->alloc_pos(dxs.size());
 }
 
 ///////////////////////////////////

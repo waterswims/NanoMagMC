@@ -2,6 +2,7 @@
 #define _FIELD
 
 #include "hamiltonian.hpp"
+#include "array_alloc.hpp"
 #include <vector>
 #include <string>
 
@@ -20,6 +21,7 @@ protected:
 public:
     field_type(){}
     ~field_type(){}
+    // virtual void alloc_pos(int size){}
     virtual void i_access(vector<int>& postion, int &out){}
     virtual void i_adjacent(vector<int>& position, int* out){}
     virtual void h_access(vector<int>& position, vector<double>& out){}
@@ -159,7 +161,7 @@ protected:
     double*** spinx;
     double*** spiny;
     double*** spinz;
-    int** pos;
+    int** postemp;
 public:
     field_3d_h();
     field_3d_h(int size, bool isperio);
@@ -167,6 +169,7 @@ public:
     field_3d_h(field_type& other);
     field_3d_h(const field_3d_h& other);
     ~field_3d_h();
+    // void alloc_pos(int size) {postemp = alloc_2darr<int>(3, size);}
     void h_access(vector<int>& position, vector<double>& out);
     void h_next(bool &finish, vector<int> &pos, vector<double> &out);
     void fill_ghost(int num_rows);
