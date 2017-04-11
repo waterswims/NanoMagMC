@@ -10,6 +10,7 @@
 #include <vector>
 #include <fstream>
 #include <cstring>
+#include <sstream>
 
 mkl_irand st_rand_int(1e7, 1);
 mkl_drand st_rand_double(1e8, 1);
@@ -72,83 +73,41 @@ int main(int argc, char **argv)
 	}
 
 	field_3d_h totfield(size, periodic, 2);
-	totfield.allzero();
-
-	state curr_state(size, periodic, shape, hamil, J, H, k, Tmax, K, args);
+	state curr_state(size, periodic, shape, hamil, J, 0, k, Tmax, K, args);
 
 	for(int i=0; i < num_Ts; i++)
 	{
 		double T = Ts[i];
 		curr_state.change_temp(T);
+		totfield.allzero();
 		curr_state.equil(3000*curr_state.num_spins());
-		if (rank==0)
+		state field_state(curr_state);
+		for(int j = 0; j < 20; j++)
 		{
-			cout << "Temp " << i + 1 << " of " << num_Ts << " completed" << endl;
-		}
-	}
-	for(int i = 0; i < 1000; i++)
-	{
-		curr_state.equil(curr_state.num_spins());
-		cout << curr_state.energy() << endl;
-	}
-
-	// for(int i=0; i < 32; i++)
-	// {
-	// 	double currH = 0.5-0.01*(i+1);
-	// 	curr_state.change_field(currH);
-	// 	curr_state.equil(3000*curr_state.num_spins());
-	// 	if (rank==0)
-	// 	{
-	// 		cout << "Field " << i + 1 << " of " << 17 << " completed" << endl;
-	// 	}
-	// }
-
-	// main loop
-	for (int j = 0; j < N_av; j++)
-	{
-		curr_state.equil(Nsingle*curr_state.num_spins());
-		if (rank == 0)
-		{
-			cout << "Completed Equillibriation..." << endl;
+			double thisH = (j+1)*H/20;
+			field_state.change_field(thisH);
+			field_state.equil(100*curr_state.num_spins());
 		}
 
-		curr_state.add_to_av(&totfield);
-
-        if (rank==0)
-        {
-            cout << "Lattice " << j << " of " << N_av << " completed" << endl;
-        }
-	}
-
-	double*** xsout;
-	double*** ysout;
-	double*** zsout;
-	totfield.get_3dfield_h(xsout, ysout, zsout);
-	int tsize = totfield.get_totsize();
-	double*** gxspin = redc3darr(tsize, tsize, tsize, xsout, 0);
-	double*** gyspin = redc3darr(tsize, tsize, tsize, ysout, 0);
-	double*** gzspin = redc3darr(tsize, tsize, tsize, zsout, 0);
-	vector<int> pos(3);
-	for(int i = 0; i < tsize; i++)
-	{
-		pos[0] = i;
-		for(int j = 0; j < tsize; j++)
+		// main loop
+		for (int j = 0; j < N_av; j++)
 		{
-			pos[1] = j;
-			for(int k = 0; k < tsize; k++)
-			{
-				pos[2] = k;
-				totfield.fill_val_h(pos, gxspin[i][j][k], gyspin[i][j][k], gzspin[i][j][k]);
-			}
+			field_state.equil(Nsingle*curr_state.num_spins());
+			field_state.add_to_av(&totfield);
+	        cout << "Lattice " << j + 1 << " of " << N_av << " completed" << endl;
 		}
-	}
-	dealloc_3darr<double>(tsize, tsize, gxspin);
-	dealloc_3darr<double>(tsize, tsize, gyspin);
-	dealloc_3darr<double>(tsize, tsize, gzspin);
-
-	if(rank == 0)
-	{
-		totfield.print("Output/Skyrm_Print/latt");
+		stringstream sstream;
+		sstream << "mkdir -p Output/Skyrm_Print/" << T << endl;
+		string runstring;
+		getline(sstream, runstring);
+		system(runstring.c_str());
+		cout << runstring << endl;
+		sstream << "Output/Skyrm_Print/" << T << "/latt" << endl;
+		string folderstring;
+		sstream >> folderstring;
+		cout << folderstring << endl;
+		totfield.print(folderstring);
+		cout << "Temp " << i + 1 << " of " << num_Ts << " completed" << endl;
 	}
 
     // Finish program

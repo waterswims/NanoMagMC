@@ -142,7 +142,7 @@ void state::init_points(double size, bool isPerio, double H, double J, double K,
 
 void state::copy_points(const state& other)
 {
-    switch(h_code)
+    switch(other.h_code)
     {
         case 'i':
         case 'I':
@@ -159,6 +159,7 @@ void state::copy_points(const state& other)
         case 's':
         case 'S':
             hamil = new ham_skyrm(*(other.hamil));
+            break;
         default:
             cerr << "Incorrect hamiltonian, exiting..." << endl;
             exit(102);

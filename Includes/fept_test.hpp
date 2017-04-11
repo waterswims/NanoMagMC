@@ -12,41 +12,41 @@ TEST(FePt, 3d_energy_zero_field)
     field_3d_h field = gen_3d_heis_fm(1, 0, 0);
     ham_FePt hamil;
     hamil.init_dim(&field);
-    EXPECT_NEAR(-82870.80634758707, hamil.calc_E(&field), 82870.80634758707 * 1e-10);
+    EXPECT_NEAR(-94845.01392843794, hamil.calc_E(&field), 94845.01392843794 * 1e-10);
 
     field = gen_3d_heis_fm(0, 1, 0);
-    EXPECT_NEAR(-82870.80634758707, hamil.calc_E(&field), 82870.80634758707 * 1e-10);
+    EXPECT_NEAR(-94845.01392843794, hamil.calc_E(&field), 94845.01392843794 * 1e-10);
 
     field = gen_3d_heis_fm(0, 0, 1);
-    EXPECT_NEAR(-83895.76125313924, hamil.calc_E(&field), 83895.76125313924 * 1e-10);
+    EXPECT_NEAR(-96045.87686933874, hamil.calc_E(&field), 96045.87686933874 * 1e-10);
 
     field = gen_3d_heis_fm(-1, 0, 0);
-    EXPECT_NEAR(-82870.80634758707, hamil.calc_E(&field), 82870.80634758707 * 1e-10);
+    EXPECT_NEAR(-94845.01392843794, hamil.calc_E(&field), 94845.01392843794 * 1e-10);
 
     field = gen_3d_heis_fm(0, -1, 0);
-    EXPECT_NEAR(-82870.80634758707, hamil.calc_E(&field), 82870.80634758707 * 1e-10);
+    EXPECT_NEAR(-94845.01392843794, hamil.calc_E(&field), 94845.01392843794 * 1e-10);
 
     field = gen_3d_heis_fm(0, 0, -1);
-    EXPECT_NEAR(-83895.76125313924, hamil.calc_E(&field), 83895.76125313924 * 1e-10);
+    EXPECT_NEAR(-96045.87686933874, hamil.calc_E(&field), 96045.87686933874 * 1e-10);
 
     // Anti
     field = gen_3d_heis_afm(1, 0, 0);
-    EXPECT_NEAR(-54205.01239864248, hamil.calc_E(&field), 54205.01239864248 * 1e-10);
+    EXPECT_NEAR(14349.191660944736, hamil.calc_E(&field), 14349.191660944736 * 1e-10);
 
     field = gen_3d_heis_afm(0, 1, 0);
-    EXPECT_NEAR(-54205.01239864248, hamil.calc_E(&field), 54205.01239864248 * 1e-10);
+    EXPECT_NEAR(14349.191660944736, hamil.calc_E(&field), 14349.191660944736 * 1e-10);
 
     field = gen_3d_heis_afm(0, 0, 1);
-    EXPECT_NEAR(-54134.41504686499, hamil.calc_E(&field), 54134.41504686499 * 1e-10);
+    EXPECT_NEAR(14481.605270298143, hamil.calc_E(&field), 14481.605270298143 * 1e-10);
 
     field = gen_3d_heis_afm(-1, 0, 0);
-    EXPECT_NEAR(-54205.01239864248, hamil.calc_E(&field), 54205.01239864248 * 1e-10);
+    EXPECT_NEAR(14349.191660944736, hamil.calc_E(&field), 14349.191660944736 * 1e-10);
 
     field = gen_3d_heis_afm(0, -1, 0);
-    EXPECT_NEAR(-54205.01239864248, hamil.calc_E(&field), 54205.01239864248 * 1e-10);
+    EXPECT_NEAR(14349.191660944736, hamil.calc_E(&field), 14349.191660944736 * 1e-10);
 
     field = gen_3d_heis_afm(0, 0, -1);
-    EXPECT_NEAR(-54134.41504686499, hamil.calc_E(&field), 54134.41504686499 * 1e-10);
+    EXPECT_NEAR(14481.605270298143, hamil.calc_E(&field), 14481.605270298143 * 1e-10);
 }
 
 TEST(FePt, 3d_energy_ext_field)
@@ -54,41 +54,41 @@ TEST(FePt, 3d_energy_ext_field)
     field_3d_h field = gen_3d_heis_fm(1, 0, 0);
     ham_FePt hamil(1);
     hamil.init_dim(&field);
-    EXPECT_NEAR(-82870.80634758707, hamil.calc_E(&field), 82870.80634758707 * 1e-10);
+    EXPECT_NEAR(-94845.01392843794, hamil.calc_E(&field), 94845.01392843794 * 1e-10);
 
     field = gen_3d_heis_fm(0, 1, 0);
-    EXPECT_NEAR(-82870.80634758707, hamil.calc_E(&field), 82870.80634758707 * 1e-10);
+    EXPECT_NEAR(-94845.01392843794, hamil.calc_E(&field), 94845.01392843794 * 1e-10);
 
     field = gen_3d_heis_fm(0, 0, 1);
-    EXPECT_NEAR(-84895.76125313924, hamil.calc_E(&field), 83895.76125313924 * 1e-10);
+    EXPECT_NEAR(-97045.87686933874, hamil.calc_E(&field), 96045.87686933874 * 1e-10);
 
     field = gen_3d_heis_fm(-1, 0, 0);
-    EXPECT_NEAR(-82870.80634758707, hamil.calc_E(&field), 82870.80634758707 * 1e-10);
+    EXPECT_NEAR(-94845.01392843794, hamil.calc_E(&field), 94845.01392843794 * 1e-10);
 
     field = gen_3d_heis_fm(0, -1, 0);
-    EXPECT_NEAR(-82870.80634758707, hamil.calc_E(&field), 82870.80634758707 * 1e-10);
+    EXPECT_NEAR(-94845.01392843794, hamil.calc_E(&field), 94845.01392843794 * 1e-10);
 
     field = gen_3d_heis_fm(0, 0, -1);
-    EXPECT_NEAR(-82895.76125313924, hamil.calc_E(&field), 83895.76125313924 * 1e-10);
+    EXPECT_NEAR(-95045.87686933874, hamil.calc_E(&field), 96045.87686933874 * 1e-10);
 
     // Anti
     field = gen_3d_heis_afm(1, 0, 0);
-    EXPECT_NEAR(-54205.01239864248, hamil.calc_E(&field), 54205.01239864248 * 1e-10);
+    EXPECT_NEAR(14349.191660944736, hamil.calc_E(&field), 14349.191660944736 * 1e-10);
 
     field = gen_3d_heis_afm(0, 1, 0);
-    EXPECT_NEAR(-54205.01239864248, hamil.calc_E(&field), 54205.01239864248 * 1e-10);
+    EXPECT_NEAR(14349.191660944736, hamil.calc_E(&field), 14349.191660944736 * 1e-10);
 
     field = gen_3d_heis_afm(0, 0, 1);
-    EXPECT_NEAR(-54134.41504686499, hamil.calc_E(&field), 54134.41504686499 * 1e-10);
+    EXPECT_NEAR(14481.605270298143, hamil.calc_E(&field), 14481.605270298143 * 1e-10);
 
     field = gen_3d_heis_afm(-1, 0, 0);
-    EXPECT_NEAR(-54205.01239864248, hamil.calc_E(&field), 54205.01239864248 * 1e-10);
+    EXPECT_NEAR(14349.191660944736, hamil.calc_E(&field), 14349.191660944736 * 1e-10);
 
     field = gen_3d_heis_afm(0, -1, 0);
-    EXPECT_NEAR(-54205.01239864248, hamil.calc_E(&field), 54205.01239864248 * 1e-10);
+    EXPECT_NEAR(14349.191660944736, hamil.calc_E(&field), 14349.191660944736 * 1e-10);
 
     field = gen_3d_heis_afm(0, 0, -1);
-    EXPECT_NEAR(-54134.41504686499, hamil.calc_E(&field), 54134.41504686499 * 1e-10);
+    EXPECT_NEAR(14481.605270298143, hamil.calc_E(&field), 14481.605270298143 * 1e-10);
 }
 
 TEST(FePt, 3d_mag)
