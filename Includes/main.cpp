@@ -159,6 +159,8 @@ int main(int argc, char **argv)
 			cout << "Generated State..." << endl;
 		}
 		nums[j] = curr_state.num_spins();
+		cout << nums[j] << endl;
+		return 0;
 		s_nums[j] = curr_state.sub_num(0);
 		curr_state.equil(5*Nsingle*nums[j]);
 		if (rank == 0)

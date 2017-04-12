@@ -13,6 +13,9 @@ public:
     virtual bool check(vector<int> Is, int l_size){return false;}
     virtual double get_r0(){return 0;}
     virtual double get_beta(){return 0;}
+    virtual double get_a(){return 0;}
+    virtual double get_b(){return 0;}
+    virtual double get_c(){return 0;}
 };
 
 class shape_2d: public shape_type
@@ -36,15 +39,20 @@ class weibull: public shape_type
 private:
     double r0;
     double beta;
+    double a[3];
 public:
-    weibull(){r0 = 0; beta = 0;}
-    weibull(shape_type& other){r0 = other.get_r0(); beta = other.get_beta();}
+    weibull(){r0 = 0; beta = 0; a[0] = 1; a[1] = 1; a[2] = 1;}
+    weibull(shape_type& other);
     weibull(double rin, double bin);
+    weibull(double betain, double ain, double bin, double cin);
     ~weibull(){}
     bool check(vector<int> Is, int l_size);
     weibull& operator=(shape_type& other);
     double get_r0(){return r0;}
     double get_beta(){return beta;}
+    double get_a(){return a[0];}
+    double get_b(){return a[1];}
+    double get_c(){return a[2];}
 };
 
 class square: public shape_2d
