@@ -70,15 +70,31 @@ void state::init_points(double size, bool isPerio, double H, double J, double K,
             exit(102);
     }
     int pad = 1;
+    double sizeab = size;
+    double sizec = size;
     switch (h_code)
     {
-        case 's':
-        case 'S':
-        pad = 2;
-        case 'h':
-        case 'H':
         case 'f':
         case 'F':
+            sizeab = size / 0.26233661582;
+            sizec = size / 0.385;
+            switch (s_code)
+            {
+                case 'x':
+                case 'X':
+                    field = new field_3d_h(int(2*size+10), isPerio, pad);
+                    shape = new weibull(args[0], sizeab, sizeab, sizec);
+                    break;
+                default:
+                    cerr << "Incorrect shape code, FePt only works with Weibull, exiting" << endl;
+                    exit(103);
+            }
+            break;
+        case 's':
+        case 'S':
+            pad = 2;
+        case 'h':
+        case 'H':
         switch (s_code)
         {
             case 's':
