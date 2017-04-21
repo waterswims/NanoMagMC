@@ -6,7 +6,7 @@
 #include <sstream>
 #include <cstdlib>
 
-string main_name(double H, double J, int size, double k, char shape, char hamil)
+string main_name(double H, double J, double size, double k, char shape, char hamil)
 {
     stringstream avstream;
     avstream << "Output/H_" << H << "-J_" << J << "-s_" << size << "-k_" << k << "-sh_" << shape << "-ha_" << hamil << ".txt";
@@ -28,7 +28,7 @@ string main_name_d(double H, double J, double amean, double asd, double k, char 
     return avname;
 }
 
-string full_name(double H, double J, int size, double k, char shape, char hamil, double T)
+string full_name(double H, double J, double size, double k, char shape, char hamil, double T)
 {
     stringstream datstream;
     string datname;
@@ -48,7 +48,7 @@ string full_name_d(double H, double J, double amean, double asd, double k, char 
     return datname;
 }
 
-void create_folder(double H, double J, int size, double k, char shape, char hamil)
+void create_folder(double H, double J, double size, double k, char shape, char hamil)
 {
     stringstream folderstream;
     string foldername;
@@ -139,7 +139,7 @@ void print_avs(string avname, vector<double>& allener, vector<double>& allmag,
     f.close();
 }
 
-void init_avs(string avname, double H, double J, double k, int size, double Tmin,
+void init_avs(string avname, double H, double J, double k, double size, double Tmin,
     double Tmax)
 {
     ofstream f;

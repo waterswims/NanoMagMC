@@ -6,7 +6,7 @@ HOST := $(shell hostname)
 # Check if mac
 ifeq ($(OS),Darwin)
 CXX = mpic++
-LDFLAGS =  ${MKLROOT}/lib/libmkl_intel_lp64.a ${MKLROOT}/lib/libmkl_sequential.a ${MKLROOT}/lib/libmkl_core.a -lpthread -lm -ldl -ipo
+LDFLAGS =  -L${MKLROOT}/lib -Wl,-rpath,${MKLROOT}/lib -lmkl_intel_lp64 -lmkl_sequential -lmkl_core -lpthread -lm -ldl -ipo
 else
 # Check if ARCHER
 ifneq (,$(findstring eslogin, $(HOST)))
@@ -22,7 +22,6 @@ INC_PATH = ../Includes
 # Check for systems I know have AVX2
 ifneq (,$(shell grep avx2 /proc/cpuinfo))
 CPPFLAGS = -O3 -I${MKLROOT}/include -xCORE-AVX2 -ipo
-# CPPFLAGS = -I${MKLROOT}/include
 else
 CPPFLAGS = -O3 -I${MKLROOT}/include -ipo
 endif

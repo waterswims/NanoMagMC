@@ -33,7 +33,7 @@ template <class T> T read_var(string v_name, string f_name)
     exit(105);
 }
 
-void read_all_vars(string f_name, int& size, double& J, double& H, double& k,
+void read_all_vars(string f_name, double& size, double& J, double& H, double& k,
     bool& periodic, char& shape, char& hamil, int& N_av, int& N_single,
     int& pad, double& beta, bool& distrib, double& amean, double& asd,
     string& temp_name, double& K)
@@ -84,7 +84,7 @@ void read_all_vars(string f_name, int& size, double& J, double& H, double& k,
     }
     else
     {
-        size = read_var<int>("SIZE", f_name);
+        size = read_var<double>("SIZE", f_name);
         amean = 0;
         asd = 0;
     }

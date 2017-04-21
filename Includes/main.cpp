@@ -29,8 +29,8 @@ int main(int argc, char **argv)
 	}
 
 	// setup arguments
-	int padding, size, N_av, Nsingle;
-	double J=1, H=0, K=0, k=1, beta=50, amean, asd, lmean, lsd;
+	int padding, N_av, Nsingle;
+	double J=1, H=0, K=0, k=1, beta=50, amean, asd, lmean, lsd, size;
 	bool periodic, distributed;
 	char shape, hamil;
 	string temp_name;
@@ -159,8 +159,6 @@ int main(int argc, char **argv)
 			cout << "Generated State..." << endl;
 		}
 		nums[j] = curr_state.num_spins();
-		cout << nums[j] << endl;
-		return 0;
 		s_nums[j] = curr_state.sub_num(0);
 		curr_state.equil(5*Nsingle*nums[j]);
 		if (rank == 0)
