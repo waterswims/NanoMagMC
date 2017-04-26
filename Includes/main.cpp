@@ -161,6 +161,14 @@ int main(int argc, char **argv)
 		nums[j] = curr_state.num_spins();
 		s_nums[j] = curr_state.sub_num(0);
 		curr_state.equil(5*Nsingle*nums[j]);
+		// cout << nums[j] << endl;
+		// curr_state.change_temp(300);
+		// for(int i = 0; i < 1000; i++)
+		// {
+		// 	curr_state.equil(10*nums[j]);
+		// 	cerr << curr_state.magnetisation()[0] << " " << curr_state.energy() << endl;
+		// }
+		return 0;
 		if (rank == 0)
 		{
 			cout << "Completed Equillibriation..." << endl;

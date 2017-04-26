@@ -29,8 +29,8 @@ int main(int argc, char **argv)
 	}
 
 	// setup arguments
-	int padding, size, N_av, Nsingle;
-	double J, H, K, k, beta, amean, asd, lmean, lsd;
+	int padding, N_av, Nsingle;
+	double J, H, K, k, beta, amean, asd, lmean, lsd, size;
 	bool periodic, distributed;
 	char shape, hamil;
 	string temp_name;
