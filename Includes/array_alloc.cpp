@@ -34,10 +34,28 @@ T** alloc_2darr(int size_m, int size_n, bool contig)
 template <class T>
 T*** alloc_3darr(int size_m, int size_n, int size_p, bool contig)
 {
-    T*** out = (T***)malloc(sizeof(T**)*size_m);
-    for(int i=0; i < size_m; i++)
+    T*** out;
+    if(contig)
     {
-        out[i] = alloc_2darr<T>(size_n, size_p);
+        T* fullcontig = (T*)malloc(sizeof(T)*size_m*size_n*size_p);
+        out = (T***)malloc(sizeof(T*)*size_m);
+        for(int j=0; j < size_n; j++)
+        {
+            T** out1in = (T**)malloc(sizeof(T*)*size_n);
+            for(int i=0; i < size_m; i++)
+            {
+                out1in[i] = &(fullcontig[i*size_n+j*size_n*size_p]);
+            }
+            out[j] = out1in;
+        }
+    }
+    else
+    {
+        out = (T***)malloc(sizeof(T**)*size_m);
+        for(int i=0; i < size_m; i++)
+        {
+            out[i] = alloc_2darr<T>(size_n, size_p, contig);
+        }
     }
     return out;
 }
@@ -58,6 +76,10 @@ void dealloc_2darr(int size_m, T** arr, bool contig)
             dealloc_1darr(arr[i]);
         }
     }
+    else
+    {
+        free(arr[0]);
+    }
     free(arr);
 }
 
@@ -69,6 +91,14 @@ void dealloc_3darr(int size_m, int size_n, T*** arr, bool contig)
         for(int i = 0; i < size_m; i++)
         {
             dealloc_2darr(size_n, arr[i]);
+        }
+    }
+    else
+    {
+        free(arr[0][0]);
+        for(int i = 0; i < size_m; i++)
+        {
+            free(arr[i]);
         }
     }
     free(arr);
