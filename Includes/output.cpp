@@ -80,7 +80,7 @@ void print_full(string datname, double T, vector<double>& allener, vector<double
     ofstream f2;
     f2.open(datname.c_str());
 
-    cout << "T = " << T << endl;
+    // cout << "T = " << T << endl;
     for (unsigned int i=0; i < allmag.size(); i++)
     {
         f2 << allmag[i] << "	" << allener[i] << " "

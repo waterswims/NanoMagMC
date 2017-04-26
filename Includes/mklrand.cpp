@@ -9,7 +9,7 @@ mkl_drand::mkl_drand(int size, int seed)
 	curr = 0;
 	randarr = (double*)malloc(arr_size*sizeof(double));
 	vslNewStream(&stream, VSL_BRNG_SFMT19937, seed);
-	cout << "Floating Point RNG started" << endl;
+	// cout << "Floating Point RNG started" << endl;
 	this -> fill();
 }
 
@@ -51,7 +51,7 @@ mkl_irand::mkl_irand(int size, int seed)
 	randarr = (int*)malloc(arr_size*sizeof(int));
 
 	vslNewStream(&stream, VSL_BRNG_SFMT19937, seed);
-	cout << "Integer RNG started" << endl;
+	// cout << "Integer RNG started" << endl;
 	this -> fill();
 }
 
@@ -92,7 +92,7 @@ mkl_lnrand::mkl_lnrand(double m, double sd, int size, int seed)
 	curr = 0;
 	randarr = (double*)malloc(arr_size*sizeof(double));
 	vslNewStream(&stream, VSL_BRNG_SFMT19937, seed);
-	cout << "Lognormal RNG started" << endl;
+	// cout << "Lognormal RNG started" << endl;
 	this -> fill();
 }
 

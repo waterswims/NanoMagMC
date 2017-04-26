@@ -201,9 +201,13 @@ int main(int argc, char **argv)
 
 			if (rank==0)
 	        {
-	            cout << "Temp " << i << " of " << num_Ts << " completed" << endl;
+	            cout << "\rTemp " << i + 1 << " of " << num_Ts << " completed" << flush;
 	        }
         }
+		if (rank==0)
+		{
+			cout << endl;
+		}
 
 		// Checkpoint data
 		print_clist(cpoint, magpoint, mag1[j], num_Ts);
@@ -226,7 +230,7 @@ int main(int argc, char **argv)
 
         if (rank==0)
         {
-            cout << "Lattice " << j << " of " << N_av << " completed" << endl;
+            cout << "Lattice " << j + 1 << " of " << N_av << " completed" << endl;
         }
 	}
 
