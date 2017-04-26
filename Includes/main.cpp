@@ -168,7 +168,7 @@ int main(int argc, char **argv)
 		// 	curr_state.equil(10*nums[j]);
 		// 	cerr << curr_state.magnetisation()[0] << " " << curr_state.energy() << endl;
 		// }
-		return 0;
+		// return 0;
 		if (rank == 0)
 		{
 			cout << "Completed Equillibriation..." << endl;
