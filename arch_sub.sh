@@ -10,7 +10,7 @@
 # Change to the directory from which the job was submitted.
 # (The actual name is held in the PBS environment variable $PBS_O_WORKDIR)
 cd $PBS_O_WORKDIR
-module swap Prg-Env-cray PrgEnv-intel
+module swap PrgEnv-cray PrgEnv-intel
 
 # Run my_prog taking input from file input_file and send output to output_file
 aprun -n 1008 ./run ARC_INPUT.dat
