@@ -209,7 +209,7 @@ int main(int argc, char **argv)
 
 			if (rank==0)
 	        {
-	            cout << "\rTemp " << i + 1 << " of " << num_Ts << " completed" << mag1[j][i] << flush;
+	            cout << "\rTemp " << i + 1 << " of " << num_Ts << " completed" << flush;
 	        }
         }
 		if (rank==0)
