@@ -37,54 +37,28 @@ double std_dev(vector<double> &x){
     return pow(var, 0.5);
 }
 
-double mag_sus(vector<double> mag, double T, vector<int> nums){
-    int N = mag.size();
-    double s_mag = sum(mag);
-    int s_num = sum(nums);
-    double s_m2ovn = 0;
-    for (int i(0); i < N; i++)
-    {
-        s_m2ovn += pow(mag[i], 2) / nums[i];
-    }
-    double ms = (s_m2ovn / s_num - pow(s_mag / s_num, 2)) / T;
-    return ms;
-}
-
-double mag_sus(vector<double> magx, vector<double> magy, vector<double> magz, double T, vector<int> nums)
+double mag_sus(vector<double> magz, double T, double kb)
 {
-    int N = magx.size();
-    double s_magx = sum(magx);
-    double s_magy = sum(magy);
+    int N = magz.size();
     double s_magz = sum(magz);
-    int s_num = sum(nums);
-    double s_m2ovn = 0;
-    vector<double> mvec(3);
+    double s_m2 = 0;
     for (int i(0); i < N; i++)
     {
-        mvec[0] = magx[i];
-        mvec[1] = magy[i];
-        mvec[2] = magz[i];
-        // mvec = boost::assign::list_of(magx[i])(magy[i])(magz[i]).convert_to_container<vector<double> >();
-        s_m2ovn += pow(norm(mvec), 2) / nums[i];
+        s_m2 += pow(magz[i], 2);
     }
-    mvec[0] = s_magx;
-    mvec[1] = s_magy;
-    mvec[2] = s_magz;
-    // mvec = boost::assign::list_of(s_magx)(s_magy)(s_magz).convert_to_container<vector<double> >();
-    double ms = (s_m2ovn / s_num - pow(norm(mvec) / s_num, 2)) / T;
+    double ms = (s_m2 - pow(s_magz, 2)) / (kb*T);
     return ms;
 }
 
-double heat_cap(vector<double> ener, double T, vector<int> nums){
+double heat_cap(vector<double> ener, double T, double kb){
     int N = ener.size();
     double s_ener = sum(ener);
-    int s_num = sum(nums);
-    double s_e2ovn = 0;
+    double s_e2 = 0;
     for (int i(0); i < N; i++)
     {
-        s_e2ovn += pow(ener[i], 2) / nums[i];
+        s_e2 += pow(ener[i], 2);
     }
-    double hc = (s_e2ovn / s_num - pow(s_ener / s_num, 2)) / pow(T,2);
+    double hc = (s_e2 - pow(s_ener, 2)) / (pow(T,2)*kb);
     return hc;
 }
 

@@ -13,11 +13,9 @@ double mean(double oY[]);
 
 double std_dev(vector<double> &x);
 
-double mag_sus(vector<double> mag, double T, vector<int> nums);
+double mag_sus(vector<double> magz, double T, double kb);
 
-double mag_sus(vector<double> magx, vector<double> magy, vector<double> magz, double T, vector<int> nums);
-
-double heat_cap(vector<double> ener, double T, vector<int> nums);
+double heat_cap(vector<double> ener, double T, double kb);
 
 double binders(vector<double> mag, int size);
 

@@ -98,20 +98,19 @@ void print_avs(string avname, vector<double>& allener, vector<double>& allmag,
     vector<double>& allmagx, vector<double>& allmagy, vector<double>& allmagz,
     vector<double>& allsmag, vector<double>& allsmagx, vector<double>& allsmagy,
     vector<double>& allsmagz, vector<int>& allnums, double H, char hamil,
-    double g_lattsize, double g_slattsize, double T)
+    double g_lattsize, double g_slattsize, double T, double kb)
 {
     fstream f;
     f.open(avname.c_str(), fstream::out | fstream::app);
 
     double E = sum(allener)/g_lattsize;
     double Bind = 0;
-    double HC = heat_cap(allener, T, allnums);
+    double HC = heat_cap(allener, T, kb);
 
     double Mx = sum(allmagx)/g_lattsize;
     double My = sum(allmagy)/g_lattsize;
     double Mz = sum(allmagz)/g_lattsize;
     double M, MS;
-    // vector<double> Mvec = boost::assign::list_of(Mx)(My)(Mz);
     vector<double> Mvec(3);
     Mvec[0] = Mx;
     Mvec[1] = My;
@@ -121,21 +120,12 @@ void print_avs(string avname, vector<double>& allener, vector<double>& allmag,
     double sMz = sum(allsmagz)/g_slattsize;
     double sM = sum(allsmag)/g_slattsize;
 
-    if (H==0 || hamil=='i' || hamil=='I')
-    {
-        MS = mag_sus(allmag, T, allnums);
-        M = sum(allmag)/g_lattsize;
-        f << T << " " << HC << " " << M << " " << MS << " " << E << " "
-            << Bind << " " << sM << endl;
-    }
-    else
-    {
-        MS = mag_sus(allmagx, allmagy, allmagz, T, allnums);
-        M = norm(Mvec);
-        f << T << " " << HC << " " << M << " " << MS << " " << E << " "
-            << Bind << " " << Mx << " " << My << " " << Mz << " "
-            << sM << " " << sMx << " " << sMy << " " << sMz << endl;
-    }
+    MS = mag_sus(allmagz, T, kb);
+    M = norm(Mvec);
+    f << T << " " << HC << " " << M << " " << MS << " " << E << " "
+        << Mx << " " << My << " " << Mz << " "
+        << sM << " " << sMx << " " << sMy << " " << sMz << endl;
+
     f.close();
 }
 

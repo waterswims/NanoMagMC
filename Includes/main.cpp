@@ -186,6 +186,10 @@ int main(int argc, char **argv)
 				magy1[j][i] = mtemp[1];
 				magz1[j][i] = mtemp[2];
 			}
+			else
+			{
+				magz1[j][i] = mtemp[0];
+			}
 
 			mag1[j][i] = norm(mtemp);
 			ener1[j][i] = curr_state.energy();
@@ -197,11 +201,15 @@ int main(int argc, char **argv)
 				smagy1[j][i] = mtemp[1];
 				smagz1[j][i] = mtemp[2];
 			}
+			else
+			{
+				smagz1[j][i] = mtemp[0];
+			}
 			smag1[j][i] = norm(mtemp);
 
 			if (rank==0)
 	        {
-	            cout << "\rTemp " << i + 1 << " of " << num_Ts << " completed" << flush;
+	            cout << "\rTemp " << i + 1 << " of " << num_Ts << " completed" << mag1[j][i] << flush;
 	        }
         }
 		if (rank==0)
@@ -326,7 +334,7 @@ int main(int argc, char **argv)
 
 			print_avs(avname, allener[t], allmag[t], allmagx[t], allmagy[t],
 				allmagz[t], allsmag[t], allsmagx[t], allsmagy[t], allsmagz[t],
-				allnums, H, hamil, g_lattsize, g_slattsize, T);
+				allnums, H, hamil, g_lattsize, g_slattsize, T, k);
 
 			t++;
 		}

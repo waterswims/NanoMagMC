@@ -28,7 +28,7 @@ void print_avs(string avname, vector<double>& allener, vector<double>& allmag,
     vector<double>& allmagx, vector<double>& allmagy, vector<double>& allmagz,
     vector<double>& allsmag, vector<double>& allsmagx, vector<double>& allsmagy,
     vector<double>& allsmagz, vector<int>& allnums, double H, char hamil,
-    double g_lattsize, double g_slattsize, double T);
+    double g_lattsize, double g_slattsize, double T, double kb);
 
 void init_avs(string avname, double H, double J, double k, double size, double Tmin,
     double Tmax);
