@@ -13,4 +13,7 @@ cd $PBS_O_WORKDIR
 module swap PrgEnv-cray PrgEnv-intel
 
 # Run my_prog taking input from file input_file and send output to output_file
-aprun -n 1008 ./run ARC_INPUT.dat
+for FIELD in 0.25 0.5 0.75 1 1.25 1.5 1.75 2 2.25 2.5 2.75 3
+do
+    aprun -n 1008 ./run ARC_INPUT_"$FIELD"
+done
