@@ -34,7 +34,7 @@ template <class T> T read_var(string v_name, string f_name)
 
 void read_all_vars(string f_name, double& size, double& J, double& k,
     bool& periodic, char& shape, char& hamil, int& Samp_steps, int& N_samp,
-    int& Eq_steps, int& pad, double& beta, bool& distrib, double& amean,
+    int& Eq_steps, double& beta, bool& distrib, double& amean,
     double& asd, string& temp_name, string& field_name, int& protocol,
     double& K, bool& print_latt)
 {
@@ -86,7 +86,6 @@ void read_all_vars(string f_name, double& size, double& J, double& k,
     Samp_steps = read_var<int>("SAMPSWEEPS", f_name);
     Eq_steps = read_var<int>("EQSWEEPS", f_name);
     N_samp = read_var<int>("NSAMPS", f_name);
-    pad = read_var<int>("LATTPADDING", f_name);
     temp_name = read_var<string>("TEMPNAME", f_name);
     field_name = read_var<string>("FIELDNAME", f_name);
     protocol = read_var<int>("PROTOCOL", f_name);

@@ -4,12 +4,12 @@
 #include <fstream>
 #include <cstring>
 
-void create_folders(const double J,
-                    const int size,
-                    const double k,
-                    const double K,
-                    const char shape,
-                    const char hamil);
+std::string create_folders(const double J,
+                           const double size,
+                           const double k,
+                           const double K,
+                           const char shape,
+                           const char hamil);
 
 void print_sngl_HT(const double* magx,
                    const double* magy,
@@ -24,11 +24,7 @@ void print_sngl_HT(const double* magx,
                    const int protocol,
                    const double var1,
                    const double var2,
-                   const double J,
-                   const int size,
-                   const double k,
-                   const double K,
-                   const char shape,
+                   const std::string prefix,
                    const char hamil);
 
 #endif

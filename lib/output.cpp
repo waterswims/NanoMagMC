@@ -3,34 +3,34 @@
 #include <sstream>
 #include <cstdlib>
 
-void create_folders(const double J,
-                    const int size,
-                    const double k,
-                    const double K,
-                    const char shape,
-                    const char hamil)
+std::string create_folders(const double J,
+                           const double size,
+                           const double k,
+                           const double K,
+                           const char shape,
+                           const char hamil)
 {
-    std::stringstream datstream;
+    std::stringstream prestream, datstream;
     std::string datname;
-    datstream << "mkdir -p Output/" << "J_" << J << "-s_" << size << "-k_" << k;
+    std::string prefix;
+    prestream << "Output/" << "J_" << J << "-s_" << size << "-k_" << k;
     if (hamil == 's' && hamil == 'S')
     {
-        datstream << "-K_" << K;
+        prestream << "-K_" << K;
     }
-    datstream << "-sh_" << shape << "-ha_" << hamil << "/Fulldat" << std::endl;
+    prestream << "-sh_" << shape << "-ha_" << hamil;
+    prestream >> prefix;
+
+    datstream << "mkdir -p " << prefix << "/Fulldat" << std::endl;
     getline(datstream, datname);
     std::cout << datname << std::endl;
     system(datname.c_str());
 
-    datstream << "mkdir -p Output/" << "J_" << J << "-s_" << size << "-k_" << k;
-    if (hamil == 's' && hamil == 'S')
-    {
-        datstream << "-K_" << K;
-    }
-    datstream << "-sh_" << shape << "-ha_" << hamil << "/Latt_Print";
-    datstream << std::endl;
+    datstream << "mkdir -p " << prefix << "/Latt_Print" << std::endl;
     getline(datstream, datname);
     system(datname.c_str());
+
+    return prefix;
 }
 
 void print_sngl_HT(const double* magx,
@@ -46,21 +46,12 @@ void print_sngl_HT(const double* magx,
                    const int protocol,
                    const double var1,
                    const double var2,
-                   const double J,
-                   const int size,
-                   const double k,
-                   const double K,
-                   const char shape,
+                   const std::string prefix,
                    const char hamil)
 {
     std::stringstream datstream;
     std::string datname;
-    datstream << "Output/" << "J_" << J << "-s_" << size << "-k_" << k;
-    if (hamil == 's' && hamil == 'S')
-    {
-        datstream << "-K_" << K;
-    }
-    datstream << "-sh_" << shape << "-ha_" << hamil << "/Fulldat/H_";
+    datstream << prefix << "/Fulldat/H_";
     std::cout << "\33[2K\rPrinting H = ";
     switch(protocol)
     {

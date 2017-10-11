@@ -82,7 +82,7 @@ void state::init_points(double size, bool isPerio, double H, double J, double K,
             {
                 case 'x':
                 case 'X':
-                    field = new field_3d_h(int(2*size+10), isPerio, pad);
+                    field = new field_3d_h(int(2*sizeab+10), isPerio, pad);
                     shape = new weibull(args[0], sizeab, sizeab, sizec);
                     break;
                 default:
@@ -92,7 +92,7 @@ void state::init_points(double size, bool isPerio, double H, double J, double K,
             break;
         case 's':
         case 'S':
-            pad = 2;
+            pad *= 2;
         case 'h':
         case 'H':
         switch (s_code)

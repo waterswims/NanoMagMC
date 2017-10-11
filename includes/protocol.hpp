@@ -1,3 +1,6 @@
+#ifndef _PROT
+#define _PROT
+
 #include <iostream>
 
 void set_protocol(
@@ -10,3 +13,5 @@ void set_protocol(
     double* Ts,
     int H_size,
     int T_size);
+
+#endif

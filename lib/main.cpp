@@ -7,6 +7,7 @@
 #include "../includes/param_read.hpp"
 #include "../includes/mpifuncs.hpp"
 #include "../includes/protocol.hpp"
+#include "../includes/print_latt.hpp"
 
 #include <iostream>
 #include <vector>
@@ -30,13 +31,13 @@ int main(int argc, char **argv)
 	}
 
 	// setup arguments
-	int padding, Samp_steps, Eq_steps, N_samp, protocol;
+	int Samp_steps, Eq_steps, N_samp, protocol;
 	double J=1, K=0, k=1, beta=50, amean, asd, lmean, lsd, size;
 	bool periodic, distributed, print_latt;
 	char shape, hamil;
 	string temp_name, field_name;
 	read_all_vars(argv[1], size, J, k, periodic, shape, hamil, Samp_steps,
-		N_samp, Eq_steps, padding, beta, distributed, amean, asd, temp_name,
+		N_samp, Eq_steps, beta, distributed, amean, asd, temp_name,
 		field_name, protocol, K, print_latt);
 	double args[] = {beta};
 	AtoLn(amean, asd, lmean, lsd);
@@ -100,6 +101,7 @@ int main(int argc, char **argv)
 	// Generate the state
 	state base_state(size, periodic, shape, hamil, J, Hmax, k, Tmax, K, args);
 	state curr_state(base_state);
+	field_type* summed_field = set_sum_latt(size, periodic, shape, hamil);
 	nums = base_state.num_spins();
 	s_nums = base_state.sub_num(0);
 	if (rank == 0)
@@ -108,7 +110,9 @@ int main(int argc, char **argv)
 	}
 
 	// Create Output Folders
-	create_folders(J, size, k, K, shape, hamil);
+	std::string file_prefix = create_folders(J, size, k, K, shape, hamil);
+
+	cout << file_prefix << endl;
 
 	// main loop
 	for (int i = 0; i < v1_size; i++)
@@ -125,6 +129,12 @@ int main(int argc, char **argv)
 			curr_state.change_v2(protocol, var2_list[j]);
 			// Equillibriation
 			curr_state.equil(Eq_steps*nums);
+
+			// Zero print field
+			if(print_latt)
+			{
+				summed_field->allzero();
+			}
 
 			// Get Samples
 			for (int ns = 0; ns < N_samp; ns++)
@@ -157,14 +167,21 @@ int main(int argc, char **argv)
 					smagz1[ns] = mtemp[0];
 				}
 				smag1[ns] = norm(mtemp);
+
+				// Add sample to print lattice
+				if(print_latt)
+				{
+					curr_state.add_to_av(summed_field);
+				}
 			}
 			print_sngl_HT(magx1, magy1, magz1, mag1, ener1, smagx1, smagy1,
 				smagz1, smag1, N_samp, protocol, var1_list[i],
-				var2_list[j], J, size, k, K, shape, hamil);
+				var2_list[j], file_prefix, hamil);
 			// print the lattice
 			if(print_latt)
 			{
-				continue;
+				print_field(summed_field, protocol, var1_list[i],
+					var2_list[j], file_prefix);
 			}
         }
 		// Checkpoint data
