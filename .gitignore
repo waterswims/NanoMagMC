@@ -2,6 +2,7 @@
 /obj/*.o
 /run
 /test
+/tests/*.o
 /tests/Test_Files/arr_save_test.cp
 /tests/Test_Files/double_save_test.cp
 /tests/Test_Files/val_save_test.cp

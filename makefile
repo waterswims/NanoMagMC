@@ -8,7 +8,7 @@ OBJ_PATH = obj
 TEST_PATH = tests
 
 TEST_FILES = $(wildcard $(TEST_PATH)/*.hpp)
-SOURCE_FILES = $(wildcard $(LIB_PATH)/*.cpp)
+SOURCE_FILES = $(filter-out $(LIB_PATH)/main.cpp, $(wildcard $(LIB_PATH)/*.cpp))
 OBJS = $(addprefix $(OBJ_PATH)/, $(notdir $(SOURCE_FILES:.cpp=.o)))
 CPPFLAGS = -Ofast -I${MKLROOT}/include -ipo
 
@@ -24,12 +24,21 @@ LDFLAGS = -L${MKLROOT}/lib/intel64 -lmkl_intel_lp64 -lmkl_sequential -lmkl_core 
 endif
 endif
 
-default: $(OBJS)
-	$(CC) $(OBJS) -o run $(LDFLAGS)
+default: $(OBJS) $(OBJ_PATH)/main.o
+	$(CC) $(OBJS) $(OBJ_PATH)/main.o -o run $(LDFLAGS)
 
 $(OBJ_PATH)/%.o: $(LIB_PATH)/%.cpp
 	$(CC) $(CPPFLAGS) -c -o $@ $<
 
+$(TEST_PATH)/test.o: $(TEST_FILES) tests/test.cpp
+	$(CC) tests/test.cpp $(CPPFLAGS) -c -o $(TEST_PATH)/test.o
+
+test: $(OBJS) $(TEST_PATH)/test.o
+	$(CC) $(OBJS) $(TEST_PATH)/test.o $(LDFLAGS) -lgtest -o test
+
 clean:
 	-rm -f $(OBJS)
+	-rm -f $(OBJ_PATH)/main.o
 	-rm -f run
+	-rm -f $(TEST_PATH)/test.o
+	-rm -f test

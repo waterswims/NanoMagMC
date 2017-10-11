@@ -12,6 +12,7 @@ TEST(Skyrmion, 3d_energy_zero_field)
     field_3d_h field = gen_3d_heis_fm(1, 0, 0);
     ham_skyrm hamil(0, 1, 0.75);
     hamil.init_dim(&field);
+
     EXPECT_EQ(-2850, hamil.calc_E(&field));
 
     field = gen_3d_heis_fm(-1, 0, 0);
@@ -61,6 +62,7 @@ TEST(Skyrmion, 3d_energy_zero_field)
             }
         }
     }
+
     field.fill_ghost(1);
     EXPECT_EQ(-1850, hamil.calc_E(&field));
 

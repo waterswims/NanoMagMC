@@ -1,7 +1,7 @@
 #ifndef _CPOINTTEST
 #define _CPOINTTEST
 
-#include "cpoints.hpp"
+#include "../includes/cpoints.hpp"
 #include <gtest/gtest.h>
 #include <fstream>
 
@@ -18,7 +18,7 @@ TEST(Parameter_Checkpointing, Cpoint_Name)
 
 TEST(Parameter_Checkpointing, Read_vals)
 {
-    string filename = "Includes/Test_Files/val_load_test.cp";
+    string filename = "tests/Test_Files/val_load_test.cp";
     fstream str;
     int testvals[6];
     int corrvals[6] = {4, 2, 3, 6, 7, 8};
@@ -31,7 +31,7 @@ TEST(Parameter_Checkpointing, Read_vals)
 
 TEST(Parameter_Checkpointing, Read_arrs)
 {
-    string filename = "Includes/Test_Files/arr_load_test.cp";
+    string filename = "tests/Test_Files/arr_load_test.cp";
     fstream str;
     double** testvals = alloc_2darr<double>(2, 3);
     double** corrvals = alloc_2darr<double>(2, 3);
@@ -55,7 +55,7 @@ TEST(Parameter_Checkpointing, Read_arrs)
 
 TEST(Parameter_Checkpointing, Write_vals)
 {
-    string filename = "Includes/Test_Files/val_save_test.cp";
+    string filename = "tests/Test_Files/val_save_test.cp";
     remove(filename.c_str());
     fstream stream;
     for(int i = 0; i < 100; i++)
@@ -72,7 +72,7 @@ TEST(Parameter_Checkpointing, Write_vals)
 
 TEST(Parameter_Checkpointing, Write_arr)
 {
-    string filename = "Includes/Test_Files/arr_save_test.cp";
+    string filename = "tests/Test_Files/arr_save_test.cp";
     remove(filename.c_str());
     fstream stream;
     double outvals[100];

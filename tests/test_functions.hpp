@@ -1,8 +1,8 @@
 #ifndef _TESTFUNCS
 #define _TESTFUNCS
 
-#include "field_type.hpp"
-#include "hamiltonian.hpp"
+#include "../includes/field_type.hpp"
+#include "../includes/hamiltonian.hpp"
 #include <vector>
 
 using namespace std;

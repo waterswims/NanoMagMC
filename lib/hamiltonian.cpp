@@ -400,8 +400,8 @@ double ham_FePt::dE(field_type* lattice, vector<int>& position)
 void ham_FePt::read_Js()
 {
     ifstream Jstream, d_ijstream;
-    string Jname = "Includes/Js/FePt_nocut.txt";
-    string dname = "Includes/Js/FePt_2ion_nocut.txt";
+    string Jname = "Js/FePt_nocut.txt";
+    string dname = "Js/FePt_2ion_nocut.txt";
     Jstream.open(Jname.c_str());
     d_ijstream.open(dname.c_str());
     int icurr;
@@ -549,23 +549,23 @@ double ham_skyrm::calc_E(field_type* lattice)
                      curr[(dirs[i]+2)%3]*adj[(dirs[i]+1)%3][i]);
         }
 
-        // lattice->h_2adjacent(pos, adj);
+        lattice->h_2adjacent(pos, adj);
+        #pragma simd
+        for (int j = 0; j < 4; j++)
+        {
+            for (int i = 0; i < arrsize; i++)
+            {
+                J2_sum[j] += curr[j]*adj[j][i];
+            }
+        }
         // #pragma simd
-        // for (int j = 0; j < 4; j++)
-        // {
-        //     for (int i = 0; i < arrsize; i++)
-        //     {
-        //         J2_sum[j] += curr[j]*adj[j][i];
-        //     }
-        // }
-        // // #pragma simd
-        // for (int i = 0; i < arrsize; i++)
-        // {
-        //     D2_sum += mod[i]*(curr[(dirs[i]+1)%3]*adj[(dirs[i]+2)%3][i] -
-        //              curr[(dirs[i]+2)%3]*adj[(dirs[i]+1)%3][i]);
-        // }
-        //
-        // lattice->next(finished, pos);
+        for (int i = 0; i < arrsize; i++)
+        {
+            D2_sum += mod[i]*(curr[(dirs[i]+1)%3]*adj[(dirs[i]+2)%3][i] -
+                     curr[(dirs[i]+2)%3]*adj[(dirs[i]+1)%3][i]);
+        }
+
+        lattice->next(finished, pos);
     }
     #pragma simd
     for (int j = 0; j < 4; j++)
@@ -610,22 +610,22 @@ double ham_skyrm::dE(field_type* lattice, vector<int>& position)
                  cmp[(dirs[i]+2)%3]*adj[(dirs[i]+1)%3][i]);
     }
 
-    // lattice->h_2adjacent(position, adj);
+    lattice->h_2adjacent(position, adj);
+    #pragma simd
+    for(int j = 0; j < 4; j++)
+    {
+        J2_sum[j] = 0;
+        for(int i = 0; i < arrsize; i++)
+        {
+            J2_sum[j] += adj[j][i];
+        }
+    }
     // #pragma simd
-    // for(int j = 0; j < 4; j++)
-    // {
-    //     J2_sum[j] = 0;
-    //     for(int i = 0; i < arrsize; i++)
-    //     {
-    //         J2_sum[j] += adj[j][i];
-    //     }
-    // }
-    // // #pragma simd
-    // for (int i = 0; i < arrsize; i++)
-    // {
-    //     D2_sum += mod[i]*(cmp[(dirs[i]+1)%3]*adj[(dirs[i]+2)%3][i] -
-    //              cmp[(dirs[i]+2)%3]*adj[(dirs[i]+1)%3][i]);
-    // }
+    for (int i = 0; i < arrsize; i++)
+    {
+        D2_sum += mod[i]*(cmp[(dirs[i]+1)%3]*adj[(dirs[i]+2)%3][i] -
+                 cmp[(dirs[i]+2)%3]*adj[(dirs[i]+1)%3][i]);
+    }
 
     double dEJ = J[0] * cmp[0] * vsum[0] + J[1] * cmp[1] * vsum[1] + J[2] * cmp[2] * vsum[2];
 

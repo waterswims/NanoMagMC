@@ -1,7 +1,7 @@
 #ifndef _RANDNUMTEST
 #define _RANDNUMTEST
 
-#include "mklrand.h"
+#include "../includes/mklrand.hpp"
 #include "test_functions.hpp"
 #include <gtest/gtest.h>
 #include <cmath>
@@ -106,11 +106,11 @@ TEST(Random_Numbers, Ln_Test)
 
 TEST(Random_Numbers, Read_Checkpoint)
 {
-    st_rand_double.load("Includes/Test_Files/double_load_test.cp");
+    st_rand_double.load("tests/Test_Files/double_load_test.cp");
     st_rand_double.fill();
     double loaded;
     ifstream in;
-    in.open("Includes/Test_Files/double_load_test.result");
+    in.open("tests/Test_Files/double_load_test.result");
     for (int i = 0; i < 100; i++)
     {
         in >> loaded;
@@ -122,13 +122,13 @@ TEST(Random_Numbers, Read_Checkpoint)
 TEST(Random_Numbers, Save_Checkpoint)
 {
     vector<double> first(100);
-    st_rand_double.save("Includes/Test_Files/double_save_test.cp");
+    st_rand_double.save("tests/Test_Files/double_save_test.cp");
     st_rand_double.fill();
     for(int i = 0; i < 100; i++)
     {
         first[i] = st_rand_double.gen();
     }
-    st_rand_double.load("Includes/Test_Files/double_save_test.cp");
+    st_rand_double.load("tests/Test_Files/double_save_test.cp");
     st_rand_double.fill();
     for(int i = 0; i < 100; i++)
     {
