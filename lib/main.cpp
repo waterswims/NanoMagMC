@@ -110,9 +110,8 @@ int main(int argc, char **argv)
 	}
 
 	// Create Output Folders
-	std::string file_prefix = create_folders(J, size, k, K, shape, hamil);
-
-	cout << file_prefix << endl;
+	std::string file_prefix = create_folders(J, size, k, K, shape, hamil,
+											 protocol);
 
 	// main loop
 	for (int i = 0; i < v1_size; i++)
@@ -121,6 +120,11 @@ int main(int argc, char **argv)
 		base_state.change_v1(protocol, var1_list[i]);
 		// Equillibriation
 		base_state.equil(Eq_steps*nums);
+		// Only carry on if to be run by this process
+		if (i%comm_size != rank)
+		{
+			continue;
+		}
 		// Copy
 		curr_state = base_state;
         for (int j = 0; j < v2_size; j++)
@@ -186,7 +190,11 @@ int main(int argc, char **argv)
         }
 		// Checkpoint data
 	}
-	cout << endl;
+	MPI_Barrier(MPI_COMM_WORLD);
+	if(rank==0)
+	{
+		cout << endl;
+	}
 
 	// Destroy Checkpoints
 

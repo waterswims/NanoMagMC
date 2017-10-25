@@ -9,7 +9,8 @@ std::string create_folders(const double J,
                            const double k,
                            const double K,
                            const char shape,
-                           const char hamil);
+                           const char hamil,
+                           const int prot);
 
 void print_sngl_HT(const double* magx,
                    const double* magy,

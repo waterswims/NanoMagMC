@@ -8,7 +8,8 @@ std::string create_folders(const double J,
                            const double k,
                            const double K,
                            const char shape,
-                           const char hamil)
+                           const char hamil,
+                           const int prot)
 {
     std::stringstream prestream, datstream;
     std::string datname;
@@ -18,12 +19,11 @@ std::string create_folders(const double J,
     {
         prestream << "-K_" << K;
     }
-    prestream << "-sh_" << shape << "-ha_" << hamil;
+    prestream << "-sh_" << shape << "-ha_" << hamil << "-pr_" << prot;
     prestream >> prefix;
 
     datstream << "mkdir -p " << prefix << "/Fulldat" << std::endl;
     getline(datstream, datname);
-    std::cout << datname << std::endl;
     system(datname.c_str());
 
     datstream << "mkdir -p " << prefix << "/Latt_Print" << std::endl;
