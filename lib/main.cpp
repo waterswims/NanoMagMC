@@ -13,6 +13,7 @@
 #include <vector>
 #include <fstream>
 #include <cstring>
+#include <hdf5.h>
 
 mkl_irand st_rand_int(1e7, 1);
 mkl_drand st_rand_double(1e8, 1);
@@ -31,13 +32,13 @@ int main(int argc, char **argv)
 	}
 
 	// setup arguments
-	int Samp_steps, Eq_steps, N_samp, protocol;
+	int Samp_steps, Eq_steps, N_samp, protocol, N_latts;
 	double J=1, K=0, k=1, beta=50, amean, asd, lmean, lsd, size;
 	bool periodic, distributed, print_latt;
 	char shape, hamil;
 	string temp_name, field_name;
 	read_all_vars(argv[1], size, J, k, periodic, shape, hamil, Samp_steps,
-		N_samp, Eq_steps, beta, distributed, amean, asd, temp_name,
+		N_samp, Eq_steps, N_latts, beta, distributed, amean, asd, temp_name,
 		field_name, protocol, K, print_latt);
 	double args[] = {beta};
 	AtoLn(amean, asd, lmean, lsd);
@@ -56,7 +57,7 @@ int main(int argc, char **argv)
 	st_rand_double.change_seed(comm_size+rank);
 
 	// New Generator for Lognormal
-    mkl_lnrand rand_ln(lmean, lsd, N_samp, 2*comm_size+rank);
+    mkl_lnrand rand_ln(lmean, lsd, N_latts, 2*comm_size+rank);
 
     if(rank==0)
     {
@@ -92,111 +93,114 @@ int main(int argc, char **argv)
 		cout << "Running MC..." << endl;
 	}
 
-	// Check the Checkpoints
-	if (rank == 0)
-	{
-		cout << "Passed Checkpoint Reading..." << endl;
-	}
-
-	// Generate the state
-	state base_state(size, periodic, shape, hamil, J, Hmax, k, Tmax, K, args);
-	state curr_state(base_state);
+	// Space for the average field
 	field_type* summed_field = set_sum_latt(size, periodic, shape, hamil);
-	nums = base_state.num_spins();
-	s_nums = base_state.sub_num(0);
-	if (rank == 0)
-	{
-		cout << "Generated State..." << endl;
-	}
 
-	// Create Output Folders
-	std::string file_prefix = create_folders(J, size, k, K, shape, hamil,
-											 protocol);
+	// Create h5 file
+	bool** cpoint = alloc_2darr<bool>(v1_size, N_latts);
+	std::string f_id = check_h5_file(J, size, amean, asd, k, K, shape,
+									  hamil, protocol, distributed, num_Ts,
+									  num_Hs, N_samp, N_latts, Ts, Hs, v1_size,
+								      cpoint);
 
-	// main loop
-	for (int i = 0; i < v1_size; i++)
+	// if distrib, loop through latts
+	for (int k = 0; k < N_latts; k++)
 	{
-		// Change Temp/field
-		base_state.change_v1(protocol, var1_list[i]);
-		// Equillibriation
-		base_state.equil(Eq_steps*nums);
-		// Only carry on if to be run by this process
-		if (i%comm_size != rank)
+		if (distributed) {size = rand_ln.gen();}
+		state base_state(size, periodic, shape, hamil, J, Hmax, k, Tmax, K,
+			             args);
+		state curr_state(base_state);
+		nums = base_state.num_spins();
+		s_nums = base_state.sub_num(0);
+		// main loop
+		for (int i = 0; i < v1_size; i++)
 		{
-			continue;
-		}
-		// Copy
-		curr_state = base_state;
-        for (int j = 0; j < v2_size; j++)
-        {
 			// Change Temp/field
-			curr_state.change_v2(protocol, var2_list[j]);
+			base_state.change_v1(protocol, var1_list[i]);
 			// Equillibriation
-			curr_state.equil(Eq_steps*nums);
-
-			// Zero print field
-			if(print_latt)
+			base_state.equil(Eq_steps*nums);
+			// Only carry on if to be run by this process and not checkpointed
+			if (i%comm_size != rank || cpoint[i][k])
 			{
-				summed_field->allzero();
+				continue;
 			}
+			// Copy
+			curr_state = base_state;
+	        for (int j = 0; j < v2_size; j++)
+	        {
+				// Change Temp/field
+				curr_state.change_v2(protocol, var2_list[j]);
+				// Equillibriation
+				curr_state.equil(Eq_steps*nums);
 
-			// Get Samples
-			for (int ns = 0; ns < N_samp; ns++)
-			{
-				curr_state.equil(Samp_steps*nums);
-				mtemp = curr_state.magnetisation();
-				if (hamil != 'i' && hamil != 'I')
-				{
-					magx1[ns] = mtemp[0];
-					magy1[ns] = mtemp[1];
-					magz1[ns] = mtemp[2];
-				}
-				else
-				{
-					magz1[ns] = mtemp[0];
-				}
-
-				mag1[ns] = norm(mtemp);
-				ener1[ns] = curr_state.energy();
-
-				mtemp = curr_state.submag(0);
-				if (hamil != 'i' && hamil != 'I')
-				{
-					smagx1[ns] = mtemp[0];
-					smagy1[ns] = mtemp[1];
-					smagz1[ns] = mtemp[2];
-				}
-				else
-				{
-					smagz1[ns] = mtemp[0];
-				}
-				smag1[ns] = norm(mtemp);
-
-				// Add sample to print lattice
+				// Zero print field
 				if(print_latt)
 				{
-					curr_state.add_to_av(summed_field);
+					summed_field->allzero();
 				}
-			}
-			print_sngl_HT(magx1, magy1, magz1, mag1, ener1, smagx1, smagy1,
-				smagz1, smag1, N_samp, protocol, var1_list[i],
-				var2_list[j], file_prefix, hamil);
-			// print the lattice
-			if(print_latt)
-			{
-				print_field(summed_field, protocol, var1_list[i],
-					var2_list[j], file_prefix);
-			}
-        }
-		// Checkpoint data
+
+				// Get Samples
+				for (int ns = 0; ns < N_samp; ns++)
+				{
+					curr_state.equil(Samp_steps*nums);
+					mtemp = curr_state.magnetisation();
+					if (hamil != 'i' && hamil != 'I')
+					{
+						magx1[ns] = mtemp[0];
+						magy1[ns] = mtemp[1];
+						magz1[ns] = mtemp[2];
+					}
+					else
+					{
+						magz1[ns] = mtemp[0];
+					}
+
+					mag1[ns] = norm(mtemp);
+					ener1[ns] = curr_state.energy();
+
+					mtemp = curr_state.submag(0);
+					if (hamil != 'i' && hamil != 'I')
+					{
+						smagx1[ns] = mtemp[0];
+						smagy1[ns] = mtemp[1];
+						smagz1[ns] = mtemp[2];
+					}
+					else
+					{
+						smagz1[ns] = mtemp[0];
+					}
+					smag1[ns] = norm(mtemp);
+
+					// Add sample to print lattice
+					if(print_latt && !distributed)
+					{
+						curr_state.add_to_av(summed_field);
+					}
+				}
+				// print values, lattice and checkpoint
+				print_TD_h5(magx1, magy1, magz1, mag1, ener1, smagx1, smagy1,
+					     smagz1, smag1, N_samp, protocol, i, j, f_id,
+						 hamil, distributed, k);
+	        }
+		}
+	}
+	// Extra File open/closes
+	if(rank >= v1_size - (v1_size/comm_size)*comm_size)
+	{
+		for(int i = 0; i < v2_size; i++)
+		{
+			hid_t plist_id = H5Pcreate(H5P_FILE_ACCESS);
+		    H5Pset_fapl_mpio(plist_id, MPI_COMM_WORLD, MPI_INFO_NULL);
+		    hid_t file_id = H5Fopen(f_id.c_str(), H5F_ACC_RDWR, plist_id);
+		    H5Pclose(plist_id);
+			H5Fclose(file_id);
+		}
 	}
 	MPI_Barrier(MPI_COMM_WORLD);
 	if(rank==0)
 	{
 		cout << endl;
 	}
-
-	// Destroy Checkpoints
 
 	// Destroy arrays
 	dealloc_1darr<double>(Ts);
@@ -210,6 +214,7 @@ int main(int argc, char **argv)
 	dealloc_1darr<double>(smagx1);
 	dealloc_1darr<double>(smagy1);
 	dealloc_1darr<double>(smagz1);
+	dealloc_2darr<bool>(v1_size, cpoint);
 
     // Finish program
 	MPI_Finalize();

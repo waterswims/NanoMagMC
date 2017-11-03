@@ -34,7 +34,7 @@ template <class T> T read_var(string v_name, string f_name)
 
 void read_all_vars(string f_name, double& size, double& J, double& k,
     bool& periodic, char& shape, char& hamil, int& Samp_steps, int& N_samp,
-    int& Eq_steps, double& beta, bool& distrib, double& amean,
+    int& Eq_steps, int& N_latts, double& beta, bool& distrib, double& amean,
     double& asd, string& temp_name, string& field_name, int& protocol,
     double& K, bool& print_latt)
 {
@@ -74,10 +74,12 @@ void read_all_vars(string f_name, double& size, double& J, double& k,
         amean = read_var<double>("MEANSIZE", f_name);
         asd = read_var<double>("SIZEDEV", f_name);
         size = amean;
+        N_latts = read_var<int>("NLATTS", f_name);
     }
     else
     {
         size = read_var<double>("SIZE", f_name);
+        N_latts = 1;
         amean = 0;
         asd = 0;
     }

@@ -1,5 +1,8 @@
 # Makefile for project
 
+HDFLIB=/home/jmw2g14/hdf5/lib/
+HDFINC=/home/jmw2g14/hdf5/include/
+
 OS := $(shell uname)
 HOST := $(shell hostname)
 INC_PATH = includes
@@ -10,17 +13,17 @@ TEST_PATH = tests
 TEST_FILES = $(wildcard $(TEST_PATH)/*.hpp)
 SOURCE_FILES = $(filter-out $(LIB_PATH)/main.cpp, $(wildcard $(LIB_PATH)/*.cpp))
 OBJS = $(addprefix $(OBJ_PATH)/, $(notdir $(SOURCE_FILES:.cpp=.o)))
-CPPFLAGS = -Ofast -I${MKLROOT}/include -ipo
+CPPFLAGS = -std=c++11 -Ofast -I${MKLROOT}/include -I${HDFINC} -ipo
 
 # Check if mac
 ifeq ($(OS),Darwin)
-LDFLAGS =  -L${MKLROOT}/lib -Wl,-rpath,${MKLROOT}/lib -lmkl_intel_lp64 -lmkl_sequential -lmkl_core -lpthread -lm -ldl -ipo
+LDFLAGS = -L${HDFLIB} -L${MKLROOT}/lib -Wl,-rpath,${MKLROOT}/lib -lmkl_intel_lp64 -lmkl_sequential -lmkl_core -lpthread -lm -ldl -lhdf5 -ipo
 else
 # Check if ARCHER
 ifneq (,$(findstring eslogin, $(HOST)))
-LDFLAGS = -Wl,--start-group ${MKLROOT}/lib/intel64/libmkl_intel_lp64.a ${MKLROOT}/lib/intel64/libmkl_sequential.a ${MKLROOT}/lib/intel64/libmkl_core.a -Wl,--end-group -lpthread -ipo
+LDFLAGS = -L${HDFLIB} -Wl,--start-group ${MKLROOT}/lib/intel64/libmkl_intel_lp64.a ${MKLROOT}/lib/intel64/libmkl_sequential.a ${MKLROOT}/lib/intel64/libmkl_core.a -Wl,--end-group -lpthread -lhdf5 -ipo
 else
-LDFLAGS = -L${MKLROOT}/lib/intel64 -lmkl_intel_lp64 -lmkl_sequential -lmkl_core -lpthread -lm -ldl -ipo
+LDFLAGS = -L${HDFLIB} -L${MKLROOT}/lib/intel64 -lmkl_intel_lp64 -lmkl_sequential -lmkl_core -lpthread -lm -ldl -lhdf5 -ipo
 endif
 endif
 
