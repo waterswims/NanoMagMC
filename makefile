@@ -5,6 +5,7 @@ HDFINC=/home/jmw2g14/hdf5/include/
 
 OS := $(shell uname)
 HOST := $(shell hostname)
+# CC = 
 INC_PATH = includes
 LIB_PATH = lib
 OBJ_PATH = obj

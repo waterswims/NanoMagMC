@@ -2,11 +2,12 @@
 
 ## Requirements
 
-* At the moment the code has only been tested with the Intel compilers due to the use of the Intel MKL library for random number generation.
+* Requires a parallel build of HDF5 for data storage.
+* At the moment the code has only been tested with the Intel compilers due to the use of the Intel MKL library for random number generation. Future versions of the code will include non-Intel RNG.
 
 ## Compiling the Code
 
-There is a makefile in the root folder of the code for compiling which calls a makefile in the "Includes" folder. Typing "make run" will correctly compile the code.
+There is a makefile in the root folder. Typing "make" will correctly compile the code. CC can be set within this makefile or with environment variables. There is also some support in the makefile for Mac and ARCHER builds.
 
 ## Running the Code and the Input File
 
@@ -30,11 +31,11 @@ After compilation an executable file will be placed in the root folder named "ru
 
 * ISPERIO: Boolean value to determine if the boundary conditions of the lattice are periodic or not. 0 for non=periodic, 1 for periodic. (Note, for some shapes this makes little or no difference. i.e. A Weibull shape.)
 
-* LATTPADDING: Adds a 'pad' of empty lattice sites around your lattice. Takes a number signifying the depth of this pad.
+* EQSWEEPS: The number of Monte Carlo sweeps that should be performed on each lattice before samples are taken. A sweep is defined as 1 Monte Carlo step for every filled lattice site.
 
-* MCSWEEPS: The number of Monte Carlo sweeps that should be performed on each lattice at each temperature step. A sweep is defined as 1 Monte Carlo step for every filled lattice site.
+* SAMPSWEEPS: The number of Monte Carlo sweeps that should be performed between samples. A sweep is defined as 1 Monte Carlo step for every filled lattice site.
 
-* LATTSPERPROC: This program is implemented to MPI communication, meaning that multiple independent processes are run in tandom, each one running distinct realisations of the lattice. This value indicates the number of lattices that will be simulated on each process.
+* NSAMPS: The number of Monte Carlo samples to be taken per lattice.
 
 * HAMILTONIAN: The Hamiltonian which is being used to calculate the total energy and energy change per Monte Carlo step. This can take a number of inputs:
 
@@ -48,7 +49,17 @@ After compilation an executable file will be placed in the root folder named "ru
 
 * ISDISTRIB: A boolean value which defines whether or not the sizes of the realisations of each lattice are fixed or distributed. The only distribution of sizes which has so far been implemented is a log-normal distribution.
 
-* TEMPNAME: In the folder "Includes/Temps/" there are a number of example text files containing the temperatures which the simulation will run. This option is used to specify which file is to be used without the ".txt".
+* TEMPNAME: In the folder "Temps" there are a number of example text files containing the temperatures at which the simulation will run. This option is used to specify which file is to be used.
+
+* FIELDNAME: In the folder "Fields" there are a number of example text files containing the magnetic fields at which the simulation will run. This option is used to specify which file is to be used.
+
+* PROTOCOL: The protocol which defines the path through the phase diagram that the simulation will take. The options are:
+
+    * 1: The lattices move through the magnetic fields initially then the temperatures.
+
+    * 2: The lattices move through the temperatures followed by the magnetic fields.
+
+* PRINT_LATT: Boolean option signifying whether the average lattice should be stored. This may significantly increase file storage requirements.
 
 ### Optional/Situational Settings
 
@@ -57,6 +68,8 @@ After compilation an executable file will be placed in the root folder named "ru
 * MEANSIZE: If ISDISTRIB is set to true then the arithmetic mean of the sizes of all lattices must be given.
 
 * SIZEDEV: If ISDISTRIB is set to true then the standard deviation of the sizes of all lattices must be given.
+
+* NLATTS: If ISDISTRIB is set to true then the number of different lattices to use is required. NSAMPS samples will be taken for each of these lattices.
 
 * WEIBULLFACT: If either the circular or spherical Weibull distributed grain is chosen then WEIBULLFACT denotes the weibull factor used in the grain generation.
 
