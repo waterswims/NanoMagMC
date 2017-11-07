@@ -2,10 +2,8 @@
 #include "../includes/state.hpp"
 #include "../includes/mklrand.hpp"
 #include "../includes/functions.hpp"
-#include "../includes/cpoints.hpp"
 #include "../includes/output.hpp"
 #include "../includes/param_read.hpp"
-#include "../includes/mpifuncs.hpp"
 #include "../includes/protocol.hpp"
 #include "../includes/print_latt.hpp"
 
