@@ -85,32 +85,28 @@ field_type* set_sum_latt(double size,
     return field;
 }
 
-void print_field(field_type* field,
-                int protocol,
-                const double var1,
-                const double var2,
-                const std::string prefix)
+std::string latt_name(const int protocol,
+                    const int var1,
+                    const int var2)
 {
-    std::stringstream datstream, foldstream;
-    std::string foldname, datname;
-    foldstream << prefix << "/Latt_Print/H_";
+    int H, T;
     switch(protocol)
     {
         case 1:
-        foldstream << var1 <<  "-T_" << var2;
+        H = var1;
+        T = var2;
         break;
         case 2:
-        foldstream << var2 <<  "-T_" << var1;
+        H = var2;
+        T = var1;
         break;
     }
-    foldstream >> foldname;
 
-    datstream << "mkdir -p " << foldname << std::endl;
-    getline(datstream, datname);
-    system(datname.c_str());
+    std::stringstream nstream;
+    std::string name;
 
-    datstream << foldname << "/row" << std::endl;
-    getline(datstream, datname);
+    nstream << "/Latt_Print/T_" << T << "-H_" << H;
+    nstream >> name;
 
-    field->print(datname);
+    return name;
 }

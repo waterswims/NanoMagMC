@@ -102,6 +102,10 @@ int main(int argc, char **argv)
 									  hamil, protocol, distributed, num_Ts,
 									  num_Hs, N_samp, N_latts, Ts, Hs, v1_size,
 								      cpoint);
+	if (!cpoint[0][0])
+	{
+		summed_field->print_setup(f_id, num_Ts, num_Hs);
+	}
 
 	// if distrib, loop through latts
 	for (int k = 0; k < N_latts; k++)
@@ -179,23 +183,40 @@ int main(int argc, char **argv)
 				}
 				// print values, lattice and checkpoint
 				print_TD_h5(magx1, magy1, magz1, mag1, ener1, smagx1, smagy1,
-					     smagz1, smag1, N_samp, protocol, i, j, f_id,
+					     smagz1, smag1, N_samp, protocol, i, j, v2_size, f_id,
 						 hamil, distributed, k);
+				if (print_latt && !distributed)
+				{
+					std::string lname = latt_name(protocol, i, j);
+					summed_field->print(f_id, lname);
+				}
 	        }
 		}
-	}
-	// Extra File open/closes
-	if(rank >= v1_size - (v1_size/comm_size)*comm_size)
-	{
-		for(int i = 0; i < v2_size; i++)
+		// Extra File open/closes
+		if(rank >= v1_size - (v1_size/comm_size)*comm_size &&
+			!cpoint[v1_size-1][k])
 		{
-			hid_t plist_id = H5Pcreate(H5P_FILE_ACCESS);
-		    H5Pset_fapl_mpio(plist_id, MPI_COMM_WORLD, MPI_INFO_NULL);
-		    hid_t file_id = H5Fopen(f_id.c_str(), H5F_ACC_RDWR, plist_id);
-		    H5Pclose(plist_id);
-			H5Fclose(file_id);
+			for(int i = 0; i < v2_size; i++)
+			{
+				hid_t plist_id = H5Pcreate(H5P_FILE_ACCESS);
+			    H5Pset_fapl_mpio(plist_id, MPI_COMM_WORLD, MPI_INFO_NULL);
+			    hid_t file_id = H5Fopen(f_id.c_str(), H5F_ACC_RDWR, plist_id);
+			    H5Pclose(plist_id);
+				H5Fclose(file_id);
+
+				if (print_latt && !distributed)
+				{
+					hid_t plist_id = H5Pcreate(H5P_FILE_ACCESS);
+				    H5Pset_fapl_mpio(plist_id, MPI_COMM_WORLD, MPI_INFO_NULL);
+				    hid_t file_id = H5Fopen(f_id.c_str(), H5F_ACC_RDWR,
+						plist_id);
+				    H5Pclose(plist_id);
+					H5Fclose(file_id);
+				}
+			}
 		}
 	}
+
 	MPI_Barrier(MPI_COMM_WORLD);
 	if(rank==0)
 	{

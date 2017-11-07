@@ -54,7 +54,9 @@ public:
     virtual void get_3dfield_h(double*** &x, double*** &y, double*** &z) const{}
     virtual void get_2dzero(bool** &x) const{}
     virtual void get_3dzero(bool*** &x) const{}
-    virtual void print(string filename){}
+    virtual void print(string filename, string arrname){}
+    virtual void print_setup(const string filename, const int Tmax,
+        const int Hmax){}
     int get_ft() const {return ft;}
 };
 
@@ -187,7 +189,8 @@ public:
     void add_val_h(vector<int>& position, vector<double> &in);
     void change_to_test(vector<int>& position, ham_type* hamil);
     void h_arb_adj(vector<int>& position, vector<int>& dxs, vector<int>& dys, vector<int>& dzs, double** out, int num);
-    void print(string filename);
+    void print(string filename, string arrname);
+    void print_setup(const string filename, const int Tmax, const int Hmax);
 };
 
 class field_3d_i: public field_3d

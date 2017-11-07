@@ -7,6 +7,7 @@
 #include <cstdlib>
 #include <algorithm>
 #include <cmath>
+#include <hdf5.h>
 
 ///////////////////////
 // Global Variables
@@ -1004,47 +1005,80 @@ void field_3d_h::add_val_h(vector<int>& position, vector<double> &in)
     spinz[position[0]][position[1]][position[2]] += in[2];
 }
 
-void field_3d_h::print(string filename)
+void field_3d_h::print(string filename, string arrname)
 {
-    stringstream namestream;
-    string xname, yname, zname;
-    ofstream xfile, yfile, zfile;
-    int start = (totsize - insize)/2;
-    for(int k = start; k < insize+start; k++)
+    // Open existing file
+    hid_t plist_id = H5Pcreate(H5P_FILE_ACCESS);
+    H5Pset_fapl_mpio(plist_id, MPI_COMM_WORLD, MPI_INFO_NULL);
+    hid_t f_id = H5Fopen(filename.c_str(), H5F_ACC_RDWR, plist_id);
+    H5Pclose(plist_id);
+
+    // Open dataset
+    hid_t dset_id = H5Dopen1(f_id, arrname.c_str());
+
+    // Get slab and slice space
+    plist_id = H5Pcreate(H5P_DATASET_XFER);
+    H5Pset_dxpl_mpio(plist_id, H5FD_MPIO_INDEPENDENT);
+    hsize_t count[4] = {totsize, totsize, totsize, 1};
+    hsize_t offset[4] = {0, 0, 0, 0};
+    hid_t slice_space_id = H5Screate_simple(4, count, NULL);
+    // for x
+    hid_t slab_id = H5Dget_space(dset_id);
+    H5Sselect_hyperslab(slab_id, H5S_SELECT_SET, offset, NULL, count, NULL);
+    H5Dwrite(dset_id, H5T_NATIVE_DOUBLE, slice_space_id, slab_id, plist_id,
+        spinx[0][0]);
+    H5Sclose(slab_id);
+    // for y
+    offset[3] = 1;
+    slab_id = H5Dget_space(dset_id);
+    H5Sselect_hyperslab(slab_id, H5S_SELECT_SET, offset, NULL, count, NULL);
+    H5Dwrite(dset_id, H5T_NATIVE_DOUBLE, slice_space_id, slab_id, plist_id,
+        spiny[0][0]);
+    H5Sclose(slab_id);
+    // for z
+    offset[3] = 2;
+    slab_id = H5Dget_space(dset_id);
+    H5Sselect_hyperslab(slab_id, H5S_SELECT_SET, offset, NULL, count, NULL);
+    H5Dwrite(dset_id, H5T_NATIVE_DOUBLE, slice_space_id, slab_id, plist_id,
+        spinz[0][0]);
+    H5Sclose(slab_id);
+
+    // close
+    H5Pclose(plist_id);
+    H5Dclose(dset_id);
+    H5Fclose(f_id);
+}
+
+void field_3d_h::print_setup(const string filename, const int Tmax,
+    const int Hmax)
+{
+    // Open existing file
+    hid_t plist_id = H5Pcreate(H5P_FILE_ACCESS);
+    H5Pset_fapl_mpio(plist_id, MPI_COMM_WORLD, MPI_INFO_NULL);
+    hid_t f_id = H5Fopen(filename.c_str(), H5F_ACC_RDWR, plist_id);
+    H5Pclose(plist_id);
+
+    // create datasets
+    hsize_t full_dims[4] = {totsize, totsize, totsize, 3};
+    hid_t dspace_id = H5Screate_simple(4, full_dims, NULL);
+    hid_t dset_id;
+    stringstream nstream;
+    string name;
+    for(int i=0; i < Tmax; i++)
     {
-        namestream << filename << "_spinx_" << k << ".dat";
-        namestream >> xname;
-        namestream.clear();
-        namestream << filename << "_spiny_" << k << ".dat";
-        namestream >> yname;
-        namestream.clear();
-        namestream << filename << "_spinz_" << k << ".dat";
-        namestream >> zname;
-        namestream.clear();
-        xfile.open(xname.c_str());
-        yfile.open(yname.c_str());
-        zfile.open(zname.c_str());
-
-        for(int i = start; i < insize+start; i++)
+        for(int j=0; j < Hmax; j++)
         {
-            for(int j = start; j < insize+start; j++)
-            {
-                xfile << spinx[i][j][k] << " ";
-                yfile << spiny[i][j][k] << " ";
-                zfile << spinz[i][j][k] << " ";
-            }
-            xfile << endl;
-            yfile << endl;
-            zfile << endl;
+            nstream << "/Latt_Print/T_" << i << "-H_" << j;
+            nstream >> name;
+            nstream.clear();
+            dset_id = H5Dcreate(f_id, name.c_str(), H5T_NATIVE_DOUBLE,
+                dspace_id, H5P_DEFAULT, H5P_DEFAULT, H5P_DEFAULT);
+            H5Dclose(dset_id);
         }
-
-        xfile.close();
-        xfile.clear();
-        yfile.close();
-        yfile.clear();
-        zfile.close();
-        zfile.clear();
     }
+
+    // close
+    H5Fclose(f_id);
 }
 
 ///////////////////////

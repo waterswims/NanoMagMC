@@ -112,7 +112,7 @@ void create_h5_file(std::string prefix,
 
     if (!distrib)
     {
-        // Put in latt print
+        // Put in latt print group
         g_id = H5Gcreate2(file_id, "/Latt_Print", H5P_DEFAULT, H5P_DEFAULT, H5P_DEFAULT);
         H5Gclose(g_id);
     }
@@ -204,6 +204,7 @@ void print_TD_h5(const double* magx,
                const int protocol,
                const int var1,
                const int var2,
+               const int v2max,
                const std::string prefix,
                const char hamil,
                const bool distrib,
@@ -316,18 +317,22 @@ void print_TD_h5(const double* magx,
     }
     H5Sclose(dspace_id);
 
-    dset_id = H5Dopen1(f_id, "/Complete");
-    slab_id = H5Dget_space(dset_id);
-    hsize_t count2[2] = {1, 1};
-    hsize_t offset2[2] = {var1, latt_num};
-    H5Sselect_hyperslab(slab_id, H5S_SELECT_SET, offset2, NULL, count2, NULL);
-    dspace_id = H5Screate_simple(2, count2, NULL);
-    int cpoint_val = 1;
-    H5Dwrite(dset_id, H5T_NATIVE_INT, dspace_id, slab_id, plist_id,
-             &cpoint_val);
-    H5Sclose(slab_id);
-    H5Dclose(dset_id);
-    H5Sclose(dspace_id);
+    // Print the checkpoint
+    if(var2 == v2max - 1)
+    {
+        dset_id = H5Dopen1(f_id, "/Complete");
+        slab_id = H5Dget_space(dset_id);
+        hsize_t count2[2] = {1, 1};
+        hsize_t offset2[2] = {var1, latt_num};
+        H5Sselect_hyperslab(slab_id, H5S_SELECT_SET, offset2, NULL, count2, NULL);
+        dspace_id = H5Screate_simple(2, count2, NULL);
+        int cpoint_val = 1;
+        H5Dwrite(dset_id, H5T_NATIVE_INT, dspace_id, slab_id, plist_id,
+                 &cpoint_val);
+        H5Sclose(slab_id);
+        H5Dclose(dset_id);
+        H5Sclose(dspace_id);
+    }
 
     // Close File
     H5Pclose(plist_id);

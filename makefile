@@ -17,13 +17,13 @@ CPPFLAGS = -std=c++11 -Ofast -I${MKLROOT}/include -I${HDFINC} -ipo
 
 # Check if mac
 ifeq ($(OS),Darwin)
-LDFLAGS = -L${HDFLIB} -L${MKLROOT}/lib -Wl,-rpath,${MKLROOT}/lib -lmkl_intel_lp64 -lmkl_sequential -lmkl_core -lpthread -lm -ldl -lhdf5 -ipo
+LDFLAGS = -L${HDFLIB} -L${MKLROOT}/lib -Wl,-rpath,${MKLROOT}/lib -lmkl_intel_lp64 -lmkl_sequential -lmkl_core -lpthread -lm -ldl -lhdf5 -lz -ipo
 else
 # Check if ARCHER
 ifneq (,$(findstring eslogin, $(HOST)))
-LDFLAGS = -L${HDFLIB} -Wl,--start-group ${MKLROOT}/lib/intel64/libmkl_intel_lp64.a ${MKLROOT}/lib/intel64/libmkl_sequential.a ${MKLROOT}/lib/intel64/libmkl_core.a -Wl,--end-group -lpthread -lhdf5 -ipo
+LDFLAGS = -L${HDFLIB} -Wl,--start-group ${MKLROOT}/lib/intel64/libmkl_intel_lp64.a ${MKLROOT}/lib/intel64/libmkl_sequential.a ${MKLROOT}/lib/intel64/libmkl_core.a -Wl,--end-group -lpthread -lhdf5 -lz -ipo
 else
-LDFLAGS = -L${HDFLIB} -L${MKLROOT}/lib/intel64 -lmkl_intel_lp64 -lmkl_sequential -lmkl_core -lpthread -lm -ldl -lhdf5 -ipo
+LDFLAGS = -L${HDFLIB} -L${MKLROOT}/lib/intel64 -lmkl_intel_lp64 -lmkl_sequential -lmkl_core -lpthread -lm -ldl -lhdf5 -lz -ipo
 endif
 endif
 

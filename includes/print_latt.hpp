@@ -9,10 +9,8 @@ field_type* set_sum_latt(double size,
                          char shape,
                          char hamil);
 
-void print_field(field_type* field,
-                int protocol,
-                const double var1,
-                const double var2,
-                const std::string prefix);
+std::string latt_name(const int protocol,
+                 const int var1,
+                 const int var2);
 
 #endif
