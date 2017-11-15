@@ -64,20 +64,6 @@ int main(int argc, char **argv)
         cout << N_samp << " samples per configuration" << endl;
     }
 
-	// Storage Variables
-	int nums, s_nums;
-	double* mag1 = alloc_1darr<double>(N_samp);
-	double* ener1 = alloc_1darr<double>(N_samp);
-	double* magx1 = alloc_1darr<double>(N_samp);
-	double* magy1 = alloc_1darr<double>(N_samp);
-	double* magz1 = alloc_1darr<double>(N_samp);
-	double* smag1 = alloc_1darr<double>(N_samp);
-	double* smagx1 = alloc_1darr<double>(N_samp);
-	double* smagy1 = alloc_1darr<double>(N_samp);
-	double* smagz1 = alloc_1darr<double>(N_samp);
-
-	vector<double> mtemp;
-
 	// set protocol
 	double* var1_list;
 	double* var2_list;
@@ -93,17 +79,35 @@ int main(int argc, char **argv)
 
 	// Space for the average field
 	field_type* summed_field = set_sum_latt(size, periodic, shape, hamil);
+	int tc_size = summed_field->get_insize();
 
 	// Create h5 file
+	bool file_exists = false;
 	bool** cpoint = alloc_2darr<bool>(v1_size, N_latts);
 	std::string f_id = check_h5_file(J, size, amean, asd, k, K, shape,
 									  hamil, protocol, distributed, num_Ts,
 									  num_Hs, N_samp, N_latts, Ts, Hs, v1_size,
-								      cpoint);
-	if (!cpoint[0][0])
+								      tc_size, cpoint, file_exists);
+	if ((!file_exists))
 	{
 		summed_field->print_setup(f_id, num_Ts, num_Hs);
 	}
+
+	// Storage Variables
+	int nums, s_nums;
+	double* mag1 = alloc_1darr<double>(N_samp);
+	double* ener1 = alloc_1darr<double>(N_samp);
+	double* magx1 = alloc_1darr<double>(N_samp);
+	double* magy1 = alloc_1darr<double>(N_samp);
+	double* magz1 = alloc_1darr<double>(N_samp);
+	double* smag1 = alloc_1darr<double>(N_samp);
+	double* smagx1 = alloc_1darr<double>(N_samp);
+	double* smagy1 = alloc_1darr<double>(N_samp);
+	double* smagz1 = alloc_1darr<double>(N_samp);
+	double** tcharges1 = alloc_2darr<double>(tc_size, N_samp);
+
+	vector<double> mtemp;
+	vector<double> tchargestemp;
 
 	// if distrib, loop through latts
 	for (int k = 0; k < N_latts; k++)
@@ -173,6 +177,15 @@ int main(int argc, char **argv)
 					}
 					smag1[ns] = norm(mtemp);
 
+					if (hamil != 'i' && hamil != 'I')
+					{
+						tchargestemp = curr_state.tcharge();
+						for(int tc_idx=0; tc_idx < tc_size; tc_idx++)
+						{
+							tcharges1[tc_idx][ns] = tchargestemp[tc_idx];
+						}
+					}
+
 					// Add sample to print lattice
 					if(print_latt && !distributed)
 					{
@@ -181,8 +194,8 @@ int main(int argc, char **argv)
 				}
 				// print values, lattice and checkpoint
 				print_TD_h5(magx1, magy1, magz1, mag1, ener1, smagx1, smagy1,
-					     smagz1, smag1, N_samp, protocol, i, j, v2_size, f_id,
-						 hamil, distributed, k);
+					     smagz1, smag1, tcharges1, N_samp, protocol, i, j,
+						 v2_size, tc_size, f_id, hamil, distributed, k);
 				if (print_latt && !distributed)
 				{
 					std::string lname = latt_name(protocol, i, j);
@@ -234,6 +247,7 @@ int main(int argc, char **argv)
 	dealloc_1darr<double>(smagy1);
 	dealloc_1darr<double>(smagz1);
 	dealloc_2darr<bool>(v1_size, cpoint);
+	dealloc_2darr<double>(tc_size, tcharges1);
 
     // Finish program
 	MPI_Finalize();

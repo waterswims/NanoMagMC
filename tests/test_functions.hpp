@@ -1,9 +1,15 @@
 #ifndef _TESTFUNCS
 #define _TESTFUNCS
 
+#ifndef _PI
+#define _PI 3.141592653589793
+#endif
+
 #include "../includes/field_type.hpp"
 #include "../includes/hamiltonian.hpp"
 #include <vector>
+#include <iostream>
+#include <cmath>
 
 using namespace std;
 
@@ -122,6 +128,47 @@ field_2d_h gen_2d_heis_afm(double x, double y, double z)
     return field;
 }
 
+field_2d_h gen_2d_skyrm()
+{
+    int tsize = 50;
+    float mid = 24.5, sk_R = 20;
+    bool isPerio = true;
+
+    mid += (!isPerio);
+
+    float k = _PI / sk_R;
+
+    field_2d_h field(tsize, isPerio);
+    vector<int> pos(2);
+    for(int i = (!isPerio); i < (tsize+(!isPerio)); i++)
+    {
+        pos[0] = i;
+        float dx = i-mid;
+        for(int j = (!isPerio); j < (tsize+(!isPerio)); j++)
+        {
+            pos[1] = j;
+            float dy = j - mid;
+            float r2 = pow(dx, 2) + pow(dy, 2);
+            float r = pow(r2, 0.5);
+            if(r >= sk_R)
+            {
+                field.fill_val_h(pos, 0, 0, -1);
+            }
+            else
+            {
+                float phi = atan2(i-mid, j-mid);
+                float x = -sin(k*r)*cos(phi);
+                float y = sin(k*r)*sin(phi);
+                float z = cos(k*r);
+                field.fill_val_h(pos, x, y, z);
+            }
+        }
+    }
+    field.fill_ghost((!isPerio));
+
+    return field;
+}
+
 field_3d_h gen_3d_heis_fm(double x, double y, double z)
 {
     field_3d_h field(10, false);
@@ -162,6 +209,51 @@ field_3d_h gen_3d_heis_afm(double x, double y, double z)
         }
     }
     field.fill_ghost(1);
+    return field;
+}
+
+field_3d_h gen_3d_skyrm()
+{
+    int tsize = 50;
+    float mid = 24.5, sk_R = 20;
+    bool isPerio = true;
+
+    mid += (!isPerio);
+
+    float k = _PI / sk_R;
+
+    field_3d_h field(tsize, isPerio);
+    vector<int> pos(3);
+    for(int k2 = (!isPerio); k2 < (tsize+(!isPerio)); k2++)
+    {
+        pos[2] = k2;
+        for(int i = (!isPerio); i < (tsize+(!isPerio)); i++)
+        {
+            pos[0] = i;
+            float dx = i-mid;
+            for(int j = (!isPerio); j < (tsize+(!isPerio)); j++)
+            {
+                pos[1] = j;
+                float dy = j - mid;
+                float r2 = pow(dx, 2) + pow(dy, 2);
+                float r = pow(r2, 0.5);
+                if(r >= sk_R)
+                {
+                    field.fill_val_h(pos, 0, 0, -1);
+                }
+                else
+                {
+                    float phi = atan2(i-mid, j-mid);
+                    float x = -sin(k*r)*cos(phi);
+                    float y = sin(k*r)*sin(phi);
+                    float z = cos(k*r);
+                    field.fill_val_h(pos, x, y, z);
+                }
+            }
+        }
+    }
+    field.fill_ghost((!isPerio));
+
     return field;
 }
 

@@ -5,6 +5,10 @@
 #include "array_alloc.hpp"
 #include <vector>
 
+#ifndef _PI
+#define _PI 3.141592653589793
+#endif
+
 class field_type;
 
 using namespace std;
@@ -26,6 +30,7 @@ public:
     virtual void get_test(double &x, double &y, double &z){}
     virtual void init_dim(field_type* field) {}
     virtual void set_H(double Hin) {}
+    virtual vector<double> calc_top_charge(field_type* lattice) {}
     // virtual double get_Dx(){return 0;}
     // virtual double get_Dy(){return 0;}
     // virtual vector<double>* get_xs(){return NULL;}
@@ -66,7 +71,10 @@ protected:
     vector<double> H, J;
     double** adj;
     vector<double> vsum, curr, H_sum, J_sum, test;
+    vector<double> tchar, s2, s3, sbuff;
     vector<int> pos;
+    bool is3d;
+    int tchar_size;
 public:
     ham_heis(){}
     ham_heis(double Hin, double Jin);
@@ -83,6 +91,7 @@ public:
     void get_test(double &x, double &y, double &z)
         {x = test[0]; y = test[1]; z = test[2];}
     void set_H(double Hin) {H[2] = Hin;}
+    vector<double> calc_top_charge(field_type* lattice);
 };
 
 class ham_FePt: public ham_heis

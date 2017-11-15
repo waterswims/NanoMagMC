@@ -339,6 +339,11 @@ double state::energy()
     return hamil->calc_E(field);
 }
 
+vector<double> state::tcharge()
+{
+    return hamil->calc_top_charge(field);
+}
+
 int state::num_spins()
 {
     return num;

@@ -262,6 +262,17 @@ TEST(Heis_model, 2d_dE_consist)
     }
 }
 
+TEST(Heis_model, 2d_top_charge)
+{
+    field_2d_h field = gen_2d_skyrm();
+    ham_heis hamil(0, 1);
+    hamil.init_dim(&field);
+
+    vector<double> tcs = hamil.calc_top_charge(&field);
+
+    EXPECT_NEAR(tcs[0], -1, 1e-4);
+}
+
 ///////////////////////////////////////////////////////
 // Heisenberg model tests - 3D
 ///////////////////////////////////////////////////////
@@ -519,6 +530,20 @@ TEST(Heis_model, 3d_dE_consist)
         double new_E = hamil.calc_E(&field);
         EXPECT_NEAR(old_E + dE, new_E, abs(new_E*1e-10));
         old_E = new_E;
+    }
+}
+
+TEST(Heis_model, 3d_top_charge)
+{
+    field_3d_h field = gen_3d_skyrm();
+    ham_heis hamil(0, 1);
+    hamil.init_dim(&field);
+
+    vector<double> tcs = hamil.calc_top_charge(&field);
+
+    for(int i = 0; i < 50; i++)
+    {
+        EXPECT_NEAR(tcs[i], -1, 1e-4);
     }
 }
 

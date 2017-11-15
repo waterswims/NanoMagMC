@@ -22,7 +22,9 @@ std::string check_h5_file(const double J,
                            const double* Ts,
                            const double* Hs,
                            const int v1_size,
-                           bool** checkp)
+                           const int tc_size,
+                           bool** checkp,
+                           bool &file_exists)
 {
    std::stringstream prestream, datstream;
    std::string datname;
@@ -48,8 +50,10 @@ std::string check_h5_file(const double J,
    std::ifstream fin(prefix);
    if (!fin)
    {
+    //    std::cout << "Here" << std::endl;
+    //    exit(101);
        create_h5_file(prefix, hamil, distrib, N_temps, N_fields, N_samps,
-                      N_latts, Ts, Hs, v1_size);
+                      N_latts, Ts, Hs, v1_size, tc_size);
        for(int i=0; i<v1_size; i++)
        {
            for(int j=0; j<N_latts; j++)
@@ -83,6 +87,7 @@ std::string check_h5_file(const double J,
        dealloc_1darr<int>(input);
        H5Dclose(dset_id);
        H5Fclose(f_id);
+       file_exists = true;
    }
    return prefix;
 }
@@ -96,7 +101,8 @@ void create_h5_file(std::string prefix,
                    const int N_latts,
                    const double* Ts,
                    const double* Hs,
-                   const int v1_size)
+                   const int v1_size,
+                   const int tc_size)
 {
     // create file
     hid_t plist_id = H5Pcreate(H5P_FILE_ACCESS);
@@ -124,9 +130,6 @@ void create_h5_file(std::string prefix,
         dspace_id, H5P_DEFAULT, H5P_DEFAULT, H5P_DEFAULT);
     H5Dclose(dset_id);
     dset_id = H5Dcreate(file_id, "/Fulldat/energies", H5T_NATIVE_DOUBLE,
-        dspace_id, H5P_DEFAULT, H5P_DEFAULT, H5P_DEFAULT);
-    H5Dclose(dset_id);
-    dset_id = H5Dcreate(file_id, "/Fulldat/top_chars", H5T_NATIVE_DOUBLE,
         dspace_id, H5P_DEFAULT, H5P_DEFAULT, H5P_DEFAULT);
     H5Dclose(dset_id);
     dset_id = H5Dcreate(file_id, "/Fulldat/sub_mags", H5T_NATIVE_DOUBLE,
@@ -188,27 +191,39 @@ void create_h5_file(std::string prefix,
     H5Dclose(dset_id);
     H5Sclose(dspace_id);
 
+    if (hamil != 'i' && hamil != 'I' && !distrib)
+    {
+        hsize_t tc_dims[4] = {N_fields, N_temps, tc_size, N_samps*N_latts};
+        dspace_id = H5Screate_simple(4, tc_dims, NULL);
+        dset_id = H5Dcreate(file_id, "/Fulldat/top_chars", H5T_NATIVE_DOUBLE,
+            dspace_id, H5P_DEFAULT, H5P_DEFAULT, H5P_DEFAULT);
+        H5Dclose(dset_id);
+        H5Sclose(dspace_id);
+    }
+
     H5Fclose(file_id);
 }
 
 void print_TD_h5(const double* magx,
-               const double* magy,
-               const double* magz,
-               const double* mag,
-               const double* ener,
-               const double* smagx,
-               const double* smagy,
-               const double* smagz,
-               const double* smag,
-               const int N_samp,
-               const int protocol,
-               const int var1,
-               const int var2,
-               const int v2max,
-               const std::string prefix,
-               const char hamil,
-               const bool distrib,
-               const int latt_num)
+             const double* magy,
+             const double* magz,
+             const double* mag,
+             const double* ener,
+             const double* smagx,
+             const double* smagy,
+             const double* smagz,
+             const double* smag,
+             double** tcs,
+             const int N_samp,
+             const int protocol,
+             const int var1,
+             const int var2,
+             const int v2max,
+             const int tc_size,
+             const std::string prefix,
+             const char hamil,
+             const bool distrib,
+             const int latt_num)
 {
     // Get protocol position
     int H, T;
@@ -252,13 +267,6 @@ void print_TD_h5(const double* magx,
     H5Dclose(dset_id);
 
     dset_id = H5Dopen1(f_id, "/Fulldat/sub_mags");
-    slab_id = H5Dget_space(dset_id);
-    H5Sselect_hyperslab(slab_id, H5S_SELECT_SET, offset, NULL, count, NULL);
-    H5Dwrite(dset_id, H5T_NATIVE_DOUBLE, dspace_id, slab_id, plist_id, smag);
-    H5Sclose(slab_id);
-    H5Dclose(dset_id);
-
-    dset_id = H5Dopen1(f_id, "/Fulldat/top_chars");
     slab_id = H5Dget_space(dset_id);
     H5Sselect_hyperslab(slab_id, H5S_SELECT_SET, offset, NULL, count, NULL);
     H5Dwrite(dset_id, H5T_NATIVE_DOUBLE, dspace_id, slab_id, plist_id, smag);
@@ -316,6 +324,28 @@ void print_TD_h5(const double* magx,
         H5Dclose(dset_id);
     }
     H5Sclose(dspace_id);
+
+    if (hamil != 'i' && hamil != 'I' && !distrib)
+    {
+        hsize_t count3[4] = {1, 1, 1, N_samp};
+        hsize_t offset3[4] = {H, T, 0, latt_num*N_samp};
+
+        // Top charges
+        dset_id = H5Dopen1(f_id, "/Fulldat/top_chars");
+        for(int tc_idx = 0; tc_idx < tc_size; tc_idx++)
+        {
+            offset3[2] = tc_idx;
+            slab_id = H5Dget_space(dset_id);
+            dspace_id = H5Screate_simple(4, count3, NULL);
+            H5Sselect_hyperslab(slab_id, H5S_SELECT_SET, offset3, NULL, count3,
+                NULL);
+            H5Dwrite(dset_id, H5T_NATIVE_DOUBLE, dspace_id, slab_id, plist_id,
+                tcs[tc_idx]);
+            H5Sclose(slab_id);
+            H5Sclose(dspace_id);
+        }
+        H5Dclose(dset_id);
+    }
 
     // Print the checkpoint
     if(var2 == v2max - 1)

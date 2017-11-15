@@ -406,7 +406,6 @@ void field_2d_h::get_2dfield_h(double** &x, double** &y, double** &z) const
 
 void field_2d_h::h_adjacent(vector<int>& position, double** out)
 {
-    int dirsx[4], dirsy[4];
     dirsx[0] = boundmovedown(position[0] - 1, totsize);
     dirsx[1] = boundmoveup(position[0] + 1, totsize);
     dirsx[2] = position[0];
@@ -871,7 +870,6 @@ void field_3d_h::get_3dfield_h(double*** &x, double*** &y, double*** &z) const
 
 void field_3d_h::h_adjacent(vector<int>& position, double** out)
 {
-    int dirsx[6], dirsy[6], dirsz[6];
     dirsx[0] = boundmovedown(position[0] - 1, totsize);
     dirsx[1] = boundmoveup(position[0] + 1, totsize);
     dirsx[2] = position[0];

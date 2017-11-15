@@ -34,6 +34,7 @@ public:
     vector<double> magnetisation();
     vector<double> submag(int subnumber);
     double energy();
+    vector<double> tcharge();
     int num_spins();
     int sub_num(int subnumber);
     void init_lattice();

@@ -102,6 +102,7 @@ protected:
     double** spinx;
     double** spiny;
     double** spinz;
+    int dirsx[4], dirsy[4];
 public:
     field_2d_h();
     field_2d_h(int size, bool isperio);
@@ -167,6 +168,7 @@ protected:
     double*** spiny;
     double*** spinz;
     int** postemp;
+    int dirsx[6], dirsy[6], dirsz[6];
 public:
     field_3d_h();
     field_3d_h(int size, bool isperio);

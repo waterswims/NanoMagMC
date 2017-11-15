@@ -132,6 +132,16 @@ ham_heis::ham_heis(double Hin, double Jin)
     H_sum.resize(4);
     J_sum.resize(4);
     test.resize(3);
+    s2.resize(4);
+    s3.resize(4);
+    sbuff.resize(4);
+    #pragma simd
+    for(unsigned int i = 0; i < 4; i++)
+    {
+        s2[i] = 0;
+        s3[i] = 0;
+        sbuff[i] = 0;
+    }
 }
 
 ham_heis::ham_heis(ham_type& other)
@@ -143,6 +153,16 @@ ham_heis::ham_heis(ham_type& other)
     H_sum.resize(4);
     J_sum.resize(4);
     test.resize(3);
+    s2.resize(4);
+    s3.resize(4);
+    sbuff.resize(4);
+    #pragma simd
+    for(unsigned int i = 0; i < 4; i++)
+    {
+        s2[i] = 0;
+        s3[i] = 0;
+        sbuff[i] = 0;
+    }
 }
 
 ham_heis& ham_heis::operator=(ham_type& other)
@@ -154,6 +174,16 @@ ham_heis& ham_heis::operator=(ham_type& other)
     H_sum.resize(4);
     J_sum.resize(4);
     test.resize(3);
+    s2.resize(4);
+    s3.resize(4);
+    sbuff.resize(4);
+    #pragma simd
+    for(unsigned int i = 0; i < 4; i++)
+    {
+        s2[i] = 0;
+        s3[i] = 0;
+        sbuff[i] = 0;
+    }
 
     return *this;
 }
@@ -271,10 +301,61 @@ double ham_heis::dE(field_type* lattice, vector<int>& position)
     return dE;
 }
 
+vector<double> ham_heis::calc_top_charge(field_type* lattice)
+{
+    int sum=0;
+    int start = (lattice->get_totsize() - lattice->get_insize()) / 2;
+    pos.resize(dim);
+    for (vector<int>::iterator it = pos.begin(); it != pos.end(); it++)
+    {
+        *it = start;
+    }
+    bool finished = false;
+    int arrsize = dim*2;
+    int tslice;
+
+    #pragma simd
+    for(unsigned int i = 0; i < tchar_size; i++)
+    {
+        tchar[i] = 0;
+    }
+
+    while (!finished)
+    {
+        if(is3d) {tslice = pos[2]-start;}
+        else {tslice = 0;}
+        lattice->h_adjacent(pos, adj);
+        lattice->h_next(finished, pos, curr);
+
+        for (unsigned int i = 0; i < 3; i++)
+        {
+            s2[i] = adj[i][1];
+            s3[i] = adj[i][3];
+        }
+        tchar[tslice] += solid_angle(curr, s2, s3, sbuff);
+
+        for (unsigned int i = 0; i < 3; i++)
+        {
+            s2[i] = adj[i][0];
+            s3[i] = adj[i][2];
+        }
+        tchar[tslice] += solid_angle(curr, s2, s3, sbuff);
+    }
+    #pragma simd
+    for(unsigned int i = 0; i < tchar_size; i++)
+    {
+        tchar[i] /= 2 * _PI;
+    }
+    return tchar;
+}
+
 void ham_heis::init_dim(field_type* field)
 {
     dim = field->get_dim();
     adj = alloc_2darr<double>(4, dim*2);
+    is3d = (field->get_ft() == 3);
+    tchar_size = is3d*field->get_insize() + (!is3d);
+    tchar.resize(tchar_size);
     // field->alloc_pos(1);
 }
 
@@ -291,6 +372,16 @@ ham_FePt::ham_FePt()
     test.resize(4);
     H.resize(4);
     H[2] = 0;
+    s2.resize(4);
+    s3.resize(4);
+    sbuff.resize(4);
+    #pragma simd
+    for(unsigned int i = 0; i < 4; i++)
+    {
+        s2[i] = 0;
+        s3[i] = 0;
+        sbuff[i] = 0;
+    }
 }
 
 ham_FePt::ham_FePt(double Hin)
@@ -302,6 +393,16 @@ ham_FePt::ham_FePt(double Hin)
     test.resize(4);
     H.resize(4);
     H[2] = Hin;
+    s2.resize(4);
+    s3.resize(4);
+    sbuff.resize(4);
+    #pragma simd
+    for(unsigned int i = 0; i < 4; i++)
+    {
+        s2[i] = 0;
+        s3[i] = 0;
+        sbuff[i] = 0;
+    }
 }
 
 ham_FePt::ham_FePt(ham_type& other)
@@ -312,6 +413,16 @@ ham_FePt::ham_FePt(ham_type& other)
     adj_curr.resize(4);
     test.resize(4);
     H = other.get_Hs();
+    s2.resize(4);
+    s3.resize(4);
+    sbuff.resize(4);
+    #pragma simd
+    for(unsigned int i = 0; i < 4; i++)
+    {
+        s2[i] = 0;
+        s3[i] = 0;
+        sbuff[i] = 0;
+    }
 }
 
 ham_FePt& ham_FePt::operator=(ham_type& other)
@@ -322,6 +433,16 @@ ham_FePt& ham_FePt::operator=(ham_type& other)
     adj_curr.resize(4);
     test.resize(4);
     H = other.get_Hs();
+    s2.resize(4);
+    s3.resize(4);
+    sbuff.resize(4);
+    #pragma simd
+    for(unsigned int i = 0; i < 4; i++)
+    {
+        s2[i] = 0;
+        s3[i] = 0;
+        sbuff[i] = 0;
+    }
     return *this;
 }
 
@@ -432,6 +553,17 @@ void ham_FePt::init_dim(field_type* field)
 {
     dim = field->get_dim();
     adj = alloc_2darr<double>(4, dxs.size());
+
+    s2.resize(4);
+    s3.resize(4);
+    sbuff.resize(4);
+    #pragma simd
+    for(unsigned int i = 0; i < 4; i++)
+    {
+        s2[i] = 0;
+        s3[i] = 0;
+        sbuff[i] = 0;
+    }
     // field->alloc_pos(dxs.size());
 }
 
@@ -473,6 +605,16 @@ ham_skyrm::ham_skyrm(double Hin, double Jin, double Kin)
     J2_sum.resize(4);
     cmp.resize(4);
     test.resize(3);
+    s2.resize(4);
+    s3.resize(4);
+    sbuff.resize(4);
+    #pragma simd
+    for(unsigned int i = 0; i < 4; i++)
+    {
+        s2[i] = 0;
+        s3[i] = 0;
+        sbuff[i] = 0;
+    }
     this->set_dirs();
 }
 
@@ -488,6 +630,16 @@ ham_skyrm::ham_skyrm(const ham_type& other)
     J2_sum.resize(4);
     test.resize(3);
     cmp.resize(4);
+    s2.resize(4);
+    s3.resize(4);
+    sbuff.resize(4);
+    #pragma simd
+    for(unsigned int i = 0; i < 4; i++)
+    {
+        s2[i] = 0;
+        s3[i] = 0;
+        sbuff[i] = 0;
+    }
     this->set_dirs();
 }
 
@@ -503,6 +655,16 @@ ham_skyrm& ham_skyrm::operator=(const ham_type& other)
     J2_sum.resize(4);
     cmp.resize(4);
     test.resize(3);
+    s2.resize(4);
+    s3.resize(4);
+    sbuff.resize(4);
+    #pragma simd
+    for(unsigned int i = 0; i < 4; i++)
+    {
+        s2[i] = 0;
+        s3[i] = 0;
+        sbuff[i] = 0;
+    }
     this->set_dirs();
 
     return *this;

@@ -21,4 +21,9 @@ void AtoLn(double amean, double asd, double &lmean, double &lsd);
 
 int mod(int a, int b);
 
+double solid_angle(const vector<double> &s1,
+                const vector<double> &s2,
+                const vector<double> &s3,
+                vector<double> &buff);
+
 #endif

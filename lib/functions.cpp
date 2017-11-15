@@ -68,3 +68,38 @@ int mod(int a, int b)
     int r = a % b;
     return r < 0 ? r + b : r;
 }
+
+double solid_angle(const vector<double> &s1,
+                const vector<double> &s2,
+                const vector<double> &s3,
+                vector<double> &buff)
+{
+    if(s1[0] == 0 && s1[1] == 0 && s1[2] == 0) {return 0;}
+    else if(s2[0] == 0 && s2[1] == 0 && s2[2] == 0) {return 0;}
+    else if(s3[0] == 0 && s3[1] == 0 && s3[2] == 0) {return 0;}
+
+    double s1s2 = 0, s1s3 = 0, s2s3 = 0;
+    #pragma simd
+    for(unsigned int i = 0; i < 4; i++)
+    {
+        s1s2 += s1[i] * s2[i];
+        s1s3 += s1[i] * s3[i];
+        s2s3 += s2[i] * s3[i];
+    }
+    double rho = 2 * (1 + s1s2) * (1 + s1s3) * (1 + s2s3);
+    double dotsum = 1 + s1s2 + s1s3 + s2s3;
+    buff[0] = s1[1]*s3[2] - s1[2]*s3[1];
+    buff[1] = s1[2]*s3[0] - s1[0]*s3[2];
+    buff[2] = s1[0]*s3[1] - s1[1]*s3[0];
+    double crosssum = 0;
+    #pragma simd
+    for(unsigned int i = 0; i < 4; i++)
+    {
+        crosssum += buff[i] * s2[i];
+    }
+    double cossum = dotsum / rho;
+    double sinsum = crosssum / rho;
+    double ang = atan2(sinsum, cossum);
+
+    return ang;
+}
