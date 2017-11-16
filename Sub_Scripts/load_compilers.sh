@@ -1,5 +1,4 @@
-module load gcc/6.1.0
+module load hdf5/intel-par/1.8.11
 module load intel/2017
 module load intel/mkl/2017
-module load intel/mpi/2017
-source /local/software/intel/2017/bin/compilervars.sh intel64
+export CC=mpic++
