@@ -674,7 +674,8 @@ double ham_skyrm::calc_E(field_type* lattice)
 {
     int sum=0;
     int start = (lattice->get_totsize() - lattice->get_insize()) / 2;
-    double D_sum = 0, D2_sum = 0;
+    // double D_sum = 0, D2_sum = 0;
+    double D_sum = 0;
     pos.resize(dim);
     for (vector<int>::iterator it = pos.begin(); it != pos.end(); it++)
     {
@@ -687,9 +688,9 @@ double ham_skyrm::calc_E(field_type* lattice)
     J_sum[0] = 0;
     J_sum[1] = 0;
     J_sum[2] = 0;
-    J2_sum[0] = 0;
-    J2_sum[1] = 0;
-    J2_sum[2] = 0;
+    // J2_sum[0] = 0;
+    // J2_sum[1] = 0;
+    // J2_sum[2] = 0;
     int arrsize = dim*2;
     while (!finished)
     {
@@ -711,21 +712,21 @@ double ham_skyrm::calc_E(field_type* lattice)
                      curr[(dirs[i]+2)%3]*adj[(dirs[i]+1)%3][i]);
         }
 
-        lattice->h_2adjacent(pos, adj);
-        #pragma simd
-        for (int j = 0; j < 4; j++)
-        {
-            for (int i = 0; i < arrsize; i++)
-            {
-                J2_sum[j] += curr[j]*adj[j][i];
-            }
-        }
+        // lattice->h_2adjacent(pos, adj);
         // #pragma simd
-        for (int i = 0; i < arrsize; i++)
-        {
-            D2_sum += mod[i]*(curr[(dirs[i]+1)%3]*adj[(dirs[i]+2)%3][i] -
-                     curr[(dirs[i]+2)%3]*adj[(dirs[i]+1)%3][i]);
-        }
+        // for (int j = 0; j < 4; j++)
+        // {
+        //     for (int i = 0; i < arrsize; i++)
+        //     {
+        //         J2_sum[j] += curr[j]*adj[j][i];
+        //     }
+        // }
+        // // #pragma simd
+        // for (int i = 0; i < arrsize; i++)
+        // {
+        //     D2_sum += mod[i]*(curr[(dirs[i]+1)%3]*adj[(dirs[i]+2)%3][i] -
+        //              curr[(dirs[i]+2)%3]*adj[(dirs[i]+1)%3][i]);
+        // }
 
         lattice->next(finished, pos);
     }
@@ -734,19 +735,22 @@ double ham_skyrm::calc_E(field_type* lattice)
     {
         H_sum[j] = H_sum[j] * H[j];
         J_sum[j] = J_sum[j] * J[j];
-        J2_sum[j] = J2_sum[j] * J[j] / 16.;
+        // J2_sum[j] = J2_sum[j] * J[j] / 16.;
     }
 
+    // double E = -(H_sum[0] + H_sum[1] + H_sum[2]) -
+    //             0.5*(J_sum[0] + J_sum[1] + J_sum[2] + J2_sum[0] + J2_sum[1] +
+    //                  J2_sum[2]) - 0.5*K*(D_sum + D2_sum/8.);
     double E = -(H_sum[0] + H_sum[1] + H_sum[2]) -
-                0.5*(J_sum[0] + J_sum[1] + J_sum[2] + J2_sum[0] + J2_sum[1] +
-                     J2_sum[2]) - 0.5*K*(D_sum + D2_sum/8.);
+                0.5*(J_sum[0] + J_sum[1] + J_sum[2]) - 0.5*K*D_sum;
 
     return E;
 }
 
 double ham_skyrm::dE(field_type* lattice, vector<int>& position)
 {
-    double D_sum = 0, D2_sum = 0;
+    // double D_sum = 0, D2_sum = 0;
+    double D_sum = 0;
     rand_spin_h(test[0], test[1], test[2]);
     lattice->h_access(position, curr);
     cmp[0] = curr[0] - test[0];
@@ -772,28 +776,30 @@ double ham_skyrm::dE(field_type* lattice, vector<int>& position)
                  cmp[(dirs[i]+2)%3]*adj[(dirs[i]+1)%3][i]);
     }
 
-    lattice->h_2adjacent(position, adj);
-    #pragma simd
-    for(int j = 0; j < 4; j++)
-    {
-        J2_sum[j] = 0;
-        for(int i = 0; i < arrsize; i++)
-        {
-            J2_sum[j] += adj[j][i];
-        }
-    }
+    // lattice->h_2adjacent(position, adj);
     // #pragma simd
-    for (int i = 0; i < arrsize; i++)
-    {
-        D2_sum += mod[i]*(cmp[(dirs[i]+1)%3]*adj[(dirs[i]+2)%3][i] -
-                 cmp[(dirs[i]+2)%3]*adj[(dirs[i]+1)%3][i]);
-    }
+    // for(int j = 0; j < 4; j++)
+    // {
+    //     J2_sum[j] = 0;
+    //     for(int i = 0; i < arrsize; i++)
+    //     {
+    //         J2_sum[j] += adj[j][i];
+    //     }
+    // }
+    // // #pragma simd
+    // for (int i = 0; i < arrsize; i++)
+    // {
+    //     D2_sum += mod[i]*(cmp[(dirs[i]+1)%3]*adj[(dirs[i]+2)%3][i] -
+    //              cmp[(dirs[i]+2)%3]*adj[(dirs[i]+1)%3][i]);
+    // }
 
     double dEJ = J[0] * cmp[0] * vsum[0] + J[1] * cmp[1] * vsum[1] + J[2] * cmp[2] * vsum[2];
 
-    double dEJ2 = (J[0] * cmp[0] * J2_sum[0] + J[1] * cmp[1] * J2_sum[1] + J[2] * cmp[2] * J2_sum[2]) / 16.;
+    // double dEJ2 = (J[0] * cmp[0] * J2_sum[0] + J[1] * cmp[1] * J2_sum[1] + J[2] * cmp[2] * J2_sum[2]) / 16.;
 
-    double dE = dEH + dEJ + dEJ2 + K * (D_sum + D2_sum / 8.);
+    // double dE = dEH + dEJ + dEJ2 + K * (D_sum + D2_sum / 8.);
+
+    double dE = dEH + dEJ + K * D_sum;
 
     return dE;
 }
