@@ -60,6 +60,8 @@ public:
         const int Tmax,
         const int Hmax){}
     int get_ft() const {return ft;}
+    virtual void send_data(int dest_rank){}
+    virtual void recv_data(int src_rank){}
 };
 
 class field_cluster_h: public field_type
@@ -124,6 +126,8 @@ public:
     void fill_val_h(vector<int>& position, double x, double y, double z);
     void add_val_h(vector<int>& position, vector<double> &in);
     void change_to_test(vector<int>& position, ham_type* hamil);
+    void send_data(int dest_rank);
+    void recv_data(int src_rank);
 };
 
 class field_2d_i: public field_2d
@@ -147,6 +151,8 @@ public:
     void fill_zero(vector<int>& position);
     void change_to_test(vector<int>& position, ham_type* hamil);
     void fill_val_i(vector<int>& position, int val);
+    void send_data(int dest_rank);
+    void recv_data(int src_rank);
 };
 
 class field_3d: public field_type
@@ -198,6 +204,8 @@ public:
         const string groupname,
         const int Tmax,
         const int Hmax);
+    void send_data(int dest_rank);
+    void recv_data(int src_rank);
 };
 
 class field_3d_i: public field_3d
@@ -221,6 +229,8 @@ public:
     void fill_zero(vector<int>& position);
     void change_to_test(vector<int>& position, ham_type* hamil);
     void fill_val_i(vector<int>& position, int val);
+    void send_data(int dest_rank);
+    void recv_data(int src_rank);
 };
 
 #endif

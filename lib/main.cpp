@@ -122,18 +122,42 @@ int main(int argc, char **argv)
 		// main loop
 		for (int i = 0; i < v1_size; i++)
 		{
+			// Only carry on if to be run by this process
+			if (i%comm_size != rank)
+			{
+				continue;
+			}
+
+			// Grab the previous state from the previous rank unless first
+			if (i != 0)
+			{
+				int prev_rank = (rank+comm_size-1)%comm_size;
+				base_state.recv_latt_data(prev_rank);
+			}
+
 			// Change Temp/field
 			base_state.change_v1(protocol, var1_list[i]);
 			// Equillibriation
 			base_state.equil(Eq_steps*nums);
-			// Only carry on if to be run by this process and not checkpointed
-			if (i%comm_size != rank || cpoint[i][k])
+
+			// Send data to next rank, unless final rank
+			if(rank != comm_size-1 && i != v1_size-1)
 			{
-				continue;
+				int next_rank = (rank+1)%comm_size;
+				base_state.send_latt_data(next_rank);
 			}
+
+			// If checkpointed, no need to run line
+			// if(cpoint[i][k])
+			// {
+			// 	continue;
+			// }
+
 			// Copy
 			curr_state = base_state;
-	        for (int j = 0; j < v2_size; j++)
+
+			// second loop, unless checkpointed
+	        for (int j = 0; j < v2_size && (!cpoint[i][k]); j++)
 	        {
 				// Change Temp/field
 				curr_state.change_v2(protocol, var2_list[j]);
@@ -205,6 +229,14 @@ int main(int argc, char **argv)
 					curr_state.ptf(f_id, lname);
 				}
 	        }
+
+			// Send data to first rank, unless final i
+			if(rank == comm_size-1 && i != v1_size-1)
+			{
+				int next_rank = (rank+1)%comm_size;
+				base_state.send_latt_data(next_rank);
+			}
+
 		}
 		// Extra File open/closes
 		if(rank >= v1_size - (v1_size/comm_size)*comm_size &&
@@ -220,9 +252,16 @@ int main(int argc, char **argv)
 
 				if (print_latt && !distributed)
 				{
-					hid_t plist_id = H5Pcreate(H5P_FILE_ACCESS);
+					plist_id = H5Pcreate(H5P_FILE_ACCESS);
 				    H5Pset_fapl_mpio(plist_id, MPI_COMM_WORLD, MPI_INFO_NULL);
-				    hid_t file_id = H5Fopen(f_id.c_str(), H5F_ACC_RDWR,
+				    file_id = H5Fopen(f_id.c_str(), H5F_ACC_RDWR,
+						plist_id);
+				    H5Pclose(plist_id);
+					H5Fclose(file_id);
+
+					plist_id = H5Pcreate(H5P_FILE_ACCESS);
+				    H5Pset_fapl_mpio(plist_id, MPI_COMM_WORLD, MPI_INFO_NULL);
+				    file_id = H5Fopen(f_id.c_str(), H5F_ACC_RDWR,
 						plist_id);
 				    H5Pclose(plist_id);
 					H5Fclose(file_id);

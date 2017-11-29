@@ -422,3 +422,13 @@ void state::change_v2(int protocol, double v2)
         break;
     }
 }
+
+void state::send_latt_data(int dest_rank)
+{
+    field->send_data(dest_rank);
+}
+
+void state::recv_latt_data(int src_rank)
+{
+    field->recv_data(src_rank);
+}

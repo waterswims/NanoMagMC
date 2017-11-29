@@ -46,6 +46,8 @@ public:
     void add_to_av(field_type* other_field);
     void change_v1(int protocol, double v1);
     void change_v2(int protocol, double v2);
+    void send_latt_data(int dest_rank);
+    void recv_latt_data(int src_rank);
 };
 
 #endif

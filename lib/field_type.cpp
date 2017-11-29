@@ -469,6 +469,27 @@ void field_2d_h::add_val_h(vector<int>& position, vector<double> &in)
     spinz[position[0]][position[1]] += in[2];
 }
 
+void field_2d_h::send_data(int dest_rank)
+{
+    MPI_Ssend(spinx[0], totsize*totsize, MPI_DOUBLE, dest_rank, 0,
+        MPI_COMM_WORLD);
+    MPI_Ssend(spiny[0], totsize*totsize, MPI_DOUBLE, dest_rank, 0,
+        MPI_COMM_WORLD);
+    MPI_Ssend(spinz[0], totsize*totsize, MPI_DOUBLE, dest_rank, 0,
+        MPI_COMM_WORLD);
+}
+
+void field_2d_h::recv_data(int src_rank)
+{
+    MPI_Status stat;
+    MPI_Recv(spinx[0], totsize*totsize, MPI_DOUBLE, src_rank, 0, MPI_COMM_WORLD,
+        &stat);
+    MPI_Recv(spiny[0], totsize*totsize, MPI_DOUBLE, src_rank, 0, MPI_COMM_WORLD,
+        &stat);
+    MPI_Recv(spinz[0], totsize*totsize, MPI_DOUBLE, src_rank, 0, MPI_COMM_WORLD,
+        &stat);
+}
+
 ///////////////////////
 // 2d Ising-model
 ///////////////////////
@@ -634,6 +655,19 @@ void field_2d_i::fill_val_i(vector<int>& position, int val)
 void field_2d_i::change_to_test(vector<int>& position, ham_type* hamil)
 {
     spin[position[0]][position[1]] = -spin[position[0]][position[1]];
+}
+
+void field_2d_i::send_data(int dest_rank)
+{
+    MPI_Ssend(spin[0], totsize*totsize, MPI_INT, dest_rank, 0,
+        MPI_COMM_WORLD);
+}
+
+void field_2d_i::recv_data(int src_rank)
+{
+    MPI_Status stat;
+    MPI_Recv(spin[0], totsize*totsize, MPI_INT, src_rank, 0, MPI_COMM_WORLD,
+        &stat);
 }
 
 ///////////////////////
@@ -1097,6 +1131,27 @@ void field_3d_h::print_setup(const string filename,
     H5Fclose(f_id);
 }
 
+void field_3d_h::send_data(int dest_rank)
+{
+    MPI_Ssend(spinx[0][0], totsize*totsize*totsize, MPI_DOUBLE, dest_rank, 0,
+        MPI_COMM_WORLD);
+    MPI_Ssend(spiny[0][0], totsize*totsize*totsize, MPI_DOUBLE, dest_rank, 0,
+        MPI_COMM_WORLD);
+    MPI_Ssend(spinz[0][0], totsize*totsize*totsize, MPI_DOUBLE, dest_rank, 0,
+        MPI_COMM_WORLD);
+}
+
+void field_3d_h::recv_data(int src_rank)
+{
+    MPI_Status stat;
+    MPI_Recv(spinx[0][0], totsize*totsize*totsize, MPI_DOUBLE, src_rank, 0,
+        MPI_COMM_WORLD, &stat);
+    MPI_Recv(spiny[0][0], totsize*totsize*totsize, MPI_DOUBLE, src_rank, 0,
+        MPI_COMM_WORLD, &stat);
+    MPI_Recv(spinz[0][0], totsize*totsize*totsize, MPI_DOUBLE, src_rank, 0,
+        MPI_COMM_WORLD, &stat);
+}
+
 ///////////////////////
 // 3d Ising-model
 ///////////////////////
@@ -1281,4 +1336,17 @@ void field_3d_i::fill_val_i(vector<int>& position, int val)
 void field_3d_i::change_to_test(vector<int>& position, ham_type* hamil)
 {
     spin[position[0]][position[1]][position[2]] = -spin[position[0]][position[1]][position[2]];
+}
+
+void field_3d_i::send_data(int dest_rank)
+{
+    MPI_Ssend(spin[0][0], totsize*totsize*totsize, MPI_INT, dest_rank, 0,
+        MPI_COMM_WORLD);
+}
+
+void field_3d_i::recv_data(int src_rank)
+{
+    MPI_Status stat;
+    MPI_Recv(spin[0][0], totsize*totsize*totsize, MPI_INT, src_rank, 0,
+        MPI_COMM_WORLD, &stat);
 }
