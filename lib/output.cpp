@@ -13,6 +13,7 @@ std::string check_h5_file(const double J,
                            const double K,
                            const char shape,
                            const char hamil,
+                           const bool perio,
                            const int prot,
                            const bool distrib,
                            const int N_temps,
@@ -39,11 +40,12 @@ std::string check_h5_file(const double J,
        prestream << "-s_" << size;
    }
    prestream << "-k_" << k;
-   if (hamil == 's' && hamil == 'S')
+   if (hamil == 's' || hamil == 'S')
    {
        prestream << "-K_" << K;
    }
-   prestream << "-sh_" << shape << "-ha_" << hamil << "-pr_" << prot << ".h5";
+   prestream << "-sh_" << shape << "-ha_" << hamil << "-per_" << int(perio);
+   prestream << "-pr_" << prot << ".h5";
    prestream >> prefix;
 
    // Check the file exists

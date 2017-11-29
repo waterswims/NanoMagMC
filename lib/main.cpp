@@ -85,9 +85,9 @@ int main(int argc, char **argv)
 	bool file_exists = false;
 	bool** cpoint = alloc_2darr<bool>(v1_size, N_latts);
 	std::string f_id = check_h5_file(J, size, amean, asd, k, K, shape,
-									  hamil, protocol, distributed, num_Ts,
-									  num_Hs, N_samp, N_latts, Ts, Hs, v1_size,
-								      tc_size, cpoint, file_exists);
+									  hamil, periodic, protocol, distributed,
+									  num_Ts, num_Hs, N_samp, N_latts, Ts, Hs,
+									  v1_size, tc_size, cpoint, file_exists);
 	if ((!file_exists))
 	{
 		summed_field->print_setup(f_id, num_Ts, num_Hs);
