@@ -42,9 +42,9 @@ int main(int argc, char **argv)
 	AtoLn(amean, asd, lmean, lsd);
 
 	// load temperatures and fields
-	double* Ts;
+	float* Ts;
 	int num_Ts;
-	double* Hs;
+	float* Hs;
 	int num_Hs;
 	load_Hs_Ts(temp_name, Ts, num_Ts, field_name, Hs, num_Hs);
 	double Tmin(Ts[num_Ts-1]), Tmax(Ts[0]);
@@ -65,8 +65,8 @@ int main(int argc, char **argv)
     }
 
 	// set protocol
-	double* var1_list;
-	double* var2_list;
+	float* var1_list;
+	float* var2_list;
 	int v1_size, v2_size;
 	set_protocol(protocol, var1_list, var2_list, v1_size, v2_size,Hs, Ts,
 		num_Hs, num_Ts);
@@ -95,16 +95,16 @@ int main(int argc, char **argv)
 
 	// Storage Variables
 	int nums, s_nums;
-	double* mag1 = alloc_1darr<double>(N_samp);
-	double* ener1 = alloc_1darr<double>(N_samp);
-	double* magx1 = alloc_1darr<double>(N_samp);
-	double* magy1 = alloc_1darr<double>(N_samp);
-	double* magz1 = alloc_1darr<double>(N_samp);
-	double* smag1 = alloc_1darr<double>(N_samp);
-	double* smagx1 = alloc_1darr<double>(N_samp);
-	double* smagy1 = alloc_1darr<double>(N_samp);
-	double* smagz1 = alloc_1darr<double>(N_samp);
-	double** tcharges1 = alloc_2darr<double>(tc_size, N_samp);
+	float* mag1 = alloc_1darr<float>(N_samp);
+	float* ener1 = alloc_1darr<float>(N_samp);
+	float* magx1 = alloc_1darr<float>(N_samp);
+	float* magy1 = alloc_1darr<float>(N_samp);
+	float* magz1 = alloc_1darr<float>(N_samp);
+	float* smag1 = alloc_1darr<float>(N_samp);
+	float* smagx1 = alloc_1darr<float>(N_samp);
+	float* smagy1 = alloc_1darr<float>(N_samp);
+	float* smagz1 = alloc_1darr<float>(N_samp);
+	float** tcharges1 = alloc_2darr<float>(tc_size, N_samp);
 
 	vector<double> mtemp;
 	vector<double> tchargestemp;
@@ -235,19 +235,19 @@ int main(int argc, char **argv)
 	}
 
 	// Destroy arrays
-	dealloc_1darr<double>(Ts);
-	dealloc_1darr<double>(Hs);
-	dealloc_1darr<double>(mag1);
-	dealloc_1darr<double>(ener1);
-	dealloc_1darr<double>(magx1);
-	dealloc_1darr<double>(magy1);
-	dealloc_1darr<double>(magz1);
-	dealloc_1darr<double>(smag1);
-	dealloc_1darr<double>(smagx1);
-	dealloc_1darr<double>(smagy1);
-	dealloc_1darr<double>(smagz1);
+	dealloc_1darr<float>(Ts);
+	dealloc_1darr<float>(Hs);
+	dealloc_1darr<float>(mag1);
+	dealloc_1darr<float>(ener1);
+	dealloc_1darr<float>(magx1);
+	dealloc_1darr<float>(magy1);
+	dealloc_1darr<float>(magz1);
+	dealloc_1darr<float>(smag1);
+	dealloc_1darr<float>(smagx1);
+	dealloc_1darr<float>(smagy1);
+	dealloc_1darr<float>(smagz1);
 	dealloc_2darr<bool>(v1_size, cpoint);
-	dealloc_2darr<double>(tc_size, tcharges1);
+	dealloc_2darr<float>(tc_size, tcharges1);
 
     // Finish program
 	MPI_Finalize();

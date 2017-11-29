@@ -11,8 +11,8 @@ void read_all_vars(string f_name, double& size, double& J, double& k,
     double& K, bool& print_latt);
 
 void load_Hs_Ts(string Tname,
-                double* &Ts,
+                float* &Ts,
                 int& Tnum,
                 string Hname,
-                double* &Hs,
+                float* &Hs,
                 int& Hnum);

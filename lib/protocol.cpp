@@ -2,12 +2,12 @@
 
 void set_protocol(
     int proto_code,
-    double*& var1_list,
-    double*& var2_list,
+    float*& var1_list,
+    float*& var2_list,
     int& var1_size,
     int& var2_size,
-    double* Hs,
-    double* Ts,
+    float* Hs,
+    float* Ts,
     int H_size,
     int T_size)
 {

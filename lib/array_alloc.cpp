@@ -146,6 +146,16 @@ T*** deep_copy_3darr(int size_m, int size_n, int size_p, T*** arr, bool contig)
     return out;
 }
 
+template float* alloc_1darr<float>(int size_m);
+template float** alloc_2darr<float>(int size_m, int size_n, bool contig);
+template float*** alloc_3darr<float>(int size_m, int size_n, int size_p, bool contig);
+template void dealloc_1darr<float>(float* arr);
+template void dealloc_2darr<float>(int size_m, float** arr, bool contig);
+template void dealloc_3darr<float>(int size_m, int size_n, float*** arr, bool contig);
+template float* deep_copy_1darr<float>(int size_m, float* arr);
+template float** deep_copy_2darr<float>(int size_m, int size_n, float** arr, bool contig);
+template float*** deep_copy_3darr<float>(int size_m, int size_n, int size_p, float*** arr, bool contig);
+
 template double* alloc_1darr<double>(int size_m);
 template double** alloc_2darr<double>(int size_m, int size_n, bool contig);
 template double*** alloc_3darr<double>(int size_m, int size_n, int size_p, bool contig);

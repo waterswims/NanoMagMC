@@ -95,10 +95,10 @@ void read_all_vars(string f_name, double& size, double& J, double& k,
 }
 
 void load_Hs_Ts(string Tname,
-                double* &Ts,
+                float* &Ts,
                 int& Tnum,
                 string Hname,
-                double* &Hs,
+                float* &Hs,
                 int& Hnum)
 {
     // load temps
@@ -121,7 +121,7 @@ void load_Hs_Ts(string Tname,
     Tnum = i;
     f.close();
 
-    Ts = alloc_1darr<double>(Tnum);
+    Ts = alloc_1darr<float>(Tnum);
 
     f.open(loadname.c_str());
     cont = false;
@@ -150,7 +150,7 @@ void load_Hs_Ts(string Tname,
     Hnum = i;
     f.close();
 
-    Hs = alloc_1darr<double>(Hnum);
+    Hs = alloc_1darr<float>(Hnum);
 
     f.open(loadname.c_str());
     cont = false;

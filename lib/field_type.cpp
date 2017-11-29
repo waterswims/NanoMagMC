@@ -1005,6 +1005,18 @@ void field_3d_h::add_val_h(vector<int>& position, vector<double> &in)
 
 void field_3d_h::print(string filename, string arrname)
 {
+    // Copy to float array
+    float* new_x = alloc_1darr<float>(totsize*totsize*totsize);
+    float* new_y = alloc_1darr<float>(totsize*totsize*totsize);
+    float* new_z = alloc_1darr<float>(totsize*totsize*totsize);
+    #pragma simd
+    for(int i = 0; i < totsize*totsize*totsize; i++)
+    {
+        new_x[i] = spinx[0][0][i];
+        new_y[i] = spinx[0][0][i];
+        new_z[i] = spinx[0][0][i];
+    }
+
     // Open existing file
     hid_t plist_id = H5Pcreate(H5P_FILE_ACCESS);
     H5Pset_fapl_mpio(plist_id, MPI_COMM_WORLD, MPI_INFO_NULL);
@@ -1023,28 +1035,32 @@ void field_3d_h::print(string filename, string arrname)
     // for x
     hid_t slab_id = H5Dget_space(dset_id);
     H5Sselect_hyperslab(slab_id, H5S_SELECT_SET, offset, NULL, count, NULL);
-    H5Dwrite(dset_id, H5T_NATIVE_DOUBLE, slice_space_id, slab_id, plist_id,
-        spinx[0][0]);
+    H5Dwrite(dset_id, H5T_NATIVE_FLOAT, slice_space_id, slab_id, plist_id,
+        new_x);
     H5Sclose(slab_id);
     // for y
     offset[3] = 1;
     slab_id = H5Dget_space(dset_id);
     H5Sselect_hyperslab(slab_id, H5S_SELECT_SET, offset, NULL, count, NULL);
-    H5Dwrite(dset_id, H5T_NATIVE_DOUBLE, slice_space_id, slab_id, plist_id,
-        spiny[0][0]);
+    H5Dwrite(dset_id, H5T_NATIVE_FLOAT, slice_space_id, slab_id, plist_id,
+        new_y);
     H5Sclose(slab_id);
     // for z
     offset[3] = 2;
     slab_id = H5Dget_space(dset_id);
     H5Sselect_hyperslab(slab_id, H5S_SELECT_SET, offset, NULL, count, NULL);
-    H5Dwrite(dset_id, H5T_NATIVE_DOUBLE, slice_space_id, slab_id, plist_id,
-        spinz[0][0]);
+    H5Dwrite(dset_id, H5T_NATIVE_FLOAT, slice_space_id, slab_id, plist_id,
+        new_z);
     H5Sclose(slab_id);
 
     // close
     H5Pclose(plist_id);
     H5Dclose(dset_id);
     H5Fclose(f_id);
+
+    dealloc_1darr<float>(new_x);
+    dealloc_1darr<float>(new_y);
+    dealloc_1darr<float>(new_z);
 }
 
 void field_3d_h::print_setup(const string filename, const int Tmax,
@@ -1069,7 +1085,7 @@ void field_3d_h::print_setup(const string filename, const int Tmax,
             nstream << "/Latt_Print/T_" << i << "-H_" << j;
             nstream >> name;
             nstream.clear();
-            dset_id = H5Dcreate(f_id, name.c_str(), H5T_NATIVE_DOUBLE,
+            dset_id = H5Dcreate(f_id, name.c_str(), H5T_NATIVE_FLOAT,
                 dspace_id, H5P_DEFAULT, H5P_DEFAULT, H5P_DEFAULT);
             H5Dclose(dset_id);
         }
