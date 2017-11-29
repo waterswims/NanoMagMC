@@ -42,7 +42,7 @@ public:
     void change_field(double H);
     state& operator=(const state& other);
     void print_latt();
-    void ptf(string fname);
+    void ptf(string fname, string arrname);
     void add_to_av(field_type* other_field);
     void change_v1(int protocol, double v1);
     void change_v2(int protocol, double v2);

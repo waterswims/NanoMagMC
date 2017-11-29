@@ -121,7 +121,10 @@ void create_h5_file(std::string prefix,
     if (!distrib)
     {
         // Put in latt print group
-        g_id = H5Gcreate2(file_id, "/Latt_Print", H5P_DEFAULT, H5P_DEFAULT, H5P_DEFAULT);
+        g_id = H5Gcreate2(file_id, "/Av_Latt", H5P_DEFAULT, H5P_DEFAULT, H5P_DEFAULT);
+        H5Gclose(g_id);
+
+        g_id = H5Gcreate2(file_id, "/Sing_Latt", H5P_DEFAULT, H5P_DEFAULT, H5P_DEFAULT);
         H5Gclose(g_id);
     }
 

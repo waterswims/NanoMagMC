@@ -90,7 +90,8 @@ int main(int argc, char **argv)
 									  v1_size, tc_size, cpoint, file_exists);
 	if ((!file_exists) && print_latt && !distributed)
 	{
-		summed_field->print_setup(f_id, num_Ts, num_Hs);
+		summed_field->print_setup(f_id, "Av_Latt", num_Ts, num_Hs);
+		summed_field->print_setup(f_id, "Sing_Latt", num_Ts, num_Hs);
 	}
 
 	// Storage Variables
@@ -198,8 +199,10 @@ int main(int argc, char **argv)
 						 v2_size, tc_size, f_id, hamil, distributed, k);
 				if (print_latt && !distributed)
 				{
-					std::string lname = latt_name(protocol, i, j);
+					std::string lname = av_latt_name(protocol, i, j);
 					summed_field->print(f_id, lname);
+					lname = sing_latt_name(protocol, i, j);
+					curr_state.ptf(f_id, lname);
 				}
 	        }
 		}

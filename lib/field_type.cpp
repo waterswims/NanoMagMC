@@ -1063,7 +1063,9 @@ void field_3d_h::print(string filename, string arrname)
     dealloc_1darr<float>(new_z);
 }
 
-void field_3d_h::print_setup(const string filename, const int Tmax,
+void field_3d_h::print_setup(const string filename,
+    const string groupname,
+    const int Tmax,
     const int Hmax)
 {
     // Open existing file
@@ -1082,7 +1084,7 @@ void field_3d_h::print_setup(const string filename, const int Tmax,
     {
         for(int j=0; j < Hmax; j++)
         {
-            nstream << "/Latt_Print/T_" << i << "-H_" << j;
+            nstream << groupname << "/T_" << i << "-H_" << j;
             nstream >> name;
             nstream.clear();
             dset_id = H5Dcreate(f_id, name.c_str(), H5T_NATIVE_FLOAT,

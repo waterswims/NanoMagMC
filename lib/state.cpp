@@ -374,9 +374,9 @@ void state::print_latt()
 
 }
 
-void state::ptf(string fname)
+void state::ptf(string fname, string arrname)
 {
-
+    field->print(fname, arrname);
 }
 
 void state::add_to_av(field_type* other_field)

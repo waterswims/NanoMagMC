@@ -9,8 +9,12 @@ field_type* set_sum_latt(double size,
                          char shape,
                          char hamil);
 
-std::string latt_name(const int protocol,
+std::string av_latt_name(const int protocol,
                  const int var1,
                  const int var2);
+
+std::string sing_latt_name(const int protocol,
+              const int var1,
+              const int var2);
 
 #endif
