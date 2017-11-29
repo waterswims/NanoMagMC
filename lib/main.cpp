@@ -88,7 +88,7 @@ int main(int argc, char **argv)
 									  hamil, periodic, protocol, distributed,
 									  num_Ts, num_Hs, N_samp, N_latts, Ts, Hs,
 									  v1_size, tc_size, cpoint, file_exists);
-	if ((!file_exists))
+	if ((!file_exists) && print_latt && !distributed)
 	{
 		summed_field->print_setup(f_id, num_Ts, num_Hs);
 	}
