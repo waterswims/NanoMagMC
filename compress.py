@@ -20,22 +20,23 @@ for name in ["Complete","Hs","Ts"]:
                              compression_opts=9, data=dat)
     print(full_name, " complete")
 
-test_dataset = f["Latt_Print/T_0-H_0"]
-test_dat = test_dataset.value
-test_dataset = f["Fulldat/mags"]
-test_dat2 = test_dataset.value
-giant_latt = np.zeros([test_dat2.shape[0], test_dat2.shape[1],
-                       test_dat.shape[0], test_dat.shape[1], test_dat.shape[2], 3])
-for Hi in range(test_dat2.shape[0]):
-    for Ti in range(test_dat2.shape[1]):
-        full_name = "/Latt_Print/T_{}-H_{}".format(Ti, Hi)
-        dataset = f[full_name]
-        giant_latt[Hi, Ti, :, :, :, :] = dataset.value
-print("array complete")
-dset = f2.create_dataset("Latts", giant_latt.shape,
-                         chunks=(test_dat2.shape[0], test_dat2.shape[1], 2, 2, 2, 1),
-                         compression="gzip", compression_opts=9, data=giant_latt)
-print("printing complete")
+for name in ["Av_Latt", "Sing_Latt"]:
+    test_dataset = f["/{}/T_0-H_0".format(name)]
+    test_dat = test_dataset.value
+    test_dataset = f["Fulldat/mags"]
+    test_dat2 = test_dataset.value
+    giant_latt = np.zeros([test_dat2.shape[0], test_dat2.shape[1],
+                           test_dat.shape[0], test_dat.shape[1], test_dat.shape[2], 3])
+    for Hi in range(test_dat2.shape[0]):
+        for Ti in range(test_dat2.shape[1]):
+            full_name = "/{}/T_{}-H_{}".format(name, Ti, Hi)
+            dataset = f[full_name]
+            giant_latt[Hi, Ti, :, :, :, :] = dataset.value
+    print(name, " reading complete")
+    dset = f2.create_dataset(name, giant_latt.shape,
+                             chunks=(test_dat2.shape[0], test_dat2.shape[1], 2, 2, 2, 1),
+                             compression="gzip", compression_opts=9, data=giant_latt)
+    print(name, " printing complete")
 
 for name in list(f['Fulldat']):
     full_name = "/Fulldat/{}".format(name)
