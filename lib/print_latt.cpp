@@ -123,6 +123,7 @@ std::string sing_latt_name(const int protocol,
         T = var2;
         break;
         case 2:
+        case 4:
         H = var2;
         T = var1;
         break;

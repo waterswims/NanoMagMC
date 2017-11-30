@@ -67,9 +67,9 @@ int main(int argc, char **argv)
 	// set protocol
 	float* var1_list;
 	float* var2_list;
-	int v1_size, v2_size;
-	set_protocol(protocol, var1_list, var2_list, v1_size, v2_size,Hs, Ts,
-		num_Hs, num_Ts);
+	int v1_size, v2_size, v1_begin, v2_begin, v1_end, v2_end, v1_final;
+	set_protocol(protocol, var1_list, var2_list, v1_size, v2_size, v1_begin,
+		v2_begin, v1_end, v2_end, v1_final, Hs, Ts, num_Hs, num_Ts);
 
 	// Start MC
 	if (rank == 0)
@@ -120,16 +120,16 @@ int main(int argc, char **argv)
 		nums = base_state.num_spins();
 		s_nums = base_state.sub_num(0);
 		// main loop
-		for (int i = 0; i < v1_size; i++)
+		for (int i = v1_begin; i != v1_end; incr_v1(protocol, i))
 		{
 			// Only carry on if to be run by this process
-			if (i%comm_size != rank)
+			if (check_rank_run(protocol, i, comm_size, rank, v1_size))
 			{
 				continue;
 			}
 
 			// Grab the previous state from the previous rank unless first
-			if (i != 0)
+			if (i != v1_begin)
 			{
 				int prev_rank = (rank+comm_size-1)%comm_size;
 				base_state.recv_latt_data(prev_rank);
@@ -141,23 +141,18 @@ int main(int argc, char **argv)
 			base_state.equil(Eq_steps*nums);
 
 			// Send data to next rank, unless final rank
-			if(rank != comm_size-1 && i != v1_size-1)
+			if(rank != comm_size-1 && i != v1_final)
 			{
 				int next_rank = (rank+1)%comm_size;
 				base_state.send_latt_data(next_rank);
 			}
 
-			// If checkpointed, no need to run line
-			// if(cpoint[i][k])
-			// {
-			// 	continue;
-			// }
-
 			// Copy
 			curr_state = base_state;
 
 			// second loop, unless checkpointed
-	        for (int j = 0; j < v2_size && (!cpoint[i][k]); j++)
+	        for (int j = v2_begin; j != v2_end && (!cpoint[i][k]);
+				 incr_v2(protocol, j))
 	        {
 				// Change Temp/field
 				curr_state.change_v2(protocol, var2_list[j]);
@@ -230,17 +225,17 @@ int main(int argc, char **argv)
 				}
 	        }
 
-			// Send data to first rank, unless final i
-			if(rank == comm_size-1 && i != v1_size-1)
+			// Send data from final rank to first rank, unless final i
+			if(rank == comm_size-1 && i != v1_final)
 			{
 				int next_rank = (rank+1)%comm_size;
 				base_state.send_latt_data(next_rank);
 			}
 
 		}
-		// Extra File open/closes
+		// Extra File open/closes for HDF5
 		if(rank >= v1_size - (v1_size/comm_size)*comm_size &&
-			!cpoint[v1_size-1][k])
+			!cpoint[v1_final][k])
 		{
 			for(int i = 0; i < v2_size; i++)
 			{

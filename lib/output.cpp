@@ -239,6 +239,7 @@ void print_TD_h5(const float* magx,
         T = var2;
         break;
         case 2:
+        case 4:
         H = var2;
         T = var1;
         break;

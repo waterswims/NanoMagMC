@@ -59,7 +59,11 @@ After compilation an executable file will be placed in the root folder named "ru
 
     * 2: The lattices move through the temperatures followed by the magnetic fields.
 
-* PRINT_LATT: Boolean option signifying whether the average lattice should be stored. This may significantly increase file storage requirements.
+    * 3: The lattices move through the magnetic fields in reverse order then the temperatures in forward order. (Not yet implemented.)
+
+    * 4: The lattices move through the temperatures in reverse order followed by the magnetic fields in forward order.
+
+* PRINT_LATT: Boolean option signifying whether the average lattice should be stored. This may significantly increase file storage requirements. (This option has only been implemented for 3D continuous spin systems so far. Using it in other situations will result in large, blank datasets within the output.)
 
 ### Optional/Situational Settings
 
