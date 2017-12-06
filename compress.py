@@ -20,7 +20,8 @@ for file_name in sys.argv[1:]:
                                  compression_opts=9, data=dat)
         print(full_name, " complete")
 
-    for name in ["Av_Latt", "Sing_Latt"]:
+    #for name in ["Av_Latt", "Sing_Latt"]:
+    for name in ["Sing_Latt"]:
         test_dataset = f["/{}/T_0-H_0".format(name)]
         test_dat = test_dataset.value
         test_dataset = f["Fulldat/mags"]

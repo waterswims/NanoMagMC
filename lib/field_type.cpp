@@ -1047,8 +1047,8 @@ void field_3d_h::print(string filename, string arrname)
     for(int i = 0; i < totsize*totsize*totsize; i++)
     {
         new_x[i] = spinx[0][0][i];
-        new_y[i] = spinx[0][0][i];
-        new_z[i] = spinx[0][0][i];
+        new_y[i] = spiny[0][0][i];
+        new_z[i] = spinz[0][0][i];
     }
 
     // Open existing file
