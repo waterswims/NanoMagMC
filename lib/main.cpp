@@ -119,6 +119,8 @@ int main(int argc, char **argv)
 		state curr_state(base_state);
 		nums = base_state.num_spins();
 		s_nums = base_state.sub_num(0);
+
+		base_state.equil(20*Eq_steps*nums);
 		// main loop
 		for (int i = v1_begin; i != v1_end; incr_v1(protocol, i))
 		{
