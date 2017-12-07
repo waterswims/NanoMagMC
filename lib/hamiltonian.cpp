@@ -287,9 +287,10 @@ double ham_heis::dE(field_type* lattice, std::vector<int>& position)
     int arrsize = dim*2;
     lattice->h_adjacent(position, adj);
     // #pragma omp simd
-    for(int j = 0; j < 4; j++)
+    for(int j = 0; j < 3; j++)
     {
         vsum[j] = 0;
+        #pragma omp simd
         for(int i = 0; i < arrsize; i++)
         {
             vsum[j] += adj[j][i];
@@ -761,9 +762,10 @@ double ham_skyrm::dE(field_type* lattice, std::vector<int>& position)
     int arrsize = dim*2;
     lattice->h_adjacent(position, adj);
     // #pragma omp simd
-    for(int j = 0; j < 4; j++)
+    for(int j = 0; j < 3; j++)
     {
         vsum[j] = 0;
+        #pragma omp simd
         for(int i = 0; i < arrsize; i++)
         {
             vsum[j] += adj[j][i];
