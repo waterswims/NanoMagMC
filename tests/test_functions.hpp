@@ -11,8 +11,6 @@
 #include <iostream>
 #include <cmath>
 
-using namespace std;
-
 mkl_irand st_rand_int(1e5, 1);
 mkl_drand st_rand_double(1e5, 2);
 mkl_lnrand rand_ln(0, 0.25, 1e5, 3);
@@ -20,7 +18,7 @@ mkl_lnrand rand_ln(0, 0.25, 1e5, 3);
 field_2d_i gen_2d_ising_fm()
 {
     field_2d_i field(10, false);
-    vector<int> pos(2);
+    std::vector<int> pos(2);
     for(int i = 1; i < 11; i++)
     {
         pos[0] = i;
@@ -37,7 +35,7 @@ field_2d_i gen_2d_ising_fm()
 field_2d_i gen_2d_ising_afm()
 {
     field_2d_i field(10, false);
-    vector<int> pos(2);
+    std::vector<int> pos(2);
     for(int i = 1; i < 11; i++)
     {
         pos[0] = i;
@@ -54,7 +52,7 @@ field_2d_i gen_2d_ising_afm()
 field_3d_i gen_3d_ising_fm()
 {
     field_3d_i field(10, false);
-    vector<int> pos(3);
+    std::vector<int> pos(3);
     for(int i = 1; i < 11; i++)
     {
         pos[0] = i;
@@ -75,7 +73,7 @@ field_3d_i gen_3d_ising_fm()
 field_3d_i gen_3d_ising_afm()
 {
     field_3d_i field(10, false);
-    vector<int> pos(3);
+    std::vector<int> pos(3);
     for(int i = 1; i < 11; i++)
     {
         pos[0] = i;
@@ -96,7 +94,7 @@ field_3d_i gen_3d_ising_afm()
 field_2d_h gen_2d_heis_fm(double x, double y, double z)
 {
     field_2d_h field(10, false);
-    vector<int> pos(2);
+    std::vector<int> pos(2);
     for(int i = 1; i < 11; i++)
     {
         pos[0] = i;
@@ -113,7 +111,7 @@ field_2d_h gen_2d_heis_fm(double x, double y, double z)
 field_2d_h gen_2d_heis_afm(double x, double y, double z)
 {
     field_2d_h field(10, false);
-    vector<int> pos(2);
+    std::vector<int> pos(2);
     for(int i = 1; i < 11; i++)
     {
         pos[0] = i;
@@ -139,7 +137,7 @@ field_2d_h gen_2d_skyrm()
     float k = _PI / sk_R;
 
     field_2d_h field(tsize, isPerio);
-    vector<int> pos(2);
+    std::vector<int> pos(2);
     for(int i = (!isPerio); i < (tsize+(!isPerio)); i++)
     {
         pos[0] = i;
@@ -172,7 +170,7 @@ field_2d_h gen_2d_skyrm()
 field_3d_h gen_3d_heis_fm(double x, double y, double z)
 {
     field_3d_h field(10, false);
-    vector<int> pos(3);
+    std::vector<int> pos(3);
     for(int i = 1; i < 11; i++)
     {
         pos[0] = i;
@@ -193,7 +191,7 @@ field_3d_h gen_3d_heis_fm(double x, double y, double z)
 field_3d_h gen_3d_heis_afm(double x, double y, double z)
 {
     field_3d_h field(10, false);
-    vector<int> pos(3);
+    std::vector<int> pos(3);
     for(int i = 1; i < 11; i++)
     {
         pos[0] = i;
@@ -223,7 +221,7 @@ field_3d_h gen_3d_skyrm()
     float k = _PI / sk_R;
 
     field_3d_h field(tsize, isPerio);
-    vector<int> pos(3);
+    std::vector<int> pos(3);
     for(int k2 = (!isPerio); k2 < (tsize+(!isPerio)); k2++)
     {
         pos[2] = k2;

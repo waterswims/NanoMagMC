@@ -53,7 +53,7 @@ void rand_spin_i(int &x)
 void field_type::allzero()
 {
     int start = (totsize - insize) / 2;
-    vector<int> pos(dim, start);
+    std::vector<int> pos(dim, start);
     bool finished = false;
 
     while(!finished)
@@ -74,21 +74,21 @@ field_cluster_h::field_cluster_h()
     ft = 1;
 }
 
-field_cluster_h::field_cluster_h(string filename)
+field_cluster_h::field_cluster_h(std::string filename)
 {
     dim = 1;
     periodic = false;
     ft = 1;
 
-    ifstream file;
+    std::ifstream file;
     file.open(filename.c_str());
     if(!file.is_open())
     {
-        cout << "Input file not opened" << endl;
+        std::cout << "Input file not opened" << std::endl;
         exit(105);
     }
     insize = 0;
-    string line;
+    std::string line;
     while(getline(file, line))
     {
         insize++;
@@ -114,7 +114,7 @@ field_cluster_h::field_cluster_h(field_type& other)
     ft = 1;
     if(other.get_ft() != 1)
     {
-        cout << "Cannot copy from other field type" << endl;
+        std::cout << "Cannot copy from other field type" << std::endl;
         exit(104);
     }
     insize = other.get_insize();
@@ -168,14 +168,14 @@ field_cluster_h::~field_cluster_h()
     dealloc_1darr<double>(spinz);
 }
 
-void field_cluster_h::h_access(vector<int>& position, vector<double>& out)
+void field_cluster_h::h_access(std::vector<int>& position, std::vector<double>& out)
 {
     out[0] = spinx[position[0]];
     out[1] = spiny[position[0]];
     out[2] = spinz[position[0]];
 }
 
-void field_cluster_h::h_next(bool &finish, vector<int> &pos, vector<double> &out)
+void field_cluster_h::h_next(bool &finish, std::vector<int> &pos, std::vector<double> &out)
 {
     this->h_access(pos, out);
     pos[0]++;
@@ -193,7 +193,7 @@ void field_cluster_h::get_1dfield_h(double* &x, double* &y, double* &z) const
     z = spinz;
 }
 
-void field_cluster_h::change_to_test(vector<int>& position, ham_type* hamil)
+void field_cluster_h::change_to_test(std::vector<int>& position, ham_type* hamil)
 {
     hamil->get_test(spinx[position[0]],spiny[position[0]],spinz[position[0]]);
 }
@@ -202,7 +202,7 @@ void field_cluster_h::change_to_test(vector<int>& position, ham_type* hamil)
 // 2d general
 ///////////////////////
 
-void field_2d::next(bool &finish, vector<int> &pos)
+void field_2d::next(bool &finish, std::vector<int> &pos)
 {
     int start = (totsize - insize) / 2;
     int end = start + insize;
@@ -292,7 +292,7 @@ field_2d_h::field_2d_h(field_type& other)
     ft = 2;
     if(other.get_ft() != 2)
     {
-        cout << "Cannot copy from other field type" << endl;
+        std::cout << "Cannot copy from other field type" << std::endl;
         exit(104);
     }
     dim = 2;
@@ -358,14 +358,14 @@ field_2d_h::~field_2d_h()
     dealloc_2darr<bool>(totsize, iszero);
 }
 
-void field_2d_h::h_access(vector<int>& position, vector<double>& out)
+void field_2d_h::h_access(std::vector<int>& position, std::vector<double>& out)
 {
     out[0] = spinx[position[0]][position[1]];
     out[1] = spiny[position[0]][position[1]];
     out[2] = spinz[position[0]][position[1]];
 }
 
-void field_2d_h::h_next(bool &finish, vector<int> &pos, vector<double> &out)
+void field_2d_h::h_next(bool &finish, std::vector<int> &pos, std::vector<double> &out)
 {
     this->h_access(pos, out);
     this->next(finish, pos);
@@ -404,7 +404,7 @@ void field_2d_h::get_2dfield_h(double** &x, double** &y, double** &z) const
     z = spinz;
 }
 
-void field_2d_h::h_adjacent(vector<int>& position, double** out)
+void field_2d_h::h_adjacent(std::vector<int>& position, double** out)
 {
     dirsx[0] = boundmovedown(position[0] - 1, totsize);
     dirsx[1] = boundmoveup(position[0] + 1, totsize);
@@ -424,7 +424,7 @@ void field_2d_h::h_adjacent(vector<int>& position, double** out)
     }
 }
 
-void field_2d_h::fill_rand(vector<int>& position)
+void field_2d_h::fill_rand(std::vector<int>& position)
 {
     rand_spin_h(spinx[position[0]][position[1]],
                 spiny[position[0]][position[1]],
@@ -432,7 +432,7 @@ void field_2d_h::fill_rand(vector<int>& position)
     iszero[position[0]][position[1]] = false;
 }
 
-void field_2d_h::fill_one(vector<int>&position)
+void field_2d_h::fill_one(std::vector<int>&position)
 {
     spinx[position[0]][position[1]] = 0;
     spiny[position[0]][position[1]] = 0;
@@ -440,7 +440,7 @@ void field_2d_h::fill_one(vector<int>&position)
     iszero[position[0]][position[1]] = false;
 }
 
-void field_2d_h::fill_zero(vector<int>& position)
+void field_2d_h::fill_zero(std::vector<int>& position)
 {
     spinx[position[0]][position[1]] = 0;
     spiny[position[0]][position[1]] = 0;
@@ -448,21 +448,21 @@ void field_2d_h::fill_zero(vector<int>& position)
     iszero[position[0]][position[1]] = true;
 }
 
-void field_2d_h::change_to_test(vector<int>& position, ham_type* hamil)
+void field_2d_h::change_to_test(std::vector<int>& position, ham_type* hamil)
 {
     hamil->get_test(spinx[position[0]][position[1]],
                     spiny[position[0]][position[1]],
                     spinz[position[0]][position[1]]);
 }
 
-void field_2d_h::fill_val_h(vector<int>& position, double x, double y, double z)
+void field_2d_h::fill_val_h(std::vector<int>& position, double x, double y, double z)
 {
     spinx[position[0]][position[1]] = x;
     spiny[position[0]][position[1]] = y;
     spinz[position[0]][position[1]] = z;
 }
 
-void field_2d_h::add_val_h(vector<int>& position, vector<double> &in)
+void field_2d_h::add_val_h(std::vector<int>& position, std::vector<double> &in)
 {
     spinx[position[0]][position[1]] += in[0];
     spiny[position[0]][position[1]] += in[1];
@@ -524,7 +524,7 @@ field_2d_i::field_2d_i(field_type& other)
     ft = 21;
     if(other.get_ft() != 21)
     {
-        cout << "Cannot copy from other field type" << endl;
+        std::cout << "Cannot copy from other field type" << std::endl;
         exit(104);
     }
     dim = 2;
@@ -576,12 +576,12 @@ field_2d_i::~field_2d_i()
     dealloc_2darr<bool>(totsize, iszero);
 }
 
-void field_2d_i::i_access(vector<int>& position, int &out)
+void field_2d_i::i_access(std::vector<int>& position, int &out)
 {
     out = spin[position[0]][position[1]];
 }
 
-void field_2d_i::i_next(bool &finish, vector<int> &pos, int &out)
+void field_2d_i::i_next(bool &finish, std::vector<int> &pos, int &out)
 {
     this->i_access(pos, out);
     this->next(finish, pos);
@@ -610,7 +610,7 @@ void field_2d_i::get_2dfield_i(int** &x) const
     x = spin;
 }
 
-void field_2d_i::i_adjacent(vector<int>& position, int* out)
+void field_2d_i::i_adjacent(std::vector<int>& position, int* out)
 {
     int dirsx[4], dirsy[4];
     dirsx[0] = boundmovedown(position[0] - 1, totsize);
@@ -629,30 +629,30 @@ void field_2d_i::i_adjacent(vector<int>& position, int* out)
     }
 }
 
-void field_2d_i::fill_rand(vector<int>& position)
+void field_2d_i::fill_rand(std::vector<int>& position)
 {
     rand_spin_i(spin[position[0]][position[1]]);
     iszero[position[0]][position[1]] = false;
 }
 
-void field_2d_i::fill_one(vector<int>&position)
+void field_2d_i::fill_one(std::vector<int>&position)
 {
     spin[position[0]][position[1]] = 1;
     iszero[position[0]][position[1]] = false;
 }
 
-void field_2d_i::fill_zero(vector<int>& position)
+void field_2d_i::fill_zero(std::vector<int>& position)
 {
     spin[position[0]][position[1]] = 0;
     iszero[position[0]][position[1]] = true;
 }
 
-void field_2d_i::fill_val_i(vector<int>& position, int val)
+void field_2d_i::fill_val_i(std::vector<int>& position, int val)
 {
     spin[position[0]][position[1]] = val;
 }
 
-void field_2d_i::change_to_test(vector<int>& position, ham_type* hamil)
+void field_2d_i::change_to_test(std::vector<int>& position, ham_type* hamil)
 {
     spin[position[0]][position[1]] = -spin[position[0]][position[1]];
 }
@@ -674,7 +674,7 @@ void field_2d_i::recv_data(int src_rank)
 // 3d general
 ///////////////////////
 
-void field_3d::next(bool &finish, vector<int> &pos)
+void field_3d::next(bool &finish, std::vector<int> &pos)
 {
     int start = (totsize - insize) / 2;
     int end = start + insize;
@@ -774,7 +774,7 @@ field_3d_h::field_3d_h(field_type& other)
     ft = 3;
     if(other.get_ft() != 3)
     {
-        cout << "Cannot copy from other field type" << endl;
+        std::cout << "Cannot copy from other field type" << std::endl;
         exit(104);
     }
     dim = 3;
@@ -844,14 +844,14 @@ field_3d_h::~field_3d_h()
     dealloc_2darr<int>(3, postemp);
 }
 
-void field_3d_h::h_access(vector<int>& position, vector<double>& out)
+void field_3d_h::h_access(std::vector<int>& position, std::vector<double>& out)
 {
     out[0] = spinx[position[0]][position[1]][position[2]];
     out[1] = spiny[position[0]][position[1]][position[2]];
     out[2] = spinz[position[0]][position[1]][position[2]];
 }
 
-void field_3d_h::h_next(bool &finish, vector<int> &pos, vector<double> &out)
+void field_3d_h::h_next(bool &finish, std::vector<int> &pos, std::vector<double> &out)
 {
     this->h_access(pos, out);
     this->next(finish, pos);
@@ -902,7 +902,7 @@ void field_3d_h::get_3dfield_h(double*** &x, double*** &y, double*** &z) const
     z = spinz;
 }
 
-void field_3d_h::h_adjacent(vector<int>& position, double** out)
+void field_3d_h::h_adjacent(std::vector<int>& position, double** out)
 {
     dirsx[0] = boundmovedown(position[0] - 1, totsize);
     dirsx[1] = boundmoveup(position[0] + 1, totsize);
@@ -933,7 +933,7 @@ void field_3d_h::h_adjacent(vector<int>& position, double** out)
     }
 }
 
-void field_3d_h::h_2adjacent(vector<int>& position, double** out)
+void field_3d_h::h_2adjacent(std::vector<int>& position, double** out)
 {
     int dirsx[6], dirsy[6], dirsz[6];
     dirsx[0] = boundmovedown(position[0] - 2, totsize);
@@ -965,22 +965,22 @@ void field_3d_h::h_2adjacent(vector<int>& position, double** out)
     }
 }
 
-void field_3d_h::h_arb_adj(vector<int>& position, vector<int>& dxs, vector<int>& dys, vector<int>& dzs, double** out, int num)
+void field_3d_h::h_arb_adj(std::vector<int>& position, std::vector<int>& dxs, std::vector<int>& dys, std::vector<int>& dzs, double** out, int num)
 {
     #pragma omp simd
     for(int i = 0; i < num; i++)
     {
-        postemp[0][i] = min(max(0, (position[0] + dxs[i])), totsize-1);
+        postemp[0][i] = std::min(std::max(0, (position[0] + dxs[i])), totsize-1);
     }
     #pragma omp simd
     for(int i = 0; i < num; i++)
     {
-        postemp[1][i] = min(max(0, (position[1] + dys[i])), totsize-1);
+        postemp[1][i] = std::min(std::max(0, (position[1] + dys[i])), totsize-1);
     }
     #pragma omp simd
     for(int i = 0; i < num; i++)
     {
-        postemp[2][i] = min(max(0, (position[2] + dzs[i])), totsize-1);
+        postemp[2][i] = std::min(std::max(0, (position[2] + dzs[i])), totsize-1);
     }
 
     // #pragma simd
@@ -992,7 +992,7 @@ void field_3d_h::h_arb_adj(vector<int>& position, vector<int>& dxs, vector<int>&
     }
 }
 
-void field_3d_h::fill_rand(vector<int>& position)
+void field_3d_h::fill_rand(std::vector<int>& position)
 {
     rand_spin_h(spinx[position[0]][position[1]][position[2]],
                 spiny[position[0]][position[1]][position[2]],
@@ -1000,7 +1000,7 @@ void field_3d_h::fill_rand(vector<int>& position)
     iszero[position[0]][position[1]][position[2]] = false;
 }
 
-void field_3d_h::fill_one(vector<int>&position)
+void field_3d_h::fill_one(std::vector<int>&position)
 {
     spinx[position[0]][position[1]][position[2]] = 0;
     spiny[position[0]][position[1]][position[2]] = 0;
@@ -1008,7 +1008,7 @@ void field_3d_h::fill_one(vector<int>&position)
     iszero[position[0]][position[1]][position[2]] = false;
 }
 
-void field_3d_h::fill_zero(vector<int>& position)
+void field_3d_h::fill_zero(std::vector<int>& position)
 {
     spinx[position[0]][position[1]][position[2]] = 0;
     spiny[position[0]][position[1]][position[2]] = 0;
@@ -1016,28 +1016,28 @@ void field_3d_h::fill_zero(vector<int>& position)
     iszero[position[0]][position[1]][position[2]] = true;
 }
 
-void field_3d_h::fill_val_h(vector<int>& position, double x, double y, double z)
+void field_3d_h::fill_val_h(std::vector<int>& position, double x, double y, double z)
 {
     spinx[position[0]][position[1]][position[2]] = x;
     spiny[position[0]][position[1]][position[2]] = y;
     spinz[position[0]][position[1]][position[2]] = z;
 }
 
-void field_3d_h::change_to_test(vector<int>& position, ham_type* hamil)
+void field_3d_h::change_to_test(std::vector<int>& position, ham_type* hamil)
 {
     hamil->get_test(spinx[position[0]][position[1]][position[2]],
                     spiny[position[0]][position[1]][position[2]],
                     spinz[position[0]][position[1]][position[2]]);
 }
 
-void field_3d_h::add_val_h(vector<int>& position, vector<double> &in)
+void field_3d_h::add_val_h(std::vector<int>& position, std::vector<double> &in)
 {
     spinx[position[0]][position[1]][position[2]] += in[0];
     spiny[position[0]][position[1]][position[2]] += in[1];
     spinz[position[0]][position[1]][position[2]] += in[2];
 }
 
-void field_3d_h::print(string filename, string arrname)
+void field_3d_h::print(std::string filename, std::string arrname)
 {
     // Copy to float array
     float* new_x = alloc_1darr<float>(totsize*totsize*totsize);
@@ -1097,8 +1097,8 @@ void field_3d_h::print(string filename, string arrname)
     dealloc_1darr<float>(new_z);
 }
 
-void field_3d_h::print_setup(const string filename,
-    const string groupname,
+void field_3d_h::print_setup(const std::string filename,
+    const std::string groupname,
     const int Tmax,
     const int Hmax)
 {
@@ -1112,8 +1112,8 @@ void field_3d_h::print_setup(const string filename,
     hsize_t full_dims[4] = {totsize, totsize, totsize, 3};
     hid_t dspace_id = H5Screate_simple(4, full_dims, NULL);
     hid_t dset_id;
-    stringstream nstream;
-    string name;
+    std::stringstream nstream;
+    std::string name;
     for(int i=0; i < Tmax; i++)
     {
         for(int j=0; j < Hmax; j++)
@@ -1186,7 +1186,7 @@ field_3d_i::field_3d_i(field_type& other)
     ft = 31;
     if(other.get_ft() != 31)
     {
-        cout << "Cannot copy from other field type" << endl;
+        std::cout << "Cannot copy from other field type" << std::endl;
         exit(104);
     }
     dim = 3;
@@ -1238,12 +1238,12 @@ field_3d_i::~field_3d_i()
     dealloc_3darr<bool>(totsize, totsize, iszero);
 }
 
-void field_3d_i::i_access(vector<int>& position, int &out)
+void field_3d_i::i_access(std::vector<int>& position, int &out)
 {
     out = spin[position[0]][position[1]][position[2]];
 }
 
-void field_3d_i::i_next(bool &finish, vector<int> &pos, int &out)
+void field_3d_i::i_next(bool &finish, std::vector<int> &pos, int &out)
 {
     this->i_access(pos, out);
     this->next(finish, pos);
@@ -1280,7 +1280,7 @@ void field_3d_i::get_3dfield_i(int*** &x) const
     x = spin;
 }
 
-void field_3d_i::i_adjacent(vector<int>& position, int* out)
+void field_3d_i::i_adjacent(std::vector<int>& position, int* out)
 {
     int dirsx[6], dirsy[6], dirsz[6];
     dirsx[0] = boundmovedown(position[0] - 1, totsize);
@@ -1310,30 +1310,30 @@ void field_3d_i::i_adjacent(vector<int>& position, int* out)
     }
 }
 
-void field_3d_i::fill_rand(vector<int>& position)
+void field_3d_i::fill_rand(std::vector<int>& position)
 {
     rand_spin_i(spin[position[0]][position[1]][position[2]]);
     iszero[position[0]][position[1]][position[2]] = false;
 }
 
-void field_3d_i::fill_one(vector<int>&position)
+void field_3d_i::fill_one(std::vector<int>&position)
 {
     spin[position[0]][position[1]][position[2]] = 1;
     iszero[position[0]][position[1]][position[2]] = false;
 }
 
-void field_3d_i::fill_zero(vector<int>& position)
+void field_3d_i::fill_zero(std::vector<int>& position)
 {
     spin[position[0]][position[1]][position[2]] = 0;
     iszero[position[0]][position[1]][position[2]] = true;
 }
 
-void field_3d_i::fill_val_i(vector<int>& position, int val)
+void field_3d_i::fill_val_i(std::vector<int>& position, int val)
 {
     spin[position[0]][position[1]][position[2]] = val;
 }
 
-void field_3d_i::change_to_test(vector<int>& position, ham_type* hamil)
+void field_3d_i::change_to_test(std::vector<int>& position, ham_type* hamil)
 {
     spin[position[0]][position[1]][position[2]] = -spin[position[0]][position[1]][position[2]];
 }

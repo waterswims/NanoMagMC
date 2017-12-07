@@ -7,10 +7,6 @@
 #include "../includes/protocol.hpp"
 #include "../includes/print_latt.hpp"
 
-#include <iostream>
-#include <vector>
-#include <fstream>
-#include <cstring>
 #include <hdf5.h>
 
 mkl_irand st_rand_int(1e7, 1);
@@ -26,7 +22,7 @@ int main(int argc, char **argv)
 	MPI_Status status;
   	if(rank==0)
 	{
-		cout << "Total number of processes is " << comm_size << endl;
+		std::cout << "Total number of processes is " << comm_size << std::endl;
 	}
 
 	// setup arguments
@@ -34,7 +30,7 @@ int main(int argc, char **argv)
 	double J=1, K=0, k=1, beta=50, amean, asd, lmean, lsd, size;
 	bool periodic, distributed, print_latt;
 	char shape, hamil;
-	string temp_name, field_name;
+	std::string temp_name, field_name;
 	read_all_vars(argv[1], size, J, k, periodic, shape, hamil, Samp_steps,
 		N_samp, Eq_steps, N_latts, beta, distributed, amean, asd, temp_name,
 		field_name, protocol, K, print_latt);
@@ -59,9 +55,9 @@ int main(int argc, char **argv)
 
     if(rank==0)
     {
-		cout << num_Ts << " temperatures" << endl;
-		cout << num_Hs << " field strengths" << endl;
-        cout << N_samp << " samples per configuration" << endl;
+		std::cout << num_Ts << " temperatures" << std::endl;
+		std::cout << num_Hs << " field strengths" << std::endl;
+        std::cout << N_samp << " samples per configuration" << std::endl;
     }
 
 	// set protocol
@@ -74,7 +70,7 @@ int main(int argc, char **argv)
 	// Start MC
 	if (rank == 0)
 	{
-		cout << "Running MC..." << endl;
+		std::cout << "Running MC..." << std::endl;
 	}
 
 	// Space for the average field
@@ -107,8 +103,8 @@ int main(int argc, char **argv)
 	float* smagz1 = alloc_1darr<float>(N_samp);
 	float** tcharges1 = alloc_2darr<float>(tc_size, N_samp);
 
-	vector<double> mtemp;
-	vector<double> tchargestemp;
+	std::vector<double> mtemp;
+	std::vector<double> tchargestemp;
 
 	// if distrib, loop through latts
 	for (int k = 0; k < N_latts; k++)
@@ -270,7 +266,7 @@ int main(int argc, char **argv)
 	MPI_Barrier(MPI_COMM_WORLD);
 	if(rank==0)
 	{
-		cout << endl;
+		std::cout << std::endl;
 	}
 
 	// Destroy arrays

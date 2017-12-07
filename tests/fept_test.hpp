@@ -12,41 +12,41 @@ TEST(FePt, 3d_energy_zero_field)
     field_3d_h field = gen_3d_heis_fm(1, 0, 0);
     ham_FePt hamil;
     hamil.init_dim(&field);
-    EXPECT_NEAR(-94845.01392843794, hamil.calc_E(&field), 94845.01392843794 * 1e-10);
+    EXPECT_FLOAT_EQ(-94845.01392843794, hamil.calc_E(&field));
 
     field = gen_3d_heis_fm(0, 1, 0);
-    EXPECT_NEAR(-94845.01392843794, hamil.calc_E(&field), 94845.01392843794 * 1e-10);
+    EXPECT_FLOAT_EQ(-94845.01392843794, hamil.calc_E(&field));
 
     field = gen_3d_heis_fm(0, 0, 1);
-    EXPECT_NEAR(-96045.87686933874, hamil.calc_E(&field), 96045.87686933874 * 1e-10);
+    EXPECT_FLOAT_EQ(-96045.87686933874, hamil.calc_E(&field));
 
     field = gen_3d_heis_fm(-1, 0, 0);
-    EXPECT_NEAR(-94845.01392843794, hamil.calc_E(&field), 94845.01392843794 * 1e-10);
+    EXPECT_FLOAT_EQ(-94845.01392843794, hamil.calc_E(&field));
 
     field = gen_3d_heis_fm(0, -1, 0);
-    EXPECT_NEAR(-94845.01392843794, hamil.calc_E(&field), 94845.01392843794 * 1e-10);
+    EXPECT_FLOAT_EQ(-94845.01392843794, hamil.calc_E(&field));
 
     field = gen_3d_heis_fm(0, 0, -1);
-    EXPECT_NEAR(-96045.87686933874, hamil.calc_E(&field), 96045.87686933874 * 1e-10);
+    EXPECT_FLOAT_EQ(-96045.87686933874, hamil.calc_E(&field));
 
     // Anti
     field = gen_3d_heis_afm(1, 0, 0);
-    EXPECT_NEAR(14349.191660944736, hamil.calc_E(&field), 14349.191660944736 * 1e-10);
+    EXPECT_FLOAT_EQ(14349.191660944736, hamil.calc_E(&field));
 
     field = gen_3d_heis_afm(0, 1, 0);
-    EXPECT_NEAR(14349.191660944736, hamil.calc_E(&field), 14349.191660944736 * 1e-10);
+    EXPECT_FLOAT_EQ(14349.191660944736, hamil.calc_E(&field));
 
     field = gen_3d_heis_afm(0, 0, 1);
-    EXPECT_NEAR(14481.605270298143, hamil.calc_E(&field), 14481.605270298143 * 1e-10);
+    EXPECT_FLOAT_EQ(14481.605270298143, hamil.calc_E(&field));
 
     field = gen_3d_heis_afm(-1, 0, 0);
-    EXPECT_NEAR(14349.191660944736, hamil.calc_E(&field), 14349.191660944736 * 1e-10);
+    EXPECT_FLOAT_EQ(14349.191660944736, hamil.calc_E(&field));
 
     field = gen_3d_heis_afm(0, -1, 0);
-    EXPECT_NEAR(14349.191660944736, hamil.calc_E(&field), 14349.191660944736 * 1e-10);
+    EXPECT_FLOAT_EQ(14349.191660944736, hamil.calc_E(&field));
 
     field = gen_3d_heis_afm(0, 0, -1);
-    EXPECT_NEAR(14481.605270298143, hamil.calc_E(&field), 14481.605270298143 * 1e-10);
+    EXPECT_FLOAT_EQ(14481.605270298143, hamil.calc_E(&field));
 }
 
 TEST(FePt, 3d_energy_ext_field)
@@ -54,41 +54,41 @@ TEST(FePt, 3d_energy_ext_field)
     field_3d_h field = gen_3d_heis_fm(1, 0, 0);
     ham_FePt hamil(1);
     hamil.init_dim(&field);
-    EXPECT_NEAR(-94845.01392843794, hamil.calc_E(&field), 94845.01392843794 * 1e-10);
+    EXPECT_FLOAT_EQ(-94845.01392843794, hamil.calc_E(&field));
 
     field = gen_3d_heis_fm(0, 1, 0);
-    EXPECT_NEAR(-94845.01392843794, hamil.calc_E(&field), 94845.01392843794 * 1e-10);
+    EXPECT_FLOAT_EQ(-94845.01392843794, hamil.calc_E(&field));
 
     field = gen_3d_heis_fm(0, 0, 1);
-    EXPECT_NEAR(-97045.87686933874, hamil.calc_E(&field), 96045.87686933874 * 1e-10);
+    EXPECT_FLOAT_EQ(-97045.87686933874, hamil.calc_E(&field));
 
     field = gen_3d_heis_fm(-1, 0, 0);
-    EXPECT_NEAR(-94845.01392843794, hamil.calc_E(&field), 94845.01392843794 * 1e-10);
+    EXPECT_FLOAT_EQ(-94845.01392843794, hamil.calc_E(&field));
 
     field = gen_3d_heis_fm(0, -1, 0);
-    EXPECT_NEAR(-94845.01392843794, hamil.calc_E(&field), 94845.01392843794 * 1e-10);
+    EXPECT_FLOAT_EQ(-94845.01392843794, hamil.calc_E(&field));
 
     field = gen_3d_heis_fm(0, 0, -1);
-    EXPECT_NEAR(-95045.87686933874, hamil.calc_E(&field), 96045.87686933874 * 1e-10);
+    EXPECT_FLOAT_EQ(-95045.87686933874, hamil.calc_E(&field));
 
     // Anti
     field = gen_3d_heis_afm(1, 0, 0);
-    EXPECT_NEAR(14349.191660944736, hamil.calc_E(&field), 14349.191660944736 * 1e-10);
+    EXPECT_FLOAT_EQ(14349.191660944736, hamil.calc_E(&field));
 
     field = gen_3d_heis_afm(0, 1, 0);
-    EXPECT_NEAR(14349.191660944736, hamil.calc_E(&field), 14349.191660944736 * 1e-10);
+    EXPECT_FLOAT_EQ(14349.191660944736, hamil.calc_E(&field));
 
     field = gen_3d_heis_afm(0, 0, 1);
-    EXPECT_NEAR(14481.605270298143, hamil.calc_E(&field), 14481.605270298143 * 1e-10);
+    EXPECT_FLOAT_EQ(14481.605270298143, hamil.calc_E(&field));
 
     field = gen_3d_heis_afm(-1, 0, 0);
-    EXPECT_NEAR(14349.191660944736, hamil.calc_E(&field), 14349.191660944736 * 1e-10);
+    EXPECT_FLOAT_EQ(14349.191660944736, hamil.calc_E(&field));
 
     field = gen_3d_heis_afm(0, -1, 0);
-    EXPECT_NEAR(14349.191660944736, hamil.calc_E(&field), 14349.191660944736 * 1e-10);
+    EXPECT_FLOAT_EQ(14349.191660944736, hamil.calc_E(&field));
 
     field = gen_3d_heis_afm(0, 0, -1);
-    EXPECT_NEAR(14481.605270298143, hamil.calc_E(&field), 14481.605270298143 * 1e-10);
+    EXPECT_FLOAT_EQ(14481.605270298143, hamil.calc_E(&field));
 }
 
 TEST(FePt, 3d_mag)
@@ -96,7 +96,7 @@ TEST(FePt, 3d_mag)
     field_3d_h field = gen_3d_heis_fm(1, 0, 0);
     ham_FePt hamil;
     hamil.init_dim(&field);
-    vector<double> mag = hamil.calc_M(&field);
+    std::vector<double> mag = hamil.calc_M(&field);
     EXPECT_EQ(1000, mag[0]);
     EXPECT_EQ(0, mag[1]);
     EXPECT_EQ(0, mag[2]);
@@ -173,7 +173,7 @@ TEST(FePt, 3d_submag)
     field_3d_h field = gen_3d_heis_fm(1, 0, 0);
     ham_FePt hamil;
     hamil.init_dim(&field);
-    vector<double> mag = hamil.calc_subM(&field, 1);
+    std::vector<double> mag = hamil.calc_subM(&field, 1);
     EXPECT_EQ(500, mag[0]);
     EXPECT_EQ(0, mag[1]);
     EXPECT_EQ(0, mag[2]);
@@ -250,7 +250,7 @@ TEST(FePt, 3d_dE_consist)
     field_3d_h field = gen_3d_heis_fm(1, 0, 0);
     ham_FePt hamil(4);
     hamil.init_dim(&field);
-    vector<int> pos(3);
+    std::vector<int> pos(3);
     double old_E = hamil.calc_E(&field);
     for(int i = 0; i < 100; i++)
     {
@@ -260,7 +260,7 @@ TEST(FePt, 3d_dE_consist)
         double dE = hamil.dE(&field, pos);
         field.change_to_test(pos, &hamil);
         double new_E = hamil.calc_E(&field);
-        EXPECT_NEAR(old_E + dE, new_E, abs(new_E*1e-10));
+        EXPECT_FLOAT_EQ(old_E + dE, new_E);
         old_E = new_E;
     }
 }

@@ -5,21 +5,21 @@
 #include <iostream>
 #include <cstdlib>
 
-template <class T> T read_var(string v_name, string f_name)
+template <class T> T read_var(std::string v_name, std::string f_name)
 {
-    fstream file;
-    file.open(f_name.c_str(), fstream::in);
+    std::fstream file;
+    file.open(f_name.c_str(), std::fstream::in);
     if(!file.is_open())
     {
-        cout << "Input file not opened" << endl;
+        std::cout << "Input file not opened" << std::endl;
         exit(105);
     }
-    string line;
-    string test_v_name;
+    std::string line;
+    std::string test_v_name;
     T test_out;
     while(getline(file, line))
     {
-        istringstream stream(line);
+        std::istringstream stream(line);
         stream >> test_v_name >> test_out;
         if (test_v_name == v_name)
         {
@@ -28,14 +28,14 @@ template <class T> T read_var(string v_name, string f_name)
         }
     }
     file.close();
-    cout << "Variable name '" << v_name << "' not found" << endl;
+    std::cout << "Variable name '" << v_name << "' not found" << std::endl;
     exit(105);
 }
 
-void read_all_vars(string f_name, double& size, double& J, double& k,
+void read_all_vars(std::string f_name, double& size, double& J, double& k,
     bool& periodic, char& shape, char& hamil, int& Samp_steps, int& N_samp,
     int& Eq_steps, int& N_latts, double& beta, bool& distrib, double& amean,
-    double& asd, string& temp_name, string& field_name, int& protocol,
+    double& asd, std::string& temp_name, std::string& field_name, int& protocol,
     double& K, bool& print_latt)
 {
     shape = read_var<char>("LATTSHAPE", f_name);
@@ -88,26 +88,26 @@ void read_all_vars(string f_name, double& size, double& J, double& k,
     Samp_steps = read_var<int>("SAMPSWEEPS", f_name);
     Eq_steps = read_var<int>("EQSWEEPS", f_name);
     N_samp = read_var<int>("NSAMPS", f_name);
-    temp_name = read_var<string>("TEMPNAME", f_name);
-    field_name = read_var<string>("FIELDNAME", f_name);
+    temp_name = read_var<std::string>("TEMPNAME", f_name);
+    field_name = read_var<std::string>("FIELDNAME", f_name);
     protocol = read_var<int>("PROTOCOL", f_name);
     print_latt = read_var<int>("PRINT_LATT", f_name);
 }
 
-void load_Hs_Ts(string Tname,
+void load_Hs_Ts(std::string Tname,
                 float* &Ts,
                 int& Tnum,
-                string Hname,
+                std::string Hname,
                 float* &Hs,
                 int& Hnum)
 {
     // load temps
-    stringstream loadstream;
-    string loadname;
-    loadstream << "Temps/" << Tname << endl;
+    std::stringstream loadstream;
+    std::string loadname;
+    loadstream << "Temps/" << Tname << std::endl;
     loadstream >> loadname;
 
-    ifstream f;
+    std::ifstream f;
     f.open(loadname.c_str());
     double curr;
     bool cont = false;
@@ -135,7 +135,7 @@ void load_Hs_Ts(string Tname,
     f.close();
 
     // load fields
-    loadstream << "Fields/" << Hname << endl;
+    loadstream << "Fields/" << Hname << std::endl;
     loadstream >> loadname;
 
     f.open(loadname.c_str());

@@ -8,8 +8,6 @@
 
 class ham_type;
 
-using namespace std;
-
 void rand_spin_h(double &x, double &y, double &z);
 
 class field_type
@@ -22,29 +20,29 @@ public:
     field_type(){}
     ~field_type(){}
     // virtual void alloc_pos(int size){}
-    virtual void i_access(vector<int>& postion, int &out){}
-    virtual void i_adjacent(vector<int>& position, int* out){}
-    virtual void h_access(vector<int>& position, vector<double>& out){}
-    virtual void h_adjacent(vector<int>& position, double** out){}
-    virtual void h_2adjacent(vector<int>& position, double** out){}
-    virtual void h_arb_adj(vector<int>& position, vector<int>& dxs, vector<int>& dys, vector<int>& dzs, double** out, int num){}
-    virtual void next(bool &finish, vector<int> &pos){}
-    virtual void i_next(bool &finish, vector<int> &pos, int &out){}
-    virtual void h_next(bool &finish, vector<int> &pos, vector<double> &out){}
+    virtual void i_access(std::vector<int>& postion, int &out){}
+    virtual void i_adjacent(std::vector<int>& position, int* out){}
+    virtual void h_access(std::vector<int>& position, std::vector<double>& out){}
+    virtual void h_adjacent(std::vector<int>& position, double** out){}
+    virtual void h_2adjacent(std::vector<int>& position, double** out){}
+    virtual void h_arb_adj(std::vector<int>& position, std::vector<int>& dxs, std::vector<int>& dys, std::vector<int>& dzs, double** out, int num){}
+    virtual void next(bool &finish, std::vector<int> &pos){}
+    virtual void i_next(bool &finish, std::vector<int> &pos, int &out){}
+    virtual void h_next(bool &finish, std::vector<int> &pos, std::vector<double> &out){}
     int get_insize() const {return insize;}
     int get_totsize() const {return totsize;}
     bool get_perio() const {return periodic;}
     int get_dim() const {return dim;}
     virtual void fill_ghost(int num_rows){}
-    virtual void fill_rand(vector<int>& position){}
-    virtual void fill_zero(vector<int>& position){}
-    virtual void fill_one(vector<int>&position){}
-    virtual void fill_val_i(vector<int>& position, int val){}
-    virtual void fill_val_h(vector<int>& position, double x, double y, double z){}
-    virtual void add_val_h(vector<int>& position, vector<double> &in){}
+    virtual void fill_rand(std::vector<int>& position){}
+    virtual void fill_zero(std::vector<int>& position){}
+    virtual void fill_one(std::vector<int>&position){}
+    virtual void fill_val_i(std::vector<int>& position, int val){}
+    virtual void fill_val_h(std::vector<int>& position, double x, double y, double z){}
+    virtual void add_val_h(std::vector<int>& position, std::vector<double> &in){}
     void allzero();
-    virtual bool check_zero(vector<int>& position){return true;}
-    virtual void change_to_test(vector<int>& position, ham_type* hamil){}
+    virtual bool check_zero(std::vector<int>& position){return true;}
+    virtual void change_to_test(std::vector<int>& position, ham_type* hamil){}
     virtual void new_mem(){}
     virtual int findnum(){return 0;}
     virtual void get_2dfield_i(int** &x) const{}
@@ -54,9 +52,9 @@ public:
     virtual void get_3dfield_h(double*** &x, double*** &y, double*** &z) const{}
     virtual void get_2dzero(bool** &x) const{}
     virtual void get_3dzero(bool*** &x) const{}
-    virtual void print(string filename, string arrname){}
-    virtual void print_setup(const string filename,
-        const string groupname,
+    virtual void print(std::string filename, std::string arrname){}
+    virtual void print_setup(const std::string filename,
+        const std::string groupname,
         const int Tmax,
         const int Hmax){}
     int get_ft() const {return ft;}
@@ -72,18 +70,18 @@ protected:
     double* spinz;
 public:
     field_cluster_h();
-    field_cluster_h(string filename);
+    field_cluster_h(std::string filename);
     field_cluster_h(field_type& other);
     field_cluster_h(const field_cluster_h& other);
     ~field_cluster_h();
-    void h_access(vector<int>& position, vector<double>& out);
-    void h_next(bool &finish, vector<int> &pos, vector<double> &out);
+    void h_access(std::vector<int>& position, std::vector<double>& out);
+    void h_next(bool &finish, std::vector<int> &pos, std::vector<double> &out);
     field_cluster_h& operator=(const field_cluster_h& other);
     int findnum(){return insize;}
     void get_1dfield_h(double* &x, double* &y, double* &z) const;
-    void fill_rand(vector<int>& position){}
-    bool check_zero(vector<int>& position){return false;}
-    void change_to_test(vector<int>& position, ham_type* hamil);
+    void fill_rand(std::vector<int>& position){}
+    bool check_zero(std::vector<int>& position){return false;}
+    void change_to_test(std::vector<int>& position, ham_type* hamil);
 };
 
 class field_2d: public field_type
@@ -93,8 +91,8 @@ protected:
 public:
     field_2d() {}
     ~field_2d() {}
-    void next(bool &finish, vector<int> &pos);
-    bool check_zero(vector<int>& position)
+    void next(bool &finish, std::vector<int> &pos);
+    bool check_zero(std::vector<int>& position)
         {return iszero[position[0]][position[1]];}
     void get_2dzero(bool** &x) const {x = iszero;}
     int findnum();
@@ -114,18 +112,18 @@ public:
     field_2d_h(field_type& other);
     field_2d_h(const field_2d_h& other);
     ~field_2d_h();
-    void h_access(vector<int>& position, vector<double>& out);
-    void h_next(bool &finish, vector<int> &pos, vector<double> &out);
+    void h_access(std::vector<int>& position, std::vector<double>& out);
+    void h_next(bool &finish, std::vector<int> &pos, std::vector<double> &out);
     void fill_ghost(int num_rows);
     field_2d_h& operator=(const field_2d_h& other);
     void get_2dfield_h(double** &x, double** &y, double** &z) const;
-    void h_adjacent(vector<int>& position, double** out);
-    void fill_rand(vector<int>& position);
-    void fill_one(vector<int>&position);
-    void fill_zero(vector<int>& position);
-    void fill_val_h(vector<int>& position, double x, double y, double z);
-    void add_val_h(vector<int>& position, vector<double> &in);
-    void change_to_test(vector<int>& position, ham_type* hamil);
+    void h_adjacent(std::vector<int>& position, double** out);
+    void fill_rand(std::vector<int>& position);
+    void fill_one(std::vector<int>&position);
+    void fill_zero(std::vector<int>& position);
+    void fill_val_h(std::vector<int>& position, double x, double y, double z);
+    void add_val_h(std::vector<int>& position, std::vector<double> &in);
+    void change_to_test(std::vector<int>& position, ham_type* hamil);
     void send_data(int dest_rank);
     void recv_data(int src_rank);
 };
@@ -140,17 +138,17 @@ public:
     field_2d_i(field_type& other);
     field_2d_i(const field_2d_i& other);
     ~field_2d_i();
-    void i_access(vector<int>& position, int &out);
-    void i_next(bool &finish, vector<int> &pos, int &out);
+    void i_access(std::vector<int>& position, int &out);
+    void i_next(bool &finish, std::vector<int> &pos, int &out);
     void fill_ghost(int num_rows);
     field_2d_i& operator=(const field_2d_i& other);
     void get_2dfield_i(int** &x) const;
-    void i_adjacent(vector<int>& position, int* out);
-    void fill_rand(vector<int>& position);
-    void fill_one(vector<int>&position);
-    void fill_zero(vector<int>& position);
-    void change_to_test(vector<int>& position, ham_type* hamil);
-    void fill_val_i(vector<int>& position, int val);
+    void i_adjacent(std::vector<int>& position, int* out);
+    void fill_rand(std::vector<int>& position);
+    void fill_one(std::vector<int>&position);
+    void fill_zero(std::vector<int>& position);
+    void change_to_test(std::vector<int>& position, ham_type* hamil);
+    void fill_val_i(std::vector<int>& position, int val);
     void send_data(int dest_rank);
     void recv_data(int src_rank);
 };
@@ -162,8 +160,8 @@ protected:
 public:
     field_3d() {}
     ~field_3d() {}
-    void next(bool &finish, vector<int> &pos);
-    bool check_zero(vector<int>& position)
+    void next(bool &finish, std::vector<int> &pos);
+    bool check_zero(std::vector<int>& position)
         {return iszero[position[0]][position[1]][position[2]];}
     void get_3dzero(bool*** &x) const {x = iszero;}
     int findnum();
@@ -185,23 +183,23 @@ public:
     field_3d_h(const field_3d_h& other);
     ~field_3d_h();
     // void alloc_pos(int size) {postemp = alloc_2darr<int>(3, size);}
-    void h_access(vector<int>& position, vector<double>& out);
-    void h_next(bool &finish, vector<int> &pos, vector<double> &out);
+    void h_access(std::vector<int>& position, std::vector<double>& out);
+    void h_next(bool &finish, std::vector<int> &pos, std::vector<double> &out);
     void fill_ghost(int num_rows);
     field_3d_h& operator=(const field_3d_h& other);
     void get_3dfield_h(double*** &x, double*** &y, double*** &z) const;
-    void h_adjacent(vector<int>& position, double** out);
-    void h_2adjacent(vector<int>& position, double** out);
-    void fill_rand(vector<int>& position);
-    void fill_one(vector<int>&position);
-    void fill_zero(vector<int>& position);
-    void fill_val_h(vector<int>& position, double x, double y, double z);
-    void add_val_h(vector<int>& position, vector<double> &in);
-    void change_to_test(vector<int>& position, ham_type* hamil);
-    void h_arb_adj(vector<int>& position, vector<int>& dxs, vector<int>& dys, vector<int>& dzs, double** out, int num);
-    void print(string filename, string arrname);
-    void print_setup(const string filename,
-        const string groupname,
+    void h_adjacent(std::vector<int>& position, double** out);
+    void h_2adjacent(std::vector<int>& position, double** out);
+    void fill_rand(std::vector<int>& position);
+    void fill_one(std::vector<int>&position);
+    void fill_zero(std::vector<int>& position);
+    void fill_val_h(std::vector<int>& position, double x, double y, double z);
+    void add_val_h(std::vector<int>& position, std::vector<double> &in);
+    void change_to_test(std::vector<int>& position, ham_type* hamil);
+    void h_arb_adj(std::vector<int>& position, std::vector<int>& dxs, std::vector<int>& dys, std::vector<int>& dzs, double** out, int num);
+    void print(std::string filename, std::string arrname);
+    void print_setup(const std::string filename,
+        const std::string groupname,
         const int Tmax,
         const int Hmax);
     void send_data(int dest_rank);
@@ -218,17 +216,17 @@ public:
     field_3d_i(field_type& other);
     field_3d_i(const field_3d_i& other);
     ~field_3d_i();
-    void i_access(vector<int>& position, int &out);
-    void i_next(bool &finish, vector<int> &pos, int &out);
+    void i_access(std::vector<int>& position, int &out);
+    void i_next(bool &finish, std::vector<int> &pos, int &out);
     void fill_ghost(int num_rows);
     field_3d_i& operator=(const field_3d_i& other);
     void get_3dfield_i(int*** &x) const;
-    void i_adjacent(vector<int>& position, int* out);
-    void fill_rand(vector<int>& position);
-    void fill_one(vector<int>&position);
-    void fill_zero(vector<int>& position);
-    void change_to_test(vector<int>& position, ham_type* hamil);
-    void fill_val_i(vector<int>& position, int val);
+    void i_adjacent(std::vector<int>& position, int* out);
+    void fill_rand(std::vector<int>& position);
+    void fill_one(std::vector<int>&position);
+    void fill_zero(std::vector<int>& position);
+    void change_to_test(std::vector<int>& position, ham_type* hamil);
+    void fill_val_i(std::vector<int>& position, int val);
     void send_data(int dest_rank);
     void recv_data(int src_rank);
 };

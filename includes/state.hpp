@@ -8,14 +8,12 @@
 #include <string.h>
 #include <vector>
 
-using namespace std;
-
 class state
 {
 private:
     double E, beta, k_b;
-    vector<double> M;
-    vector<double> subM;
+    std::vector<double> M;
+    std::vector<double> subM;
     int num, snum;
     char s_code, h_code;
     ham_type* hamil;
@@ -31,10 +29,10 @@ public:
     void copy_points(const state& other);
     void init_points(double size, bool isPerio, double H, double J, double K, double* args);
     void equil(int iter);
-    vector<double> magnetisation();
-    vector<double> submag(int subnumber);
+    std::vector<double> magnetisation();
+    std::vector<double> submag(int subnumber);
     double energy();
-    vector<double> tcharge();
+    std::vector<double> tcharge();
     int num_spins();
     int sub_num(int subnumber);
     void init_lattice();
@@ -42,7 +40,7 @@ public:
     void change_field(double H);
     state& operator=(const state& other);
     void print_latt();
-    void ptf(string fname, string arrname);
+    void ptf(std::string fname, std::string arrname);
     void add_to_av(field_type* other_field);
     void change_v1(int protocol, double v1);
     void change_v2(int protocol, double v2);

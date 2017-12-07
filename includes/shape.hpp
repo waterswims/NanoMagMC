@@ -3,14 +3,12 @@
 
 #include <vector>
 
-using namespace std;
-
 class shape_type
 {
 public:
     shape_type(){}
     ~shape_type(){}
-    virtual bool check(vector<int> Is, int l_size){return false;}
+    virtual bool check(std::vector<int> Is, int l_size){return false;}
     virtual double get_r0(){return 0;}
     virtual double get_beta(){return 0;}
     virtual double get_a(){return 0;}
@@ -23,7 +21,7 @@ class shape_2d: public shape_type
 public:
     shape_2d(){}
     ~shape_2d(){}
-    virtual bool check(vector<int> Is, int l_size){return true;}
+    virtual bool check(std::vector<int> Is, int l_size){return true;}
 };
 
 class shape_3d: public shape_type
@@ -31,7 +29,7 @@ class shape_3d: public shape_type
 public:
     shape_3d(){}
     ~shape_3d(){}
-    virtual bool check(vector<int> Is, int l_size){return true;}
+    virtual bool check(std::vector<int> Is, int l_size){return true;}
 };
 
 class weibull: public shape_type
@@ -46,7 +44,7 @@ public:
     weibull(double rin, double bin);
     weibull(double betain, double ain, double bin, double cin);
     ~weibull(){}
-    bool check(vector<int> Is, int l_size);
+    bool check(std::vector<int> Is, int l_size);
     weibull& operator=(shape_type& other);
     double get_r0(){return r0;}
     double get_beta(){return beta;}

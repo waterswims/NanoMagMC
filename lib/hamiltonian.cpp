@@ -26,7 +26,7 @@ double ham_ising::calc_E(field_type* lattice)
 {
     int sum=0;
     int start = (lattice->get_totsize() - lattice->get_insize()) / 2;
-    vector<int> pos(dim, start);
+    std::vector<int> pos(dim, start);
     bool finished = false;
     int curr;
     int H_sum(0), J_sum(0);
@@ -46,11 +46,11 @@ double ham_ising::calc_E(field_type* lattice)
     return E;
 }
 
-vector<double> ham_ising::calc_M(field_type* lattice)
+std::vector<double> ham_ising::calc_M(field_type* lattice)
 {
     int sum=0;
     int start = (lattice->get_totsize() - lattice->get_insize()) / 2;
-    vector<int> pos(dim, start);
+    std::vector<int> pos(dim, start);
     bool finished = false;
     int curr;
     while (!finished)
@@ -58,21 +58,21 @@ vector<double> ham_ising::calc_M(field_type* lattice)
         lattice->i_next(finished, pos, curr);
         sum += curr;
     }
-    vector<double> mag(1);
+    std::vector<double> mag(1);
     mag[0] = sum;
     return mag;
 }
 
-vector<double> ham_ising::calc_subM(field_type* lattice, int subnumber)
+std::vector<double> ham_ising::calc_subM(field_type* lattice, int subnumber)
 {
     if (subnumber > 1)
     {
-        cerr << "subnumber is incorrect" << endl;
+        std::cerr << "subnumber is incorrect" << std::endl;
         exit(304);
     }
     int tsum=0;
     int start = (lattice->get_totsize() - lattice->get_insize()) / 2;
-    vector<int> pos(dim, start);
+    std::vector<int> pos(dim, start);
     bool finished = false;
     int possum = 0;
     int curr;
@@ -86,12 +86,12 @@ vector<double> ham_ising::calc_subM(field_type* lattice, int subnumber)
         }
     }
 
-    vector<double> mag(1);
+    std::vector<double> mag(1);
     mag[0] = tsum;
     return mag;
 }
 
-double ham_ising::dE(field_type* lattice, vector<int>& position)
+double ham_ising::dE(field_type* lattice, std::vector<int>& position)
 {
     int val;
     lattice->i_access(position, val);
@@ -193,7 +193,7 @@ double ham_heis::calc_E(field_type* lattice)
     int sum=0;
     int start = (lattice->get_totsize() - lattice->get_insize()) / 2;
     pos.resize(dim);
-    for (vector<int>::iterator it = pos.begin(); it != pos.end(); it++)
+    for (std::vector<int>::iterator it = pos.begin(); it != pos.end(); it++)
     {
         *it = start;
     }
@@ -230,13 +230,13 @@ double ham_heis::calc_E(field_type* lattice)
     return E;
 }
 
-vector<double> ham_heis::calc_M(field_type* lattice)
+std::vector<double> ham_heis::calc_M(field_type* lattice)
 {
     #pragma omp simd
     for (int i = 0; i < 4; i++) {vsum[i] = 0;}
     int start = (lattice->get_totsize() - lattice->get_insize()) / 2;
     pos.resize(dim);
-    for (vector<int>::iterator it = pos.begin(); it != pos.end(); it++)
+    for (std::vector<int>::iterator it = pos.begin(); it != pos.end(); it++)
     {
         *it = start;
     }
@@ -250,13 +250,13 @@ vector<double> ham_heis::calc_M(field_type* lattice)
     return vsum;
 }
 
-vector<double> ham_heis::calc_subM(field_type* lattice, int subnumber)
+std::vector<double> ham_heis::calc_subM(field_type* lattice, int subnumber)
 {
     #pragma omp simd
     for (int i = 0; i < 4; i++) {vsum[i] = 0;}
     int start = (lattice->get_totsize() - lattice->get_insize()) / 2;
     pos.resize(dim);
-    for (vector<int>::iterator it = pos.begin(); it != pos.end(); it++)
+    for (std::vector<int>::iterator it = pos.begin(); it != pos.end(); it++)
     {
         *it = start;
     }
@@ -275,7 +275,7 @@ vector<double> ham_heis::calc_subM(field_type* lattice, int subnumber)
     return vsum;
 }
 
-double ham_heis::dE(field_type* lattice, vector<int>& position)
+double ham_heis::dE(field_type* lattice, std::vector<int>& position)
 {
     rand_spin_h(test[0], test[1], test[2]);
     lattice->h_access(position, curr);
@@ -301,12 +301,12 @@ double ham_heis::dE(field_type* lattice, vector<int>& position)
     return dE;
 }
 
-vector<double> ham_heis::calc_top_charge(field_type* lattice)
+std::vector<double> ham_heis::calc_top_charge(field_type* lattice)
 {
     int sum=0;
     int start = (lattice->get_totsize() - lattice->get_insize()) / 2;
     pos.resize(dim);
-    for (vector<int>::iterator it = pos.begin(); it != pos.end(); it++)
+    for (std::vector<int>::iterator it = pos.begin(); it != pos.end(); it++)
     {
         *it = start;
     }
@@ -457,7 +457,7 @@ double ham_FePt::calc_E(field_type* lattice)
     int i_size = lattice->get_insize();
     int start = (t_size-i_size)/2;
     pos2.resize(dim);
-    for (vector<int>::iterator it = pos2.begin(); it != pos2.end(); it++)
+    for (std::vector<int>::iterator it = pos2.begin(); it != pos2.end(); it++)
     {
         *it = start;
     }
@@ -486,7 +486,7 @@ double ham_FePt::calc_E(field_type* lattice)
     return E;
 }
 
-double ham_FePt::dE(field_type* lattice, vector<int>& position)
+double ham_FePt::dE(field_type* lattice, std::vector<int>& position)
 {
     double Jx_sum = 0;
     double Jy_sum = 0;
@@ -520,9 +520,9 @@ double ham_FePt::dE(field_type* lattice, vector<int>& position)
 
 void ham_FePt::read_Js()
 {
-    ifstream Jstream, d_ijstream;
-    string Jname = "Js/FePt_nocut.txt";
-    string dname = "Js/FePt_2ion_nocut.txt";
+    std::ifstream Jstream, d_ijstream;
+    std::string Jname = "Js/FePt_nocut.txt";
+    std::string dname = "Js/FePt_2ion_nocut.txt";
     Jstream.open(Jname.c_str());
     d_ijstream.open(dname.c_str());
     int icurr;
@@ -677,7 +677,7 @@ double ham_skyrm::calc_E(field_type* lattice)
     // double D_sum = 0, D2_sum = 0;
     double D_sum = 0;
     pos.resize(dim);
-    for (vector<int>::iterator it = pos.begin(); it != pos.end(); it++)
+    for (std::vector<int>::iterator it = pos.begin(); it != pos.end(); it++)
     {
         *it = start;
     }
@@ -747,7 +747,7 @@ double ham_skyrm::calc_E(field_type* lattice)
     return E;
 }
 
-double ham_skyrm::dE(field_type* lattice, vector<int>& position)
+double ham_skyrm::dE(field_type* lattice, std::vector<int>& position)
 {
     // double D_sum = 0, D2_sum = 0;
     double D_sum = 0;

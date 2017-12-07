@@ -32,7 +32,7 @@ weibull::weibull(double betain, double ain, double bin, double cin)
     a[2] = cin;
 }
 
-bool weibull::check(vector<int> Is, int l_size)
+bool weibull::check(std::vector<int> Is, int l_size)
 {
     double centre = double(l_size - 1) / 2.;
     double dist2 = 0;

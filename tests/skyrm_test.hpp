@@ -48,7 +48,7 @@ TEST(Skyrmion, 3d_energy_zero_field)
     field = gen_3d_heis_afm(0, 0, -1);
     EXPECT_EQ(2550, hamil.calc_E(&field));
 
-    vector<int> pos(3);
+    std::vector<int> pos(3);
     for(int i = 1; i < 11; i++)
     {
         pos[0] = i;
@@ -122,7 +122,7 @@ TEST(Skyrmion, 3d_energy_ext_field)
     field = gen_3d_heis_afm(0, 0, -1);
     EXPECT_EQ(2550, hamil.calc_E(&field));
 
-    vector<int> pos(3);
+    std::vector<int> pos(3);
     for(int i = 1; i < 11; i++)
     {
         pos[0] = i;
@@ -160,7 +160,7 @@ TEST(Skyrmion, 3d_mag)
     field_3d_h field = gen_3d_heis_fm(1, 0, 0);
     ham_skyrm hamil(0, 1, 0.75);
     hamil.init_dim(&field);
-    vector<double> mag = hamil.calc_M(&field);
+    std::vector<double> mag = hamil.calc_M(&field);
     EXPECT_EQ(1000, mag[0]);
     EXPECT_EQ(0, mag[1]);
     EXPECT_EQ(0, mag[2]);
@@ -237,7 +237,7 @@ TEST(Skyrmion, 3d_submag)
     field_3d_h field = gen_3d_heis_fm(1, 0, 0);
     ham_skyrm hamil(0, 1, 0.75);
     hamil.init_dim(&field);
-    vector<double> mag = hamil.calc_subM(&field, 1);
+    std::vector<double> mag = hamil.calc_subM(&field, 1);
     EXPECT_EQ(500, mag[0]);
     EXPECT_EQ(0, mag[1]);
     EXPECT_EQ(0, mag[2]);
@@ -314,7 +314,7 @@ TEST(Skyrmion, 3d_dE_consist)
     field_3d_h field = gen_3d_heis_fm(1, 0, 0);
     ham_skyrm hamil(0, 1, 0.75);
     hamil.init_dim(&field);
-    vector<int> pos(3);
+    std::vector<int> pos(3);
     double old_E = hamil.calc_E(&field);
     for(int i = 0; i < 1000; i++)
     {
@@ -324,7 +324,7 @@ TEST(Skyrmion, 3d_dE_consist)
         double dE = hamil.dE(&field, pos);
         field.change_to_test(pos, &hamil);
         double new_E = hamil.calc_E(&field);
-        EXPECT_NEAR(old_E + dE, new_E, abs(new_E*1e-10));
+        EXPECT_FLOAT_EQ(old_E + dE, new_E);
         old_E = new_E;
     }
 }

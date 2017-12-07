@@ -66,7 +66,7 @@ void state::init_points(double size, bool isPerio, double H, double J, double K,
             hamil = new ham_skyrm(H, J, K);
             break;
         default:
-            cerr << "Incorrect hamiltonian, exiting..." << endl;
+            std::cerr << "Incorrect hamiltonian, exiting..." << std::endl;
             exit(102);
     }
     int pad = 1;
@@ -86,7 +86,7 @@ void state::init_points(double size, bool isPerio, double H, double J, double K,
                     shape = new weibull(args[0], sizeab, sizeab, sizec);
                     break;
                 default:
-                    cerr << "Incorrect shape code, FePt only works with Weibull, exiting" << endl;
+                    std::cerr << "Incorrect shape code, FePt only works with Weibull, exiting" << std::endl;
                     exit(103);
             }
             break;
@@ -118,7 +118,7 @@ void state::init_points(double size, bool isPerio, double H, double J, double K,
                 shape = new weibull((size), args[0]);
                 break;
             default:
-                cerr << "Incorrect shape code, exiting" << endl;
+                std::cerr << "Incorrect shape code, exiting" << std::endl;
                 exit(103);
         }
         break;
@@ -148,7 +148,7 @@ void state::init_points(double size, bool isPerio, double H, double J, double K,
                 shape = new weibull((size), args[0]);
                 break;
             default:
-                cerr << "Incorrect shape code, exiting" << endl;
+                std::cerr << "Incorrect shape code, exiting" << std::endl;
                 exit(103);
         }
         break;
@@ -177,7 +177,7 @@ void state::copy_points(const state& other)
             hamil = new ham_skyrm(*(other.hamil));
             break;
         default:
-            cerr << "Incorrect hamiltonian, exiting..." << endl;
+            std::cerr << "Incorrect hamiltonian, exiting..." << std::endl;
             exit(102);
     }
     switch (h_code)
@@ -211,7 +211,7 @@ void state::copy_points(const state& other)
                 shape = new weibull(*(other.shape));
                 break;
             default:
-                cerr << "Incorrect shape code, exiting" << endl;
+                std::cerr << "Incorrect shape code, exiting" << std::endl;
                 exit(103);
         }
         break;
@@ -241,7 +241,7 @@ void state::copy_points(const state& other)
                 shape = new weibull(*(other.shape));
                 break;
             default:
-                cerr << "Incorrect shape code, exiting" << endl;
+                std::cerr << "Incorrect shape code, exiting" << std::endl;
                 exit(103);
         }
         break;
@@ -262,7 +262,7 @@ void state::init_lattice()
     snum = 0;
     int start = (field->get_totsize() - field->get_insize()) / 2;
     int dim = field->get_dim();
-    vector<int> pos(dim, start);
+    std::vector<int> pos(dim, start);
     bool finished = false;
     while (!finished)
     {
@@ -290,7 +290,7 @@ void state::equil(int iter)
     int s_start = (tsize-size)/2;
 
     // create some variables
-    vector<int> r_choice(dim);
+    std::vector<int> r_choice(dim);
     double dE = 0;
     double log_eta = 0;
 
@@ -324,12 +324,12 @@ void state::equil(int iter)
     }
 }
 
-vector<double> state::magnetisation()
+std::vector<double> state::magnetisation()
 {
     return hamil->calc_M(field);
 }
 
-vector<double> state::submag(int subnumber)
+std::vector<double> state::submag(int subnumber)
 {
     return hamil->calc_subM(field, 0);
 }
@@ -339,7 +339,7 @@ double state::energy()
     return hamil->calc_E(field);
 }
 
-vector<double> state::tcharge()
+std::vector<double> state::tcharge()
 {
     return hamil->calc_top_charge(field);
 }
@@ -358,7 +358,7 @@ void state::change_temp(double T)
 {
     if (T <= 0)
     {
-        cerr << "Invalid temperature, exiting" << endl;
+        std::cerr << "Invalid temperature, exiting" << std::endl;
         exit(104);
     }
     beta = 1 / (k_b * T);
@@ -374,7 +374,7 @@ void state::print_latt()
 
 }
 
-void state::ptf(string fname, string arrname)
+void state::ptf(std::string fname, std::string arrname)
 {
     field->print(fname, arrname);
 }
@@ -385,9 +385,9 @@ void state::add_to_av(field_type* other_field)
     int t_size = field->get_totsize();
     int start = (t_size - i_size) / 2;
     int dim = field->get_dim();
-    vector<int> pos(dim, start);
+    std::vector<int> pos(dim, start);
     bool finished = false;
-    vector<double> curr(dim);
+    std::vector<double> curr(dim);
 
     while(!finished)
     {

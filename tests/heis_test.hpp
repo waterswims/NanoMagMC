@@ -94,7 +94,7 @@ TEST(Heis_model, 2d_mag)
     field_2d_h field = gen_2d_heis_fm(1, 0, 0);
     ham_heis hamil(0, 1);
     hamil.init_dim(&field);
-    vector<double> mag = hamil.calc_M(&field);
+    std::vector<double> mag = hamil.calc_M(&field);
     EXPECT_EQ(100, mag[0]);
     EXPECT_EQ(0, mag[1]);
     EXPECT_EQ(0, mag[2]);
@@ -171,7 +171,7 @@ TEST(Heis_model, 2d_submag)
     field_2d_h field = gen_2d_heis_fm(1, 0, 0);
     ham_heis hamil(0, 1);
     hamil.init_dim(&field);
-    vector<double> mag = hamil.calc_subM(&field, 1);
+    std::vector<double> mag = hamil.calc_subM(&field, 1);
     EXPECT_EQ(50, mag[0]);
     EXPECT_EQ(0, mag[1]);
     EXPECT_EQ(0, mag[2]);
@@ -248,7 +248,7 @@ TEST(Heis_model, 2d_dE_consist)
     field_2d_h field = gen_2d_heis_fm(1, 0, 0);
     ham_heis hamil(0, 1);
     hamil.init_dim(&field);
-    vector<int> pos(2);
+    std::vector<int> pos(2);
     double old_E = hamil.calc_E(&field);
     for(int i = 0; i < 1000; i++)
     {
@@ -257,7 +257,7 @@ TEST(Heis_model, 2d_dE_consist)
         double dE = hamil.dE(&field, pos);
         field.change_to_test(pos, &hamil);
         double new_E = hamil.calc_E(&field);
-        EXPECT_NEAR(old_E + dE, new_E, abs(new_E*1e-10));
+        EXPECT_FLOAT_EQ(old_E + dE, new_E);
         old_E = new_E;
     }
 }
@@ -268,9 +268,9 @@ TEST(Heis_model, 2d_top_charge)
     ham_heis hamil(0, 1);
     hamil.init_dim(&field);
 
-    vector<double> tcs = hamil.calc_top_charge(&field);
+    std::vector<double> tcs = hamil.calc_top_charge(&field);
 
-    EXPECT_NEAR(tcs[0], -1, 1e-4);
+    EXPECT_FLOAT_EQ(tcs[0], -1);
 }
 
 ///////////////////////////////////////////////////////
@@ -364,7 +364,7 @@ TEST(Heis_model, 3d_mag)
     field_3d_h field = gen_3d_heis_fm(1, 0, 0);
     ham_heis hamil(0, 1);
     hamil.init_dim(&field);
-    vector<double> mag = hamil.calc_M(&field);
+    std::vector<double> mag = hamil.calc_M(&field);
     EXPECT_EQ(1000, mag[0]);
     EXPECT_EQ(0, mag[1]);
     EXPECT_EQ(0, mag[2]);
@@ -441,7 +441,7 @@ TEST(Heis_model, 3d_submag)
     field_3d_h field = gen_3d_heis_fm(1, 0, 0);
     ham_heis hamil(0, 1);
     hamil.init_dim(&field);
-    vector<double> mag = hamil.calc_subM(&field, 1);
+    std::vector<double> mag = hamil.calc_subM(&field, 1);
     EXPECT_EQ(500, mag[0]);
     EXPECT_EQ(0, mag[1]);
     EXPECT_EQ(0, mag[2]);
@@ -518,7 +518,7 @@ TEST(Heis_model, 3d_dE_consist)
     field_3d_h field = gen_3d_heis_fm(1, 0, 0);
     ham_heis hamil(0, 1);
     hamil.init_dim(&field);
-    vector<int> pos(3);
+    std::vector<int> pos(3);
     double old_E = hamil.calc_E(&field);
     for(int i = 0; i < 1000; i++)
     {
@@ -528,7 +528,7 @@ TEST(Heis_model, 3d_dE_consist)
         double dE = hamil.dE(&field, pos);
         field.change_to_test(pos, &hamil);
         double new_E = hamil.calc_E(&field);
-        EXPECT_NEAR(old_E + dE, new_E, abs(new_E*1e-10));
+        EXPECT_FLOAT_EQ(old_E + dE, new_E);
         old_E = new_E;
     }
 }
@@ -539,11 +539,11 @@ TEST(Heis_model, 3d_top_charge)
     ham_heis hamil(0, 1);
     hamil.init_dim(&field);
 
-    vector<double> tcs = hamil.calc_top_charge(&field);
+    std::vector<double> tcs = hamil.calc_top_charge(&field);
 
     for(int i = 0; i < 50; i++)
     {
-        EXPECT_NEAR(tcs[i], -1, 1e-4);
+        EXPECT_FLOAT_EQ(tcs[i], -1);
     }
 }
 

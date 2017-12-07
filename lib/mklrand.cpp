@@ -1,8 +1,6 @@
 #include "../includes/mklrand.hpp"
 #include <iostream>
 
-using namespace std;
-
 mkl_drand::mkl_drand(int size, int seed)
 {
 	arr_size = size;

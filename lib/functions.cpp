@@ -4,9 +4,7 @@
 #include <cmath>
 #include <sstream>
 
-using namespace std;
-
-double mean(vector<double> &oY){
+double mean(std::vector<double> &oY){
     double s(0);
     for (int i=0; i < oY.size(); i++){
         s += oY[i];
@@ -14,7 +12,7 @@ double mean(vector<double> &oY){
     return s / oY.size();
 }
 
-double std_dev(vector<double> &x){
+double std_dev(std::vector<double> &x){
     double av_x = mean(x);
     int size = x.size();
     double sum = 0;
@@ -25,30 +23,30 @@ double std_dev(vector<double> &x){
     return pow(var, 0.5);
 }
 
-double norm(vector<double> vals)
+double norm(std::vector<double> vals)
 {
     double s = 0;
-    for(vector<double>::iterator it = vals.begin(); it != vals.end(); it++)
+    for(std::vector<double>::iterator it = vals.begin(); it != vals.end(); it++)
     {
         s += pow(*it, 2);
     }
     return pow(s, 0.5);
 }
 
-double sum(vector<double> &oY)
+double sum(std::vector<double> &oY)
 {
             double s = 0;
-            for(vector<double>::iterator it = oY.begin(); it != oY.end(); it++)
+            for(std::vector<double>::iterator it = oY.begin(); it != oY.end(); it++)
             {
                         s += *it;
             }
             return s;
 }
 
-int sum(vector<int> &oY)
+int sum(std::vector<int> &oY)
 {
     int s = 0;
-    for(vector<int>::iterator it = oY.begin(); it != oY.end(); it++)
+    for(std::vector<int>::iterator it = oY.begin(); it != oY.end(); it++)
     {
                 s += *it;
     }
@@ -69,10 +67,10 @@ int mod(int a, int b)
     return r < 0 ? r + b : r;
 }
 
-double solid_angle(const vector<double> &s1,
-                const vector<double> &s2,
-                const vector<double> &s3,
-                vector<double> &buff)
+double solid_angle(const std::vector<double> &s1,
+                const std::vector<double> &s2,
+                const std::vector<double> &s3,
+                std::vector<double> &buff)
 {
     if(s1[0] == 0 && s1[1] == 0 && s1[2] == 0) {return 0;}
     else if(s2[0] == 0 && s2[1] == 0 && s2[2] == 0) {return 0;}
