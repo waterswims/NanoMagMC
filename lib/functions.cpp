@@ -79,7 +79,7 @@ double solid_angle(const vector<double> &s1,
     else if(s3[0] == 0 && s3[1] == 0 && s3[2] == 0) {return 0;}
 
     double s1s2 = 0, s1s3 = 0, s2s3 = 0;
-    #pragma simd
+    #pragma omp simd
     for(unsigned int i = 0; i < 4; i++)
     {
         s1s2 += s1[i] * s2[i];
@@ -92,7 +92,7 @@ double solid_angle(const vector<double> &s1,
     buff[1] = s1[2]*s3[0] - s1[0]*s3[2];
     buff[2] = s1[0]*s3[1] - s1[1]*s3[0];
     double crosssum = 0;
-    #pragma simd
+    #pragma omp simd
     for(unsigned int i = 0; i < 4; i++)
     {
         crosssum += buff[i] * s2[i];

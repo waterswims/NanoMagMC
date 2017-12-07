@@ -135,7 +135,7 @@ ham_heis::ham_heis(double Hin, double Jin)
     s2.resize(4);
     s3.resize(4);
     sbuff.resize(4);
-    #pragma simd
+    #pragma omp simd
     for(unsigned int i = 0; i < 4; i++)
     {
         s2[i] = 0;
@@ -156,7 +156,7 @@ ham_heis::ham_heis(ham_type& other)
     s2.resize(4);
     s3.resize(4);
     sbuff.resize(4);
-    #pragma simd
+    #pragma omp simd
     for(unsigned int i = 0; i < 4; i++)
     {
         s2[i] = 0;
@@ -177,7 +177,7 @@ ham_heis& ham_heis::operator=(ham_type& other)
     s2.resize(4);
     s3.resize(4);
     sbuff.resize(4);
-    #pragma simd
+    #pragma omp simd
     for(unsigned int i = 0; i < 4; i++)
     {
         s2[i] = 0;
@@ -209,7 +209,7 @@ double ham_heis::calc_E(field_type* lattice)
     {
         lattice->h_adjacent(pos, adj);
         lattice->h_next(finished, pos, curr);
-        #pragma simd
+        #pragma omp simd
         for (int j = 0; j < 4; j++)
         {
             H_sum[j] += curr[j];
@@ -219,7 +219,7 @@ double ham_heis::calc_E(field_type* lattice)
             }
         }
     }
-    #pragma simd
+    #pragma omp simd
     for (int j = 0; j < 4; j++)
     {
         H_sum[j] = H_sum[j] * H[j];
@@ -232,7 +232,7 @@ double ham_heis::calc_E(field_type* lattice)
 
 vector<double> ham_heis::calc_M(field_type* lattice)
 {
-    #pragma simd
+    #pragma omp simd
     for (int i = 0; i < 4; i++) {vsum[i] = 0;}
     int start = (lattice->get_totsize() - lattice->get_insize()) / 2;
     pos.resize(dim);
@@ -244,7 +244,7 @@ vector<double> ham_heis::calc_M(field_type* lattice)
     while (!finished)
     {
         lattice->h_next(finished, pos, curr);
-        #pragma simd
+        #pragma omp simd
         for (int i = 0; i < 4; i++) {vsum[i] += curr[i];}
     }
     return vsum;
@@ -252,7 +252,7 @@ vector<double> ham_heis::calc_M(field_type* lattice)
 
 vector<double> ham_heis::calc_subM(field_type* lattice, int subnumber)
 {
-    #pragma simd
+    #pragma omp simd
     for (int i = 0; i < 4; i++) {vsum[i] = 0;}
     int start = (lattice->get_totsize() - lattice->get_insize()) / 2;
     pos.resize(dim);
@@ -268,7 +268,7 @@ vector<double> ham_heis::calc_subM(field_type* lattice, int subnumber)
         lattice->h_next(finished, pos, curr);
         if (possum%2 == subnumber)
         {
-            #pragma simd
+            #pragma omp simd
             for (int i = 0; i < 4; i++) {vsum[i] += curr[i];}
         }
     }
@@ -286,7 +286,7 @@ double ham_heis::dE(field_type* lattice, vector<int>& position)
 
     int arrsize = dim*2;
     lattice->h_adjacent(position, adj);
-    #pragma simd
+    #pragma omp simd
     for(int j = 0; j < 4; j++)
     {
         vsum[j] = 0;
@@ -314,7 +314,7 @@ vector<double> ham_heis::calc_top_charge(field_type* lattice)
     int arrsize = dim*2;
     int tslice;
 
-    #pragma simd
+    #pragma omp simd
     for(unsigned int i = 0; i < tchar_size; i++)
     {
         tchar[i] = 0;
@@ -341,7 +341,7 @@ vector<double> ham_heis::calc_top_charge(field_type* lattice)
         }
         tchar[tslice] += solid_angle(curr, s2, s3, sbuff);
     }
-    #pragma simd
+    #pragma omp simd
     for(unsigned int i = 0; i < tchar_size; i++)
     {
         tchar[i] /= 2 * _PI;
@@ -375,7 +375,7 @@ ham_FePt::ham_FePt()
     s2.resize(4);
     s3.resize(4);
     sbuff.resize(4);
-    #pragma simd
+    #pragma omp simd
     for(unsigned int i = 0; i < 4; i++)
     {
         s2[i] = 0;
@@ -396,7 +396,7 @@ ham_FePt::ham_FePt(double Hin)
     s2.resize(4);
     s3.resize(4);
     sbuff.resize(4);
-    #pragma simd
+    #pragma omp simd
     for(unsigned int i = 0; i < 4; i++)
     {
         s2[i] = 0;
@@ -416,7 +416,7 @@ ham_FePt::ham_FePt(ham_type& other)
     s2.resize(4);
     s3.resize(4);
     sbuff.resize(4);
-    #pragma simd
+    #pragma omp simd
     for(unsigned int i = 0; i < 4; i++)
     {
         s2[i] = 0;
@@ -436,7 +436,7 @@ ham_FePt& ham_FePt::operator=(ham_type& other)
     s2.resize(4);
     s3.resize(4);
     sbuff.resize(4);
-    #pragma simd
+    #pragma omp simd
     for(unsigned int i = 0; i < 4; i++)
     {
         s2[i] = 0;
@@ -467,7 +467,7 @@ double ham_FePt::calc_E(field_type* lattice)
     {
         lattice->h_access(pos2, curr);
         lattice->h_arb_adj(pos2, dxs, dys, dzs, adj, nN);
-        #pragma simd
+        #pragma omp simd
         for(int i = 0; i < nN; i++)
         {
             Jx_sum += curr[0] * adj[0][i] * Js[i];
@@ -501,7 +501,7 @@ double ham_FePt::dE(field_type* lattice, vector<int>& position)
     int nN = dxs.size();
     pos.resize(dim);
     lattice->h_arb_adj(position, dxs, dys, dzs, adj, nN);
-    #pragma simd
+    #pragma omp simd
     for(int i = 0; i < nN; i++)
     {
         Jx_sum += adj[0][i] * Js[i];
@@ -557,7 +557,7 @@ void ham_FePt::init_dim(field_type* field)
     s2.resize(4);
     s3.resize(4);
     sbuff.resize(4);
-    #pragma simd
+    #pragma omp simd
     for(unsigned int i = 0; i < 4; i++)
     {
         s2[i] = 0;
@@ -608,7 +608,7 @@ ham_skyrm::ham_skyrm(double Hin, double Jin, double Kin)
     s2.resize(4);
     s3.resize(4);
     sbuff.resize(4);
-    #pragma simd
+    #pragma omp simd
     for(unsigned int i = 0; i < 4; i++)
     {
         s2[i] = 0;
@@ -633,7 +633,7 @@ ham_skyrm::ham_skyrm(const ham_type& other)
     s2.resize(4);
     s3.resize(4);
     sbuff.resize(4);
-    #pragma simd
+    #pragma omp simd
     for(unsigned int i = 0; i < 4; i++)
     {
         s2[i] = 0;
@@ -658,7 +658,7 @@ ham_skyrm& ham_skyrm::operator=(const ham_type& other)
     s2.resize(4);
     s3.resize(4);
     sbuff.resize(4);
-    #pragma simd
+    #pragma omp simd
     for(unsigned int i = 0; i < 4; i++)
     {
         s2[i] = 0;
@@ -696,7 +696,7 @@ double ham_skyrm::calc_E(field_type* lattice)
     {
         lattice->h_adjacent(pos, adj);
         lattice->h_access(pos, curr);
-        #pragma simd
+        #pragma omp simd
         for (int j = 0; j < 4; j++)
         {
             H_sum[j] += curr[j];
@@ -730,7 +730,7 @@ double ham_skyrm::calc_E(field_type* lattice)
 
         lattice->next(finished, pos);
     }
-    #pragma simd
+    #pragma omp simd
     for (int j = 0; j < 4; j++)
     {
         H_sum[j] = H_sum[j] * H[j];
@@ -760,7 +760,7 @@ double ham_skyrm::dE(field_type* lattice, vector<int>& position)
 
     int arrsize = dim*2;
     lattice->h_adjacent(position, adj);
-    #pragma simd
+    #pragma omp simd
     for(int j = 0; j < 4; j++)
     {
         vsum[j] = 0;

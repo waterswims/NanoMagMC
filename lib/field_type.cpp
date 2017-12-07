@@ -967,17 +967,17 @@ void field_3d_h::h_2adjacent(vector<int>& position, double** out)
 
 void field_3d_h::h_arb_adj(vector<int>& position, vector<int>& dxs, vector<int>& dys, vector<int>& dzs, double** out, int num)
 {
-    #pragma simd
+    #pragma omp simd
     for(int i = 0; i < num; i++)
     {
         postemp[0][i] = min(max(0, (position[0] + dxs[i])), totsize-1);
     }
-    #pragma simd
+    #pragma omp simd
     for(int i = 0; i < num; i++)
     {
         postemp[1][i] = min(max(0, (position[1] + dys[i])), totsize-1);
     }
-    #pragma simd
+    #pragma omp simd
     for(int i = 0; i < num; i++)
     {
         postemp[2][i] = min(max(0, (position[2] + dzs[i])), totsize-1);
@@ -1043,7 +1043,7 @@ void field_3d_h::print(string filename, string arrname)
     float* new_x = alloc_1darr<float>(totsize*totsize*totsize);
     float* new_y = alloc_1darr<float>(totsize*totsize*totsize);
     float* new_z = alloc_1darr<float>(totsize*totsize*totsize);
-    #pragma simd
+    #pragma omp simd
     for(int i = 0; i < totsize*totsize*totsize; i++)
     {
         new_x[i] = spinx[0][0][i];
