@@ -10,5 +10,4 @@ jobs:
        - run: make
        - run: make clean
        - run: make test
-       - run: export LD_LIBRARY_PATH="/opt/hdf5/lib:${LD_LIBRARY_PATH}"
-       - run: ./test
+       - run: LD_LIBRARY_PATH="/opt/hdf5/lib:${LD_LIBRARY_PATH}" ./test
