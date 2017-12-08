@@ -3,8 +3,6 @@
 #################################################################
 ## Location of the HDF5 instalation
 #################################################################
-HDFLIB=/home/jmw2g14/hdf5/lib/
-HDFINC=/home/jmw2g14/hdf5/include/
 ## IRIDIS BUILD - Using intel compilers
 #HDFLIB=/local/software/gdf5/1.8.11/intel-par/lib
 #HDFINC=/local/software/gdf5/1.8.11/intel-par/include

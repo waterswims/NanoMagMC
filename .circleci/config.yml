@@ -5,4 +5,5 @@ jobs:
        - image: waterswims/ubuntu-openmp-hdf5:0.0.1
      steps:
        - checkout
-       - run: echo "hello world"
+       - run: make test
+       - run: ./test
