@@ -1,7 +1,7 @@
 # MC_HAMR: Monte Carlo Simulation Software for Atomistic Models of Magnetic Materials for Heat Assisted Magnetic Recording
 
 [![CircleCI](https://circleci.com/gh/waterswims/MC_HAMR/tree/master.svg?style=svg)](https://circleci.com/gh/waterswims/MC_HAMR/tree/master)
-[![Read the Docs](https://img.shields.io/readthedocs/pip.svg?style=flat-square)](http://jmwaters.me/MC_HAMR/)
+[![Read the Docs](https://img.shields.io/readthedocs/pip.svg)](http://jmwaters.me/MC_HAMR/)
 
 ## Requirements
 
