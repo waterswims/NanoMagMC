@@ -51,7 +51,7 @@ GTEST_DIR=$(TEST_PATH)/googletest/googletest
 GTEST_FLAGS=-isystem $(GTEST_DIR)/include
 GTEST_HEADERS = $(GTEST_DIR)/include/gtest/*.h \
 $(GTEST_DIR)/include/gtest/internal/*.h
-GTEST_SRCS_ = $(GTEST_DIR)/src/*.cc $(GTEST_DIR)/src/*.h $(GTEST_HEADERS)
+GTEST_SRCS_ = $(wildcard $(GTEST_DIR)/src/*.cc) $(wildcard $(GTEST_DIR)/src/*.h) $(GTEST_HEADERS)
 
 #################################################################
 ## Build scripts
