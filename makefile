@@ -23,9 +23,9 @@ TEST_PATH = tests
 TEST_FILES = $(wildcard $(TEST_PATH)/*.hpp)
 NOMAIN_FILES = $(filter-out $(LIB_PATH)/main.cpp, $(wildcard $(LIB_PATH)/*.cpp))
 ## NON-INTEL
-SOURCE_FILES = $(filter-out $(LIB_PATH)/mklrand.hpp, $(NOMAIN_FILES))
+SOURCE_FILES = $(filter-out $(LIB_PATH)/mklrand.cpp, $(NOMAIN_FILES))
 ## INTEL
-# SOURCE_FILES = $(filter-out $(LIB_PATH)/stdrand.hpp, $(NOMAIN_FILES))
+# SOURCE_FILES = $(filter-out $(LIB_PATH)/stdrand.cpp, $(NOMAIN_FILES))
 OBJS = $(addprefix $(OBJ_PATH)/, $(notdir $(SOURCE_FILES:.cpp=.o)))
 
 #################################################################
