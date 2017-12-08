@@ -1,0 +1,313 @@
+\hypertarget{classham__heis}{}\section{ham\+\_\+heis Class Reference}
+\label{classham__heis}\index{ham\+\_\+heis@{ham\+\_\+heis}}
+
+
+{\ttfamily \#include $<$hamiltonian.\+hpp$>$}
+
+
+
+Inheritance diagram for ham\+\_\+heis\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=228pt]{db/d7e/classham__heis__inherit__graph}
+\end{center}
+\end{figure}
+
+
+Collaboration diagram for ham\+\_\+heis\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=139pt]{d0/d9a/classham__heis__coll__graph}
+\end{center}
+\end{figure}
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{classham__heis_a45354944ff0222eea8b2a48f3f51261b}{ham\+\_\+heis} ()
+\item 
+\hyperlink{classham__heis_af871854309ad6a2ec252e0af4c0d0220}{ham\+\_\+heis} (double Hin, double Jin)
+\item 
+\hyperlink{classham__heis_aa418d244b6fdd27e9b0c8b61d8928ee7}{ham\+\_\+heis} (\hyperlink{classham__type}{ham\+\_\+type} \&other)
+\item 
+\hyperlink{classham__heis_a71b4725414a6bc8f7d5ad46f86307abe}{$\sim$ham\+\_\+heis} ()
+\item 
+virtual double \hyperlink{classham__heis_a9356396de229b2a0142fa6505f0132c1}{calc\+\_\+E} (\hyperlink{classfield__type}{field\+\_\+type} $\ast$lattice)
+\item 
+std\+::vector$<$ double $>$ \hyperlink{classham__heis_ab10e4c9b74e7182751715c670cf3c44c}{calc\+\_\+M} (\hyperlink{classfield__type}{field\+\_\+type} $\ast$lattice)
+\item 
+std\+::vector$<$ double $>$ \hyperlink{classham__heis_a4713342c74601ac3246a34ebd429c07b}{calc\+\_\+subM} (\hyperlink{classfield__type}{field\+\_\+type} $\ast$lattice, int subnumber)
+\item 
+virtual double \hyperlink{classham__heis_a80b17aefe298faa50b5cecb1aa9da4ad}{dE} (\hyperlink{classfield__type}{field\+\_\+type} $\ast$lattice, std\+::vector$<$ int $>$ \&position)
+\item 
+std\+::vector$<$ double $>$ \hyperlink{classham__heis_a177ac16e9cc6a7b2455c0271394362af}{get\+\_\+\+Js} () const 
+\item 
+std\+::vector$<$ double $>$ \hyperlink{classham__heis_afbdbe29a893440db2ddab8fd41775e56}{get\+\_\+\+Hs} () const 
+\item 
+\hyperlink{classham__heis}{ham\+\_\+heis} \& \hyperlink{classham__heis_adc3feaa662064f07594bdbb83aef42cb}{operator=} (\hyperlink{classham__type}{ham\+\_\+type} \&other)
+\item 
+virtual void \hyperlink{classham__heis_a48cfb1cf4cc50765d408113878f44979}{init\+\_\+dim} (\hyperlink{classfield__type}{field\+\_\+type} $\ast$field)
+\item 
+void \hyperlink{classham__heis_a3c603d70b56a9df357d3c39212395422}{get\+\_\+test} (double \&x, double \&y, double \&z)
+\item 
+void \hyperlink{classham__heis_ab11ec994196743c909117b1231c6bfda}{set\+\_\+H} (double Hin)
+\item 
+std\+::vector$<$ double $>$ \hyperlink{classham__heis_a12fedc92d02868a2eacfe2e3eb2578cf}{calc\+\_\+top\+\_\+charge} (\hyperlink{classfield__type}{field\+\_\+type} $\ast$lattice)
+\end{DoxyCompactItemize}
+\subsection*{Protected Attributes}
+\begin{DoxyCompactItemize}
+\item 
+std\+::vector$<$ double $>$ \hyperlink{classham__heis_af22659980108a924b51aa3b02bfce7ef}{H}
+\item 
+std\+::vector$<$ double $>$ \hyperlink{classham__heis_aa1cd68f7e9c6e98dd2dc9106cbb68603}{J}
+\item 
+double $\ast$$\ast$ \hyperlink{classham__heis_af643b0778b6c203578db1261ca3a6fd3}{adj}
+\item 
+std\+::vector$<$ double $>$ \hyperlink{classham__heis_ad7034ab0ac64b9c44f9975551acfc8ab}{vsum}
+\item 
+std\+::vector$<$ double $>$ \hyperlink{classham__heis_acbabe37ab60e2ec457106cfa49d2e1db}{curr}
+\item 
+std\+::vector$<$ double $>$ \hyperlink{classham__heis_a7c66e06dccb2686c392f5e9ddd8f6463}{H\+\_\+sum}
+\item 
+std\+::vector$<$ double $>$ \hyperlink{classham__heis_ad19fe40a32695f0f7fefb229648680b4}{J\+\_\+sum}
+\item 
+std\+::vector$<$ double $>$ \hyperlink{classham__heis_a5537fc1b0944509d2911fd35b4674c67}{test}
+\item 
+std\+::vector$<$ double $>$ \hyperlink{classham__heis_a934a89b1b1ba1a0451eced2b7398139d}{tchar}
+\item 
+std\+::vector$<$ double $>$ \hyperlink{classham__heis_a4b358a692afffe59e6ff0ae5255ccf30}{s2}
+\item 
+std\+::vector$<$ double $>$ \hyperlink{classham__heis_a50580c61051da5c6bad049c093f73a7c}{s3}
+\item 
+std\+::vector$<$ double $>$ \hyperlink{classham__heis_a7a09caf68e6a72d2a157e97ad23bd595}{sbuff}
+\item 
+std\+::vector$<$ int $>$ \hyperlink{classham__heis_afd230eba6b611edbc97677ca58b29f51}{pos}
+\item 
+bool \hyperlink{classham__heis_a4c756eded6f6d3e307402c02e07f82c6}{is3d}
+\item 
+int \hyperlink{classham__heis_a35d572f45863870d8581a83821b890ae}{tchar\+\_\+size}
+\end{DoxyCompactItemize}
+
+
+\subsection{Constructor \& Destructor Documentation}
+\index{ham\+\_\+heis@{ham\+\_\+heis}!ham\+\_\+heis@{ham\+\_\+heis}}
+\index{ham\+\_\+heis@{ham\+\_\+heis}!ham\+\_\+heis@{ham\+\_\+heis}}
+\subsubsection[{\texorpdfstring{ham\+\_\+heis()}{ham_heis()}}]{\setlength{\rightskip}{0pt plus 5cm}ham\+\_\+heis\+::ham\+\_\+heis (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}}\hypertarget{classham__heis_a45354944ff0222eea8b2a48f3f51261b}{}\label{classham__heis_a45354944ff0222eea8b2a48f3f51261b}
+\index{ham\+\_\+heis@{ham\+\_\+heis}!ham\+\_\+heis@{ham\+\_\+heis}}
+\index{ham\+\_\+heis@{ham\+\_\+heis}!ham\+\_\+heis@{ham\+\_\+heis}}
+\subsubsection[{\texorpdfstring{ham\+\_\+heis(double Hin, double Jin)}{ham_heis(double Hin, double Jin)}}]{\setlength{\rightskip}{0pt plus 5cm}ham\+\_\+heis\+::ham\+\_\+heis (
+\begin{DoxyParamCaption}
+\item[{double}]{Hin, }
+\item[{double}]{Jin}
+\end{DoxyParamCaption}
+)}\hypertarget{classham__heis_af871854309ad6a2ec252e0af4c0d0220}{}\label{classham__heis_af871854309ad6a2ec252e0af4c0d0220}
+\index{ham\+\_\+heis@{ham\+\_\+heis}!ham\+\_\+heis@{ham\+\_\+heis}}
+\index{ham\+\_\+heis@{ham\+\_\+heis}!ham\+\_\+heis@{ham\+\_\+heis}}
+\subsubsection[{\texorpdfstring{ham\+\_\+heis(ham\+\_\+type \&other)}{ham_heis(ham_type &other)}}]{\setlength{\rightskip}{0pt plus 5cm}ham\+\_\+heis\+::ham\+\_\+heis (
+\begin{DoxyParamCaption}
+\item[{{\bf ham\+\_\+type} \&}]{other}
+\end{DoxyParamCaption}
+)}\hypertarget{classham__heis_aa418d244b6fdd27e9b0c8b61d8928ee7}{}\label{classham__heis_aa418d244b6fdd27e9b0c8b61d8928ee7}
+\index{ham\+\_\+heis@{ham\+\_\+heis}!````~ham\+\_\+heis@{$\sim$ham\+\_\+heis}}
+\index{````~ham\+\_\+heis@{$\sim$ham\+\_\+heis}!ham\+\_\+heis@{ham\+\_\+heis}}
+\subsubsection[{\texorpdfstring{$\sim$ham\+\_\+heis()}{~ham_heis()}}]{\setlength{\rightskip}{0pt plus 5cm}ham\+\_\+heis\+::$\sim$ham\+\_\+heis (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}}\hypertarget{classham__heis_a71b4725414a6bc8f7d5ad46f86307abe}{}\label{classham__heis_a71b4725414a6bc8f7d5ad46f86307abe}
+
+
+\subsection{Member Function Documentation}
+\index{ham\+\_\+heis@{ham\+\_\+heis}!calc\+\_\+E@{calc\+\_\+E}}
+\index{calc\+\_\+E@{calc\+\_\+E}!ham\+\_\+heis@{ham\+\_\+heis}}
+\subsubsection[{\texorpdfstring{calc\+\_\+\+E(field\+\_\+type $\ast$lattice)}{calc_E(field_type *lattice)}}]{\setlength{\rightskip}{0pt plus 5cm}virtual double ham\+\_\+heis\+::calc\+\_\+E (
+\begin{DoxyParamCaption}
+\item[{{\bf field\+\_\+type} $\ast$}]{lattice}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [virtual]}}\hypertarget{classham__heis_a9356396de229b2a0142fa6505f0132c1}{}\label{classham__heis_a9356396de229b2a0142fa6505f0132c1}
+
+
+Reimplemented from \hyperlink{classham__type_a7fda5d3158544255ce3ca5e20c4e1c19}{ham\+\_\+type}.
+
+
+
+Reimplemented in \hyperlink{classham__skyrm_acca35df79a8fb4120efab41366564894}{ham\+\_\+skyrm}, and \hyperlink{classham__FePt_a8d69322fbb999892889d34fb4b12f043}{ham\+\_\+\+Fe\+Pt}.
+
+\index{ham\+\_\+heis@{ham\+\_\+heis}!calc\+\_\+M@{calc\+\_\+M}}
+\index{calc\+\_\+M@{calc\+\_\+M}!ham\+\_\+heis@{ham\+\_\+heis}}
+\subsubsection[{\texorpdfstring{calc\+\_\+\+M(field\+\_\+type $\ast$lattice)}{calc_M(field_type *lattice)}}]{\setlength{\rightskip}{0pt plus 5cm}std\+::vector$<$double$>$ ham\+\_\+heis\+::calc\+\_\+M (
+\begin{DoxyParamCaption}
+\item[{{\bf field\+\_\+type} $\ast$}]{lattice}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [virtual]}}\hypertarget{classham__heis_ab10e4c9b74e7182751715c670cf3c44c}{}\label{classham__heis_ab10e4c9b74e7182751715c670cf3c44c}
+
+
+Reimplemented from \hyperlink{classham__type_a953ba4332e88ee644d2afb96cd5a0ad5}{ham\+\_\+type}.
+
+\index{ham\+\_\+heis@{ham\+\_\+heis}!calc\+\_\+subM@{calc\+\_\+subM}}
+\index{calc\+\_\+subM@{calc\+\_\+subM}!ham\+\_\+heis@{ham\+\_\+heis}}
+\subsubsection[{\texorpdfstring{calc\+\_\+sub\+M(field\+\_\+type $\ast$lattice, int subnumber)}{calc_subM(field_type *lattice, int subnumber)}}]{\setlength{\rightskip}{0pt plus 5cm}std\+::vector$<$double$>$ ham\+\_\+heis\+::calc\+\_\+subM (
+\begin{DoxyParamCaption}
+\item[{{\bf field\+\_\+type} $\ast$}]{lattice, }
+\item[{int}]{subnumber}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [virtual]}}\hypertarget{classham__heis_a4713342c74601ac3246a34ebd429c07b}{}\label{classham__heis_a4713342c74601ac3246a34ebd429c07b}
+
+
+Reimplemented from \hyperlink{classham__type_a37cc0a51074bd64cdeec866edb6f6015}{ham\+\_\+type}.
+
+\index{ham\+\_\+heis@{ham\+\_\+heis}!calc\+\_\+top\+\_\+charge@{calc\+\_\+top\+\_\+charge}}
+\index{calc\+\_\+top\+\_\+charge@{calc\+\_\+top\+\_\+charge}!ham\+\_\+heis@{ham\+\_\+heis}}
+\subsubsection[{\texorpdfstring{calc\+\_\+top\+\_\+charge(field\+\_\+type $\ast$lattice)}{calc_top_charge(field_type *lattice)}}]{\setlength{\rightskip}{0pt plus 5cm}std\+::vector$<$double$>$ ham\+\_\+heis\+::calc\+\_\+top\+\_\+charge (
+\begin{DoxyParamCaption}
+\item[{{\bf field\+\_\+type} $\ast$}]{lattice}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [virtual]}}\hypertarget{classham__heis_a12fedc92d02868a2eacfe2e3eb2578cf}{}\label{classham__heis_a12fedc92d02868a2eacfe2e3eb2578cf}
+
+
+Reimplemented from \hyperlink{classham__type_ab6917097da83d4855efe2238ab4df4da}{ham\+\_\+type}.
+
+\index{ham\+\_\+heis@{ham\+\_\+heis}!dE@{dE}}
+\index{dE@{dE}!ham\+\_\+heis@{ham\+\_\+heis}}
+\subsubsection[{\texorpdfstring{d\+E(field\+\_\+type $\ast$lattice, std\+::vector$<$ int $>$ \&position)}{dE(field_type *lattice, std::vector< int > &position)}}]{\setlength{\rightskip}{0pt plus 5cm}virtual double ham\+\_\+heis\+::dE (
+\begin{DoxyParamCaption}
+\item[{{\bf field\+\_\+type} $\ast$}]{lattice, }
+\item[{std\+::vector$<$ int $>$ \&}]{position}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [virtual]}}\hypertarget{classham__heis_a80b17aefe298faa50b5cecb1aa9da4ad}{}\label{classham__heis_a80b17aefe298faa50b5cecb1aa9da4ad}
+
+
+Reimplemented from \hyperlink{classham__type_a809902357229189b08ee9fdfab9c90be}{ham\+\_\+type}.
+
+
+
+Reimplemented in \hyperlink{classham__skyrm_aca80743449de874029fc0860fdd36422}{ham\+\_\+skyrm}, and \hyperlink{classham__FePt_a742137dc8f3e289bb33abb3ad04d6a19}{ham\+\_\+\+Fe\+Pt}.
+
+\index{ham\+\_\+heis@{ham\+\_\+heis}!get\+\_\+\+Hs@{get\+\_\+\+Hs}}
+\index{get\+\_\+\+Hs@{get\+\_\+\+Hs}!ham\+\_\+heis@{ham\+\_\+heis}}
+\subsubsection[{\texorpdfstring{get\+\_\+\+Hs() const }{get_Hs() const }}]{\setlength{\rightskip}{0pt plus 5cm}std\+::vector$<$double$>$ ham\+\_\+heis\+::get\+\_\+\+Hs (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+) const\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}\hypertarget{classham__heis_afbdbe29a893440db2ddab8fd41775e56}{}\label{classham__heis_afbdbe29a893440db2ddab8fd41775e56}
+
+
+Reimplemented from \hyperlink{classham__type_aab0cee1eece99ec37122126e7e4bcb91}{ham\+\_\+type}.
+
+\index{ham\+\_\+heis@{ham\+\_\+heis}!get\+\_\+\+Js@{get\+\_\+\+Js}}
+\index{get\+\_\+\+Js@{get\+\_\+\+Js}!ham\+\_\+heis@{ham\+\_\+heis}}
+\subsubsection[{\texorpdfstring{get\+\_\+\+Js() const }{get_Js() const }}]{\setlength{\rightskip}{0pt plus 5cm}std\+::vector$<$double$>$ ham\+\_\+heis\+::get\+\_\+\+Js (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+) const\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}\hypertarget{classham__heis_a177ac16e9cc6a7b2455c0271394362af}{}\label{classham__heis_a177ac16e9cc6a7b2455c0271394362af}
+
+
+Reimplemented from \hyperlink{classham__type_accdb77a4f5af92232a0415212d302344}{ham\+\_\+type}.
+
+\index{ham\+\_\+heis@{ham\+\_\+heis}!get\+\_\+test@{get\+\_\+test}}
+\index{get\+\_\+test@{get\+\_\+test}!ham\+\_\+heis@{ham\+\_\+heis}}
+\subsubsection[{\texorpdfstring{get\+\_\+test(double \&x, double \&y, double \&z)}{get_test(double &x, double &y, double &z)}}]{\setlength{\rightskip}{0pt plus 5cm}void ham\+\_\+heis\+::get\+\_\+test (
+\begin{DoxyParamCaption}
+\item[{double \&}]{x, }
+\item[{double \&}]{y, }
+\item[{double \&}]{z}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}\hypertarget{classham__heis_a3c603d70b56a9df357d3c39212395422}{}\label{classham__heis_a3c603d70b56a9df357d3c39212395422}
+
+
+Reimplemented from \hyperlink{classham__type_a2864138405e794dc2aa2fe45fb6e400f}{ham\+\_\+type}.
+
+\index{ham\+\_\+heis@{ham\+\_\+heis}!init\+\_\+dim@{init\+\_\+dim}}
+\index{init\+\_\+dim@{init\+\_\+dim}!ham\+\_\+heis@{ham\+\_\+heis}}
+\subsubsection[{\texorpdfstring{init\+\_\+dim(field\+\_\+type $\ast$field)}{init_dim(field_type *field)}}]{\setlength{\rightskip}{0pt plus 5cm}virtual void ham\+\_\+heis\+::init\+\_\+dim (
+\begin{DoxyParamCaption}
+\item[{{\bf field\+\_\+type} $\ast$}]{field}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [virtual]}}\hypertarget{classham__heis_a48cfb1cf4cc50765d408113878f44979}{}\label{classham__heis_a48cfb1cf4cc50765d408113878f44979}
+
+
+Reimplemented from \hyperlink{classham__type_a3a14214575bf8dcf3a8b39c7470dfe66}{ham\+\_\+type}.
+
+
+
+Reimplemented in \hyperlink{classham__FePt_a3f03eee62cb90922ea4afea3fd1023e9}{ham\+\_\+\+Fe\+Pt}.
+
+\index{ham\+\_\+heis@{ham\+\_\+heis}!operator=@{operator=}}
+\index{operator=@{operator=}!ham\+\_\+heis@{ham\+\_\+heis}}
+\subsubsection[{\texorpdfstring{operator=(ham\+\_\+type \&other)}{operator=(ham_type &other)}}]{\setlength{\rightskip}{0pt plus 5cm}{\bf ham\+\_\+heis}\& ham\+\_\+heis\+::operator= (
+\begin{DoxyParamCaption}
+\item[{{\bf ham\+\_\+type} \&}]{other}
+\end{DoxyParamCaption}
+)}\hypertarget{classham__heis_adc3feaa662064f07594bdbb83aef42cb}{}\label{classham__heis_adc3feaa662064f07594bdbb83aef42cb}
+\index{ham\+\_\+heis@{ham\+\_\+heis}!set\+\_\+H@{set\+\_\+H}}
+\index{set\+\_\+H@{set\+\_\+H}!ham\+\_\+heis@{ham\+\_\+heis}}
+\subsubsection[{\texorpdfstring{set\+\_\+\+H(double Hin)}{set_H(double Hin)}}]{\setlength{\rightskip}{0pt plus 5cm}void ham\+\_\+heis\+::set\+\_\+H (
+\begin{DoxyParamCaption}
+\item[{double}]{Hin}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}\hypertarget{classham__heis_ab11ec994196743c909117b1231c6bfda}{}\label{classham__heis_ab11ec994196743c909117b1231c6bfda}
+
+
+Reimplemented from \hyperlink{classham__type_a140c53e29c5c298c0f2704a4ecda7022}{ham\+\_\+type}.
+
+
+
+\subsection{Member Data Documentation}
+\index{ham\+\_\+heis@{ham\+\_\+heis}!adj@{adj}}
+\index{adj@{adj}!ham\+\_\+heis@{ham\+\_\+heis}}
+\subsubsection[{\texorpdfstring{adj}{adj}}]{\setlength{\rightskip}{0pt plus 5cm}double$\ast$$\ast$ ham\+\_\+heis\+::adj\hspace{0.3cm}{\ttfamily [protected]}}\hypertarget{classham__heis_af643b0778b6c203578db1261ca3a6fd3}{}\label{classham__heis_af643b0778b6c203578db1261ca3a6fd3}
+\index{ham\+\_\+heis@{ham\+\_\+heis}!curr@{curr}}
+\index{curr@{curr}!ham\+\_\+heis@{ham\+\_\+heis}}
+\subsubsection[{\texorpdfstring{curr}{curr}}]{\setlength{\rightskip}{0pt plus 5cm}std\+::vector$<$double$>$ ham\+\_\+heis\+::curr\hspace{0.3cm}{\ttfamily [protected]}}\hypertarget{classham__heis_acbabe37ab60e2ec457106cfa49d2e1db}{}\label{classham__heis_acbabe37ab60e2ec457106cfa49d2e1db}
+\index{ham\+\_\+heis@{ham\+\_\+heis}!H@{H}}
+\index{H@{H}!ham\+\_\+heis@{ham\+\_\+heis}}
+\subsubsection[{\texorpdfstring{H}{H}}]{\setlength{\rightskip}{0pt plus 5cm}std\+::vector$<$double$>$ ham\+\_\+heis\+::H\hspace{0.3cm}{\ttfamily [protected]}}\hypertarget{classham__heis_af22659980108a924b51aa3b02bfce7ef}{}\label{classham__heis_af22659980108a924b51aa3b02bfce7ef}
+\index{ham\+\_\+heis@{ham\+\_\+heis}!H\+\_\+sum@{H\+\_\+sum}}
+\index{H\+\_\+sum@{H\+\_\+sum}!ham\+\_\+heis@{ham\+\_\+heis}}
+\subsubsection[{\texorpdfstring{H\+\_\+sum}{H_sum}}]{\setlength{\rightskip}{0pt plus 5cm}std\+::vector$<$double$>$ ham\+\_\+heis\+::\+H\+\_\+sum\hspace{0.3cm}{\ttfamily [protected]}}\hypertarget{classham__heis_a7c66e06dccb2686c392f5e9ddd8f6463}{}\label{classham__heis_a7c66e06dccb2686c392f5e9ddd8f6463}
+\index{ham\+\_\+heis@{ham\+\_\+heis}!is3d@{is3d}}
+\index{is3d@{is3d}!ham\+\_\+heis@{ham\+\_\+heis}}
+\subsubsection[{\texorpdfstring{is3d}{is3d}}]{\setlength{\rightskip}{0pt plus 5cm}bool ham\+\_\+heis\+::is3d\hspace{0.3cm}{\ttfamily [protected]}}\hypertarget{classham__heis_a4c756eded6f6d3e307402c02e07f82c6}{}\label{classham__heis_a4c756eded6f6d3e307402c02e07f82c6}
+\index{ham\+\_\+heis@{ham\+\_\+heis}!J@{J}}
+\index{J@{J}!ham\+\_\+heis@{ham\+\_\+heis}}
+\subsubsection[{\texorpdfstring{J}{J}}]{\setlength{\rightskip}{0pt plus 5cm}std\+::vector$<$double$>$ ham\+\_\+heis\+::J\hspace{0.3cm}{\ttfamily [protected]}}\hypertarget{classham__heis_aa1cd68f7e9c6e98dd2dc9106cbb68603}{}\label{classham__heis_aa1cd68f7e9c6e98dd2dc9106cbb68603}
+\index{ham\+\_\+heis@{ham\+\_\+heis}!J\+\_\+sum@{J\+\_\+sum}}
+\index{J\+\_\+sum@{J\+\_\+sum}!ham\+\_\+heis@{ham\+\_\+heis}}
+\subsubsection[{\texorpdfstring{J\+\_\+sum}{J_sum}}]{\setlength{\rightskip}{0pt plus 5cm}std\+::vector$<$double$>$ ham\+\_\+heis\+::\+J\+\_\+sum\hspace{0.3cm}{\ttfamily [protected]}}\hypertarget{classham__heis_ad19fe40a32695f0f7fefb229648680b4}{}\label{classham__heis_ad19fe40a32695f0f7fefb229648680b4}
+\index{ham\+\_\+heis@{ham\+\_\+heis}!pos@{pos}}
+\index{pos@{pos}!ham\+\_\+heis@{ham\+\_\+heis}}
+\subsubsection[{\texorpdfstring{pos}{pos}}]{\setlength{\rightskip}{0pt plus 5cm}std\+::vector$<$int$>$ ham\+\_\+heis\+::pos\hspace{0.3cm}{\ttfamily [protected]}}\hypertarget{classham__heis_afd230eba6b611edbc97677ca58b29f51}{}\label{classham__heis_afd230eba6b611edbc97677ca58b29f51}
+\index{ham\+\_\+heis@{ham\+\_\+heis}!s2@{s2}}
+\index{s2@{s2}!ham\+\_\+heis@{ham\+\_\+heis}}
+\subsubsection[{\texorpdfstring{s2}{s2}}]{\setlength{\rightskip}{0pt plus 5cm}std\+::vector$<$double$>$ ham\+\_\+heis\+::s2\hspace{0.3cm}{\ttfamily [protected]}}\hypertarget{classham__heis_a4b358a692afffe59e6ff0ae5255ccf30}{}\label{classham__heis_a4b358a692afffe59e6ff0ae5255ccf30}
+\index{ham\+\_\+heis@{ham\+\_\+heis}!s3@{s3}}
+\index{s3@{s3}!ham\+\_\+heis@{ham\+\_\+heis}}
+\subsubsection[{\texorpdfstring{s3}{s3}}]{\setlength{\rightskip}{0pt plus 5cm}std\+::vector$<$double$>$ ham\+\_\+heis\+::s3\hspace{0.3cm}{\ttfamily [protected]}}\hypertarget{classham__heis_a50580c61051da5c6bad049c093f73a7c}{}\label{classham__heis_a50580c61051da5c6bad049c093f73a7c}
+\index{ham\+\_\+heis@{ham\+\_\+heis}!sbuff@{sbuff}}
+\index{sbuff@{sbuff}!ham\+\_\+heis@{ham\+\_\+heis}}
+\subsubsection[{\texorpdfstring{sbuff}{sbuff}}]{\setlength{\rightskip}{0pt plus 5cm}std\+::vector$<$double$>$ ham\+\_\+heis\+::sbuff\hspace{0.3cm}{\ttfamily [protected]}}\hypertarget{classham__heis_a7a09caf68e6a72d2a157e97ad23bd595}{}\label{classham__heis_a7a09caf68e6a72d2a157e97ad23bd595}
+\index{ham\+\_\+heis@{ham\+\_\+heis}!tchar@{tchar}}
+\index{tchar@{tchar}!ham\+\_\+heis@{ham\+\_\+heis}}
+\subsubsection[{\texorpdfstring{tchar}{tchar}}]{\setlength{\rightskip}{0pt plus 5cm}std\+::vector$<$double$>$ ham\+\_\+heis\+::tchar\hspace{0.3cm}{\ttfamily [protected]}}\hypertarget{classham__heis_a934a89b1b1ba1a0451eced2b7398139d}{}\label{classham__heis_a934a89b1b1ba1a0451eced2b7398139d}
+\index{ham\+\_\+heis@{ham\+\_\+heis}!tchar\+\_\+size@{tchar\+\_\+size}}
+\index{tchar\+\_\+size@{tchar\+\_\+size}!ham\+\_\+heis@{ham\+\_\+heis}}
+\subsubsection[{\texorpdfstring{tchar\+\_\+size}{tchar_size}}]{\setlength{\rightskip}{0pt plus 5cm}int ham\+\_\+heis\+::tchar\+\_\+size\hspace{0.3cm}{\ttfamily [protected]}}\hypertarget{classham__heis_a35d572f45863870d8581a83821b890ae}{}\label{classham__heis_a35d572f45863870d8581a83821b890ae}
+\index{ham\+\_\+heis@{ham\+\_\+heis}!test@{test}}
+\index{test@{test}!ham\+\_\+heis@{ham\+\_\+heis}}
+\subsubsection[{\texorpdfstring{test}{test}}]{\setlength{\rightskip}{0pt plus 5cm}std\+::vector$<$double$>$ ham\+\_\+heis\+::test\hspace{0.3cm}{\ttfamily [protected]}}\hypertarget{classham__heis_a5537fc1b0944509d2911fd35b4674c67}{}\label{classham__heis_a5537fc1b0944509d2911fd35b4674c67}
+\index{ham\+\_\+heis@{ham\+\_\+heis}!vsum@{vsum}}
+\index{vsum@{vsum}!ham\+\_\+heis@{ham\+\_\+heis}}
+\subsubsection[{\texorpdfstring{vsum}{vsum}}]{\setlength{\rightskip}{0pt plus 5cm}std\+::vector$<$double$>$ ham\+\_\+heis\+::vsum\hspace{0.3cm}{\ttfamily [protected]}}\hypertarget{classham__heis_ad7034ab0ac64b9c44f9975551acfc8ab}{}\label{classham__heis_ad7034ab0ac64b9c44f9975551acfc8ab}
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+includes/\hyperlink{hamiltonian_8hpp}{hamiltonian.\+hpp}\end{DoxyCompactItemize}

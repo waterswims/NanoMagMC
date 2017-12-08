@@ -1,0 +1,268 @@
+\hypertarget{classfield__2d__i}{}\section{field\+\_\+2d\+\_\+i Class Reference}
+\label{classfield__2d__i}\index{field\+\_\+2d\+\_\+i@{field\+\_\+2d\+\_\+i}}
+
+
+{\ttfamily \#include $<$field\+\_\+type.\+hpp$>$}
+
+
+
+Inheritance diagram for field\+\_\+2d\+\_\+i\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=139pt]{dd/d3f/classfield__2d__i__inherit__graph}
+\end{center}
+\end{figure}
+
+
+Collaboration diagram for field\+\_\+2d\+\_\+i\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=139pt]{d4/d8c/classfield__2d__i__coll__graph}
+\end{center}
+\end{figure}
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{classfield__2d__i_ab7586ee4301dfa3b724cd6c6ffdc78e1}{field\+\_\+2d\+\_\+i} ()
+\item 
+\hyperlink{classfield__2d__i_a1c2f6c9078f0c91b763ffafefb2760a3}{field\+\_\+2d\+\_\+i} (int size, bool isperio)
+\item 
+\hyperlink{classfield__2d__i_a441d70c0ae4dba2055f0cbc2430d372e}{field\+\_\+2d\+\_\+i} (\hyperlink{classfield__type}{field\+\_\+type} \&other)
+\item 
+\hyperlink{classfield__2d__i_a55d2e60260b8e3355ad6e2c54d9b6db7}{field\+\_\+2d\+\_\+i} (const \hyperlink{classfield__2d__i}{field\+\_\+2d\+\_\+i} \&other)
+\item 
+\hyperlink{classfield__2d__i_a61ec328fb30916e3875a985a378024bb}{$\sim$field\+\_\+2d\+\_\+i} ()
+\item 
+void \hyperlink{classfield__2d__i_aa25eba50d60662ad21885050503cdba9}{i\+\_\+access} (std\+::vector$<$ int $>$ \&position, int \&out)
+\item 
+void \hyperlink{classfield__2d__i_a99b396423d5d1490192f557cbd02ec10}{i\+\_\+next} (bool \&finish, std\+::vector$<$ int $>$ \&pos, int \&out)
+\item 
+void \hyperlink{classfield__2d__i_aa4d7c1c2e6fb75459b0cc009f29293f1}{fill\+\_\+ghost} (int num\+\_\+rows)
+\item 
+\hyperlink{classfield__2d__i}{field\+\_\+2d\+\_\+i} \& \hyperlink{classfield__2d__i_a513a9ce21440299a77291002a67d52bc}{operator=} (const \hyperlink{classfield__2d__i}{field\+\_\+2d\+\_\+i} \&other)
+\item 
+void \hyperlink{classfield__2d__i_ab2f4ca5487861e2d566ec12d572d0c05}{get\+\_\+2dfield\+\_\+i} (int $\ast$$\ast$\&x) const 
+\item 
+void \hyperlink{classfield__2d__i_a576bc6fa317bf75ac5835d2d9ef0b10c}{i\+\_\+adjacent} (std\+::vector$<$ int $>$ \&position, int $\ast$out)
+\item 
+void \hyperlink{classfield__2d__i_ad0c4a3a9efde2bb4abfb131b3acfb7c2}{fill\+\_\+rand} (std\+::vector$<$ int $>$ \&position)
+\item 
+void \hyperlink{classfield__2d__i_a859791e738fa2340ac579f4466a67a2f}{fill\+\_\+one} (std\+::vector$<$ int $>$ \&position)
+\item 
+void \hyperlink{classfield__2d__i_a1049b9c54c259a4a244746bfe8ff300f}{fill\+\_\+zero} (std\+::vector$<$ int $>$ \&position)
+\item 
+void \hyperlink{classfield__2d__i_a67325e8fc578af047dd367aa3d679b25}{change\+\_\+to\+\_\+test} (std\+::vector$<$ int $>$ \&position, \hyperlink{classham__type}{ham\+\_\+type} $\ast$hamil)
+\item 
+void \hyperlink{classfield__2d__i_a1b9d52a1e7fd7199b59eca139a0cfaab}{fill\+\_\+val\+\_\+i} (std\+::vector$<$ int $>$ \&position, int val)
+\item 
+void \hyperlink{classfield__2d__i_a962515d7fcd59bd113fa4a51c3a05d2f}{send\+\_\+data} (int dest\+\_\+rank)
+\item 
+void \hyperlink{classfield__2d__i_a7397ba7e11ed00e7830f1e72859412e0}{recv\+\_\+data} (int src\+\_\+rank)
+\end{DoxyCompactItemize}
+\subsection*{Protected Attributes}
+\begin{DoxyCompactItemize}
+\item 
+int $\ast$$\ast$ \hyperlink{classfield__2d__i_ae1ac88200dfeb8c3c022fa255db74334}{spin}
+\end{DoxyCompactItemize}
+
+
+\subsection{Constructor \& Destructor Documentation}
+\index{field\+\_\+2d\+\_\+i@{field\+\_\+2d\+\_\+i}!field\+\_\+2d\+\_\+i@{field\+\_\+2d\+\_\+i}}
+\index{field\+\_\+2d\+\_\+i@{field\+\_\+2d\+\_\+i}!field\+\_\+2d\+\_\+i@{field\+\_\+2d\+\_\+i}}
+\subsubsection[{\texorpdfstring{field\+\_\+2d\+\_\+i()}{field_2d_i()}}]{\setlength{\rightskip}{0pt plus 5cm}field\+\_\+2d\+\_\+i\+::field\+\_\+2d\+\_\+i (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}\hypertarget{classfield__2d__i_ab7586ee4301dfa3b724cd6c6ffdc78e1}{}\label{classfield__2d__i_ab7586ee4301dfa3b724cd6c6ffdc78e1}
+\index{field\+\_\+2d\+\_\+i@{field\+\_\+2d\+\_\+i}!field\+\_\+2d\+\_\+i@{field\+\_\+2d\+\_\+i}}
+\index{field\+\_\+2d\+\_\+i@{field\+\_\+2d\+\_\+i}!field\+\_\+2d\+\_\+i@{field\+\_\+2d\+\_\+i}}
+\subsubsection[{\texorpdfstring{field\+\_\+2d\+\_\+i(int size, bool isperio)}{field_2d_i(int size, bool isperio)}}]{\setlength{\rightskip}{0pt plus 5cm}field\+\_\+2d\+\_\+i\+::field\+\_\+2d\+\_\+i (
+\begin{DoxyParamCaption}
+\item[{int}]{size, }
+\item[{bool}]{isperio}
+\end{DoxyParamCaption}
+)}\hypertarget{classfield__2d__i_a1c2f6c9078f0c91b763ffafefb2760a3}{}\label{classfield__2d__i_a1c2f6c9078f0c91b763ffafefb2760a3}
+\index{field\+\_\+2d\+\_\+i@{field\+\_\+2d\+\_\+i}!field\+\_\+2d\+\_\+i@{field\+\_\+2d\+\_\+i}}
+\index{field\+\_\+2d\+\_\+i@{field\+\_\+2d\+\_\+i}!field\+\_\+2d\+\_\+i@{field\+\_\+2d\+\_\+i}}
+\subsubsection[{\texorpdfstring{field\+\_\+2d\+\_\+i(field\+\_\+type \&other)}{field_2d_i(field_type &other)}}]{\setlength{\rightskip}{0pt plus 5cm}field\+\_\+2d\+\_\+i\+::field\+\_\+2d\+\_\+i (
+\begin{DoxyParamCaption}
+\item[{{\bf field\+\_\+type} \&}]{other}
+\end{DoxyParamCaption}
+)}\hypertarget{classfield__2d__i_a441d70c0ae4dba2055f0cbc2430d372e}{}\label{classfield__2d__i_a441d70c0ae4dba2055f0cbc2430d372e}
+\index{field\+\_\+2d\+\_\+i@{field\+\_\+2d\+\_\+i}!field\+\_\+2d\+\_\+i@{field\+\_\+2d\+\_\+i}}
+\index{field\+\_\+2d\+\_\+i@{field\+\_\+2d\+\_\+i}!field\+\_\+2d\+\_\+i@{field\+\_\+2d\+\_\+i}}
+\subsubsection[{\texorpdfstring{field\+\_\+2d\+\_\+i(const field\+\_\+2d\+\_\+i \&other)}{field_2d_i(const field_2d_i &other)}}]{\setlength{\rightskip}{0pt plus 5cm}field\+\_\+2d\+\_\+i\+::field\+\_\+2d\+\_\+i (
+\begin{DoxyParamCaption}
+\item[{const {\bf field\+\_\+2d\+\_\+i} \&}]{other}
+\end{DoxyParamCaption}
+)}\hypertarget{classfield__2d__i_a55d2e60260b8e3355ad6e2c54d9b6db7}{}\label{classfield__2d__i_a55d2e60260b8e3355ad6e2c54d9b6db7}
+\index{field\+\_\+2d\+\_\+i@{field\+\_\+2d\+\_\+i}!````~field\+\_\+2d\+\_\+i@{$\sim$field\+\_\+2d\+\_\+i}}
+\index{````~field\+\_\+2d\+\_\+i@{$\sim$field\+\_\+2d\+\_\+i}!field\+\_\+2d\+\_\+i@{field\+\_\+2d\+\_\+i}}
+\subsubsection[{\texorpdfstring{$\sim$field\+\_\+2d\+\_\+i()}{~field_2d_i()}}]{\setlength{\rightskip}{0pt plus 5cm}field\+\_\+2d\+\_\+i\+::$\sim$field\+\_\+2d\+\_\+i (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}\hypertarget{classfield__2d__i_a61ec328fb30916e3875a985a378024bb}{}\label{classfield__2d__i_a61ec328fb30916e3875a985a378024bb}
+
+
+\subsection{Member Function Documentation}
+\index{field\+\_\+2d\+\_\+i@{field\+\_\+2d\+\_\+i}!change\+\_\+to\+\_\+test@{change\+\_\+to\+\_\+test}}
+\index{change\+\_\+to\+\_\+test@{change\+\_\+to\+\_\+test}!field\+\_\+2d\+\_\+i@{field\+\_\+2d\+\_\+i}}
+\subsubsection[{\texorpdfstring{change\+\_\+to\+\_\+test(std\+::vector$<$ int $>$ \&position, ham\+\_\+type $\ast$hamil)}{change_to_test(std::vector< int > &position, ham_type *hamil)}}]{\setlength{\rightskip}{0pt plus 5cm}void field\+\_\+2d\+\_\+i\+::change\+\_\+to\+\_\+test (
+\begin{DoxyParamCaption}
+\item[{std\+::vector$<$ int $>$ \&}]{position, }
+\item[{{\bf ham\+\_\+type} $\ast$}]{hamil}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [virtual]}}\hypertarget{classfield__2d__i_a67325e8fc578af047dd367aa3d679b25}{}\label{classfield__2d__i_a67325e8fc578af047dd367aa3d679b25}
+
+
+Reimplemented from \hyperlink{classfield__type_a32140b8a785c0139dd27304143ca5f17}{field\+\_\+type}.
+
+\index{field\+\_\+2d\+\_\+i@{field\+\_\+2d\+\_\+i}!fill\+\_\+ghost@{fill\+\_\+ghost}}
+\index{fill\+\_\+ghost@{fill\+\_\+ghost}!field\+\_\+2d\+\_\+i@{field\+\_\+2d\+\_\+i}}
+\subsubsection[{\texorpdfstring{fill\+\_\+ghost(int num\+\_\+rows)}{fill_ghost(int num_rows)}}]{\setlength{\rightskip}{0pt plus 5cm}void field\+\_\+2d\+\_\+i\+::fill\+\_\+ghost (
+\begin{DoxyParamCaption}
+\item[{int}]{num\+\_\+rows}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [virtual]}}\hypertarget{classfield__2d__i_aa4d7c1c2e6fb75459b0cc009f29293f1}{}\label{classfield__2d__i_aa4d7c1c2e6fb75459b0cc009f29293f1}
+
+
+Reimplemented from \hyperlink{classfield__type_a11c23271c828983406e8e80c66b81c46}{field\+\_\+type}.
+
+\index{field\+\_\+2d\+\_\+i@{field\+\_\+2d\+\_\+i}!fill\+\_\+one@{fill\+\_\+one}}
+\index{fill\+\_\+one@{fill\+\_\+one}!field\+\_\+2d\+\_\+i@{field\+\_\+2d\+\_\+i}}
+\subsubsection[{\texorpdfstring{fill\+\_\+one(std\+::vector$<$ int $>$ \&position)}{fill_one(std::vector< int > &position)}}]{\setlength{\rightskip}{0pt plus 5cm}void field\+\_\+2d\+\_\+i\+::fill\+\_\+one (
+\begin{DoxyParamCaption}
+\item[{std\+::vector$<$ int $>$ \&}]{position}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [virtual]}}\hypertarget{classfield__2d__i_a859791e738fa2340ac579f4466a67a2f}{}\label{classfield__2d__i_a859791e738fa2340ac579f4466a67a2f}
+
+
+Reimplemented from \hyperlink{classfield__type_acb4fb5c3393feed8685eb3957c032a15}{field\+\_\+type}.
+
+\index{field\+\_\+2d\+\_\+i@{field\+\_\+2d\+\_\+i}!fill\+\_\+rand@{fill\+\_\+rand}}
+\index{fill\+\_\+rand@{fill\+\_\+rand}!field\+\_\+2d\+\_\+i@{field\+\_\+2d\+\_\+i}}
+\subsubsection[{\texorpdfstring{fill\+\_\+rand(std\+::vector$<$ int $>$ \&position)}{fill_rand(std::vector< int > &position)}}]{\setlength{\rightskip}{0pt plus 5cm}void field\+\_\+2d\+\_\+i\+::fill\+\_\+rand (
+\begin{DoxyParamCaption}
+\item[{std\+::vector$<$ int $>$ \&}]{position}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [virtual]}}\hypertarget{classfield__2d__i_ad0c4a3a9efde2bb4abfb131b3acfb7c2}{}\label{classfield__2d__i_ad0c4a3a9efde2bb4abfb131b3acfb7c2}
+
+
+Reimplemented from \hyperlink{classfield__type_a87d6bf8e9e97ce158a356fefaddc3bee}{field\+\_\+type}.
+
+\index{field\+\_\+2d\+\_\+i@{field\+\_\+2d\+\_\+i}!fill\+\_\+val\+\_\+i@{fill\+\_\+val\+\_\+i}}
+\index{fill\+\_\+val\+\_\+i@{fill\+\_\+val\+\_\+i}!field\+\_\+2d\+\_\+i@{field\+\_\+2d\+\_\+i}}
+\subsubsection[{\texorpdfstring{fill\+\_\+val\+\_\+i(std\+::vector$<$ int $>$ \&position, int val)}{fill_val_i(std::vector< int > &position, int val)}}]{\setlength{\rightskip}{0pt plus 5cm}void field\+\_\+2d\+\_\+i\+::fill\+\_\+val\+\_\+i (
+\begin{DoxyParamCaption}
+\item[{std\+::vector$<$ int $>$ \&}]{position, }
+\item[{int}]{val}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [virtual]}}\hypertarget{classfield__2d__i_a1b9d52a1e7fd7199b59eca139a0cfaab}{}\label{classfield__2d__i_a1b9d52a1e7fd7199b59eca139a0cfaab}
+
+
+Reimplemented from \hyperlink{classfield__type_a0d6034d05532edaa10fbc0f102180b9d}{field\+\_\+type}.
+
+\index{field\+\_\+2d\+\_\+i@{field\+\_\+2d\+\_\+i}!fill\+\_\+zero@{fill\+\_\+zero}}
+\index{fill\+\_\+zero@{fill\+\_\+zero}!field\+\_\+2d\+\_\+i@{field\+\_\+2d\+\_\+i}}
+\subsubsection[{\texorpdfstring{fill\+\_\+zero(std\+::vector$<$ int $>$ \&position)}{fill_zero(std::vector< int > &position)}}]{\setlength{\rightskip}{0pt plus 5cm}void field\+\_\+2d\+\_\+i\+::fill\+\_\+zero (
+\begin{DoxyParamCaption}
+\item[{std\+::vector$<$ int $>$ \&}]{position}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [virtual]}}\hypertarget{classfield__2d__i_a1049b9c54c259a4a244746bfe8ff300f}{}\label{classfield__2d__i_a1049b9c54c259a4a244746bfe8ff300f}
+
+
+Reimplemented from \hyperlink{classfield__type_afdb5b29e839fa11c7faeff60ee49aebb}{field\+\_\+type}.
+
+\index{field\+\_\+2d\+\_\+i@{field\+\_\+2d\+\_\+i}!get\+\_\+2dfield\+\_\+i@{get\+\_\+2dfield\+\_\+i}}
+\index{get\+\_\+2dfield\+\_\+i@{get\+\_\+2dfield\+\_\+i}!field\+\_\+2d\+\_\+i@{field\+\_\+2d\+\_\+i}}
+\subsubsection[{\texorpdfstring{get\+\_\+2dfield\+\_\+i(int $\ast$$\ast$\&x) const }{get_2dfield_i(int **&x) const }}]{\setlength{\rightskip}{0pt plus 5cm}void field\+\_\+2d\+\_\+i\+::get\+\_\+2dfield\+\_\+i (
+\begin{DoxyParamCaption}
+\item[{int $\ast$$\ast$\&}]{x}
+\end{DoxyParamCaption}
+) const\hspace{0.3cm}{\ttfamily [virtual]}}\hypertarget{classfield__2d__i_ab2f4ca5487861e2d566ec12d572d0c05}{}\label{classfield__2d__i_ab2f4ca5487861e2d566ec12d572d0c05}
+
+
+Reimplemented from \hyperlink{classfield__type_a1227fb5db27d6a4f2de5662c0aecde53}{field\+\_\+type}.
+
+\index{field\+\_\+2d\+\_\+i@{field\+\_\+2d\+\_\+i}!i\+\_\+access@{i\+\_\+access}}
+\index{i\+\_\+access@{i\+\_\+access}!field\+\_\+2d\+\_\+i@{field\+\_\+2d\+\_\+i}}
+\subsubsection[{\texorpdfstring{i\+\_\+access(std\+::vector$<$ int $>$ \&position, int \&out)}{i_access(std::vector< int > &position, int &out)}}]{\setlength{\rightskip}{0pt plus 5cm}void field\+\_\+2d\+\_\+i\+::i\+\_\+access (
+\begin{DoxyParamCaption}
+\item[{std\+::vector$<$ int $>$ \&}]{position, }
+\item[{int \&}]{out}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [virtual]}}\hypertarget{classfield__2d__i_aa25eba50d60662ad21885050503cdba9}{}\label{classfield__2d__i_aa25eba50d60662ad21885050503cdba9}
+
+
+Reimplemented from \hyperlink{classfield__type_a0941f94d7f73234d02c69faf2a0f6e5e}{field\+\_\+type}.
+
+\index{field\+\_\+2d\+\_\+i@{field\+\_\+2d\+\_\+i}!i\+\_\+adjacent@{i\+\_\+adjacent}}
+\index{i\+\_\+adjacent@{i\+\_\+adjacent}!field\+\_\+2d\+\_\+i@{field\+\_\+2d\+\_\+i}}
+\subsubsection[{\texorpdfstring{i\+\_\+adjacent(std\+::vector$<$ int $>$ \&position, int $\ast$out)}{i_adjacent(std::vector< int > &position, int *out)}}]{\setlength{\rightskip}{0pt plus 5cm}void field\+\_\+2d\+\_\+i\+::i\+\_\+adjacent (
+\begin{DoxyParamCaption}
+\item[{std\+::vector$<$ int $>$ \&}]{position, }
+\item[{int $\ast$}]{out}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [virtual]}}\hypertarget{classfield__2d__i_a576bc6fa317bf75ac5835d2d9ef0b10c}{}\label{classfield__2d__i_a576bc6fa317bf75ac5835d2d9ef0b10c}
+
+
+Reimplemented from \hyperlink{classfield__type_aaaea375b4de0d0ef9ca4427832611584}{field\+\_\+type}.
+
+\index{field\+\_\+2d\+\_\+i@{field\+\_\+2d\+\_\+i}!i\+\_\+next@{i\+\_\+next}}
+\index{i\+\_\+next@{i\+\_\+next}!field\+\_\+2d\+\_\+i@{field\+\_\+2d\+\_\+i}}
+\subsubsection[{\texorpdfstring{i\+\_\+next(bool \&finish, std\+::vector$<$ int $>$ \&pos, int \&out)}{i_next(bool &finish, std::vector< int > &pos, int &out)}}]{\setlength{\rightskip}{0pt plus 5cm}void field\+\_\+2d\+\_\+i\+::i\+\_\+next (
+\begin{DoxyParamCaption}
+\item[{bool \&}]{finish, }
+\item[{std\+::vector$<$ int $>$ \&}]{pos, }
+\item[{int \&}]{out}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [virtual]}}\hypertarget{classfield__2d__i_a99b396423d5d1490192f557cbd02ec10}{}\label{classfield__2d__i_a99b396423d5d1490192f557cbd02ec10}
+
+
+Reimplemented from \hyperlink{classfield__type_a0785839e047ace8841ded448d49900ca}{field\+\_\+type}.
+
+\index{field\+\_\+2d\+\_\+i@{field\+\_\+2d\+\_\+i}!operator=@{operator=}}
+\index{operator=@{operator=}!field\+\_\+2d\+\_\+i@{field\+\_\+2d\+\_\+i}}
+\subsubsection[{\texorpdfstring{operator=(const field\+\_\+2d\+\_\+i \&other)}{operator=(const field_2d_i &other)}}]{\setlength{\rightskip}{0pt plus 5cm}{\bf field\+\_\+2d\+\_\+i}\& field\+\_\+2d\+\_\+i\+::operator= (
+\begin{DoxyParamCaption}
+\item[{const {\bf field\+\_\+2d\+\_\+i} \&}]{other}
+\end{DoxyParamCaption}
+)}\hypertarget{classfield__2d__i_a513a9ce21440299a77291002a67d52bc}{}\label{classfield__2d__i_a513a9ce21440299a77291002a67d52bc}
+\index{field\+\_\+2d\+\_\+i@{field\+\_\+2d\+\_\+i}!recv\+\_\+data@{recv\+\_\+data}}
+\index{recv\+\_\+data@{recv\+\_\+data}!field\+\_\+2d\+\_\+i@{field\+\_\+2d\+\_\+i}}
+\subsubsection[{\texorpdfstring{recv\+\_\+data(int src\+\_\+rank)}{recv_data(int src_rank)}}]{\setlength{\rightskip}{0pt plus 5cm}void field\+\_\+2d\+\_\+i\+::recv\+\_\+data (
+\begin{DoxyParamCaption}
+\item[{int}]{src\+\_\+rank}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [virtual]}}\hypertarget{classfield__2d__i_a7397ba7e11ed00e7830f1e72859412e0}{}\label{classfield__2d__i_a7397ba7e11ed00e7830f1e72859412e0}
+
+
+Reimplemented from \hyperlink{classfield__type_ac29bf02760384b80a08e5e57ca43542f}{field\+\_\+type}.
+
+\index{field\+\_\+2d\+\_\+i@{field\+\_\+2d\+\_\+i}!send\+\_\+data@{send\+\_\+data}}
+\index{send\+\_\+data@{send\+\_\+data}!field\+\_\+2d\+\_\+i@{field\+\_\+2d\+\_\+i}}
+\subsubsection[{\texorpdfstring{send\+\_\+data(int dest\+\_\+rank)}{send_data(int dest_rank)}}]{\setlength{\rightskip}{0pt plus 5cm}void field\+\_\+2d\+\_\+i\+::send\+\_\+data (
+\begin{DoxyParamCaption}
+\item[{int}]{dest\+\_\+rank}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [virtual]}}\hypertarget{classfield__2d__i_a962515d7fcd59bd113fa4a51c3a05d2f}{}\label{classfield__2d__i_a962515d7fcd59bd113fa4a51c3a05d2f}
+
+
+Reimplemented from \hyperlink{classfield__type_afaabc410e2ce254c23e3c4aa39d1916d}{field\+\_\+type}.
+
+
+
+\subsection{Member Data Documentation}
+\index{field\+\_\+2d\+\_\+i@{field\+\_\+2d\+\_\+i}!spin@{spin}}
+\index{spin@{spin}!field\+\_\+2d\+\_\+i@{field\+\_\+2d\+\_\+i}}
+\subsubsection[{\texorpdfstring{spin}{spin}}]{\setlength{\rightskip}{0pt plus 5cm}int$\ast$$\ast$ field\+\_\+2d\+\_\+i\+::spin\hspace{0.3cm}{\ttfamily [protected]}}\hypertarget{classfield__2d__i_ae1ac88200dfeb8c3c022fa255db74334}{}\label{classfield__2d__i_ae1ac88200dfeb8c3c022fa255db74334}
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+includes/\hyperlink{field__type_8hpp}{field\+\_\+type.\+hpp}\end{DoxyCompactItemize}

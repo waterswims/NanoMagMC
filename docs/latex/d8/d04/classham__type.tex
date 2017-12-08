@@ -1,0 +1,211 @@
+\hypertarget{classham__type}{}\section{ham\+\_\+type Class Reference}
+\label{classham__type}\index{ham\+\_\+type@{ham\+\_\+type}}
+
+
+{\ttfamily \#include $<$hamiltonian.\+hpp$>$}
+
+
+
+Inheritance diagram for ham\+\_\+type\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=261pt]{d5/d48/classham__type__inherit__graph}
+\end{center}
+\end{figure}
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+virtual double \hyperlink{classham__type_a7fda5d3158544255ce3ca5e20c4e1c19}{calc\+\_\+E} (\hyperlink{classfield__type}{field\+\_\+type} $\ast$lattice)
+\item 
+virtual double \hyperlink{classham__type_a809902357229189b08ee9fdfab9c90be}{dE} (\hyperlink{classfield__type}{field\+\_\+type} $\ast$lattice, std\+::vector$<$ int $>$ \&position)
+\item 
+virtual std\+::vector$<$ double $>$ \hyperlink{classham__type_a953ba4332e88ee644d2afb96cd5a0ad5}{calc\+\_\+M} (\hyperlink{classfield__type}{field\+\_\+type} $\ast$lattice)
+\item 
+virtual std\+::vector$<$ double $>$ \hyperlink{classham__type_a37cc0a51074bd64cdeec866edb6f6015}{calc\+\_\+subM} (\hyperlink{classfield__type}{field\+\_\+type} $\ast$lattice, int subnumber)
+\item 
+virtual double \hyperlink{classham__type_ab75b9c6ea8098ea0874781a70bfa5099}{get\+\_\+J} () const 
+\item 
+virtual double \hyperlink{classham__type_a1c1a0ee7708f3d6f68bc999491dde42b}{get\+\_\+H} () const 
+\item 
+virtual std\+::vector$<$ double $>$ \hyperlink{classham__type_accdb77a4f5af92232a0415212d302344}{get\+\_\+\+Js} () const 
+\item 
+virtual std\+::vector$<$ double $>$ \hyperlink{classham__type_aab0cee1eece99ec37122126e7e4bcb91}{get\+\_\+\+Hs} () const 
+\item 
+virtual double \hyperlink{classham__type_a53ca8fb35d66cd07c78e24414b54d17f}{get\+\_\+K} () const 
+\item 
+virtual void \hyperlink{classham__type_a2864138405e794dc2aa2fe45fb6e400f}{get\+\_\+test} (double \&x, double \&y, double \&z)
+\item 
+virtual void \hyperlink{classham__type_a3a14214575bf8dcf3a8b39c7470dfe66}{init\+\_\+dim} (\hyperlink{classfield__type}{field\+\_\+type} $\ast$field)
+\item 
+virtual void \hyperlink{classham__type_a140c53e29c5c298c0f2704a4ecda7022}{set\+\_\+H} (double Hin)
+\item 
+virtual std\+::vector$<$ double $>$ \hyperlink{classham__type_ab6917097da83d4855efe2238ab4df4da}{calc\+\_\+top\+\_\+charge} (\hyperlink{classfield__type}{field\+\_\+type} $\ast$lattice)
+\end{DoxyCompactItemize}
+\subsection*{Protected Attributes}
+\begin{DoxyCompactItemize}
+\item 
+int \hyperlink{classham__type_ae35098d4b40aee42316273b6cb439014}{dim}
+\end{DoxyCompactItemize}
+
+
+\subsection{Member Function Documentation}
+\index{ham\+\_\+type@{ham\+\_\+type}!calc\+\_\+E@{calc\+\_\+E}}
+\index{calc\+\_\+E@{calc\+\_\+E}!ham\+\_\+type@{ham\+\_\+type}}
+\subsubsection[{\texorpdfstring{calc\+\_\+\+E(field\+\_\+type $\ast$lattice)}{calc_E(field_type *lattice)}}]{\setlength{\rightskip}{0pt plus 5cm}virtual double ham\+\_\+type\+::calc\+\_\+E (
+\begin{DoxyParamCaption}
+\item[{{\bf field\+\_\+type} $\ast$}]{lattice}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}\hypertarget{classham__type_a7fda5d3158544255ce3ca5e20c4e1c19}{}\label{classham__type_a7fda5d3158544255ce3ca5e20c4e1c19}
+
+
+Reimplemented in \hyperlink{classham__skyrm_acca35df79a8fb4120efab41366564894}{ham\+\_\+skyrm}, \hyperlink{classham__FePt_a8d69322fbb999892889d34fb4b12f043}{ham\+\_\+\+Fe\+Pt}, \hyperlink{classham__heis_a9356396de229b2a0142fa6505f0132c1}{ham\+\_\+heis}, and \hyperlink{classham__ising_a04bdf2c223bada94ca813bc71d71e7cb}{ham\+\_\+ising}.
+
+\index{ham\+\_\+type@{ham\+\_\+type}!calc\+\_\+M@{calc\+\_\+M}}
+\index{calc\+\_\+M@{calc\+\_\+M}!ham\+\_\+type@{ham\+\_\+type}}
+\subsubsection[{\texorpdfstring{calc\+\_\+\+M(field\+\_\+type $\ast$lattice)}{calc_M(field_type *lattice)}}]{\setlength{\rightskip}{0pt plus 5cm}virtual std\+::vector$<$double$>$ ham\+\_\+type\+::calc\+\_\+M (
+\begin{DoxyParamCaption}
+\item[{{\bf field\+\_\+type} $\ast$}]{lattice}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}\hypertarget{classham__type_a953ba4332e88ee644d2afb96cd5a0ad5}{}\label{classham__type_a953ba4332e88ee644d2afb96cd5a0ad5}
+
+
+Reimplemented in \hyperlink{classham__heis_ab10e4c9b74e7182751715c670cf3c44c}{ham\+\_\+heis}, and \hyperlink{classham__ising_ad530e522cb6a2a80d10948603ff667ff}{ham\+\_\+ising}.
+
+\index{ham\+\_\+type@{ham\+\_\+type}!calc\+\_\+subM@{calc\+\_\+subM}}
+\index{calc\+\_\+subM@{calc\+\_\+subM}!ham\+\_\+type@{ham\+\_\+type}}
+\subsubsection[{\texorpdfstring{calc\+\_\+sub\+M(field\+\_\+type $\ast$lattice, int subnumber)}{calc_subM(field_type *lattice, int subnumber)}}]{\setlength{\rightskip}{0pt plus 5cm}virtual std\+::vector$<$double$>$ ham\+\_\+type\+::calc\+\_\+subM (
+\begin{DoxyParamCaption}
+\item[{{\bf field\+\_\+type} $\ast$}]{lattice, }
+\item[{int}]{subnumber}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}\hypertarget{classham__type_a37cc0a51074bd64cdeec866edb6f6015}{}\label{classham__type_a37cc0a51074bd64cdeec866edb6f6015}
+
+
+Reimplemented in \hyperlink{classham__heis_a4713342c74601ac3246a34ebd429c07b}{ham\+\_\+heis}, and \hyperlink{classham__ising_a7092d807838fed1640bb03fa22e71236}{ham\+\_\+ising}.
+
+\index{ham\+\_\+type@{ham\+\_\+type}!calc\+\_\+top\+\_\+charge@{calc\+\_\+top\+\_\+charge}}
+\index{calc\+\_\+top\+\_\+charge@{calc\+\_\+top\+\_\+charge}!ham\+\_\+type@{ham\+\_\+type}}
+\subsubsection[{\texorpdfstring{calc\+\_\+top\+\_\+charge(field\+\_\+type $\ast$lattice)}{calc_top_charge(field_type *lattice)}}]{\setlength{\rightskip}{0pt plus 5cm}virtual std\+::vector$<$double$>$ ham\+\_\+type\+::calc\+\_\+top\+\_\+charge (
+\begin{DoxyParamCaption}
+\item[{{\bf field\+\_\+type} $\ast$}]{lattice}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}\hypertarget{classham__type_ab6917097da83d4855efe2238ab4df4da}{}\label{classham__type_ab6917097da83d4855efe2238ab4df4da}
+
+
+Reimplemented in \hyperlink{classham__heis_a12fedc92d02868a2eacfe2e3eb2578cf}{ham\+\_\+heis}.
+
+\index{ham\+\_\+type@{ham\+\_\+type}!dE@{dE}}
+\index{dE@{dE}!ham\+\_\+type@{ham\+\_\+type}}
+\subsubsection[{\texorpdfstring{d\+E(field\+\_\+type $\ast$lattice, std\+::vector$<$ int $>$ \&position)}{dE(field_type *lattice, std::vector< int > &position)}}]{\setlength{\rightskip}{0pt plus 5cm}virtual double ham\+\_\+type\+::dE (
+\begin{DoxyParamCaption}
+\item[{{\bf field\+\_\+type} $\ast$}]{lattice, }
+\item[{std\+::vector$<$ int $>$ \&}]{position}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}\hypertarget{classham__type_a809902357229189b08ee9fdfab9c90be}{}\label{classham__type_a809902357229189b08ee9fdfab9c90be}
+
+
+Reimplemented in \hyperlink{classham__skyrm_aca80743449de874029fc0860fdd36422}{ham\+\_\+skyrm}, \hyperlink{classham__FePt_a742137dc8f3e289bb33abb3ad04d6a19}{ham\+\_\+\+Fe\+Pt}, \hyperlink{classham__heis_a80b17aefe298faa50b5cecb1aa9da4ad}{ham\+\_\+heis}, and \hyperlink{classham__ising_ae83e5c08a8da4652440ccd5d40554421}{ham\+\_\+ising}.
+
+\index{ham\+\_\+type@{ham\+\_\+type}!get\+\_\+H@{get\+\_\+H}}
+\index{get\+\_\+H@{get\+\_\+H}!ham\+\_\+type@{ham\+\_\+type}}
+\subsubsection[{\texorpdfstring{get\+\_\+\+H() const }{get_H() const }}]{\setlength{\rightskip}{0pt plus 5cm}virtual double ham\+\_\+type\+::get\+\_\+H (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+) const\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}\hypertarget{classham__type_a1c1a0ee7708f3d6f68bc999491dde42b}{}\label{classham__type_a1c1a0ee7708f3d6f68bc999491dde42b}
+
+
+Reimplemented in \hyperlink{classham__ising_aa03103158f5db829b8f17f43978a816c}{ham\+\_\+ising}.
+
+\index{ham\+\_\+type@{ham\+\_\+type}!get\+\_\+\+Hs@{get\+\_\+\+Hs}}
+\index{get\+\_\+\+Hs@{get\+\_\+\+Hs}!ham\+\_\+type@{ham\+\_\+type}}
+\subsubsection[{\texorpdfstring{get\+\_\+\+Hs() const }{get_Hs() const }}]{\setlength{\rightskip}{0pt plus 5cm}virtual std\+::vector$<$double$>$ ham\+\_\+type\+::get\+\_\+\+Hs (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+) const\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}\hypertarget{classham__type_aab0cee1eece99ec37122126e7e4bcb91}{}\label{classham__type_aab0cee1eece99ec37122126e7e4bcb91}
+
+
+Reimplemented in \hyperlink{classham__heis_afbdbe29a893440db2ddab8fd41775e56}{ham\+\_\+heis}.
+
+\index{ham\+\_\+type@{ham\+\_\+type}!get\+\_\+J@{get\+\_\+J}}
+\index{get\+\_\+J@{get\+\_\+J}!ham\+\_\+type@{ham\+\_\+type}}
+\subsubsection[{\texorpdfstring{get\+\_\+\+J() const }{get_J() const }}]{\setlength{\rightskip}{0pt plus 5cm}virtual double ham\+\_\+type\+::get\+\_\+J (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+) const\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}\hypertarget{classham__type_ab75b9c6ea8098ea0874781a70bfa5099}{}\label{classham__type_ab75b9c6ea8098ea0874781a70bfa5099}
+
+
+Reimplemented in \hyperlink{classham__ising_a3d5b100c6f3a1f750c524a2d302fd65e}{ham\+\_\+ising}.
+
+\index{ham\+\_\+type@{ham\+\_\+type}!get\+\_\+\+Js@{get\+\_\+\+Js}}
+\index{get\+\_\+\+Js@{get\+\_\+\+Js}!ham\+\_\+type@{ham\+\_\+type}}
+\subsubsection[{\texorpdfstring{get\+\_\+\+Js() const }{get_Js() const }}]{\setlength{\rightskip}{0pt plus 5cm}virtual std\+::vector$<$double$>$ ham\+\_\+type\+::get\+\_\+\+Js (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+) const\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}\hypertarget{classham__type_accdb77a4f5af92232a0415212d302344}{}\label{classham__type_accdb77a4f5af92232a0415212d302344}
+
+
+Reimplemented in \hyperlink{classham__heis_a177ac16e9cc6a7b2455c0271394362af}{ham\+\_\+heis}.
+
+\index{ham\+\_\+type@{ham\+\_\+type}!get\+\_\+K@{get\+\_\+K}}
+\index{get\+\_\+K@{get\+\_\+K}!ham\+\_\+type@{ham\+\_\+type}}
+\subsubsection[{\texorpdfstring{get\+\_\+\+K() const }{get_K() const }}]{\setlength{\rightskip}{0pt plus 5cm}virtual double ham\+\_\+type\+::get\+\_\+K (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+) const\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}\hypertarget{classham__type_a53ca8fb35d66cd07c78e24414b54d17f}{}\label{classham__type_a53ca8fb35d66cd07c78e24414b54d17f}
+
+
+Reimplemented in \hyperlink{classham__skyrm_a871473dff64abd906bed694a360335cf}{ham\+\_\+skyrm}.
+
+\index{ham\+\_\+type@{ham\+\_\+type}!get\+\_\+test@{get\+\_\+test}}
+\index{get\+\_\+test@{get\+\_\+test}!ham\+\_\+type@{ham\+\_\+type}}
+\subsubsection[{\texorpdfstring{get\+\_\+test(double \&x, double \&y, double \&z)}{get_test(double &x, double &y, double &z)}}]{\setlength{\rightskip}{0pt plus 5cm}virtual void ham\+\_\+type\+::get\+\_\+test (
+\begin{DoxyParamCaption}
+\item[{double \&}]{x, }
+\item[{double \&}]{y, }
+\item[{double \&}]{z}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}\hypertarget{classham__type_a2864138405e794dc2aa2fe45fb6e400f}{}\label{classham__type_a2864138405e794dc2aa2fe45fb6e400f}
+
+
+Reimplemented in \hyperlink{classham__heis_a3c603d70b56a9df357d3c39212395422}{ham\+\_\+heis}.
+
+\index{ham\+\_\+type@{ham\+\_\+type}!init\+\_\+dim@{init\+\_\+dim}}
+\index{init\+\_\+dim@{init\+\_\+dim}!ham\+\_\+type@{ham\+\_\+type}}
+\subsubsection[{\texorpdfstring{init\+\_\+dim(field\+\_\+type $\ast$field)}{init_dim(field_type *field)}}]{\setlength{\rightskip}{0pt plus 5cm}virtual void ham\+\_\+type\+::init\+\_\+dim (
+\begin{DoxyParamCaption}
+\item[{{\bf field\+\_\+type} $\ast$}]{field}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}\hypertarget{classham__type_a3a14214575bf8dcf3a8b39c7470dfe66}{}\label{classham__type_a3a14214575bf8dcf3a8b39c7470dfe66}
+
+
+Reimplemented in \hyperlink{classham__FePt_a3f03eee62cb90922ea4afea3fd1023e9}{ham\+\_\+\+Fe\+Pt}, \hyperlink{classham__heis_a48cfb1cf4cc50765d408113878f44979}{ham\+\_\+heis}, and \hyperlink{classham__ising_a92139385ee5cd3eab8a03897245dc53f}{ham\+\_\+ising}.
+
+\index{ham\+\_\+type@{ham\+\_\+type}!set\+\_\+H@{set\+\_\+H}}
+\index{set\+\_\+H@{set\+\_\+H}!ham\+\_\+type@{ham\+\_\+type}}
+\subsubsection[{\texorpdfstring{set\+\_\+\+H(double Hin)}{set_H(double Hin)}}]{\setlength{\rightskip}{0pt plus 5cm}virtual void ham\+\_\+type\+::set\+\_\+H (
+\begin{DoxyParamCaption}
+\item[{double}]{Hin}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}\hypertarget{classham__type_a140c53e29c5c298c0f2704a4ecda7022}{}\label{classham__type_a140c53e29c5c298c0f2704a4ecda7022}
+
+
+Reimplemented in \hyperlink{classham__heis_ab11ec994196743c909117b1231c6bfda}{ham\+\_\+heis}, and \hyperlink{classham__ising_a4b0bdb0e5576905061ec607cbeeb76cb}{ham\+\_\+ising}.
+
+
+
+\subsection{Member Data Documentation}
+\index{ham\+\_\+type@{ham\+\_\+type}!dim@{dim}}
+\index{dim@{dim}!ham\+\_\+type@{ham\+\_\+type}}
+\subsubsection[{\texorpdfstring{dim}{dim}}]{\setlength{\rightskip}{0pt plus 5cm}int ham\+\_\+type\+::dim\hspace{0.3cm}{\ttfamily [protected]}}\hypertarget{classham__type_ae35098d4b40aee42316273b6cb439014}{}\label{classham__type_ae35098d4b40aee42316273b6cb439014}
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+includes/\hyperlink{hamiltonian_8hpp}{hamiltonian.\+hpp}\end{DoxyCompactItemize}

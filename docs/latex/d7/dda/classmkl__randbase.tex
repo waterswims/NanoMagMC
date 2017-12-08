@@ -1,0 +1,109 @@
+\hypertarget{classmkl__randbase}{}\section{mkl\+\_\+randbase Class Reference}
+\label{classmkl__randbase}\index{mkl\+\_\+randbase@{mkl\+\_\+randbase}}
+
+
+{\ttfamily \#include $<$mklrand.\+hpp$>$}
+
+
+
+Inheritance diagram for mkl\+\_\+randbase\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=302pt]{d4/dab/classmkl__randbase__inherit__graph}
+\end{center}
+\end{figure}
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{classmkl__randbase_a9f096a27eebdfc79087e5e8899ed98c9}{mkl\+\_\+randbase} ()
+\item 
+\hyperlink{classmkl__randbase_a95dd980c910854915934afead27d832e}{$\sim$mkl\+\_\+randbase} ()
+\item 
+virtual void \hyperlink{classmkl__randbase_ada678ebb272b395d7e2474a98bae503a}{fill} ()
+\item 
+virtual void \hyperlink{classmkl__randbase_af4e4fd6e13785c027f4e37fe77f4df63}{change\+\_\+seed} ()
+\item 
+void \hyperlink{classmkl__randbase_a62dd2d59a3b339680c2d29822e44efa5}{save} (const char $\ast$name)
+\item 
+void \hyperlink{classmkl__randbase_a5ebfdc1a7f661a36341d21676750e23f}{load} (const char $\ast$name)
+\end{DoxyCompactItemize}
+\subsection*{Protected Attributes}
+\begin{DoxyCompactItemize}
+\item 
+int \hyperlink{classmkl__randbase_ae4fd17554da931b8d268f43b5c21f49b}{arr\+\_\+size}
+\item 
+int \hyperlink{classmkl__randbase_af654ef714fc77af1d4d815956034d130}{curr}
+\item 
+V\+S\+L\+Stream\+State\+Ptr \hyperlink{classmkl__randbase_a130663e1e2c17ec4a7b77b3c2a6aa1d6}{stream}
+\end{DoxyCompactItemize}
+
+
+\subsection{Constructor \& Destructor Documentation}
+\index{mkl\+\_\+randbase@{mkl\+\_\+randbase}!mkl\+\_\+randbase@{mkl\+\_\+randbase}}
+\index{mkl\+\_\+randbase@{mkl\+\_\+randbase}!mkl\+\_\+randbase@{mkl\+\_\+randbase}}
+\subsubsection[{\texorpdfstring{mkl\+\_\+randbase()}{mkl_randbase()}}]{\setlength{\rightskip}{0pt plus 5cm}mkl\+\_\+randbase\+::mkl\+\_\+randbase (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}}\hypertarget{classmkl__randbase_a9f096a27eebdfc79087e5e8899ed98c9}{}\label{classmkl__randbase_a9f096a27eebdfc79087e5e8899ed98c9}
+\index{mkl\+\_\+randbase@{mkl\+\_\+randbase}!````~mkl\+\_\+randbase@{$\sim$mkl\+\_\+randbase}}
+\index{````~mkl\+\_\+randbase@{$\sim$mkl\+\_\+randbase}!mkl\+\_\+randbase@{mkl\+\_\+randbase}}
+\subsubsection[{\texorpdfstring{$\sim$mkl\+\_\+randbase()}{~mkl_randbase()}}]{\setlength{\rightskip}{0pt plus 5cm}mkl\+\_\+randbase\+::$\sim$mkl\+\_\+randbase (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}}\hypertarget{classmkl__randbase_a95dd980c910854915934afead27d832e}{}\label{classmkl__randbase_a95dd980c910854915934afead27d832e}
+
+
+\subsection{Member Function Documentation}
+\index{mkl\+\_\+randbase@{mkl\+\_\+randbase}!change\+\_\+seed@{change\+\_\+seed}}
+\index{change\+\_\+seed@{change\+\_\+seed}!mkl\+\_\+randbase@{mkl\+\_\+randbase}}
+\subsubsection[{\texorpdfstring{change\+\_\+seed()}{change_seed()}}]{\setlength{\rightskip}{0pt plus 5cm}virtual void mkl\+\_\+randbase\+::change\+\_\+seed (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}\hypertarget{classmkl__randbase_af4e4fd6e13785c027f4e37fe77f4df63}{}\label{classmkl__randbase_af4e4fd6e13785c027f4e37fe77f4df63}
+\index{mkl\+\_\+randbase@{mkl\+\_\+randbase}!fill@{fill}}
+\index{fill@{fill}!mkl\+\_\+randbase@{mkl\+\_\+randbase}}
+\subsubsection[{\texorpdfstring{fill()}{fill()}}]{\setlength{\rightskip}{0pt plus 5cm}virtual void mkl\+\_\+randbase\+::fill (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}\hypertarget{classmkl__randbase_ada678ebb272b395d7e2474a98bae503a}{}\label{classmkl__randbase_ada678ebb272b395d7e2474a98bae503a}
+
+
+Reimplemented in \hyperlink{classmkl__lnrand_a299d1067f9140cf9b0030e9d86b0e4f7}{mkl\+\_\+lnrand}, \hyperlink{classmkl__irand_a49daff911e5fd2f187a8c158ec1aa33b}{mkl\+\_\+irand}, and \hyperlink{classmkl__drand_ab736e571c6e90c3add23fa521ec00d6e}{mkl\+\_\+drand}.
+
+\index{mkl\+\_\+randbase@{mkl\+\_\+randbase}!load@{load}}
+\index{load@{load}!mkl\+\_\+randbase@{mkl\+\_\+randbase}}
+\subsubsection[{\texorpdfstring{load(const char $\ast$name)}{load(const char *name)}}]{\setlength{\rightskip}{0pt plus 5cm}void mkl\+\_\+randbase\+::load (
+\begin{DoxyParamCaption}
+\item[{const char $\ast$}]{name}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}}\hypertarget{classmkl__randbase_a5ebfdc1a7f661a36341d21676750e23f}{}\label{classmkl__randbase_a5ebfdc1a7f661a36341d21676750e23f}
+\index{mkl\+\_\+randbase@{mkl\+\_\+randbase}!save@{save}}
+\index{save@{save}!mkl\+\_\+randbase@{mkl\+\_\+randbase}}
+\subsubsection[{\texorpdfstring{save(const char $\ast$name)}{save(const char *name)}}]{\setlength{\rightskip}{0pt plus 5cm}void mkl\+\_\+randbase\+::save (
+\begin{DoxyParamCaption}
+\item[{const char $\ast$}]{name}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}}\hypertarget{classmkl__randbase_a62dd2d59a3b339680c2d29822e44efa5}{}\label{classmkl__randbase_a62dd2d59a3b339680c2d29822e44efa5}
+
+
+\subsection{Member Data Documentation}
+\index{mkl\+\_\+randbase@{mkl\+\_\+randbase}!arr\+\_\+size@{arr\+\_\+size}}
+\index{arr\+\_\+size@{arr\+\_\+size}!mkl\+\_\+randbase@{mkl\+\_\+randbase}}
+\subsubsection[{\texorpdfstring{arr\+\_\+size}{arr_size}}]{\setlength{\rightskip}{0pt plus 5cm}int mkl\+\_\+randbase\+::arr\+\_\+size\hspace{0.3cm}{\ttfamily [protected]}}\hypertarget{classmkl__randbase_ae4fd17554da931b8d268f43b5c21f49b}{}\label{classmkl__randbase_ae4fd17554da931b8d268f43b5c21f49b}
+\index{mkl\+\_\+randbase@{mkl\+\_\+randbase}!curr@{curr}}
+\index{curr@{curr}!mkl\+\_\+randbase@{mkl\+\_\+randbase}}
+\subsubsection[{\texorpdfstring{curr}{curr}}]{\setlength{\rightskip}{0pt plus 5cm}int mkl\+\_\+randbase\+::curr\hspace{0.3cm}{\ttfamily [protected]}}\hypertarget{classmkl__randbase_af654ef714fc77af1d4d815956034d130}{}\label{classmkl__randbase_af654ef714fc77af1d4d815956034d130}
+\index{mkl\+\_\+randbase@{mkl\+\_\+randbase}!stream@{stream}}
+\index{stream@{stream}!mkl\+\_\+randbase@{mkl\+\_\+randbase}}
+\subsubsection[{\texorpdfstring{stream}{stream}}]{\setlength{\rightskip}{0pt plus 5cm}V\+S\+L\+Stream\+State\+Ptr mkl\+\_\+randbase\+::stream\hspace{0.3cm}{\ttfamily [protected]}}\hypertarget{classmkl__randbase_a130663e1e2c17ec4a7b77b3c2a6aa1d6}{}\label{classmkl__randbase_a130663e1e2c17ec4a7b77b3c2a6aa1d6}
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+includes/\hyperlink{mklrand_8hpp}{mklrand.\+hpp}\end{DoxyCompactItemize}

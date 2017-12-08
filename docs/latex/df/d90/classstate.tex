@@ -1,0 +1,253 @@
+\hypertarget{classstate}{}\section{state Class Reference}
+\label{classstate}\index{state@{state}}
+
+
+{\ttfamily \#include $<$state.\+hpp$>$}
+
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{classstate_aee920d9f534640451f22b3525f9cb9de}{state} ()
+\item 
+\hyperlink{classstate_a1ffab1c19ca8140b1e41d9fa40bf3834}{state} (double size, bool is\+Perio, char shape\+\_\+code, char ham\+\_\+code, double J, double H, double k, double Temp, double K, double $\ast$args)
+\item 
+\hyperlink{classstate_a285d976cdbd4a9de9ec8d1d887991ecc}{state} (const \hyperlink{classstate}{state} \&other)
+\item 
+\hyperlink{classstate_a60216b51b01ca0ebe9786ec2da66568f}{$\sim$state} ()
+\item 
+void \hyperlink{classstate_a0d0ea6448509ececead44d83b4decd1c}{copy\+\_\+points} (const \hyperlink{classstate}{state} \&other)
+\item 
+void \hyperlink{classstate_a62fc1dbaf8ac5002ec6ca08ec93fb012}{init\+\_\+points} (double size, bool is\+Perio, double H, double J, double K, double $\ast$args)
+\item 
+void \hyperlink{classstate_af70b6f999313cc427a526388058cb45c}{equil} (int iter)
+\item 
+std\+::vector$<$ double $>$ \hyperlink{classstate_a5d5980e59b16063808f09eac46d14292}{magnetisation} ()
+\item 
+std\+::vector$<$ double $>$ \hyperlink{classstate_aff62d62706dc27dde2c3638769c0a00a}{submag} (int subnumber)
+\item 
+double \hyperlink{classstate_a6209503f752e5089e0301f103fdf1d1e}{energy} ()
+\item 
+std\+::vector$<$ double $>$ \hyperlink{classstate_aba4b4f47fc3b9cba97b5f63518214f30}{tcharge} ()
+\item 
+int \hyperlink{classstate_ad9182b875a7a3fb5981c811f7f062040}{num\+\_\+spins} ()
+\item 
+int \hyperlink{classstate_a8351befda232e04536d6a3e738754282}{sub\+\_\+num} (int subnumber)
+\item 
+void \hyperlink{classstate_acfeea4e197f5ce0160c6c664740ba6ff}{init\+\_\+lattice} ()
+\item 
+void \hyperlink{classstate_aca18a3757a2e6bd79cda366e4e31bb99}{change\+\_\+temp} (double T)
+\item 
+void \hyperlink{classstate_aa03016edf3d086e5fe4ac901c0661136}{change\+\_\+field} (double H)
+\item 
+\hyperlink{classstate}{state} \& \hyperlink{classstate_a8f382a578a92617e7294cbbd80fba3c6}{operator=} (const \hyperlink{classstate}{state} \&other)
+\item 
+void \hyperlink{classstate_afa18f63b166492174bf88cd52c1cb748}{print\+\_\+latt} ()
+\item 
+void \hyperlink{classstate_af478dc8ce44c65cc535530738693eff5}{ptf} (std\+::string fname, std\+::string arrname)
+\item 
+void \hyperlink{classstate_af63905e26f5732a1c2ab9c5ea282e13d}{add\+\_\+to\+\_\+av} (\hyperlink{classfield__type}{field\+\_\+type} $\ast$other\+\_\+field)
+\item 
+void \hyperlink{classstate_a74588f49ec2b0868442d78ed9dcf1224}{change\+\_\+v1} (int protocol, double v1)
+\item 
+void \hyperlink{classstate_a9ffa7fbd21b542e66a9275f63b80ed0a}{change\+\_\+v2} (int protocol, double v2)
+\item 
+void \hyperlink{classstate_a6e35e024e6139032a54099bfe84a6fa4}{send\+\_\+latt\+\_\+data} (int dest\+\_\+rank)
+\item 
+void \hyperlink{classstate_a5ce0ea314795d1cc37849604f202fb98}{recv\+\_\+latt\+\_\+data} (int src\+\_\+rank)
+\end{DoxyCompactItemize}
+
+
+\subsection{Constructor \& Destructor Documentation}
+\index{state@{state}!state@{state}}
+\index{state@{state}!state@{state}}
+\subsubsection[{\texorpdfstring{state()}{state()}}]{\setlength{\rightskip}{0pt plus 5cm}state\+::state (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}}\hypertarget{classstate_aee920d9f534640451f22b3525f9cb9de}{}\label{classstate_aee920d9f534640451f22b3525f9cb9de}
+\index{state@{state}!state@{state}}
+\index{state@{state}!state@{state}}
+\subsubsection[{\texorpdfstring{state(double size, bool is\+Perio, char shape\+\_\+code, char ham\+\_\+code, double J, double H, double k, double Temp, double K, double $\ast$args)}{state(double size, bool isPerio, char shape_code, char ham_code, double J, double H, double k, double Temp, double K, double *args)}}]{\setlength{\rightskip}{0pt plus 5cm}state\+::state (
+\begin{DoxyParamCaption}
+\item[{double}]{size, }
+\item[{bool}]{is\+Perio, }
+\item[{char}]{shape\+\_\+code, }
+\item[{char}]{ham\+\_\+code, }
+\item[{double}]{J, }
+\item[{double}]{H, }
+\item[{double}]{k, }
+\item[{double}]{Temp, }
+\item[{double}]{K, }
+\item[{double $\ast$}]{args}
+\end{DoxyParamCaption}
+)}\hypertarget{classstate_a1ffab1c19ca8140b1e41d9fa40bf3834}{}\label{classstate_a1ffab1c19ca8140b1e41d9fa40bf3834}
+\index{state@{state}!state@{state}}
+\index{state@{state}!state@{state}}
+\subsubsection[{\texorpdfstring{state(const state \&other)}{state(const state &other)}}]{\setlength{\rightskip}{0pt plus 5cm}state\+::state (
+\begin{DoxyParamCaption}
+\item[{const {\bf state} \&}]{other}
+\end{DoxyParamCaption}
+)}\hypertarget{classstate_a285d976cdbd4a9de9ec8d1d887991ecc}{}\label{classstate_a285d976cdbd4a9de9ec8d1d887991ecc}
+\index{state@{state}!````~state@{$\sim$state}}
+\index{````~state@{$\sim$state}!state@{state}}
+\subsubsection[{\texorpdfstring{$\sim$state()}{~state()}}]{\setlength{\rightskip}{0pt plus 5cm}state\+::$\sim$state (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}\hypertarget{classstate_a60216b51b01ca0ebe9786ec2da66568f}{}\label{classstate_a60216b51b01ca0ebe9786ec2da66568f}
+
+
+\subsection{Member Function Documentation}
+\index{state@{state}!add\+\_\+to\+\_\+av@{add\+\_\+to\+\_\+av}}
+\index{add\+\_\+to\+\_\+av@{add\+\_\+to\+\_\+av}!state@{state}}
+\subsubsection[{\texorpdfstring{add\+\_\+to\+\_\+av(field\+\_\+type $\ast$other\+\_\+field)}{add_to_av(field_type *other_field)}}]{\setlength{\rightskip}{0pt plus 5cm}void state\+::add\+\_\+to\+\_\+av (
+\begin{DoxyParamCaption}
+\item[{{\bf field\+\_\+type} $\ast$}]{other\+\_\+field}
+\end{DoxyParamCaption}
+)}\hypertarget{classstate_af63905e26f5732a1c2ab9c5ea282e13d}{}\label{classstate_af63905e26f5732a1c2ab9c5ea282e13d}
+\index{state@{state}!change\+\_\+field@{change\+\_\+field}}
+\index{change\+\_\+field@{change\+\_\+field}!state@{state}}
+\subsubsection[{\texorpdfstring{change\+\_\+field(double H)}{change_field(double H)}}]{\setlength{\rightskip}{0pt plus 5cm}void state\+::change\+\_\+field (
+\begin{DoxyParamCaption}
+\item[{double}]{H}
+\end{DoxyParamCaption}
+)}\hypertarget{classstate_aa03016edf3d086e5fe4ac901c0661136}{}\label{classstate_aa03016edf3d086e5fe4ac901c0661136}
+\index{state@{state}!change\+\_\+temp@{change\+\_\+temp}}
+\index{change\+\_\+temp@{change\+\_\+temp}!state@{state}}
+\subsubsection[{\texorpdfstring{change\+\_\+temp(double T)}{change_temp(double T)}}]{\setlength{\rightskip}{0pt plus 5cm}void state\+::change\+\_\+temp (
+\begin{DoxyParamCaption}
+\item[{double}]{T}
+\end{DoxyParamCaption}
+)}\hypertarget{classstate_aca18a3757a2e6bd79cda366e4e31bb99}{}\label{classstate_aca18a3757a2e6bd79cda366e4e31bb99}
+\index{state@{state}!change\+\_\+v1@{change\+\_\+v1}}
+\index{change\+\_\+v1@{change\+\_\+v1}!state@{state}}
+\subsubsection[{\texorpdfstring{change\+\_\+v1(int protocol, double v1)}{change_v1(int protocol, double v1)}}]{\setlength{\rightskip}{0pt plus 5cm}void state\+::change\+\_\+v1 (
+\begin{DoxyParamCaption}
+\item[{int}]{protocol, }
+\item[{double}]{v1}
+\end{DoxyParamCaption}
+)}\hypertarget{classstate_a74588f49ec2b0868442d78ed9dcf1224}{}\label{classstate_a74588f49ec2b0868442d78ed9dcf1224}
+\index{state@{state}!change\+\_\+v2@{change\+\_\+v2}}
+\index{change\+\_\+v2@{change\+\_\+v2}!state@{state}}
+\subsubsection[{\texorpdfstring{change\+\_\+v2(int protocol, double v2)}{change_v2(int protocol, double v2)}}]{\setlength{\rightskip}{0pt plus 5cm}void state\+::change\+\_\+v2 (
+\begin{DoxyParamCaption}
+\item[{int}]{protocol, }
+\item[{double}]{v2}
+\end{DoxyParamCaption}
+)}\hypertarget{classstate_a9ffa7fbd21b542e66a9275f63b80ed0a}{}\label{classstate_a9ffa7fbd21b542e66a9275f63b80ed0a}
+\index{state@{state}!copy\+\_\+points@{copy\+\_\+points}}
+\index{copy\+\_\+points@{copy\+\_\+points}!state@{state}}
+\subsubsection[{\texorpdfstring{copy\+\_\+points(const state \&other)}{copy_points(const state &other)}}]{\setlength{\rightskip}{0pt plus 5cm}void state\+::copy\+\_\+points (
+\begin{DoxyParamCaption}
+\item[{const {\bf state} \&}]{other}
+\end{DoxyParamCaption}
+)}\hypertarget{classstate_a0d0ea6448509ececead44d83b4decd1c}{}\label{classstate_a0d0ea6448509ececead44d83b4decd1c}
+\index{state@{state}!energy@{energy}}
+\index{energy@{energy}!state@{state}}
+\subsubsection[{\texorpdfstring{energy()}{energy()}}]{\setlength{\rightskip}{0pt plus 5cm}double state\+::energy (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}\hypertarget{classstate_a6209503f752e5089e0301f103fdf1d1e}{}\label{classstate_a6209503f752e5089e0301f103fdf1d1e}
+\index{state@{state}!equil@{equil}}
+\index{equil@{equil}!state@{state}}
+\subsubsection[{\texorpdfstring{equil(int iter)}{equil(int iter)}}]{\setlength{\rightskip}{0pt plus 5cm}void state\+::equil (
+\begin{DoxyParamCaption}
+\item[{int}]{iter}
+\end{DoxyParamCaption}
+)}\hypertarget{classstate_af70b6f999313cc427a526388058cb45c}{}\label{classstate_af70b6f999313cc427a526388058cb45c}
+\index{state@{state}!init\+\_\+lattice@{init\+\_\+lattice}}
+\index{init\+\_\+lattice@{init\+\_\+lattice}!state@{state}}
+\subsubsection[{\texorpdfstring{init\+\_\+lattice()}{init_lattice()}}]{\setlength{\rightskip}{0pt plus 5cm}void state\+::init\+\_\+lattice (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}\hypertarget{classstate_acfeea4e197f5ce0160c6c664740ba6ff}{}\label{classstate_acfeea4e197f5ce0160c6c664740ba6ff}
+\index{state@{state}!init\+\_\+points@{init\+\_\+points}}
+\index{init\+\_\+points@{init\+\_\+points}!state@{state}}
+\subsubsection[{\texorpdfstring{init\+\_\+points(double size, bool is\+Perio, double H, double J, double K, double $\ast$args)}{init_points(double size, bool isPerio, double H, double J, double K, double *args)}}]{\setlength{\rightskip}{0pt plus 5cm}void state\+::init\+\_\+points (
+\begin{DoxyParamCaption}
+\item[{double}]{size, }
+\item[{bool}]{is\+Perio, }
+\item[{double}]{H, }
+\item[{double}]{J, }
+\item[{double}]{K, }
+\item[{double $\ast$}]{args}
+\end{DoxyParamCaption}
+)}\hypertarget{classstate_a62fc1dbaf8ac5002ec6ca08ec93fb012}{}\label{classstate_a62fc1dbaf8ac5002ec6ca08ec93fb012}
+\index{state@{state}!magnetisation@{magnetisation}}
+\index{magnetisation@{magnetisation}!state@{state}}
+\subsubsection[{\texorpdfstring{magnetisation()}{magnetisation()}}]{\setlength{\rightskip}{0pt plus 5cm}std\+::vector$<$double$>$ state\+::magnetisation (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}\hypertarget{classstate_a5d5980e59b16063808f09eac46d14292}{}\label{classstate_a5d5980e59b16063808f09eac46d14292}
+\index{state@{state}!num\+\_\+spins@{num\+\_\+spins}}
+\index{num\+\_\+spins@{num\+\_\+spins}!state@{state}}
+\subsubsection[{\texorpdfstring{num\+\_\+spins()}{num_spins()}}]{\setlength{\rightskip}{0pt plus 5cm}int state\+::num\+\_\+spins (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}\hypertarget{classstate_ad9182b875a7a3fb5981c811f7f062040}{}\label{classstate_ad9182b875a7a3fb5981c811f7f062040}
+\index{state@{state}!operator=@{operator=}}
+\index{operator=@{operator=}!state@{state}}
+\subsubsection[{\texorpdfstring{operator=(const state \&other)}{operator=(const state &other)}}]{\setlength{\rightskip}{0pt plus 5cm}{\bf state}\& state\+::operator= (
+\begin{DoxyParamCaption}
+\item[{const {\bf state} \&}]{other}
+\end{DoxyParamCaption}
+)}\hypertarget{classstate_a8f382a578a92617e7294cbbd80fba3c6}{}\label{classstate_a8f382a578a92617e7294cbbd80fba3c6}
+\index{state@{state}!print\+\_\+latt@{print\+\_\+latt}}
+\index{print\+\_\+latt@{print\+\_\+latt}!state@{state}}
+\subsubsection[{\texorpdfstring{print\+\_\+latt()}{print_latt()}}]{\setlength{\rightskip}{0pt plus 5cm}void state\+::print\+\_\+latt (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}\hypertarget{classstate_afa18f63b166492174bf88cd52c1cb748}{}\label{classstate_afa18f63b166492174bf88cd52c1cb748}
+\index{state@{state}!ptf@{ptf}}
+\index{ptf@{ptf}!state@{state}}
+\subsubsection[{\texorpdfstring{ptf(std\+::string fname, std\+::string arrname)}{ptf(std::string fname, std::string arrname)}}]{\setlength{\rightskip}{0pt plus 5cm}void state\+::ptf (
+\begin{DoxyParamCaption}
+\item[{std\+::string}]{fname, }
+\item[{std\+::string}]{arrname}
+\end{DoxyParamCaption}
+)}\hypertarget{classstate_af478dc8ce44c65cc535530738693eff5}{}\label{classstate_af478dc8ce44c65cc535530738693eff5}
+\index{state@{state}!recv\+\_\+latt\+\_\+data@{recv\+\_\+latt\+\_\+data}}
+\index{recv\+\_\+latt\+\_\+data@{recv\+\_\+latt\+\_\+data}!state@{state}}
+\subsubsection[{\texorpdfstring{recv\+\_\+latt\+\_\+data(int src\+\_\+rank)}{recv_latt_data(int src_rank)}}]{\setlength{\rightskip}{0pt plus 5cm}void state\+::recv\+\_\+latt\+\_\+data (
+\begin{DoxyParamCaption}
+\item[{int}]{src\+\_\+rank}
+\end{DoxyParamCaption}
+)}\hypertarget{classstate_a5ce0ea314795d1cc37849604f202fb98}{}\label{classstate_a5ce0ea314795d1cc37849604f202fb98}
+\index{state@{state}!send\+\_\+latt\+\_\+data@{send\+\_\+latt\+\_\+data}}
+\index{send\+\_\+latt\+\_\+data@{send\+\_\+latt\+\_\+data}!state@{state}}
+\subsubsection[{\texorpdfstring{send\+\_\+latt\+\_\+data(int dest\+\_\+rank)}{send_latt_data(int dest_rank)}}]{\setlength{\rightskip}{0pt plus 5cm}void state\+::send\+\_\+latt\+\_\+data (
+\begin{DoxyParamCaption}
+\item[{int}]{dest\+\_\+rank}
+\end{DoxyParamCaption}
+)}\hypertarget{classstate_a6e35e024e6139032a54099bfe84a6fa4}{}\label{classstate_a6e35e024e6139032a54099bfe84a6fa4}
+\index{state@{state}!sub\+\_\+num@{sub\+\_\+num}}
+\index{sub\+\_\+num@{sub\+\_\+num}!state@{state}}
+\subsubsection[{\texorpdfstring{sub\+\_\+num(int subnumber)}{sub_num(int subnumber)}}]{\setlength{\rightskip}{0pt plus 5cm}int state\+::sub\+\_\+num (
+\begin{DoxyParamCaption}
+\item[{int}]{subnumber}
+\end{DoxyParamCaption}
+)}\hypertarget{classstate_a8351befda232e04536d6a3e738754282}{}\label{classstate_a8351befda232e04536d6a3e738754282}
+\index{state@{state}!submag@{submag}}
+\index{submag@{submag}!state@{state}}
+\subsubsection[{\texorpdfstring{submag(int subnumber)}{submag(int subnumber)}}]{\setlength{\rightskip}{0pt plus 5cm}std\+::vector$<$double$>$ state\+::submag (
+\begin{DoxyParamCaption}
+\item[{int}]{subnumber}
+\end{DoxyParamCaption}
+)}\hypertarget{classstate_aff62d62706dc27dde2c3638769c0a00a}{}\label{classstate_aff62d62706dc27dde2c3638769c0a00a}
+\index{state@{state}!tcharge@{tcharge}}
+\index{tcharge@{tcharge}!state@{state}}
+\subsubsection[{\texorpdfstring{tcharge()}{tcharge()}}]{\setlength{\rightskip}{0pt plus 5cm}std\+::vector$<$double$>$ state\+::tcharge (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}\hypertarget{classstate_aba4b4f47fc3b9cba97b5f63518214f30}{}\label{classstate_aba4b4f47fc3b9cba97b5f63518214f30}
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+includes/\hyperlink{state_8hpp}{state.\+hpp}\end{DoxyCompactItemize}

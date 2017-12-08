@@ -1,0 +1,115 @@
+\hypertarget{array__alloc_8hpp}{}\section{includes/array\+\_\+alloc.hpp File Reference}
+\label{array__alloc_8hpp}\index{includes/array\+\_\+alloc.\+hpp@{includes/array\+\_\+alloc.\+hpp}}
+This graph shows which files directly or indirectly include this file\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=306pt]{d9/d10/array__alloc_8hpp__dep__incl}
+\end{center}
+\end{figure}
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+{\footnotesize template$<$class T $>$ }\\T $\ast$ \hyperlink{array__alloc_8hpp_acff811ea99d964e00d672cc95026ab15}{alloc\+\_\+1darr} (int size\+\_\+m)
+\item 
+{\footnotesize template$<$class T $>$ }\\T $\ast$$\ast$ \hyperlink{array__alloc_8hpp_a44be4b8a61e758d0bae645e4ea0d2184}{alloc\+\_\+2darr} (int size\+\_\+m, int size\+\_\+n, bool contig=true)
+\item 
+{\footnotesize template$<$class T $>$ }\\T $\ast$$\ast$$\ast$ \hyperlink{array__alloc_8hpp_a7ed16b3c98dbd7a82d0a85e3f594a5a4}{alloc\+\_\+3darr} (int size\+\_\+m, int size\+\_\+n, int size\+\_\+p, bool contig=true)
+\item 
+{\footnotesize template$<$class T $>$ }\\void \hyperlink{array__alloc_8hpp_ac95d588ace0250532e4f45d43fd5c5f0}{dealloc\+\_\+1darr} (T $\ast$arr)
+\item 
+{\footnotesize template$<$class T $>$ }\\void \hyperlink{array__alloc_8hpp_a9783541a0bfc590254a3592037b975f6}{dealloc\+\_\+2darr} (int size\+\_\+m, T $\ast$$\ast$arr, bool contig=true)
+\item 
+{\footnotesize template$<$class T $>$ }\\void \hyperlink{array__alloc_8hpp_a9e2e849a5e7dabd09755a9007c5cf274}{dealloc\+\_\+3darr} (int size\+\_\+m, int size\+\_\+n, T $\ast$$\ast$$\ast$arr, bool contig=true)
+\item 
+{\footnotesize template$<$class T $>$ }\\T $\ast$ \hyperlink{array__alloc_8hpp_a1495afadb0decd0d3dc535f202c9480f}{deep\+\_\+copy\+\_\+1darr} (int size\+\_\+m, T $\ast$arr)
+\item 
+{\footnotesize template$<$class T $>$ }\\T $\ast$$\ast$ \hyperlink{array__alloc_8hpp_a5d35f25188bbca18ce7abca7b02ba5f9}{deep\+\_\+copy\+\_\+2darr} (int size\+\_\+m, int size\+\_\+n, T $\ast$$\ast$arr, bool contig=true)
+\item 
+{\footnotesize template$<$class T $>$ }\\T $\ast$$\ast$$\ast$ \hyperlink{array__alloc_8hpp_ad25d717436b799cec453fc2d288a1b91}{deep\+\_\+copy\+\_\+3darr} (int size\+\_\+m, int size\+\_\+n, int size\+\_\+p, T $\ast$$\ast$$\ast$arr, bool contig=true)
+\end{DoxyCompactItemize}
+
+
+\subsection{Function Documentation}
+\index{array\+\_\+alloc.\+hpp@{array\+\_\+alloc.\+hpp}!alloc\+\_\+1darr@{alloc\+\_\+1darr}}
+\index{alloc\+\_\+1darr@{alloc\+\_\+1darr}!array\+\_\+alloc.\+hpp@{array\+\_\+alloc.\+hpp}}
+\subsubsection[{\texorpdfstring{alloc\+\_\+1darr(int size\+\_\+m)}{alloc_1darr(int size_m)}}]{\setlength{\rightskip}{0pt plus 5cm}template$<$class T $>$ T$\ast$ alloc\+\_\+1darr (
+\begin{DoxyParamCaption}
+\item[{int}]{size\+\_\+m}
+\end{DoxyParamCaption}
+)}\hypertarget{array__alloc_8hpp_acff811ea99d964e00d672cc95026ab15}{}\label{array__alloc_8hpp_acff811ea99d964e00d672cc95026ab15}
+\index{array\+\_\+alloc.\+hpp@{array\+\_\+alloc.\+hpp}!alloc\+\_\+2darr@{alloc\+\_\+2darr}}
+\index{alloc\+\_\+2darr@{alloc\+\_\+2darr}!array\+\_\+alloc.\+hpp@{array\+\_\+alloc.\+hpp}}
+\subsubsection[{\texorpdfstring{alloc\+\_\+2darr(int size\+\_\+m, int size\+\_\+n, bool contig=true)}{alloc_2darr(int size_m, int size_n, bool contig=true)}}]{\setlength{\rightskip}{0pt plus 5cm}template$<$class T $>$ T$\ast$$\ast$ alloc\+\_\+2darr (
+\begin{DoxyParamCaption}
+\item[{int}]{size\+\_\+m, }
+\item[{int}]{size\+\_\+n, }
+\item[{bool}]{contig = {\ttfamily true}}
+\end{DoxyParamCaption}
+)}\hypertarget{array__alloc_8hpp_a44be4b8a61e758d0bae645e4ea0d2184}{}\label{array__alloc_8hpp_a44be4b8a61e758d0bae645e4ea0d2184}
+\index{array\+\_\+alloc.\+hpp@{array\+\_\+alloc.\+hpp}!alloc\+\_\+3darr@{alloc\+\_\+3darr}}
+\index{alloc\+\_\+3darr@{alloc\+\_\+3darr}!array\+\_\+alloc.\+hpp@{array\+\_\+alloc.\+hpp}}
+\subsubsection[{\texorpdfstring{alloc\+\_\+3darr(int size\+\_\+m, int size\+\_\+n, int size\+\_\+p, bool contig=true)}{alloc_3darr(int size_m, int size_n, int size_p, bool contig=true)}}]{\setlength{\rightskip}{0pt plus 5cm}template$<$class T $>$ T$\ast$$\ast$$\ast$ alloc\+\_\+3darr (
+\begin{DoxyParamCaption}
+\item[{int}]{size\+\_\+m, }
+\item[{int}]{size\+\_\+n, }
+\item[{int}]{size\+\_\+p, }
+\item[{bool}]{contig = {\ttfamily true}}
+\end{DoxyParamCaption}
+)}\hypertarget{array__alloc_8hpp_a7ed16b3c98dbd7a82d0a85e3f594a5a4}{}\label{array__alloc_8hpp_a7ed16b3c98dbd7a82d0a85e3f594a5a4}
+\index{array\+\_\+alloc.\+hpp@{array\+\_\+alloc.\+hpp}!dealloc\+\_\+1darr@{dealloc\+\_\+1darr}}
+\index{dealloc\+\_\+1darr@{dealloc\+\_\+1darr}!array\+\_\+alloc.\+hpp@{array\+\_\+alloc.\+hpp}}
+\subsubsection[{\texorpdfstring{dealloc\+\_\+1darr(\+T $\ast$arr)}{dealloc_1darr(T *arr)}}]{\setlength{\rightskip}{0pt plus 5cm}template$<$class T $>$ void dealloc\+\_\+1darr (
+\begin{DoxyParamCaption}
+\item[{T $\ast$}]{arr}
+\end{DoxyParamCaption}
+)}\hypertarget{array__alloc_8hpp_ac95d588ace0250532e4f45d43fd5c5f0}{}\label{array__alloc_8hpp_ac95d588ace0250532e4f45d43fd5c5f0}
+\index{array\+\_\+alloc.\+hpp@{array\+\_\+alloc.\+hpp}!dealloc\+\_\+2darr@{dealloc\+\_\+2darr}}
+\index{dealloc\+\_\+2darr@{dealloc\+\_\+2darr}!array\+\_\+alloc.\+hpp@{array\+\_\+alloc.\+hpp}}
+\subsubsection[{\texorpdfstring{dealloc\+\_\+2darr(int size\+\_\+m, T $\ast$$\ast$arr, bool contig=true)}{dealloc_2darr(int size_m, T **arr, bool contig=true)}}]{\setlength{\rightskip}{0pt plus 5cm}template$<$class T $>$ void dealloc\+\_\+2darr (
+\begin{DoxyParamCaption}
+\item[{int}]{size\+\_\+m, }
+\item[{T $\ast$$\ast$}]{arr, }
+\item[{bool}]{contig = {\ttfamily true}}
+\end{DoxyParamCaption}
+)}\hypertarget{array__alloc_8hpp_a9783541a0bfc590254a3592037b975f6}{}\label{array__alloc_8hpp_a9783541a0bfc590254a3592037b975f6}
+\index{array\+\_\+alloc.\+hpp@{array\+\_\+alloc.\+hpp}!dealloc\+\_\+3darr@{dealloc\+\_\+3darr}}
+\index{dealloc\+\_\+3darr@{dealloc\+\_\+3darr}!array\+\_\+alloc.\+hpp@{array\+\_\+alloc.\+hpp}}
+\subsubsection[{\texorpdfstring{dealloc\+\_\+3darr(int size\+\_\+m, int size\+\_\+n, T $\ast$$\ast$$\ast$arr, bool contig=true)}{dealloc_3darr(int size_m, int size_n, T ***arr, bool contig=true)}}]{\setlength{\rightskip}{0pt plus 5cm}template$<$class T $>$ void dealloc\+\_\+3darr (
+\begin{DoxyParamCaption}
+\item[{int}]{size\+\_\+m, }
+\item[{int}]{size\+\_\+n, }
+\item[{T $\ast$$\ast$$\ast$}]{arr, }
+\item[{bool}]{contig = {\ttfamily true}}
+\end{DoxyParamCaption}
+)}\hypertarget{array__alloc_8hpp_a9e2e849a5e7dabd09755a9007c5cf274}{}\label{array__alloc_8hpp_a9e2e849a5e7dabd09755a9007c5cf274}
+\index{array\+\_\+alloc.\+hpp@{array\+\_\+alloc.\+hpp}!deep\+\_\+copy\+\_\+1darr@{deep\+\_\+copy\+\_\+1darr}}
+\index{deep\+\_\+copy\+\_\+1darr@{deep\+\_\+copy\+\_\+1darr}!array\+\_\+alloc.\+hpp@{array\+\_\+alloc.\+hpp}}
+\subsubsection[{\texorpdfstring{deep\+\_\+copy\+\_\+1darr(int size\+\_\+m, T $\ast$arr)}{deep_copy_1darr(int size_m, T *arr)}}]{\setlength{\rightskip}{0pt plus 5cm}template$<$class T $>$ T$\ast$ deep\+\_\+copy\+\_\+1darr (
+\begin{DoxyParamCaption}
+\item[{int}]{size\+\_\+m, }
+\item[{T $\ast$}]{arr}
+\end{DoxyParamCaption}
+)}\hypertarget{array__alloc_8hpp_a1495afadb0decd0d3dc535f202c9480f}{}\label{array__alloc_8hpp_a1495afadb0decd0d3dc535f202c9480f}
+\index{array\+\_\+alloc.\+hpp@{array\+\_\+alloc.\+hpp}!deep\+\_\+copy\+\_\+2darr@{deep\+\_\+copy\+\_\+2darr}}
+\index{deep\+\_\+copy\+\_\+2darr@{deep\+\_\+copy\+\_\+2darr}!array\+\_\+alloc.\+hpp@{array\+\_\+alloc.\+hpp}}
+\subsubsection[{\texorpdfstring{deep\+\_\+copy\+\_\+2darr(int size\+\_\+m, int size\+\_\+n, T $\ast$$\ast$arr, bool contig=true)}{deep_copy_2darr(int size_m, int size_n, T **arr, bool contig=true)}}]{\setlength{\rightskip}{0pt plus 5cm}template$<$class T $>$ T$\ast$$\ast$ deep\+\_\+copy\+\_\+2darr (
+\begin{DoxyParamCaption}
+\item[{int}]{size\+\_\+m, }
+\item[{int}]{size\+\_\+n, }
+\item[{T $\ast$$\ast$}]{arr, }
+\item[{bool}]{contig = {\ttfamily true}}
+\end{DoxyParamCaption}
+)}\hypertarget{array__alloc_8hpp_a5d35f25188bbca18ce7abca7b02ba5f9}{}\label{array__alloc_8hpp_a5d35f25188bbca18ce7abca7b02ba5f9}
+\index{array\+\_\+alloc.\+hpp@{array\+\_\+alloc.\+hpp}!deep\+\_\+copy\+\_\+3darr@{deep\+\_\+copy\+\_\+3darr}}
+\index{deep\+\_\+copy\+\_\+3darr@{deep\+\_\+copy\+\_\+3darr}!array\+\_\+alloc.\+hpp@{array\+\_\+alloc.\+hpp}}
+\subsubsection[{\texorpdfstring{deep\+\_\+copy\+\_\+3darr(int size\+\_\+m, int size\+\_\+n, int size\+\_\+p, T $\ast$$\ast$$\ast$arr, bool contig=true)}{deep_copy_3darr(int size_m, int size_n, int size_p, T ***arr, bool contig=true)}}]{\setlength{\rightskip}{0pt plus 5cm}template$<$class T $>$ T$\ast$$\ast$$\ast$ deep\+\_\+copy\+\_\+3darr (
+\begin{DoxyParamCaption}
+\item[{int}]{size\+\_\+m, }
+\item[{int}]{size\+\_\+n, }
+\item[{int}]{size\+\_\+p, }
+\item[{T $\ast$$\ast$$\ast$}]{arr, }
+\item[{bool}]{contig = {\ttfamily true}}
+\end{DoxyParamCaption}
+)}\hypertarget{array__alloc_8hpp_ad25d717436b799cec453fc2d288a1b91}{}\label{array__alloc_8hpp_ad25d717436b799cec453fc2d288a1b91}
