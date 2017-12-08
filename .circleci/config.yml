@@ -5,5 +5,7 @@ jobs:
        - image: waterswims/ubuntu-openmp-hdf5:0.0.1
      steps:
        - checkout
+       - run: make
+       - run: make clean
        - run: make test
        - run: ./test
