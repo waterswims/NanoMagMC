@@ -8,8 +8,6 @@ jobs:
            post:
             - git submodule init
             - git submodule update
-       - run: ls /opt/hdf5
-       - run: echo $LD_LIBRARY_PATH
        - run: make
        - run: make clean
        - run: make test
