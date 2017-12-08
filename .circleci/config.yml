@@ -4,7 +4,12 @@ jobs:
      docker:
        - image: waterswims/ubuntu-openmp-hdf5:0.0.1
      steps:
-       - checkout
+       - checkout:
+           post:
+            - git submodule init
+            - git submodule update
+       - run: ls /opt/hdf5
+       - run: echo $LD_LIBRARY PATH
        - run: make
        - run: make clean
        - run: make test
