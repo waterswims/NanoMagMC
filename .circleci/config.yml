@@ -2,7 +2,7 @@ version: 2
 jobs:
    build:
      docker:
-       - image: circleci/golang:latest
+       - image: waterswims/ubuntu-openmp-hdf5:0.0.1
      steps:
        - checkout
        - run: echo "hello world"
