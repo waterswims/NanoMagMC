@@ -63,11 +63,11 @@ default: $(OBJS) $(OBJ_PATH)/main.o
 $(OBJ_PATH)/%.o: $(LIB_PATH)/%.cpp
 	$(CC) $(CPPFLAGS) -c -o $@ $<
 
-$(TEST_PATH)/test.o: $(TEST_FILES) tests/test.cpp
-	$(CC) tests/test.cpp $(CPPFLAGS) -c -o $(TEST_PATH)/test.o
+$(TEST_PATH)/test.o: $(TEST_FILES) $(TEST_PATH)/test.cpp $(TEST_PATH)/libs/gtest_main.a
+	$(CC) tests/test.cpp $(GTEST_FLAGS) $(CPPFLAGS) -c -o $(TEST_PATH)/test.o
 
 test: $(OBJS) $(TEST_PATH)/test.o $(TEST_PATH)/libs/gtest_main.a
-	$(CC) $(OBJS) $(TEST_PATH)/test.o $(TEST_PATH)/libs/gtest_main.a $(LDFLAGS) -lgtest -o test
+	$(CC) $(OBJS) $(TEST_PATH)/test.o $(TEST_PATH)/libs/gtest_main.a $(GTEST_FLAGS) $(LDFLAGS) -o test
 
 $(TEST_PATH)/libs/gtest-all.o : $(GTEST_SRCS_)
 	$(CXX) 	$(GTEST_FLAGS) -I$(GTEST_DIR) $(CXXFLAGS) -c \

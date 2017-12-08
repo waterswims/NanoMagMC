@@ -9,3 +9,5 @@
 /.ipynb_checkpoints
 *.ipynb
 *.DS_Store
+/tests/libs/*.a
+/tests/libs/*.o
