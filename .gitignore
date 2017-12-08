@@ -11,4 +11,3 @@
 *.DS_Store
 /tests/libs/*.a
 /tests/libs/*.o
-/docs/

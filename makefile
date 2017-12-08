@@ -85,6 +85,10 @@ $(TEST_PATH)/libs/gtest.a : $(TEST_PATH)/libs/gtest-all.o
 $(TEST_PATH)/libs/gtest_main.a : $(TEST_PATH)/libs/gtest-all.o $(TEST_PATH)/libs/gtest_main.o
 	$(AR) 	$(ARFLAGS) $@ $^
 
+.PHONY: docs
+docs:
+	doxygen doxy.config
+
 clean:
 	-rm -f $(OBJS)
 	-rm -f $(OBJ_PATH)/main.o
