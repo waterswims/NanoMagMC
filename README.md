@@ -3,15 +3,18 @@
 ## Requirements
 
 * Requires a parallel build of HDF5 for data storage.
-* At the moment the code has only been tested with the Intel compilers due to the use of the Intel MKL library for random number generation. Future versions of the code will include non-Intel RNG.
+* At the moment the code has only been tested with the GNU and Intel compilers. When using the Intel compilers, the mkl library is used for RNG. To compile with Intel/ Non-Intel compilers uncomment the relevant lines in the makefile.
+* Currently only linux builds are supported.
 
 ## Compiling the Code
 
-There is a makefile in the root folder. Typing "make" will correctly compile the code. CC can be set within this makefile or with environment variables. There is also some support in the makefile for Mac and ARCHER builds.
+There is a makefile in the root folder. Typing "make" will correctly compile the code. CC can be set within this makefile or with environment variables. There is also some support in the makefile for Iridis4 builds.
 
 ## Running the Code and the Input File
 
-After compilation an executable file will be placed in the root folder named "run". This can be executed by typing "./run INPUT_FILE" where "INPUT_FILE" is the name of the input file which takes a number of arguments. An example input file is provided called "INPUT.dat"
+After compilation an executable file will be placed in the root folder named "run". This can be executed by typing "./run INPUT_FILE" where "INPUT_FILE" is the name of the input file which takes a number of arguments. An example input file is provided called "INPUT.dat".
+
+To run in parallel, make sure you are using an mpi compiler, and run with "mpirun -n N ./run INPUT_FILE", where N is the number of processors to run with.
 
 ### Compulsory Settings
 

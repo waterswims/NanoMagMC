@@ -7,13 +7,26 @@
 
 #include "../includes/field_type.hpp"
 #include "../includes/hamiltonian.hpp"
+
+#ifdef __INTEL_COMPILER
+#include "../includes/mklrand.hpp"
+#define IRANDTYPE mkl_irand
+#define DRANDTYPE mkl_drand
+#define LNRANDTYPE mkl_lnrand
+#else
+#include "../includes/stdrand.hpp"
+#define IRANDTYPE stdrand::std_i_unirand
+#define DRANDTYPE stdrand::std_d_unirand
+#define LNRANDTYPE stdrand::std_lognormrand
+#endif
+
 #include <vector>
 #include <iostream>
 #include <cmath>
 
-mkl_irand st_rand_int(1e5, 1);
-mkl_drand st_rand_double(1e5, 2);
-mkl_lnrand rand_ln(0, 0.25, 1e5, 3);
+IRANDTYPE st_rand_int(1e5, 1);
+DRANDTYPE st_rand_double(1e5, 2);
+LNRANDTYPE rand_ln(0, 0.25, 1e5, 3);
 
 field_2d_i gen_2d_ising_fm()
 {

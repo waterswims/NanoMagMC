@@ -1,9 +1,17 @@
 #include "../includes/shape.hpp"
+
+#ifdef __INTEL_COMPILER
 #include "../includes/mklrand.hpp"
+#define DRANDTYPE mkl_drand
+#else
+#include "../includes/stdrand.hpp"
+#define DRANDTYPE stdrand::std_d_unirand
+#endif
+
 #include <cmath>
 #include <iostream>
 
-extern mkl_drand st_rand_double;
+extern DRANDTYPE st_rand_double;
 
 weibull::weibull(shape_type& other)
 {

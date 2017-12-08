@@ -1,12 +1,22 @@
 #include "../includes/state.hpp"
+
+#ifdef __INTEL_COMPILER
 #include "../includes/mklrand.hpp"
+#define IRANDTYPE mkl_irand
+#define DRANDTYPE mkl_drand
+#else
+#include "../includes/stdrand.hpp"
+#define IRANDTYPE stdrand::std_i_unirand
+#define DRANDTYPE stdrand::std_d_unirand
+#endif
+
 #include "../includes/functions.hpp"
 #include <iostream>
 #include <fstream>
 #include <cmath>
 
-extern mkl_irand st_rand_int;
-extern mkl_drand st_rand_double;
+extern IRANDTYPE st_rand_int;
+extern DRANDTYPE st_rand_double;
 
 state::state(double size, bool isPerio, char shape_code, char ham_code, double J,
     double H, double k, double Temp, double K, double* args)

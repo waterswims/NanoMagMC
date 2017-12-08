@@ -1,16 +1,27 @@
 #include "../includes/array_alloc.hpp"
 #include "../includes/state.hpp"
-#include "../includes/mklrand.hpp"
 #include "../includes/functions.hpp"
 #include "../includes/output.hpp"
 #include "../includes/param_read.hpp"
 #include "../includes/protocol.hpp"
 #include "../includes/print_latt.hpp"
 
+#ifdef __INTEL_COMPILER
+#include "../includes/mklrand.hpp"
+#define IRANDTYPE mkl_irand
+#define DRANDTYPE mkl_drand
+#define LNRANDTYPE mkl_lnrand
+#else
+#include "../includes/stdrand.hpp"
+#define IRANDTYPE stdrand::std_i_unirand
+#define DRANDTYPE stdrand::std_d_unirand
+#define LNRANDTYPE stdrand::std_lognormrand
+#endif
+
 #include <hdf5.h>
 
-mkl_irand st_rand_int(1e7, 1);
-mkl_drand st_rand_double(1e8, 1);
+IRANDTYPE st_rand_int(1e7, 1);
+DRANDTYPE st_rand_double(1e8, 1);
 
 int main(int argc, char **argv)
 {
@@ -51,7 +62,7 @@ int main(int argc, char **argv)
 	st_rand_double.change_seed(comm_size+rank);
 
 	// New Generator for Lognormal
-    mkl_lnrand rand_ln(lmean, lsd, N_latts, 2*comm_size+rank);
+    LNRANDTYPE rand_ln(lmean, lsd, N_latts, 2*comm_size+rank);
 
     if(rank==0)
     {

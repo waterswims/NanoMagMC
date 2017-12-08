@@ -14,6 +14,7 @@ field_type* set_sum_latt(double size,
     {
         case 'f':
         case 'F':
+        {
             double sizeab = size / 0.26233661582;
             double sizec = size / 0.385;
             switch (shape)
@@ -26,6 +27,7 @@ field_type* set_sum_latt(double size,
                     std::cerr << "Incorrect shape code, FePt only works with Weibull, exiting" << std::endl;
                     exit(103);
             }
+        }
             break;
         case 's':
         case 'S':

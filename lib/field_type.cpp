@@ -1,6 +1,16 @@
 #include "../includes/field_type.hpp"
 #include "../includes/array_alloc.hpp"
+
+#ifdef __INTEL_COMPILER
 #include "../includes/mklrand.hpp"
+#define IRANDTYPE mkl_irand
+#define DRANDTYPE mkl_drand
+#else
+#include "../includes/stdrand.hpp"
+#define IRANDTYPE stdrand::std_i_unirand
+#define DRANDTYPE stdrand::std_d_unirand
+#endif
+
 #include <fstream>
 #include <sstream>
 #include <iostream>
@@ -13,8 +23,8 @@
 // Global Variables
 ///////////////////////
 
-extern mkl_irand st_rand_int;
-extern mkl_drand st_rand_double;
+extern IRANDTYPE st_rand_int;
+extern DRANDTYPE st_rand_double;
 const double pi = 3.141592653589793;
 
 ///////////////////////

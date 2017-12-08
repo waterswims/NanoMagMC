@@ -1,32 +1,54 @@
 # Makefile for project
 
+#################################################################
+## Location of the HDF5 instalation
+#################################################################
 HDFLIB=/home/jmw2g14/hdf5/lib/
 HDFINC=/home/jmw2g14/hdf5/include/
+## IRIDIS BUILD - Using intel compilers
+#HDFLIB=/local/software/gdf5/1.8.11/intel-par/lib
+#HDFINC=/local/software/gdf5/1.8.11/intel-par/include
 
-OS := $(shell uname)
-HOST := $(shell hostname)
-# CC =
+#################################################################
+## Directories
+#################################################################
+
 INC_PATH = includes
 LIB_PATH = lib
 OBJ_PATH = obj
 TEST_PATH = tests
 
-TEST_FILES = $(wildcard $(TEST_PATH)/*.hpp)
-SOURCE_FILES = $(filter-out $(LIB_PATH)/main.cpp, $(wildcard $(LIB_PATH)/*.cpp))
-OBJS = $(addprefix $(OBJ_PATH)/, $(notdir $(SOURCE_FILES:.cpp=.o)))
-CPPFLAGS = -std=c++11 -Ofast -qopenmp -DMKL_ILP64 -I${MKLROOT}/include -I${HDFINC} -ipo
+#################################################################
+## Files to use
+#################################################################
 
-# Check if mac
-ifeq ($(OS),Darwin)
-LDFLAGS = -L${HDFLIB} -L${MKLROOT}/lib -Wl,-rpath,${MKLROOT}/lib -lmkl_intel_lp64 -lmkl_sequential -lmkl_core -lpthread -lm -ldl -lhdf5 -lz -ipo
-else
-# Check if ARCHER
-ifneq (,$(findstring eslogin, $(HOST)))
-LDFLAGS = -L${HDFLIB} -Wl,--start-group ${MKLROOT}/lib/intel64/libmkl_intel_lp64.a ${MKLROOT}/lib/intel64/libmkl_sequential.a ${MKLROOT}/lib/intel64/libmkl_core.a -Wl,--end-group -lpthread -lhdf5 -lz -ipo
-else
-LDFLAGS = -L${HDFLIB}  -L${MKLROOT}/lib/intel64 -lmkl_intel_ilp64 -lmkl_intel_thread -lmkl_core -liomp5 -lpthread -lm -ldl -lhdf5 -lz -ipo
-endif
-endif
+TEST_FILES = $(wildcard $(TEST_PATH)/*.hpp)
+NOMAIN_FILES = $(filter-out $(LIB_PATH)/main.cpp, $(wildcard $(LIB_PATH)/*.cpp))
+## NON-INTEL
+SOURCE_FILES = $(filter-out $(LIB_PATH)/mklrand.hpp, $(NOMAIN_FILES))
+## INTEL
+# SOURCE_FILES = $(filter-out $(LIB_PATH)/stdrand.hpp, $(NOMAIN_FILES))
+OBJS = $(addprefix $(OBJ_PATH)/, $(notdir $(SOURCE_FILES:.cpp=.o)))
+
+#################################################################
+## Compile options
+#################################################################
+## INTEL
+# CPPFLAGS = -std=c++11 -Ofast -qopenmp -DMKL_ILP64 -I${MKLROOT}/include -I${HDFINC} -ipo
+## NON-INTEL
+CPPFLAGS = -std=c++11 -Ofast -fopenmp -I${HDFINC} -Wno-narrowing -flto
+
+#################################################################
+## Link options
+#################################################################
+## INTEL
+# LDFLAGS = -L${HDFLIB}  -L${MKLROOT}/lib/intel64 -lmkl_intel_ilp64 -lmkl_intel_thread -lmkl_core -liomp5 -lpthread -lm -ldl -lhdf5 -lz -ipo
+## NON-INTEL
+LDFLAGS = -L${HDFLIB} -lhdf5 -lz -flto
+
+#################################################################
+## Build scripts
+#################################################################
 
 default: $(OBJS) $(OBJ_PATH)/main.o
 	$(CC) $(OBJS) $(OBJ_PATH)/main.o -o run $(LDFLAGS)
