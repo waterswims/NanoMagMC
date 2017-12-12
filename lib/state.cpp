@@ -371,7 +371,8 @@ void state::change_temp(double T)
         std::cerr << "Invalid temperature, exiting" << std::endl;
         exit(104);
     }
-    beta = 1 / (k_b * T);
+    beta = 1.0 / (k_b * T);
+    // std::cout << "T = " << T << ", k = " << k_b << ", beta = " << beta << std::endl;
 }
 
 void state::change_field(double H)
@@ -412,9 +413,11 @@ void state::change_v1(int protocol, double v1)
     switch(protocol)
     {
         case 1:
+        case 3:
         this->change_field(v1);
         break;
         case 2:
+        case 4:
         this->change_temp(v1);
         break;
     }
@@ -425,9 +428,11 @@ void state::change_v2(int protocol, double v2)
     switch(protocol)
     {
         case 1:
+        case 3:
         this->change_temp(v2);
         break;
         case 2:
+        case 4:
         this->change_field(v2);
         break;
     }

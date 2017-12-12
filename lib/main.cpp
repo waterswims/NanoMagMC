@@ -38,11 +38,11 @@ int main(int argc, char **argv)
 
 	// setup arguments
 	int Samp_steps, Eq_steps, N_samp, protocol, N_latts;
-	double J=1, K=0, k=1, beta=50, amean, asd, lmean, lsd, size;
+	double J=1, K=0, k_b=1, beta=50, amean, asd, lmean, lsd, size;
 	bool periodic, distributed, print_latt;
 	char shape, hamil;
 	std::string temp_name, field_name;
-	read_all_vars(argv[1], size, J, k, periodic, shape, hamil, Samp_steps,
+	read_all_vars(argv[1], size, J, k_b, periodic, shape, hamil, Samp_steps,
 		N_samp, Eq_steps, N_latts, beta, distributed, amean, asd, temp_name,
 		field_name, protocol, K, print_latt);
 	double args[] = {beta};
@@ -91,7 +91,7 @@ int main(int argc, char **argv)
 	// Create h5 file
 	bool file_exists = false;
 	bool** cpoint = alloc_2darr<bool>(v1_size, N_latts);
-	std::string f_id = check_h5_file(J, size, amean, asd, k, K, shape,
+	std::string f_id = check_h5_file(J, size, amean, asd, k_b, K, shape,
 									  hamil, periodic, protocol, distributed,
 									  num_Ts, num_Hs, N_samp, N_latts, Ts, Hs,
 									  v1_size, tc_size, cpoint, file_exists);
@@ -121,7 +121,7 @@ int main(int argc, char **argv)
 	for (int k = 0; k < N_latts; k++)
 	{
 		if (distributed) {size = rand_ln.gen();}
-		state base_state(size, periodic, shape, hamil, J, Hmax, k, Tmax, K,
+		state base_state(size, periodic, shape, hamil, J, Hmax, k_b, Tmax, K,
 			             args);
 		state curr_state(base_state);
 		nums = base_state.num_spins();
