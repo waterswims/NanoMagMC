@@ -119,7 +119,7 @@ namespace stdrand
     };
 
     ///////////////////////////////////////////////////////////////////////////
-    /// Generator for random numbers on a normal distribution
+    /// Generator for random numbers on a lognormal distribution
     ///////////////////////////////////////////////////////////////////////////
     class std_lognormrand : public std_randbase
     {

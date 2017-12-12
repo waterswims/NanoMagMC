@@ -2,7 +2,7 @@ var searchData=
 [
   ['s2',['s2',['../d4/ddd/classham__heis.html#a4b358a692afffe59e6ff0ae5255ccf30',1,'ham_heis']]],
   ['s3',['s3',['../d4/ddd/classham__heis.html#a50580c61051da5c6bad049c093f73a7c',1,'ham_heis']]],
-  ['save',['save',['../d7/dda/classmkl__randbase.html#a62dd2d59a3b339680c2d29822e44efa5',1,'mkl_randbase']]],
+  ['save',['save',['../d2/d3b/classmklrand_1_1mkl__randbase.html#a86c4b056e414a635cc12f6530f74f30c',1,'mklrand::mkl_randbase']]],
   ['sbuff',['sbuff',['../d4/ddd/classham__heis.html#a7a09caf68e6a72d2a157e97ad23bd595',1,'ham_heis']]],
   ['send_5fdata',['send_data',['../d2/deb/classfield__type.html#afaabc410e2ce254c23e3c4aa39d1916d',1,'field_type::send_data()'],['../d8/dab/classfield__2d__h.html#a9705fcf4d6fafbac4d2b37778a97fd00',1,'field_2d_h::send_data()'],['../de/d3e/classfield__2d__i.html#a962515d7fcd59bd113fa4a51c3a05d2f',1,'field_2d_i::send_data()'],['../d8/d18/classfield__3d__h.html#a81dc2e770a20c56b31ad5ab90575bf42',1,'field_3d_h::send_data()'],['../dd/d3c/classfield__3d__i.html#ad39e6a8818aca34ec2ff0f68f7450365',1,'field_3d_i::send_data()']]],
   ['send_5flatt_5fdata',['send_latt_data',['../df/d90/classstate.html#a6e35e024e6139032a54099bfe84a6fa4',1,'state']]],
@@ -37,7 +37,7 @@ var searchData=
   ['std_5frandbase',['std_randbase',['../db/d79/classstdrand_1_1std__randbase.html',1,'stdrand']]],
   ['stdrand',['stdrand',['../d0/d4b/namespacestdrand.html',1,'']]],
   ['stdrand_2ehpp',['stdrand.hpp',['../d0/d04/stdrand_8hpp.html',1,'']]],
-  ['stream',['stream',['../d7/dda/classmkl__randbase.html#a130663e1e2c17ec4a7b77b3c2a6aa1d6',1,'mkl_randbase']]],
+  ['stream',['stream',['../d2/d3b/classmklrand_1_1mkl__randbase.html#a1668b51838583d64b176e159b16bfa7a',1,'mklrand::mkl_randbase']]],
   ['sub_5fnum',['sub_num',['../df/d90/classstate.html#a8351befda232e04536d6a3e738754282',1,'state']]],
   ['submag',['submag',['../df/d90/classstate.html#aff62d62706dc27dde2c3638769c0a00a',1,'state']]],
   ['sum',['sum',['../db/d1a/functions_8hpp.html#afc9dbcc07461e220f40e6e07d21c572b',1,'sum(std::vector&lt; double &gt; &amp;oY):&#160;functions.hpp'],['../db/d1a/functions_8hpp.html#a463977d9d5ba775174a78fbf9d825a25',1,'sum(std::vector&lt; int &gt; &amp;oY):&#160;functions.hpp']]]

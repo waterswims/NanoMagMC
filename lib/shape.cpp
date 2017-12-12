@@ -2,7 +2,7 @@
 
 #ifdef __INTEL_COMPILER
 #include "../includes/mklrand.hpp"
-#define DRANDTYPE mkl_drand
+#define DRANDTYPE mklrand::mkl_drand
 #else
 #include "../includes/stdrand.hpp"
 #define DRANDTYPE stdrand::std_d_unirand

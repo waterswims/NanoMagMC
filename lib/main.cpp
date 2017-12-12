@@ -8,9 +8,9 @@
 
 #ifdef __INTEL_COMPILER
 #include "../includes/mklrand.hpp"
-#define IRANDTYPE mkl_irand
-#define DRANDTYPE mkl_drand
-#define LNRANDTYPE mkl_lnrand
+#define IRANDTYPE mklrand::mkl_irand
+#define DRANDTYPE mklrand::mkl_drand
+#define LNRANDTYPE mklrand::mkl_lnrand
 #else
 #include "../includes/stdrand.hpp"
 #define IRANDTYPE stdrand::std_i_unirand

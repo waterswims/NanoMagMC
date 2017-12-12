@@ -1,0 +1,156 @@
+\hypertarget{classmklrand_1_1mkl__randbase}{}\section{mklrand\+:\+:mkl\+\_\+randbase Class Reference}
+\label{classmklrand_1_1mkl__randbase}\index{mklrand\+::mkl\+\_\+randbase@{mklrand\+::mkl\+\_\+randbase}}
+
+
+Base class for the random number generators.  
+
+
+
+
+{\ttfamily \#include $<$mklrand.\+hpp$>$}
+
+
+
+Inheritance diagram for mklrand\+:\+:mkl\+\_\+randbase\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{db/d0e/classmklrand_1_1mkl__randbase__inherit__graph}
+\end{center}
+\end{figure}
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{classmklrand_1_1mkl__randbase_a83f8b1954a948117ae433d93ff986ff0}{mkl\+\_\+randbase} ()
+\begin{DoxyCompactList}\small\item\em Default constructor. \end{DoxyCompactList}\item 
+\hyperlink{classmklrand_1_1mkl__randbase_a696e5a448c313959a55d21a02193a745}{$\sim$mkl\+\_\+randbase} ()
+\begin{DoxyCompactList}\small\item\em Default destructor. \end{DoxyCompactList}\item 
+virtual void \hyperlink{classmklrand_1_1mkl__randbase_ac00d006d5c8ad7eadc2e51f1b1604761}{fill} ()
+\begin{DoxyCompactList}\small\item\em Fill the buffer with new random numbers. \end{DoxyCompactList}\item 
+void \hyperlink{classmklrand_1_1mkl__randbase_a4f41864ffa41b49f69cbac7934edda3e}{change\+\_\+seed} (int seed)
+\begin{DoxyCompactList}\small\item\em Change the current random seed. \end{DoxyCompactList}\item 
+void \hyperlink{classmklrand_1_1mkl__randbase_a86c4b056e414a635cc12f6530f74f30c}{save} (const char $\ast$name)
+\begin{DoxyCompactList}\small\item\em Save the state of the random number generator. \end{DoxyCompactList}\item 
+void \hyperlink{classmklrand_1_1mkl__randbase_a37e1bfcc4835e09301d9bac95a446f20}{load} (const char $\ast$name)
+\begin{DoxyCompactList}\small\item\em Load a random number generator state. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Protected Attributes}
+\begin{DoxyCompactItemize}
+\item 
+int \hyperlink{classmklrand_1_1mkl__randbase_a1e090cd68b19d7d05b4e3f32e5c7a171}{arr\+\_\+size}
+\item 
+int \hyperlink{classmklrand_1_1mkl__randbase_aeb5c3f18b6d46a6ee53cfeb2a1d95388}{curr}
+\item 
+V\+S\+L\+Stream\+State\+Ptr \hyperlink{classmklrand_1_1mkl__randbase_a1668b51838583d64b176e159b16bfa7a}{stream}
+\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+Base class for the random number generators. 
+
+\subsection{Constructor \& Destructor Documentation}
+\index{mklrand\+::mkl\+\_\+randbase@{mklrand\+::mkl\+\_\+randbase}!mkl\+\_\+randbase@{mkl\+\_\+randbase}}
+\index{mkl\+\_\+randbase@{mkl\+\_\+randbase}!mklrand\+::mkl\+\_\+randbase@{mklrand\+::mkl\+\_\+randbase}}
+\subsubsection[{\texorpdfstring{mkl\+\_\+randbase()}{mkl_randbase()}}]{\setlength{\rightskip}{0pt plus 5cm}mklrand\+::mkl\+\_\+randbase\+::mkl\+\_\+randbase (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}}\hypertarget{classmklrand_1_1mkl__randbase_a83f8b1954a948117ae433d93ff986ff0}{}\label{classmklrand_1_1mkl__randbase_a83f8b1954a948117ae433d93ff986ff0}
+
+
+Default constructor. 
+
+\index{mklrand\+::mkl\+\_\+randbase@{mklrand\+::mkl\+\_\+randbase}!````~mkl\+\_\+randbase@{$\sim$mkl\+\_\+randbase}}
+\index{````~mkl\+\_\+randbase@{$\sim$mkl\+\_\+randbase}!mklrand\+::mkl\+\_\+randbase@{mklrand\+::mkl\+\_\+randbase}}
+\subsubsection[{\texorpdfstring{$\sim$mkl\+\_\+randbase()}{~mkl_randbase()}}]{\setlength{\rightskip}{0pt plus 5cm}mklrand\+::mkl\+\_\+randbase\+::$\sim$mkl\+\_\+randbase (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}}\hypertarget{classmklrand_1_1mkl__randbase_a696e5a448c313959a55d21a02193a745}{}\label{classmklrand_1_1mkl__randbase_a696e5a448c313959a55d21a02193a745}
+
+
+Default destructor. 
+
+
+
+\subsection{Member Function Documentation}
+\index{mklrand\+::mkl\+\_\+randbase@{mklrand\+::mkl\+\_\+randbase}!change\+\_\+seed@{change\+\_\+seed}}
+\index{change\+\_\+seed@{change\+\_\+seed}!mklrand\+::mkl\+\_\+randbase@{mklrand\+::mkl\+\_\+randbase}}
+\subsubsection[{\texorpdfstring{change\+\_\+seed(int seed)}{change_seed(int seed)}}]{\setlength{\rightskip}{0pt plus 5cm}void mklrand\+::mkl\+\_\+randbase\+::change\+\_\+seed (
+\begin{DoxyParamCaption}
+\item[{int}]{seed}
+\end{DoxyParamCaption}
+)}\hypertarget{classmklrand_1_1mkl__randbase_a4f41864ffa41b49f69cbac7934edda3e}{}\label{classmklrand_1_1mkl__randbase_a4f41864ffa41b49f69cbac7934edda3e}
+
+
+Change the current random seed. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em seed} & The new seed. \\
+\hline
+\end{DoxyParams}
+\index{mklrand\+::mkl\+\_\+randbase@{mklrand\+::mkl\+\_\+randbase}!fill@{fill}}
+\index{fill@{fill}!mklrand\+::mkl\+\_\+randbase@{mklrand\+::mkl\+\_\+randbase}}
+\subsubsection[{\texorpdfstring{fill()}{fill()}}]{\setlength{\rightskip}{0pt plus 5cm}virtual void mklrand\+::mkl\+\_\+randbase\+::fill (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}\hypertarget{classmklrand_1_1mkl__randbase_ac00d006d5c8ad7eadc2e51f1b1604761}{}\label{classmklrand_1_1mkl__randbase_ac00d006d5c8ad7eadc2e51f1b1604761}
+
+
+Fill the buffer with new random numbers. 
+
+
+
+Reimplemented in \hyperlink{classmklrand_1_1mkl__lnrand_ac43f4c40429885f5306dce10adf5d04a}{mklrand\+::mkl\+\_\+lnrand}, \hyperlink{classmklrand_1_1mkl__irand_ae1469013948288cef622ab879f56ff64}{mklrand\+::mkl\+\_\+irand}, and \hyperlink{classmklrand_1_1mkl__drand_a085cf75b8a2330f2a3c368fff80ff478}{mklrand\+::mkl\+\_\+drand}.
+
+\index{mklrand\+::mkl\+\_\+randbase@{mklrand\+::mkl\+\_\+randbase}!load@{load}}
+\index{load@{load}!mklrand\+::mkl\+\_\+randbase@{mklrand\+::mkl\+\_\+randbase}}
+\subsubsection[{\texorpdfstring{load(const char $\ast$name)}{load(const char *name)}}]{\setlength{\rightskip}{0pt plus 5cm}void mklrand\+::mkl\+\_\+randbase\+::load (
+\begin{DoxyParamCaption}
+\item[{const char $\ast$}]{name}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}}\hypertarget{classmklrand_1_1mkl__randbase_a37e1bfcc4835e09301d9bac95a446f20}{}\label{classmklrand_1_1mkl__randbase_a37e1bfcc4835e09301d9bac95a446f20}
+
+
+Load a random number generator state. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em name} & The name of the file which the state loaded from. \\
+\hline
+\end{DoxyParams}
+\index{mklrand\+::mkl\+\_\+randbase@{mklrand\+::mkl\+\_\+randbase}!save@{save}}
+\index{save@{save}!mklrand\+::mkl\+\_\+randbase@{mklrand\+::mkl\+\_\+randbase}}
+\subsubsection[{\texorpdfstring{save(const char $\ast$name)}{save(const char *name)}}]{\setlength{\rightskip}{0pt plus 5cm}void mklrand\+::mkl\+\_\+randbase\+::save (
+\begin{DoxyParamCaption}
+\item[{const char $\ast$}]{name}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}}\hypertarget{classmklrand_1_1mkl__randbase_a86c4b056e414a635cc12f6530f74f30c}{}\label{classmklrand_1_1mkl__randbase_a86c4b056e414a635cc12f6530f74f30c}
+
+
+Save the state of the random number generator. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em name} & The name of the file which the state will be saved to. \\
+\hline
+\end{DoxyParams}
+
+
+\subsection{Member Data Documentation}
+\index{mklrand\+::mkl\+\_\+randbase@{mklrand\+::mkl\+\_\+randbase}!arr\+\_\+size@{arr\+\_\+size}}
+\index{arr\+\_\+size@{arr\+\_\+size}!mklrand\+::mkl\+\_\+randbase@{mklrand\+::mkl\+\_\+randbase}}
+\subsubsection[{\texorpdfstring{arr\+\_\+size}{arr_size}}]{\setlength{\rightskip}{0pt plus 5cm}int mklrand\+::mkl\+\_\+randbase\+::arr\+\_\+size\hspace{0.3cm}{\ttfamily [protected]}}\hypertarget{classmklrand_1_1mkl__randbase_a1e090cd68b19d7d05b4e3f32e5c7a171}{}\label{classmklrand_1_1mkl__randbase_a1e090cd68b19d7d05b4e3f32e5c7a171}
+\index{mklrand\+::mkl\+\_\+randbase@{mklrand\+::mkl\+\_\+randbase}!curr@{curr}}
+\index{curr@{curr}!mklrand\+::mkl\+\_\+randbase@{mklrand\+::mkl\+\_\+randbase}}
+\subsubsection[{\texorpdfstring{curr}{curr}}]{\setlength{\rightskip}{0pt plus 5cm}int mklrand\+::mkl\+\_\+randbase\+::curr\hspace{0.3cm}{\ttfamily [protected]}}\hypertarget{classmklrand_1_1mkl__randbase_aeb5c3f18b6d46a6ee53cfeb2a1d95388}{}\label{classmklrand_1_1mkl__randbase_aeb5c3f18b6d46a6ee53cfeb2a1d95388}
+\index{mklrand\+::mkl\+\_\+randbase@{mklrand\+::mkl\+\_\+randbase}!stream@{stream}}
+\index{stream@{stream}!mklrand\+::mkl\+\_\+randbase@{mklrand\+::mkl\+\_\+randbase}}
+\subsubsection[{\texorpdfstring{stream}{stream}}]{\setlength{\rightskip}{0pt plus 5cm}V\+S\+L\+Stream\+State\+Ptr mklrand\+::mkl\+\_\+randbase\+::stream\hspace{0.3cm}{\ttfamily [protected]}}\hypertarget{classmklrand_1_1mkl__randbase_a1668b51838583d64b176e159b16bfa7a}{}\label{classmklrand_1_1mkl__randbase_a1668b51838583d64b176e159b16bfa7a}
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+includes/\hyperlink{mklrand_8hpp}{mklrand.\+hpp}\end{DoxyCompactItemize}

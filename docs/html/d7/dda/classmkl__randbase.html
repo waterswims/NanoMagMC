@@ -94,31 +94,40 @@ var searchBox = new SearchBox("searchBox", "../../search",false,'Search');
 </div><!--header-->
 <div class="contents">
 
+<p>Base class for the random number generators.  
+ <a href="../../d7/dda/classmkl__randbase.html#details">More...</a></p>
+
 <p><code>#include &lt;<a class="el" href="../../d6/d5a/mklrand_8hpp_source.html">mklrand.hpp</a>&gt;</code></p>
 <div class="dynheader">
 Inheritance diagram for mkl_randbase:</div>
 <div class="dyncontent">
 <div class="center"><img src="../../d4/dab/classmkl__randbase__inherit__graph.png" border="0" usemap="#mkl__randbase_inherit__map" alt="Inheritance graph"/></div>
 <map name="mkl__randbase_inherit__map" id="mkl__randbase_inherit__map">
-<area shape="rect" id="node2" href="../../dd/df9/classmkl__drand.html" title="mkl_drand" alt="" coords="5,80,88,107"/>
-<area shape="rect" id="node3" href="../../dc/d5e/classmkl__irand.html" title="mkl_irand" alt="" coords="113,80,191,107"/>
-<area shape="rect" id="node4" href="../../dd/d64/classmkl__lnrand.html" title="mkl_lnrand" alt="" coords="216,80,301,107"/>
+<area shape="rect" id="node2" href="../../dd/df9/classmkl__drand.html" title="Generator for uniform numbers between 0 and 1. " alt="" coords="5,80,88,107"/>
+<area shape="rect" id="node3" href="../../dc/d5e/classmkl__irand.html" title="Generator for uniform integers between 0 and 1. " alt="" coords="113,80,191,107"/>
+<area shape="rect" id="node4" href="../../dd/d64/classmkl__lnrand.html" title="Generator for random numbers on a lognormal distribution. " alt="" coords="216,80,301,107"/>
 </map>
 <center><span class="legend">[<a href="../../graph_legend.html">legend</a>]</span></center></div>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
 <tr class="memitem:a9f096a27eebdfc79087e5e8899ed98c9"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d7/dda/classmkl__randbase.html#a9f096a27eebdfc79087e5e8899ed98c9">mkl_randbase</a> ()</td></tr>
+<tr class="memdesc:a9f096a27eebdfc79087e5e8899ed98c9"><td class="mdescLeft">&#160;</td><td class="mdescRight">Default constructor.  <a href="#a9f096a27eebdfc79087e5e8899ed98c9">More...</a><br /></td></tr>
 <tr class="separator:a9f096a27eebdfc79087e5e8899ed98c9"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a95dd980c910854915934afead27d832e"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d7/dda/classmkl__randbase.html#a95dd980c910854915934afead27d832e">~mkl_randbase</a> ()</td></tr>
+<tr class="memdesc:a95dd980c910854915934afead27d832e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Default destructor.  <a href="#a95dd980c910854915934afead27d832e">More...</a><br /></td></tr>
 <tr class="separator:a95dd980c910854915934afead27d832e"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ada678ebb272b395d7e2474a98bae503a"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d7/dda/classmkl__randbase.html#ada678ebb272b395d7e2474a98bae503a">fill</a> ()</td></tr>
+<tr class="memdesc:ada678ebb272b395d7e2474a98bae503a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Fill the buffer with new random numbers.  <a href="#ada678ebb272b395d7e2474a98bae503a">More...</a><br /></td></tr>
 <tr class="separator:ada678ebb272b395d7e2474a98bae503a"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:af4e4fd6e13785c027f4e37fe77f4df63"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d7/dda/classmkl__randbase.html#af4e4fd6e13785c027f4e37fe77f4df63">change_seed</a> ()</td></tr>
-<tr class="separator:af4e4fd6e13785c027f4e37fe77f4df63"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a12799fa4a3d1c9d14431bc1dc6ed38fa"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d7/dda/classmkl__randbase.html#a12799fa4a3d1c9d14431bc1dc6ed38fa">change_seed</a> (int seed)</td></tr>
+<tr class="memdesc:a12799fa4a3d1c9d14431bc1dc6ed38fa"><td class="mdescLeft">&#160;</td><td class="mdescRight">Change the current random seed.  <a href="#a12799fa4a3d1c9d14431bc1dc6ed38fa">More...</a><br /></td></tr>
+<tr class="separator:a12799fa4a3d1c9d14431bc1dc6ed38fa"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a62dd2d59a3b339680c2d29822e44efa5"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d7/dda/classmkl__randbase.html#a62dd2d59a3b339680c2d29822e44efa5">save</a> (const char *name)</td></tr>
+<tr class="memdesc:a62dd2d59a3b339680c2d29822e44efa5"><td class="mdescLeft">&#160;</td><td class="mdescRight">Save the state of the random number generator.  <a href="#a62dd2d59a3b339680c2d29822e44efa5">More...</a><br /></td></tr>
 <tr class="separator:a62dd2d59a3b339680c2d29822e44efa5"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a5ebfdc1a7f661a36341d21676750e23f"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d7/dda/classmkl__randbase.html#a5ebfdc1a7f661a36341d21676750e23f">load</a> (const char *name)</td></tr>
+<tr class="memdesc:a5ebfdc1a7f661a36341d21676750e23f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Load a random number generator state.  <a href="#a5ebfdc1a7f661a36341d21676750e23f">More...</a><br /></td></tr>
 <tr class="separator:a5ebfdc1a7f661a36341d21676750e23f"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pro-attribs"></a>
@@ -130,7 +139,9 @@ Protected Attributes</h2></td></tr>
 <tr class="memitem:a130663e1e2c17ec4a7b77b3c2a6aa1d6"><td class="memItemLeft" align="right" valign="top">VSLStreamStatePtr&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d7/dda/classmkl__randbase.html#a130663e1e2c17ec4a7b77b3c2a6aa1d6">stream</a></td></tr>
 <tr class="separator:a130663e1e2c17ec4a7b77b3c2a6aa1d6"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
-<h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
+<a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
+<div class="textblock"><p>Base class for the random number generators. </p>
+</div><h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
 <a class="anchor" id="a9f096a27eebdfc79087e5e8899ed98c9"></a>
 <div class="memitem">
 <div class="memproto">
@@ -151,6 +162,8 @@ Protected Attributes</h2></td></tr>
   </tr>
 </table>
 </div><div class="memdoc">
+
+<p>Default constructor. </p>
 
 </div>
 </div>
@@ -175,10 +188,12 @@ Protected Attributes</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
+<p>Default destructor. </p>
+
 </div>
 </div>
 <h2 class="groupheader">Member Function Documentation</h2>
-<a class="anchor" id="af4e4fd6e13785c027f4e37fe77f4df63"></a>
+<a class="anchor" id="a12799fa4a3d1c9d14431bc1dc6ed38fa"></a>
 <div class="memitem">
 <div class="memproto">
 <table class="mlabels">
@@ -188,16 +203,25 @@ Protected Attributes</h2></td></tr>
         <tr>
           <td class="memname">virtual void mkl_randbase::change_seed </td>
           <td>(</td>
-          <td class="paramname"></td><td>)</td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>seed</em></td><td>)</td>
           <td></td>
         </tr>
       </table>
   </td>
   <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">inline</span><span class="mlabel">virtual</span></span>  </td>
+<span class="mlabels"><span class="mlabel">virtual</span></span>  </td>
   </tr>
 </table>
 </div><div class="memdoc">
+
+<p>Change the current random seed. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">seed</td><td>The new seed. </td></tr>
+  </table>
+  </dd>
+</dl>
 
 </div>
 </div>
@@ -221,6 +245,8 @@ Protected Attributes</h2></td></tr>
   </tr>
 </table>
 </div><div class="memdoc">
+
+<p>Fill the buffer with new random numbers. </p>
 
 <p>Reimplemented in <a class="el" href="../../dd/d64/classmkl__lnrand.html#a299d1067f9140cf9b0030e9d86b0e4f7">mkl_lnrand</a>, <a class="el" href="../../dc/d5e/classmkl__irand.html#a49daff911e5fd2f187a8c158ec1aa33b">mkl_irand</a>, and <a class="el" href="../../dd/df9/classmkl__drand.html#ab736e571c6e90c3add23fa521ec00d6e">mkl_drand</a>.</p>
 
@@ -248,6 +274,14 @@ Protected Attributes</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
+<p>Load a random number generator state. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">name</td><td>The name of the file which the state loaded from. </td></tr>
+  </table>
+  </dd>
+</dl>
+
 </div>
 </div>
 <a class="anchor" id="a62dd2d59a3b339680c2d29822e44efa5"></a>
@@ -271,6 +305,14 @@ Protected Attributes</h2></td></tr>
   </tr>
 </table>
 </div><div class="memdoc">
+
+<p>Save the state of the random number generator. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">name</td><td>The name of the file which the state will be saved to. </td></tr>
+  </table>
+  </dd>
+</dl>
 
 </div>
 </div>

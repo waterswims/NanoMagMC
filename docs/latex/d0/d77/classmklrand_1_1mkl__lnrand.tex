@@ -1,0 +1,119 @@
+\hypertarget{classmklrand_1_1mkl__lnrand}{}\section{mklrand\+:\+:mkl\+\_\+lnrand Class Reference}
+\label{classmklrand_1_1mkl__lnrand}\index{mklrand\+::mkl\+\_\+lnrand@{mklrand\+::mkl\+\_\+lnrand}}
+
+
+Generator for random numbers on a lognormal distribution.  
+
+
+
+
+{\ttfamily \#include $<$mklrand.\+hpp$>$}
+
+
+
+Inheritance diagram for mklrand\+:\+:mkl\+\_\+lnrand\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=198pt]{d0/d84/classmklrand_1_1mkl__lnrand__inherit__graph}
+\end{center}
+\end{figure}
+
+
+Collaboration diagram for mklrand\+:\+:mkl\+\_\+lnrand\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=198pt]{da/dc6/classmklrand_1_1mkl__lnrand__coll__graph}
+\end{center}
+\end{figure}
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{classmklrand_1_1mkl__lnrand_a39faf5aa38fae7ac1ef6e3f473ccf8a2}{mkl\+\_\+lnrand} (double m, double sd, int size, int seed=1)
+\begin{DoxyCompactList}\small\item\em Constructor. \end{DoxyCompactList}\item 
+\hyperlink{classmklrand_1_1mkl__lnrand_adb4d71f9ee8992fa1e595af7ec7005c3}{$\sim$mkl\+\_\+lnrand} ()
+\begin{DoxyCompactList}\small\item\em Default destructor. \end{DoxyCompactList}\item 
+double \hyperlink{classmklrand_1_1mkl__lnrand_a3eba34d1b1f2f448a782eb06a03459e5}{gen} ()
+\begin{DoxyCompactList}\small\item\em Return a single random number. \end{DoxyCompactList}\item 
+void \hyperlink{classmklrand_1_1mkl__lnrand_ac43f4c40429885f5306dce10adf5d04a}{fill} ()
+\begin{DoxyCompactList}\small\item\em Fill the buffer with new random numbers. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Additional Inherited Members}
+
+
+\subsection{Detailed Description}
+Generator for random numbers on a lognormal distribution. 
+
+\subsection{Constructor \& Destructor Documentation}
+\index{mklrand\+::mkl\+\_\+lnrand@{mklrand\+::mkl\+\_\+lnrand}!mkl\+\_\+lnrand@{mkl\+\_\+lnrand}}
+\index{mkl\+\_\+lnrand@{mkl\+\_\+lnrand}!mklrand\+::mkl\+\_\+lnrand@{mklrand\+::mkl\+\_\+lnrand}}
+\subsubsection[{\texorpdfstring{mkl\+\_\+lnrand(double m, double sd, int size, int seed=1)}{mkl_lnrand(double m, double sd, int size, int seed=1)}}]{\setlength{\rightskip}{0pt plus 5cm}mklrand\+::mkl\+\_\+lnrand\+::mkl\+\_\+lnrand (
+\begin{DoxyParamCaption}
+\item[{double}]{m, }
+\item[{double}]{sd, }
+\item[{int}]{size, }
+\item[{int}]{seed = {\ttfamily 1}}
+\end{DoxyParamCaption}
+)}\hypertarget{classmklrand_1_1mkl__lnrand_a39faf5aa38fae7ac1ef6e3f473ccf8a2}{}\label{classmklrand_1_1mkl__lnrand_a39faf5aa38fae7ac1ef6e3f473ccf8a2}
+
+
+Constructor. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em seed} & The inital seed of the random number generator. \\
+\hline
+{\em size} & The size of the buffer for R\+NG storage. \\
+\hline
+{\em m} & The logarithmic mean of the distribution. \\
+\hline
+{\em sd} & The logarithmic standard devaiation of the distribution. \\
+\hline
+\end{DoxyParams}
+\index{mklrand\+::mkl\+\_\+lnrand@{mklrand\+::mkl\+\_\+lnrand}!````~mkl\+\_\+lnrand@{$\sim$mkl\+\_\+lnrand}}
+\index{````~mkl\+\_\+lnrand@{$\sim$mkl\+\_\+lnrand}!mklrand\+::mkl\+\_\+lnrand@{mklrand\+::mkl\+\_\+lnrand}}
+\subsubsection[{\texorpdfstring{$\sim$mkl\+\_\+lnrand()}{~mkl_lnrand()}}]{\setlength{\rightskip}{0pt plus 5cm}mklrand\+::mkl\+\_\+lnrand\+::$\sim$mkl\+\_\+lnrand (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}\hypertarget{classmklrand_1_1mkl__lnrand_adb4d71f9ee8992fa1e595af7ec7005c3}{}\label{classmklrand_1_1mkl__lnrand_adb4d71f9ee8992fa1e595af7ec7005c3}
+
+
+Default destructor. 
+
+
+
+\subsection{Member Function Documentation}
+\index{mklrand\+::mkl\+\_\+lnrand@{mklrand\+::mkl\+\_\+lnrand}!fill@{fill}}
+\index{fill@{fill}!mklrand\+::mkl\+\_\+lnrand@{mklrand\+::mkl\+\_\+lnrand}}
+\subsubsection[{\texorpdfstring{fill()}{fill()}}]{\setlength{\rightskip}{0pt plus 5cm}void mklrand\+::mkl\+\_\+lnrand\+::fill (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [virtual]}}\hypertarget{classmklrand_1_1mkl__lnrand_ac43f4c40429885f5306dce10adf5d04a}{}\label{classmklrand_1_1mkl__lnrand_ac43f4c40429885f5306dce10adf5d04a}
+
+
+Fill the buffer with new random numbers. 
+
+
+
+Reimplemented from \hyperlink{classmklrand_1_1mkl__randbase_ac00d006d5c8ad7eadc2e51f1b1604761}{mklrand\+::mkl\+\_\+randbase}.
+
+\index{mklrand\+::mkl\+\_\+lnrand@{mklrand\+::mkl\+\_\+lnrand}!gen@{gen}}
+\index{gen@{gen}!mklrand\+::mkl\+\_\+lnrand@{mklrand\+::mkl\+\_\+lnrand}}
+\subsubsection[{\texorpdfstring{gen()}{gen()}}]{\setlength{\rightskip}{0pt plus 5cm}double mklrand\+::mkl\+\_\+lnrand\+::gen (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}\hypertarget{classmklrand_1_1mkl__lnrand_a3eba34d1b1f2f448a782eb06a03459e5}{}\label{classmklrand_1_1mkl__lnrand_a3eba34d1b1f2f448a782eb06a03459e5}
+
+
+Return a single random number. 
+
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+includes/\hyperlink{mklrand_8hpp}{mklrand.\+hpp}\end{DoxyCompactItemize}
