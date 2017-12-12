@@ -2,11 +2,17 @@
 \label{classweibull}\index{weibull@{weibull}}
 
 
+Weibull disordered circle/sphere particle.  
+
+
+
+
 {\ttfamily \#include $<$shape.\+hpp$>$}
 
 
 
-Inheritance diagram for weibull\+:\nopagebreak
+Inheritance diagram for weibull\+:
+\nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
@@ -15,7 +21,8 @@ Inheritance diagram for weibull\+:\nopagebreak
 \end{figure}
 
 
-Collaboration diagram for weibull\+:\nopagebreak
+Collaboration diagram for weibull\+:
+\nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
@@ -26,30 +33,33 @@ Collaboration diagram for weibull\+:\nopagebreak
 \begin{DoxyCompactItemize}
 \item 
 \hyperlink{classweibull_a13e0eeb81eba0c398a670408594220fb}{weibull} ()
-\item 
+\begin{DoxyCompactList}\small\item\em Default constructor. \end{DoxyCompactList}\item 
 \hyperlink{classweibull_a2f88db897dc8ad0b27eade6a6379f741}{weibull} (\hyperlink{classshape__type}{shape\+\_\+type} \&other)
-\item 
+\begin{DoxyCompactList}\small\item\em Copy constructor. \end{DoxyCompactList}\item 
 \hyperlink{classweibull_a3fd3fba13fdbfd558af425ff7effc087}{weibull} (double rin, double bin)
-\item 
+\begin{DoxyCompactList}\small\item\em Constructor defining a spherical particle with a disordered surface. \end{DoxyCompactList}\item 
 \hyperlink{classweibull_a89e2d0c1e9f6481f7976f13e338ea396}{weibull} (double betain, double ain, double bin, double cin)
-\item 
+\begin{DoxyCompactList}\small\item\em Constructor defining an ellipsoid particle with a disordered surface. \end{DoxyCompactList}\item 
 \hyperlink{classweibull_a3622160a85fb31ec2efe68900ce0beb7}{$\sim$weibull} ()
-\item 
+\begin{DoxyCompactList}\small\item\em Default destructor. \end{DoxyCompactList}\item 
 bool \hyperlink{classweibull_af534b7b7328d50e9f7e4d61b8f961d61}{check} (std\+::vector$<$ int $>$ Is, int l\+\_\+size)
-\item 
+\begin{DoxyCompactList}\small\item\em Check whether a certain position falls within the particle. \end{DoxyCompactList}\item 
 \hyperlink{classweibull}{weibull} \& \hyperlink{classweibull_ad30b152a6b09ee3727ccca240aae79db}{operator=} (\hyperlink{classshape__type}{shape\+\_\+type} \&other)
-\item 
+\begin{DoxyCompactList}\small\item\em Assignment operator. \end{DoxyCompactList}\item 
 double \hyperlink{classweibull_ae2cd75d0dde62b2b6bcf5d32ce7a1d35}{get\+\_\+r0} ()
-\item 
+\begin{DoxyCompactList}\small\item\em Returns the characteristic size of a weibull particle. \end{DoxyCompactList}\item 
 double \hyperlink{classweibull_a4be488c64110666fd5392c4020e39408}{get\+\_\+beta} ()
-\item 
+\begin{DoxyCompactList}\small\item\em Returns the disorder parameter of a weibull particle. \end{DoxyCompactList}\item 
 double \hyperlink{classweibull_ae044c77bbe28d60ed7849c2b9d92cb89}{get\+\_\+a} ()
-\item 
+\begin{DoxyCompactList}\small\item\em Returns the x-\/axis radius of a weibull particle. \end{DoxyCompactList}\item 
 double \hyperlink{classweibull_a0bffa8d8bcfa247182986eda4758ecf3}{get\+\_\+b} ()
-\item 
+\begin{DoxyCompactList}\small\item\em Returns the y-\/axis radius of a weibull particle. \end{DoxyCompactList}\item 
 double \hyperlink{classweibull_aac3f3540bbb0ba31028316df6f825446}{get\+\_\+c} ()
-\end{DoxyCompactItemize}
+\begin{DoxyCompactList}\small\item\em Returns the z-\/axis radius of a weibull particle. \end{DoxyCompactList}\end{DoxyCompactItemize}
 
+
+\subsection{Detailed Description}
+Weibull disordered circle/sphere particle. 
 
 \subsection{Constructor \& Destructor Documentation}
 \index{weibull@{weibull}!weibull@{weibull}}
@@ -59,6 +69,10 @@ double \hyperlink{classweibull_aac3f3540bbb0ba31028316df6f825446}{get\+\_\+c} ()
 {}
 \end{DoxyParamCaption}
 )\hspace{0.3cm}{\ttfamily [inline]}}\hypertarget{classweibull_a13e0eeb81eba0c398a670408594220fb}{}\label{classweibull_a13e0eeb81eba0c398a670408594220fb}
+
+
+Default constructor. 
+
 \index{weibull@{weibull}!weibull@{weibull}}
 \index{weibull@{weibull}!weibull@{weibull}}
 \subsubsection[{\texorpdfstring{weibull(shape\+\_\+type \&other)}{weibull(shape_type &other)}}]{\setlength{\rightskip}{0pt plus 5cm}weibull\+::weibull (
@@ -66,6 +80,10 @@ double \hyperlink{classweibull_aac3f3540bbb0ba31028316df6f825446}{get\+\_\+c} ()
 \item[{{\bf shape\+\_\+type} \&}]{other}
 \end{DoxyParamCaption}
 )}\hypertarget{classweibull_a2f88db897dc8ad0b27eade6a6379f741}{}\label{classweibull_a2f88db897dc8ad0b27eade6a6379f741}
+
+
+Copy constructor. 
+
 \index{weibull@{weibull}!weibull@{weibull}}
 \index{weibull@{weibull}!weibull@{weibull}}
 \subsubsection[{\texorpdfstring{weibull(double rin, double bin)}{weibull(double rin, double bin)}}]{\setlength{\rightskip}{0pt plus 5cm}weibull\+::weibull (
@@ -74,6 +92,17 @@ double \hyperlink{classweibull_aac3f3540bbb0ba31028316df6f825446}{get\+\_\+c} ()
 \item[{double}]{bin}
 \end{DoxyParamCaption}
 )}\hypertarget{classweibull_a3fd3fba13fdbfd558af425ff7effc087}{}\label{classweibull_a3fd3fba13fdbfd558af425ff7effc087}
+
+
+Constructor defining a spherical particle with a disordered surface. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em rin} & The average radius of the sphere. \\
+\hline
+{\em bin} & The disorder parameter. \\
+\hline
+\end{DoxyParams}
 \index{weibull@{weibull}!weibull@{weibull}}
 \index{weibull@{weibull}!weibull@{weibull}}
 \subsubsection[{\texorpdfstring{weibull(double betain, double ain, double bin, double cin)}{weibull(double betain, double ain, double bin, double cin)}}]{\setlength{\rightskip}{0pt plus 5cm}weibull\+::weibull (
@@ -84,6 +113,21 @@ double \hyperlink{classweibull_aac3f3540bbb0ba31028316df6f825446}{get\+\_\+c} ()
 \item[{double}]{cin}
 \end{DoxyParamCaption}
 )}\hypertarget{classweibull_a89e2d0c1e9f6481f7976f13e338ea396}{}\label{classweibull_a89e2d0c1e9f6481f7976f13e338ea396}
+
+
+Constructor defining an ellipsoid particle with a disordered surface. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em betain} & The disorder parameter. \\
+\hline
+{\em ain} & The x-\/axis size of the particle. \\
+\hline
+{\em bin} & The y-\/axis size of the particle. \\
+\hline
+{\em cin} & The z-\/axis size of the particle. \\
+\hline
+\end{DoxyParams}
 \index{weibull@{weibull}!````~weibull@{$\sim$weibull}}
 \index{````~weibull@{$\sim$weibull}!weibull@{weibull}}
 \subsubsection[{\texorpdfstring{$\sim$weibull()}{~weibull()}}]{\setlength{\rightskip}{0pt plus 5cm}weibull\+::$\sim$weibull (
@@ -91,6 +135,10 @@ double \hyperlink{classweibull_aac3f3540bbb0ba31028316df6f825446}{get\+\_\+c} ()
 {}
 \end{DoxyParamCaption}
 )\hspace{0.3cm}{\ttfamily [inline]}}\hypertarget{classweibull_a3622160a85fb31ec2efe68900ce0beb7}{}\label{classweibull_a3622160a85fb31ec2efe68900ce0beb7}
+
+
+Default destructor. 
+
 
 
 \subsection{Member Function Documentation}
@@ -104,6 +152,17 @@ double \hyperlink{classweibull_aac3f3540bbb0ba31028316df6f825446}{get\+\_\+c} ()
 )\hspace{0.3cm}{\ttfamily [virtual]}}\hypertarget{classweibull_af534b7b7328d50e9f7e4d61b8f961d61}{}\label{classweibull_af534b7b7328d50e9f7e4d61b8f961d61}
 
 
+Check whether a certain position falls within the particle. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em Is} & The coordinates of the lattice site. \\
+\hline
+{\em l\+\_\+size} & The total lattice size. \\
+\hline
+\end{DoxyParams}
+
+
 Reimplemented from \hyperlink{classshape__type_a69a17f14890bf130c990d2d54ddf6f86}{shape\+\_\+type}.
 
 \index{weibull@{weibull}!get\+\_\+a@{get\+\_\+a}}
@@ -113,6 +172,10 @@ Reimplemented from \hyperlink{classshape__type_a69a17f14890bf130c990d2d54ddf6f86
 {}
 \end{DoxyParamCaption}
 )\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}\hypertarget{classweibull_ae044c77bbe28d60ed7849c2b9d92cb89}{}\label{classweibull_ae044c77bbe28d60ed7849c2b9d92cb89}
+
+
+Returns the x-\/axis radius of a weibull particle. 
+
 
 
 Reimplemented from \hyperlink{classshape__type_a68e467cf7ec75b436f0d0054d824766d}{shape\+\_\+type}.
@@ -126,6 +189,10 @@ Reimplemented from \hyperlink{classshape__type_a68e467cf7ec75b436f0d0054d824766d
 )\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}\hypertarget{classweibull_a0bffa8d8bcfa247182986eda4758ecf3}{}\label{classweibull_a0bffa8d8bcfa247182986eda4758ecf3}
 
 
+Returns the y-\/axis radius of a weibull particle. 
+
+
+
 Reimplemented from \hyperlink{classshape__type_a4db290d08ad12bf153d6f8ffdc4d44af}{shape\+\_\+type}.
 
 \index{weibull@{weibull}!get\+\_\+beta@{get\+\_\+beta}}
@@ -135,6 +202,10 @@ Reimplemented from \hyperlink{classshape__type_a4db290d08ad12bf153d6f8ffdc4d44af
 {}
 \end{DoxyParamCaption}
 )\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}\hypertarget{classweibull_a4be488c64110666fd5392c4020e39408}{}\label{classweibull_a4be488c64110666fd5392c4020e39408}
+
+
+Returns the disorder parameter of a weibull particle. 
+
 
 
 Reimplemented from \hyperlink{classshape__type_ad04d2331bc8bcd8504719fec8e852f32}{shape\+\_\+type}.
@@ -148,6 +219,10 @@ Reimplemented from \hyperlink{classshape__type_ad04d2331bc8bcd8504719fec8e852f32
 )\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}\hypertarget{classweibull_aac3f3540bbb0ba31028316df6f825446}{}\label{classweibull_aac3f3540bbb0ba31028316df6f825446}
 
 
+Returns the z-\/axis radius of a weibull particle. 
+
+
+
 Reimplemented from \hyperlink{classshape__type_a5ab8305b100bc3bba1ae4c14bd8257da}{shape\+\_\+type}.
 
 \index{weibull@{weibull}!get\+\_\+r0@{get\+\_\+r0}}
@@ -159,6 +234,10 @@ Reimplemented from \hyperlink{classshape__type_a5ab8305b100bc3bba1ae4c14bd8257da
 )\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}\hypertarget{classweibull_ae2cd75d0dde62b2b6bcf5d32ce7a1d35}{}\label{classweibull_ae2cd75d0dde62b2b6bcf5d32ce7a1d35}
 
 
+Returns the characteristic size of a weibull particle. 
+
+
+
 Reimplemented from \hyperlink{classshape__type_af0fc24250d5cb5cbc4881caffee31371}{shape\+\_\+type}.
 
 \index{weibull@{weibull}!operator=@{operator=}}
@@ -168,6 +247,10 @@ Reimplemented from \hyperlink{classshape__type_af0fc24250d5cb5cbc4881caffee31371
 \item[{{\bf shape\+\_\+type} \&}]{other}
 \end{DoxyParamCaption}
 )}\hypertarget{classweibull_ad30b152a6b09ee3727ccca240aae79db}{}\label{classweibull_ad30b152a6b09ee3727ccca240aae79db}
+
+
+Assignment operator. 
+
 
 
 The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}

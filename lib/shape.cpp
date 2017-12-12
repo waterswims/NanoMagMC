@@ -13,7 +13,7 @@
 
 extern DRANDTYPE st_rand_double;
 
-weibull::weibull(shape_type& other)
+particle::shape::weibull::weibull(shape_type& other)
 {
     r0 = other.get_r0();
     beta = other.get_beta();
@@ -22,7 +22,7 @@ weibull::weibull(shape_type& other)
     a[2] = other.get_c();
 }
 
-weibull::weibull(double rin, double bin)
+particle::shape::weibull::weibull(double rin, double bin)
 {
     beta = bin;
     r0 = 1 / tgamma(1. + 1. / beta);
@@ -31,7 +31,10 @@ weibull::weibull(double rin, double bin)
     a[2] = rin;
 }
 
-weibull::weibull(double betain, double ain, double bin, double cin)
+particle::shape::weibull::weibull(double betain,
+    double ain,
+    double bin,
+    double cin)
 {
     beta = betain;
     r0 = 1 / tgamma(1. + 1. / beta);
@@ -40,7 +43,7 @@ weibull::weibull(double betain, double ain, double bin, double cin)
     a[2] = cin;
 }
 
-bool weibull::check(std::vector<int> Is, int l_size)
+bool particle::shape::weibull::check(std::vector<int> Is, int l_size)
 {
     double centre = double(l_size - 1) / 2.;
     double dist2 = 0;
@@ -60,7 +63,7 @@ bool weibull::check(std::vector<int> Is, int l_size)
 	}
 }
 
-weibull& weibull::operator=(shape_type& other)
+particle::shape::weibull& particle::shape::weibull::operator=(shape_type& other)
 {
     r0 = other.get_r0();
     beta = other.get_beta();

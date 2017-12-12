@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['cube',['cube',['../d3/d90/classcube.html',1,'']]]
+  ['cube',['cube',['../dd/db1/classparticle_1_1shape_1_1cube.html',1,'particle::shape']]]
 ];

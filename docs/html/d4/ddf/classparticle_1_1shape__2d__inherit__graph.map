@@ -1,0 +1,4 @@
+<map id="particle::shape_2d" name="particle::shape_2d">
+<area shape="rect" id="node3" href="$de/d40/classparticle_1_1square.html" title="Square particle. " alt="" coords="19,155,130,181"/>
+<area shape="rect" id="node2" href="$d2/d37/classparticle_1_1shape__type.html" title="Base class for particle shapes. " alt="" coords="5,5,144,32"/>
+</map>

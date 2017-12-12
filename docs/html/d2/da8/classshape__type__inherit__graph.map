@@ -1,8 +1,8 @@
 <map id="shape_type" name="shape_type">
-<area shape="rect" id="node2" href="$db/d0d/classshape__2d.html" title="shape_2d" alt="" coords="5,80,84,107"/>
-<area shape="rect" id="node4" href="$df/dc8/classshape__3d.html" title="shape_3d" alt="" coords="108,80,187,107"/>
-<area shape="rect" id="node7" href="$db/d37/classweibull.html" title="weibull" alt="" coords="211,80,273,107"/>
-<area shape="rect" id="node3" href="$d5/d20/classsquare.html" title="square" alt="" coords="14,155,75,181"/>
-<area shape="rect" id="node5" href="$d3/d90/classcube.html" title="cube" alt="" coords="110,155,161,181"/>
-<area shape="rect" id="node6" href="$d7/d66/classsh__cluster.html" title="sh_cluster" alt="" coords="185,155,267,181"/>
+<area shape="rect" id="node2" href="$db/d0d/classshape__2d.html" title="2D particle shapes. " alt="" coords="5,80,84,107"/>
+<area shape="rect" id="node4" href="$df/dc8/classshape__3d.html" title="3D particle shapes. " alt="" coords="108,80,187,107"/>
+<area shape="rect" id="node7" href="$db/d37/classweibull.html" title="Weibull disordered circle/sphere particle. " alt="" coords="211,80,273,107"/>
+<area shape="rect" id="node3" href="$d5/d20/classsquare.html" title="Square particle. " alt="" coords="14,155,75,181"/>
+<area shape="rect" id="node5" href="$d3/d90/classcube.html" title="Cubic paritcle. " alt="" coords="110,155,161,181"/>
+<area shape="rect" id="node6" href="$d7/d66/classsh__cluster.html" title="Particle cluster (depreciated) " alt="" coords="185,155,267,181"/>
 </map>

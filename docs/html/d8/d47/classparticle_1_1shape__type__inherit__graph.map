@@ -1,0 +1,8 @@
+<map id="particle::shape_type" name="particle::shape_type">
+<area shape="rect" id="node2" href="$dd/d80/classparticle_1_1shape__2d.html" title="2D particle shapes. " alt="" coords="5,80,133,107"/>
+<area shape="rect" id="node4" href="$d5/de8/classparticle_1_1shape__3d.html" title="3D particle shapes. " alt="" coords="157,80,285,107"/>
+<area shape="rect" id="node7" href="$dd/d82/classparticle_1_1weibull.html" title="Weibull disordered circle/sphere particle. " alt="" coords="309,80,421,107"/>
+<area shape="rect" id="node3" href="$de/d40/classparticle_1_1square.html" title="Square particle. " alt="" coords="14,155,125,181"/>
+<area shape="rect" id="node5" href="$df/d5d/classparticle_1_1cube.html" title="Cubic paritcle. " alt="" coords="159,155,259,181"/>
+<area shape="rect" id="node6" href="$d6/de6/classparticle_1_1sh__cluster.html" title="Particle cluster (depreciated) " alt="" coords="283,155,415,181"/>
+</map>

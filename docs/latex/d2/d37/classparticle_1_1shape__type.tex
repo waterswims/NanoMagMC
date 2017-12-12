@@ -1,0 +1,174 @@
+\hypertarget{classparticle_1_1shape__type}{}\section{particle\+:\+:shape\+\_\+type Class Reference}
+\label{classparticle_1_1shape__type}\index{particle\+::shape\+\_\+type@{particle\+::shape\+\_\+type}}
+
+
+Base class for particle shapes.  
+
+
+
+
+{\ttfamily \#include $<$shape.\+hpp$>$}
+
+
+
+Inheritance diagram for particle\+:\+:shape\+\_\+type\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{d8/d47/classparticle_1_1shape__type__inherit__graph}
+\end{center}
+\end{figure}
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{classparticle_1_1shape__type_aaf2fb3d4c18321d399be05d64336b0c7}{shape\+\_\+type} ()
+\begin{DoxyCompactList}\small\item\em Default constructor. \end{DoxyCompactList}\item 
+\hyperlink{classparticle_1_1shape__type_a4063d746d095882095a27cdda03a4b7b}{$\sim$shape\+\_\+type} ()
+\begin{DoxyCompactList}\small\item\em Default destructor. \end{DoxyCompactList}\item 
+virtual bool \hyperlink{classparticle_1_1shape__type_a06456e0960c6dbeba91c312de341ed76}{check} (std\+::vector$<$ int $>$ Is, int l\+\_\+size)
+\begin{DoxyCompactList}\small\item\em Check whether a certain position falls within the particle. \end{DoxyCompactList}\item 
+virtual double \hyperlink{classparticle_1_1shape__type_aa9f8a91238d955464d9a8f747aea6802}{get\+\_\+r0} ()
+\begin{DoxyCompactList}\small\item\em Returns the characteristic size of a weibull particle. \end{DoxyCompactList}\item 
+virtual double \hyperlink{classparticle_1_1shape__type_a6d4584a454c2f8b1166dc6f651af0725}{get\+\_\+beta} ()
+\begin{DoxyCompactList}\small\item\em Returns the disorder parameter of a weibull particle. \end{DoxyCompactList}\item 
+virtual double \hyperlink{classparticle_1_1shape__type_ac1e936b12deb5f0e9cfaa16054ca549a}{get\+\_\+a} ()
+\begin{DoxyCompactList}\small\item\em Returns the x-\/axis radius of a weibull particle. \end{DoxyCompactList}\item 
+virtual double \hyperlink{classparticle_1_1shape__type_ad943fc36130b1da3e64a2d45f99a75af}{get\+\_\+b} ()
+\begin{DoxyCompactList}\small\item\em Returns the y-\/axis radius of a weibull particle. \end{DoxyCompactList}\item 
+virtual double \hyperlink{classparticle_1_1shape__type_a4c9ebb12457f2fcc354b9f4163a40b97}{get\+\_\+c} ()
+\begin{DoxyCompactList}\small\item\em Returns the z-\/axis radius of a weibull particle. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+Base class for particle shapes. 
+
+\subsection{Constructor \& Destructor Documentation}
+\index{particle\+::shape\+\_\+type@{particle\+::shape\+\_\+type}!shape\+\_\+type@{shape\+\_\+type}}
+\index{shape\+\_\+type@{shape\+\_\+type}!particle\+::shape\+\_\+type@{particle\+::shape\+\_\+type}}
+\subsubsection[{\texorpdfstring{shape\+\_\+type()}{shape_type()}}]{\setlength{\rightskip}{0pt plus 5cm}particle\+::shape\+\_\+type\+::shape\+\_\+type (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}}\hypertarget{classparticle_1_1shape__type_aaf2fb3d4c18321d399be05d64336b0c7}{}\label{classparticle_1_1shape__type_aaf2fb3d4c18321d399be05d64336b0c7}
+
+
+Default constructor. 
+
+\index{particle\+::shape\+\_\+type@{particle\+::shape\+\_\+type}!````~shape\+\_\+type@{$\sim$shape\+\_\+type}}
+\index{````~shape\+\_\+type@{$\sim$shape\+\_\+type}!particle\+::shape\+\_\+type@{particle\+::shape\+\_\+type}}
+\subsubsection[{\texorpdfstring{$\sim$shape\+\_\+type()}{~shape_type()}}]{\setlength{\rightskip}{0pt plus 5cm}particle\+::shape\+\_\+type\+::$\sim$shape\+\_\+type (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}}\hypertarget{classparticle_1_1shape__type_a4063d746d095882095a27cdda03a4b7b}{}\label{classparticle_1_1shape__type_a4063d746d095882095a27cdda03a4b7b}
+
+
+Default destructor. 
+
+
+
+\subsection{Member Function Documentation}
+\index{particle\+::shape\+\_\+type@{particle\+::shape\+\_\+type}!check@{check}}
+\index{check@{check}!particle\+::shape\+\_\+type@{particle\+::shape\+\_\+type}}
+\subsubsection[{\texorpdfstring{check(std\+::vector$<$ int $>$ Is, int l\+\_\+size)}{check(std::vector< int > Is, int l_size)}}]{\setlength{\rightskip}{0pt plus 5cm}virtual bool particle\+::shape\+\_\+type\+::check (
+\begin{DoxyParamCaption}
+\item[{std\+::vector$<$ int $>$}]{Is, }
+\item[{int}]{l\+\_\+size}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}\hypertarget{classparticle_1_1shape__type_a06456e0960c6dbeba91c312de341ed76}{}\label{classparticle_1_1shape__type_a06456e0960c6dbeba91c312de341ed76}
+
+
+Check whether a certain position falls within the particle. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em Is} & The coordinates of the lattice site. \\
+\hline
+{\em l\+\_\+size} & The total lattice size. \\
+\hline
+\end{DoxyParams}
+
+
+Reimplemented in \hyperlink{classparticle_1_1weibull_a709fba340c053c3bb21710e2d577b1cd}{particle\+::weibull}, \hyperlink{classparticle_1_1shape__3d_a8bc38f30bc6cb6171f1afdf22ab941b6}{particle\+::shape\+\_\+3d}, and \hyperlink{classparticle_1_1shape__2d_a316778b250bd2fce67e3721398cfbfbb}{particle\+::shape\+\_\+2d}.
+
+\index{particle\+::shape\+\_\+type@{particle\+::shape\+\_\+type}!get\+\_\+a@{get\+\_\+a}}
+\index{get\+\_\+a@{get\+\_\+a}!particle\+::shape\+\_\+type@{particle\+::shape\+\_\+type}}
+\subsubsection[{\texorpdfstring{get\+\_\+a()}{get_a()}}]{\setlength{\rightskip}{0pt plus 5cm}virtual double particle\+::shape\+\_\+type\+::get\+\_\+a (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}\hypertarget{classparticle_1_1shape__type_ac1e936b12deb5f0e9cfaa16054ca549a}{}\label{classparticle_1_1shape__type_ac1e936b12deb5f0e9cfaa16054ca549a}
+
+
+Returns the x-\/axis radius of a weibull particle. 
+
+
+
+Reimplemented in \hyperlink{classparticle_1_1weibull_a41248e21e9902e83ea14f6e8dd6c6405}{particle\+::weibull}.
+
+\index{particle\+::shape\+\_\+type@{particle\+::shape\+\_\+type}!get\+\_\+b@{get\+\_\+b}}
+\index{get\+\_\+b@{get\+\_\+b}!particle\+::shape\+\_\+type@{particle\+::shape\+\_\+type}}
+\subsubsection[{\texorpdfstring{get\+\_\+b()}{get_b()}}]{\setlength{\rightskip}{0pt plus 5cm}virtual double particle\+::shape\+\_\+type\+::get\+\_\+b (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}\hypertarget{classparticle_1_1shape__type_ad943fc36130b1da3e64a2d45f99a75af}{}\label{classparticle_1_1shape__type_ad943fc36130b1da3e64a2d45f99a75af}
+
+
+Returns the y-\/axis radius of a weibull particle. 
+
+
+
+Reimplemented in \hyperlink{classparticle_1_1weibull_af6a1bd186cd00d144740d10d67302c26}{particle\+::weibull}.
+
+\index{particle\+::shape\+\_\+type@{particle\+::shape\+\_\+type}!get\+\_\+beta@{get\+\_\+beta}}
+\index{get\+\_\+beta@{get\+\_\+beta}!particle\+::shape\+\_\+type@{particle\+::shape\+\_\+type}}
+\subsubsection[{\texorpdfstring{get\+\_\+beta()}{get_beta()}}]{\setlength{\rightskip}{0pt plus 5cm}virtual double particle\+::shape\+\_\+type\+::get\+\_\+beta (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}\hypertarget{classparticle_1_1shape__type_a6d4584a454c2f8b1166dc6f651af0725}{}\label{classparticle_1_1shape__type_a6d4584a454c2f8b1166dc6f651af0725}
+
+
+Returns the disorder parameter of a weibull particle. 
+
+
+
+Reimplemented in \hyperlink{classparticle_1_1weibull_af8e951c92b61168be9457cba71b3c7c3}{particle\+::weibull}.
+
+\index{particle\+::shape\+\_\+type@{particle\+::shape\+\_\+type}!get\+\_\+c@{get\+\_\+c}}
+\index{get\+\_\+c@{get\+\_\+c}!particle\+::shape\+\_\+type@{particle\+::shape\+\_\+type}}
+\subsubsection[{\texorpdfstring{get\+\_\+c()}{get_c()}}]{\setlength{\rightskip}{0pt plus 5cm}virtual double particle\+::shape\+\_\+type\+::get\+\_\+c (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}\hypertarget{classparticle_1_1shape__type_a4c9ebb12457f2fcc354b9f4163a40b97}{}\label{classparticle_1_1shape__type_a4c9ebb12457f2fcc354b9f4163a40b97}
+
+
+Returns the z-\/axis radius of a weibull particle. 
+
+
+
+Reimplemented in \hyperlink{classparticle_1_1weibull_a5bbf1a465bfcddd7256a0128ad66d025}{particle\+::weibull}.
+
+\index{particle\+::shape\+\_\+type@{particle\+::shape\+\_\+type}!get\+\_\+r0@{get\+\_\+r0}}
+\index{get\+\_\+r0@{get\+\_\+r0}!particle\+::shape\+\_\+type@{particle\+::shape\+\_\+type}}
+\subsubsection[{\texorpdfstring{get\+\_\+r0()}{get_r0()}}]{\setlength{\rightskip}{0pt plus 5cm}virtual double particle\+::shape\+\_\+type\+::get\+\_\+r0 (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}\hypertarget{classparticle_1_1shape__type_aa9f8a91238d955464d9a8f747aea6802}{}\label{classparticle_1_1shape__type_aa9f8a91238d955464d9a8f747aea6802}
+
+
+Returns the characteristic size of a weibull particle. 
+
+
+
+Reimplemented in \hyperlink{classparticle_1_1weibull_a066ae2328d6e4b55b43eb52f53b43baf}{particle\+::weibull}.
+
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+includes/\hyperlink{shape_8hpp}{shape.\+hpp}\end{DoxyCompactItemize}

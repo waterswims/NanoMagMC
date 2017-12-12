@@ -1,4 +1,4 @@
 <map id="cube" name="cube">
-<area shape="rect" id="node2" href="$df/dc8/classshape__3d.html" title="shape_3d" alt="" coords="11,80,89,107"/>
-<area shape="rect" id="node3" href="$d8/db0/classshape__type.html" title="shape_type" alt="" coords="5,5,95,32"/>
+<area shape="rect" id="node2" href="$df/dc8/classshape__3d.html" title="3D particle shapes. " alt="" coords="11,80,89,107"/>
+<area shape="rect" id="node3" href="$d8/db0/classshape__type.html" title="Base class for particle shapes. " alt="" coords="5,5,95,32"/>
 </map>
