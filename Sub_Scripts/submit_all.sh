@@ -1,4 +1,6 @@
 source load_compilers.sh
+make clean
+make
 
 for SIZE in 20 25 30
 do
