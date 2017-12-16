@@ -2,8 +2,8 @@
 
 #ifdef __INTEL_COMPILER
 #include "../includes/mklrand.hpp"
-#define IRANDTYPE mkl_irand
-#define DRANDTYPE mkl_drand
+#define IRANDTYPE mklrand::mkl_irand
+#define DRANDTYPE mklrand::mkl_drand
 #else
 #include "../includes/stdrand.hpp"
 #define IRANDTYPE stdrand::std_i_unirand
@@ -93,7 +93,8 @@ void state::init_points(double size, bool isPerio, double H, double J, double K,
                 case 'x':
                 case 'X':
                     field = new field_3d_h(int(2*sizeab+10), isPerio, pad);
-                    shape = new weibull(args[0], sizeab, sizeab, sizec);
+                    shape = new particle::shape::weibull(args[0], sizeab,
+                        sizeab, sizec);
                     break;
                 default:
                     std::cerr << "Incorrect shape code, FePt only works with Weibull, exiting" << std::endl;
@@ -110,22 +111,22 @@ void state::init_points(double size, bool isPerio, double H, double J, double K,
             case 's':
             case 'S':
                 field = new field_2d_h(int(size), isPerio, pad);
-                shape = new square;
+                shape = new particle::shape::square;
                 break;
             case 'w':
             case 'W':
                 field = new field_2d_h(int(2*size+10), isPerio, pad);
-                shape = new weibull((size), args[0]);
+                shape = new particle::shape::weibull((size), args[0]);
                 break;
             case 'c':
             case 'C':
                 field = new field_3d_h(int(size), isPerio, pad);
-                shape = new cube;
+                shape = new particle::shape::cube;
                 break;
             case 'x':
             case 'X':
                 field = new field_3d_h(int(2*size+10), isPerio, pad);
-                shape = new weibull((size), args[0]);
+                shape = new particle::shape::weibull((size), args[0]);
                 break;
             default:
                 std::cerr << "Incorrect shape code, exiting" << std::endl;
@@ -140,22 +141,22 @@ void state::init_points(double size, bool isPerio, double H, double J, double K,
             case 's':
             case 'S':
                 field = new field_2d_i(int(size), isPerio);
-                shape = new square;
+                shape = new particle::shape::square;
                 break;
             case 'w':
             case 'W':
                 field = new field_2d_i(int(2*size+10), isPerio);
-                shape = new weibull((size), args[0]);
+                shape = new particle::shape::weibull((size), args[0]);
                 break;
             case 'c':
             case 'C':
                 field = new field_3d_i(int(size), isPerio);
-                shape = new cube;
+                shape = new particle::shape::cube;
                 break;
             case 'x':
             case 'X':
                 field = new field_3d_i(int(2*size+10), isPerio);
-                shape = new weibull((size), args[0]);
+                shape = new particle::shape::weibull((size), args[0]);
                 break;
             default:
                 std::cerr << "Incorrect shape code, exiting" << std::endl;
@@ -203,22 +204,22 @@ void state::copy_points(const state& other)
             case 's':
             case 'S':
                 field = new field_2d_h(*(other.field));
-                shape = new square;
+                shape = new particle::shape::square;
                 break;
             case 'w':
             case 'W':
                 field = new field_2d_h(*(other.field));
-                shape = new weibull(*(other.shape));
+                shape = new particle::shape::weibull(*(other.shape));
                 break;
             case 'c':
             case 'C':
                 field = new field_3d_h(*(other.field));
-                shape = new cube;
+                shape = new particle::shape::cube;
                 break;
             case 'x':
             case 'X':
                 field = new field_3d_h(*(other.field));
-                shape = new weibull(*(other.shape));
+                shape = new particle::shape::weibull(*(other.shape));
                 break;
             default:
                 std::cerr << "Incorrect shape code, exiting" << std::endl;
@@ -233,22 +234,22 @@ void state::copy_points(const state& other)
             case 's':
             case 'S':
                 field = new field_2d_i(*(other.field));
-                shape = new square;
+                shape = new particle::shape::square;
                 break;
             case 'w':
             case 'W':
                 field = new field_2d_i(*(other.field));
-                shape = new weibull(*(other.shape));
+                shape = new particle::shape::weibull(*(other.shape));
                 break;
             case 'c':
             case 'C':
                 field = new field_3d_i(*(other.field));
-                shape = new cube;
+                shape = new particle::shape::cube;
                 break;
             case 'x':
             case 'X':
                 field = new field_3d_i(*(other.field));
-                shape = new weibull(*(other.shape));
+                shape = new particle::shape::weibull(*(other.shape));
                 break;
             default:
                 std::cerr << "Incorrect shape code, exiting" << std::endl;

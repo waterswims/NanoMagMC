@@ -1,4 +1,4 @@
 <map id="shape_2d" name="shape_2d">
-<area shape="rect" id="node3" href="$d5/d20/classsquare.html" title="square" alt="" coords="19,155,81,181"/>
-<area shape="rect" id="node2" href="$d8/db0/classshape__type.html" title="shape_type" alt="" coords="5,5,95,32"/>
+<area shape="rect" id="node3" href="$d5/d20/classsquare.html" title="Square particle. " alt="" coords="19,155,81,181"/>
+<area shape="rect" id="node2" href="$d8/db0/classshape__type.html" title="Base class for particle shapes. " alt="" coords="5,5,95,32"/>
 </map>

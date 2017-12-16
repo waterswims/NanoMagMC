@@ -1,5 +1,5 @@
 <map id="mkl_randbase" name="mkl_randbase">
-<area shape="rect" id="node2" href="$dd/df9/classmkl__drand.html" title="mkl_drand" alt="" coords="5,80,88,107"/>
-<area shape="rect" id="node3" href="$dc/d5e/classmkl__irand.html" title="mkl_irand" alt="" coords="113,80,191,107"/>
-<area shape="rect" id="node4" href="$dd/d64/classmkl__lnrand.html" title="mkl_lnrand" alt="" coords="216,80,301,107"/>
+<area shape="rect" id="node2" href="$dd/df9/classmkl__drand.html" title="Generator for uniform numbers between 0 and 1. " alt="" coords="5,80,88,107"/>
+<area shape="rect" id="node3" href="$dc/d5e/classmkl__irand.html" title="Generator for uniform integers between 0 and 1. " alt="" coords="113,80,191,107"/>
+<area shape="rect" id="node4" href="$dd/d64/classmkl__lnrand.html" title="Generator for random numbers on a lognormal distribution. " alt="" coords="216,80,301,107"/>
 </map>

@@ -1,0 +1,5 @@
+<map id="particle::shape::shape_3d" name="particle::shape::shape_3d">
+<area shape="rect" id="node3" href="$dd/db1/classparticle_1_1shape_1_1cube.html" title="Cubic paritcle. " alt="" coords="5,162,148,189"/>
+<area shape="rect" id="node4" href="$d7/dea/classparticle_1_1shape_1_1sh__cluster.html" title="Particle cluster (depreciated) " alt="" coords="172,155,301,196"/>
+<area shape="rect" id="node2" href="$d1/df8/classparticle_1_1shape_1_1shape__type.html" title="Base class for particle shapes. " alt="" coords="65,5,248,32"/>
+</map>

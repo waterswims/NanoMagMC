@@ -18,7 +18,7 @@ private:
     char s_code, h_code;
     ham_type* hamil;
     field_type* field;
-    shape_type* shape;
+    particle::shape::shape_type* shape;
 
 public:
     state(){}

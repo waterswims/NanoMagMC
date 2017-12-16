@@ -1,5 +1,5 @@
 <map id="shape_3d" name="shape_3d">
-<area shape="rect" id="node3" href="$d3/d90/classcube.html" title="cube" alt="" coords="5,155,56,181"/>
-<area shape="rect" id="node4" href="$d7/d66/classsh__cluster.html" title="sh_cluster" alt="" coords="80,155,163,181"/>
-<area shape="rect" id="node2" href="$d8/db0/classshape__type.html" title="shape_type" alt="" coords="31,5,121,32"/>
+<area shape="rect" id="node3" href="$d3/d90/classcube.html" title="Cubic paritcle. " alt="" coords="5,155,56,181"/>
+<area shape="rect" id="node4" href="$d7/d66/classsh__cluster.html" title="Particle cluster (depreciated) " alt="" coords="80,155,163,181"/>
+<area shape="rect" id="node2" href="$d8/db0/classshape__type.html" title="Base class for particle shapes. " alt="" coords="31,5,121,32"/>
 </map>
