@@ -43,6 +43,8 @@ for file_name in sys.argv[1:]:
         print(name, " printing complete")
 
     for name in list(f['Fulldat']):
+        if len(name.split("sub_mag")) < 2:
+            continue
         full_name = "/Fulldat/{}".format(name)
         dataset = f[full_name]
         dat = dataset.value
