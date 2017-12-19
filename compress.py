@@ -16,7 +16,8 @@ for file_name in sys.argv[1:]:
         full_name = name
         dataset = f[full_name]
         dat = dataset.value
-        dset = f2.create_dataset(full_name, dat.shape, compression="gzip",
+        dset = f2.create_dataset(full_name, dat.shape, chunks=tuple(dat.shape),
+                                 compression="gzip",
                                  compression_opts=9, data=dat)
         print(full_name, " complete")
 
@@ -36,8 +37,7 @@ for file_name in sys.argv[1:]:
                 giant_latt[Hi, Ti, :, :, :, :] = dataset.value
         print(name, " reading complete")
         dset = f2.create_dataset(name, giant_latt.shape,
-                                 chunks=(test_dat2.shape[0], test_dat2.shape[1],
-                                         2, 2, 2, 1),
+                                 chunks=tuple(giant_latt.shape),
                                  compression="gzip", compression_opts=9,
                                  data=giant_latt)
         print(name, " printing complete")
@@ -46,13 +46,7 @@ for file_name in sys.argv[1:]:
         full_name = "/Fulldat/{}".format(name)
         dataset = f[full_name]
         dat = dataset.value
-        if name == "nums":
-            chnks = (10,)
-        elif name == "top_chars":
-            chnks = (dat.shape[0], dat.shape[1], 2, 20)
-        else:
-            chnks = (dat.shape[0], dat.shape[1], 20)
-        dset = f2.create_dataset(full_name, dat.shape, chunks=chnks,
+        dset = f2.create_dataset(full_name, dat.shape, chunks=tuple(dat.shape),
                                  compression="gzip",
                                  compression_opts=9, data=dat)
         print(full_name, " complete")
