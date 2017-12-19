@@ -17,7 +17,7 @@ for file_name in sys.argv[1:]:
         dataset = f[full_name]
         dat = dataset.value
         dset = f2.create_dataset(full_name, dat.shape, chunks=tuple(dat.shape),
-                                 compression="gzip",
+                                 compression="gzip", shuffle=True,
                                  compression_opts=9, data=dat)
         print(full_name, " complete")
 
@@ -36,7 +36,7 @@ for file_name in sys.argv[1:]:
                 dataset = f[full_name]
                 giant_latt[Hi, Ti, :, :, :, :] = dataset.value
         print(name, " reading complete")
-        dset = f2.create_dataset(name, giant_latt.shape,
+        dset = f2.create_dataset(name, giant_latt.shape, shuffle=True,
                                  chunks=tuple(giant_latt.shape),
                                  compression="gzip", compression_opts=9,
                                  data=giant_latt)
@@ -49,7 +49,7 @@ for file_name in sys.argv[1:]:
         dataset = f[full_name]
         dat = dataset.value
         dset = f2.create_dataset(full_name, dat.shape, chunks=tuple(dat.shape),
-                                 compression="gzip",
+                                 compression="gzip", shuffle=True,
                                  compression_opts=9, data=dat)
         print(full_name, " complete")
 
