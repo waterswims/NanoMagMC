@@ -74,15 +74,14 @@ void read_all_vars(std::string f_name, double& size, double& J, double& k,
         amean = read_var<double>("MEANSIZE", f_name);
         asd = read_var<double>("SIZEDEV", f_name);
         size = amean;
-        N_latts = read_var<int>("NLATTS", f_name);
     }
     else
     {
         size = read_var<double>("SIZE", f_name);
-        N_latts = 1;
         amean = 0;
         asd = 0;
     }
+    N_latts = read_var<int>("NLATTS", f_name);
     k = read_var<double>("BOLTZMANN", f_name);
     periodic = read_var<int>("ISPERIO", f_name);
     Samp_steps = read_var<int>("SAMPSWEEPS", f_name);

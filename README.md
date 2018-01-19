@@ -69,6 +69,8 @@ To run in parallel, make sure you are using an mpi compiler, and run with "mpiru
 
     * 4: The lattices move through the temperatures in reverse order followed by the magnetic fields in forward order.
 
+* NLATTS: The number of different lattices to sample from. NSAMPS samples will be taken for each of these lattices.
+
 * PRINT_LATT: Boolean option signifying whether the average lattice should be stored. This may significantly increase file storage requirements. (This option has only been implemented for 3D continuous spin systems so far. Using it in other situations will result in large, blank datasets within the output.)
 
 ### Optional/Situational Settings
@@ -78,8 +80,6 @@ To run in parallel, make sure you are using an mpi compiler, and run with "mpiru
 * MEANSIZE: If ISDISTRIB is set to true then the arithmetic mean of the sizes of all lattices must be given.
 
 * SIZEDEV: If ISDISTRIB is set to true then the standard deviation of the sizes of all lattices must be given.
-
-* NLATTS: If ISDISTRIB is set to true then the number of different lattices to use is required. NSAMPS samples will be taken for each of these lattices.
 
 * WEIBULLFACT: If either the circular or spherical Weibull distributed grain is chosen then WEIBULLFACT denotes the weibull factor used in the grain generation.
 

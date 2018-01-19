@@ -95,7 +95,7 @@ int main(int argc, char **argv)
 									  hamil, periodic, protocol, distributed,
 									  num_Ts, num_Hs, N_samp, N_latts, Ts, Hs,
 									  v1_size, tc_size, cpoint, file_exists);
-	if ((!file_exists) && print_latt && !distributed)
+	if ((!file_exists) && print_latt)
 	{
 		summed_field->print_setup(f_id, "Av_Latt", num_Ts, num_Hs);
 		summed_field->print_setup(f_id, "Sing_Latt", num_Ts, num_Hs);
@@ -169,7 +169,7 @@ int main(int argc, char **argv)
 				curr_state.equil(Eq_steps*nums);
 
 				// Zero print field
-				if(print_latt)
+				if(print_latt && k == 0)
 				{
 					summed_field->allzero();
 				}
@@ -216,7 +216,7 @@ int main(int argc, char **argv)
 					}
 
 					// Add sample to print lattice
-					if(print_latt && !distributed)
+					if(print_latt && k == 0)
 					{
 						curr_state.add_to_av(summed_field);
 					}
@@ -225,7 +225,7 @@ int main(int argc, char **argv)
 				print_TD_h5(magx1, magy1, magz1, mag1, ener1, smagx1, smagy1,
 					     smagz1, smag1, tcharges1, N_samp, protocol, i, j,
 						 v2_size, tc_size, f_id, hamil, distributed, k);
-				if (print_latt && !distributed)
+				if (print_latt && k == 0)
 				{
 					std::string lname = av_latt_name(protocol, i, j);
 					summed_field->print(f_id, lname);
@@ -254,7 +254,7 @@ int main(int argc, char **argv)
 			    H5Pclose(plist_id);
 				H5Fclose(file_id);
 
-				if (print_latt && !distributed)
+				if (print_latt && k == 0)
 				{
 					plist_id = H5Pcreate(H5P_FILE_ACCESS);
 				    H5Pset_fapl_mpio(plist_id, MPI_COMM_WORLD, MPI_INFO_NULL);
