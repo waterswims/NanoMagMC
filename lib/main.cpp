@@ -19,6 +19,7 @@
 #endif
 
 #include <hdf5.h>
+#include <cmath>
 
 IRANDTYPE st_rand_int(1e7, 1);
 DRANDTYPE st_rand_double(1e8, 1);
@@ -120,6 +121,12 @@ int main(int argc, char **argv)
 	// if distrib, loop through latts
 	for (int k = 0; k < N_latts; k++)
 	{
+		int sub_rank, sub_size, latt_rank, num_par;
+		if (check_rank_latt(k, comm_size, rank, v1_size, sub_rank, sub_size,
+							latt_rank, num_par))
+		{
+			continue;
+		}
 		if (distributed) {size = rand_ln.gen();}
 		state base_state(size, periodic, shape, hamil, J, Hmax, k_b, Tmax, K,
 			             args);
@@ -129,10 +136,10 @@ int main(int argc, char **argv)
 
 		base_state.equil(20*Eq_steps*nums);
 		// main loop
-		for (int i = v1_begin; i != v1_end; incr_v1(protocol, i))
+		for (int i = v1_begin; i != v1_end && k < N_latts; incr_v1(protocol, i))
 		{
 			// Only carry on if to be run by this process
-			if (check_rank_run(protocol, i, comm_size, rank, v1_size))
+			if (check_rank_run(protocol, i, sub_size, sub_rank, v1_size))
 			{
 				continue;
 			}
@@ -140,7 +147,8 @@ int main(int argc, char **argv)
 			// Grab the previous state from the previous rank unless first
 			if (i != v1_begin)
 			{
-				int prev_rank = (rank+comm_size-1)%comm_size;
+				int prev_rank = ((sub_rank+sub_size-1)%sub_size)
+					+latt_rank*v1_size;
 				base_state.recv_latt_data(prev_rank);
 			}
 
@@ -150,9 +158,9 @@ int main(int argc, char **argv)
 			base_state.equil(Eq_steps*nums);
 
 			// Send data to next rank, unless final rank
-			if(rank != comm_size-1 && i != v1_final)
+			if(sub_rank != sub_size-1 && i != v1_final)
 			{
-				int next_rank = (rank+1)%comm_size;
+				int next_rank = ((sub_rank+1)%sub_size)+latt_rank*v1_size;
 				base_state.send_latt_data(next_rank);
 			}
 
@@ -221,58 +229,47 @@ int main(int argc, char **argv)
 						curr_state.add_to_av(summed_field);
 					}
 				}
+
 				// print values, lattice and checkpoint
 				print_TD_h5(magx1, magy1, magz1, mag1, ener1, smagx1, smagy1,
 					     smagz1, smag1, tcharges1, N_samp, protocol, i, j,
 						 v2_size, tc_size, f_id, hamil, distributed, k);
-				if (print_latt && k == 0)
+				if (print_latt)
 				{
-					std::string lname = av_latt_name(protocol, i, j);
-					summed_field->print(f_id, lname);
-					lname = sing_latt_name(protocol, i, j);
-					curr_state.ptf(f_id, lname);
+					if (k == 0)
+					{
+						std::string lname = av_latt_name(protocol, i, j);
+						summed_field->print(f_id, lname);
+						lname = sing_latt_name(protocol, i, j);
+						curr_state.ptf(f_id, lname);
+					}
+					else if (k/num_par == 0)
+					{
+						extra_file_open(f_id);
+						extra_file_open(f_id);
+					}
 				}
 	        }
 
 			// Send data from final rank to first rank, unless final i
-			if(rank == comm_size-1 && i != v1_final)
+			if(sub_rank == sub_size-1 && i != v1_final)
 			{
-				int next_rank = (rank+1)%comm_size;
+				int next_rank = (sub_rank+1)%sub_size+latt_rank*v1_size;
 				base_state.send_latt_data(next_rank);
 			}
 
 		}
-		// Extra File open/closes for HDF5
-		if(rank >= v1_size - (v1_size/comm_size)*comm_size &&
-			!cpoint[v1_final][k])
+		// Extra HDF5 File open/closes for this k
+		int ext_opens = count_sub_extra_opens(v1_size, v2_size, N_latts, rank,
+			comm_size, k);
+		for (int i = 0; i < ext_opens; i++)
 		{
-			for(int i = 0; i < v2_size; i++)
-			{
-				hid_t plist_id = H5Pcreate(H5P_FILE_ACCESS);
-			    H5Pset_fapl_mpio(plist_id, MPI_COMM_WORLD, MPI_INFO_NULL);
-			    hid_t file_id = H5Fopen(f_id.c_str(), H5F_ACC_RDWR, plist_id);
-			    H5Pclose(plist_id);
-				H5Fclose(file_id);
-
-				if (print_latt && k == 0)
-				{
-					plist_id = H5Pcreate(H5P_FILE_ACCESS);
-				    H5Pset_fapl_mpio(plist_id, MPI_COMM_WORLD, MPI_INFO_NULL);
-				    file_id = H5Fopen(f_id.c_str(), H5F_ACC_RDWR,
-						plist_id);
-				    H5Pclose(plist_id);
-					H5Fclose(file_id);
-
-					plist_id = H5Pcreate(H5P_FILE_ACCESS);
-				    H5Pset_fapl_mpio(plist_id, MPI_COMM_WORLD, MPI_INFO_NULL);
-				    file_id = H5Fopen(f_id.c_str(), H5F_ACC_RDWR,
-						plist_id);
-				    H5Pclose(plist_id);
-					H5Fclose(file_id);
-				}
-			}
+			extra_file_open(f_id);
 		}
 	}
+
+	// Extra HDF5 File open/closes for whole sub set of ranks
+	
 
 	MPI_Barrier(MPI_COMM_WORLD);
 	if(rank==0)

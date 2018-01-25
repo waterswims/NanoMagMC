@@ -1,5 +1,8 @@
 #include "../includes/protocol.hpp"
 
+#include <cmath>
+#include <hdf5.h>
+
 void set_protocol(
     const int proto_code,
     float*& var1_list,
@@ -108,4 +111,77 @@ bool check_rank_run(
         std::cout << "Invalid protocol, exiting..." << std::endl;
         exit(207);
     }
+}
+
+bool check_rank_latt(
+    const int k,
+    const int comm_size,
+    const int rank,
+    const int var1_size,
+    int& sub_rank,
+    int& sub_size,
+    int& latt_rank,
+    int& num_par)
+{
+    num_par = ceil(comm_size / float(var1_size));
+    latt_rank = (rank / var1_size);
+    sub_rank = rank-latt_rank*var1_size;
+    sub_size = std::min<int>(var1_size, comm_size-latt_rank*var1_size);
+    return latt_rank != k%num_par;
+}
+
+int count_sub_extra_opens(
+    const int var1_size,
+    const int var2_size,
+    const int N_latts,
+    const int rank,
+    const int comm_size,
+    const int k)
+{
+    int latt_prints = 2 * int(k == 0);
+
+    int latt_rank = (rank / var1_size);
+    int sub_rank = rank-latt_rank*var1_size;
+    int num_in_sub = std::min<int>(var1_size, comm_size-latt_rank*var1_size);
+    int num_v1s = (var1_size / num_in_sub)
+        + int(sub_rank < var1_size%num_in_sub);
+
+    int own_opens = (latt_prints + 1) * var2_size * num_v1s;
+
+    int base_num_v1s = (var1_size / num_in_sub)
+        + int(0 < var1_size%num_in_sub);
+
+    int base_opens = (latt_prints + 1) * var2_size * base_num_v1s;
+
+    return base_opens - own_opens;
+}
+
+int count_num_opens(
+    const int var1_size,
+    const int var2_size,
+    const int N_latts,
+    const int rank,
+    const int comm_size)
+{
+    int latt_prints = 2 * int(rank == 0);
+
+    int latt_rank = (rank / var1_size);
+    int sub_rank = rank-latt_rank*var1_size;
+    int num_in_sub = std::min<int>(var1_size, comm_size-latt_rank*var1_size);
+    int num_v1s = (var1_size / num_in_sub) + int(sub_rank < var1_size%num_in_sub);
+
+    int num_par = ceil(comm_size / float(var1_size));
+    int num_reals = (N_latts / num_par) + int(latt_rank < N_latts%num_par);
+
+    return (latt_prints + num_reals) * var2_size * num_v1s;
+}
+
+void extra_file_open(
+    const std::string f_id)
+{
+    hid_t plist_id = H5Pcreate(H5P_FILE_ACCESS);
+    H5Pset_fapl_mpio(plist_id, MPI_COMM_WORLD, MPI_INFO_NULL);
+    hid_t file_id = H5Fopen(f_id.c_str(), H5F_ACC_RDWR, plist_id);
+    H5Pclose(plist_id);
+    H5Fclose(file_id);
 }

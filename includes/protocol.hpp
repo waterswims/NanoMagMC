@@ -34,4 +34,32 @@ bool check_rank_run(
     const int rank,
     const int var1_size);
 
+bool check_rank_latt(
+    const int k,
+    const int comm_size,
+    const int rank,
+    const int var1_size,
+    int& sub_rank,
+    int& sub_size,
+    int& latt_rank,
+    int& num_par);
+
+int count_sub_extra_opens(
+    const int var1_size,
+    const int var2_size,
+    const int N_latts,
+    const int rank,
+    const int comm_size,
+    const int k);
+
+int count_num_opens(
+    const int var1_size,
+    const int var2_size,
+    const int N_latts,
+    const int rank,
+    const int comm_size);
+
+void extra_file_open(
+    const std::string f_id);
+
 #endif
