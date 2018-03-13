@@ -29,15 +29,21 @@ print("Creating report from ", file_name)
 f = h5py.File(file_name)
 dataset = f["/Ts"]
 Ts = dataset.value
+
 dataset = f["/Hs"]
 Hs = dataset.value
+
 dataset = f["/Fulldat/mag_xs"]
 mag_xs_all = dataset.value
 mag_xs = np.mean(mag_xs_all, axis=2)
 Nsamps = mag_xs_all.shape[2]
+del mag_xs_all
+
 dataset = f["/Fulldat/mag_ys"]
 mag_ys_all = dataset.value
 mag_ys = np.mean(mag_ys_all, axis=2)
+del mag_ys_all
+
 dataset = f["/Fulldat/mag_zs"]
 mag_zs_all = dataset.value
 mag_zs = np.mean(mag_zs_all, axis=2)
@@ -45,17 +51,24 @@ big_Ts = np.zeros_like(mag_zs)
 for i in range(big_Ts.shape[0]):
     big_Ts[i, :] = Ts
 chi_zs = (np.mean(mag_zs_all**2, axis=2) - mag_zs**2) / big_Ts
+del mag_zs_all
+
 dataset = f["/Fulldat/mags"]
 mags_all = dataset.value
 mags = np.mean(mags_all, axis=2)
+del mags_all
+
 dataset = f["/Fulldat/energies"]
 energies_all = dataset.value
 energies = np.mean(energies_all, axis=2)
 HCs = (np.mean(energies_all**2, axis=2) - energies**2) / (big_Ts**2)
+del energies_all
+
 dataset = f["/Fulldat/top_chars"]
 top_chars_all = dataset.value
 l_size = top_chars_all.shape[2]
 top_chars = np.mean(top_chars_all, axis=3)
+del top_chars_all
 
 dataset = f["/Sing_Latt"]
 pad = 0
@@ -251,10 +264,10 @@ for H_ind in tqdm(range(numHs)):
             zspin3d[:, :, k] = all_latt[H_ind, T_ind, :, :, slice_show[k], 2]
         pts = mlab.quiver3d(Xs, Ys, Zs, xspin3d, yspin3d, zspin3d, mode="cone",
                             resolution=50, scale_factor=2, scalars=zspin3d,
-                            opacity=1)
+                            opacity=1, vmin=-1, vmax=1)
         pts.glyph.color_mode = 'color_by_scalar'
         cbar = mlab.scalarbar(pts, title=r"Mz", orientation="vertical")
-        pts.module_manager.scalar_lut_manager.lut_mode="viridis"
+        pts.module_manager.scalar_lut_manager.lut_mode="RdBu"
         pts.module_manager.scalar_lut_manager.label_text_property.color = (0.0,
             0.0, 0.0)
         pts.module_manager.scalar_lut_manager.title_text_property.color = (0.0,
@@ -275,7 +288,7 @@ for H_ind in tqdm(range(numHs)):
                                 surf_skip:l_size-surf_skip,
                                 0:l_size, 2]
         cont = mlab.contour3d(Xs, Ys, Zs, full_zspin3d, contours=[0],
-                              color=(0, 0.75, 0.75), opacity=0.5)
+                              color=(0.75, 0.75, 0), opacity=0.5)
 
         ## Background Color
         fig = mlab.gcf()

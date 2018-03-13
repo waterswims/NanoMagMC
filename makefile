@@ -58,16 +58,16 @@ GTEST_SRCS_ = $(wildcard $(GTEST_DIR)/src/*.cc $(GTEST_DIR)/src/*.h $(GTEST_HEAD
 #################################################################
 
 default: $(OBJS) $(OBJ_PATH)/main.o
-	$(CC) $(OBJS) $(OBJ_PATH)/main.o -o run $(LDFLAGS)
+	$(CXX) $(OBJS) $(OBJ_PATH)/main.o -o run $(LDFLAGS)
 
 $(OBJ_PATH)/%.o: $(LIB_PATH)/%.cpp
-	$(CC) $(CPPFLAGS) -c -o $@ $<
+	$(CXX) $(CPPFLAGS) -c -o $@ $<
 
 $(TEST_PATH)/test.o: $(TEST_FILES) $(TEST_PATH)/test.cpp $(TEST_PATH)/libs/gtest_main.a
-	$(CC) tests/test.cpp $(GTEST_FLAGS) $(CPPFLAGS) -c -o $(TEST_PATH)/test.o
+	$(CXX) tests/test.cpp $(GTEST_FLAGS) $(CPPFLAGS) -c -o $(TEST_PATH)/test.o
 
 test: $(OBJS) $(TEST_PATH)/test.o $(TEST_PATH)/libs/gtest_main.a
-	$(CC) $(OBJS) $(TEST_PATH)/test.o $(TEST_PATH)/libs/gtest_main.a $(GTEST_FLAGS) $(LDFLAGS) -o test
+	$(CXX) $(OBJS) $(TEST_PATH)/test.o $(TEST_PATH)/libs/gtest_main.a $(GTEST_FLAGS) $(LDFLAGS) -o test
 
 $(TEST_PATH)/libs/gtest-all.o : $(GTEST_SRCS_)
 	$(CXX) 	$(GTEST_FLAGS) -I$(GTEST_DIR) $(CXXFLAGS) -c \

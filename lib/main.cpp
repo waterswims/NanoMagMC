@@ -125,6 +125,14 @@ int main(int argc, char **argv)
 		if (check_rank_latt(k, comm_size, rank, v1_size, sub_rank, sub_size,
 							latt_rank, num_par))
 		{
+			int temp_int;
+			double temp_double;
+			for(int i = 0; i < 1e8; i++)
+			{
+				temp_int = st_rand_int.gen();
+				temp_double = st_rand_double.gen();
+				temp_double = rand_ln.gen();
+			}
 			continue;
 		}
 		if (distributed) {size = rand_ln.gen();}
@@ -269,7 +277,7 @@ int main(int argc, char **argv)
 	}
 
 	// Extra HDF5 File open/closes for whole sub set of ranks
-	
+
 
 	MPI_Barrier(MPI_COMM_WORLD);
 	if(rank==0)
