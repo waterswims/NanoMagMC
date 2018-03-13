@@ -7,8 +7,8 @@ jobs:
        - checkout
        - run: git submodule init
        - run: git submodule update
-       - run: echo "$(CC)"
-       - run: echo "$(CXX)"
+       - run: printenv CC
+       - run: printenv CXX
        - run: make
        - run: make clean
        - run: make test
