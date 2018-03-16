@@ -6,8 +6,10 @@
 /tests/Test_Files/arr_save_test.cp
 /tests/Test_Files/double_save_test.cp
 /tests/Test_Files/val_save_test.cp
-/.ipynb_checkpoints
+.ipynb_checkpoints
 *.ipynb
+*.pdf
+*.png
 *.DS_Store
 /tests/libs/*.a
 /tests/libs/*.o
