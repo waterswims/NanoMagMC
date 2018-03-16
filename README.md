@@ -1,7 +1,7 @@
 # NanoMagMC: Monte Carlo Simulation Software for Atomistic Models of Nano-Scale Magnetic Materials
 
-[![CircleCI](https://circleci.com/gh/waterswims/MC_HAMR/tree/master.svg?style=svg)](https://circleci.com/gh/waterswims/MC_HAMR/tree/master)
-[![Read the Docs](https://img.shields.io/readthedocs/pip.svg)](http://jmwaters.me/MC_HAMR/)
+[![CircleCI](https://circleci.com/gh/waterswims/NanoMagMC/tree/master.svg?style=svg)](https://circleci.com/gh/waterswims/NanoMagMC/tree/master)
+[![Read the Docs](https://img.shields.io/readthedocs/pip.svg)](http://jmwaters.me/NanoMagMC/)
 
 ## Requirements
 
