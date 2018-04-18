@@ -23,26 +23,26 @@ TEST_PATH = tests
 TEST_FILES = $(wildcard $(TEST_PATH)/*.hpp)
 NOMAIN_FILES = $(filter-out $(LIB_PATH)/main.cpp, $(wildcard $(LIB_PATH)/*.cpp))
 ## NON-INTEL
-SOURCE_FILES = $(filter-out $(LIB_PATH)/mklrand.cpp, $(NOMAIN_FILES))
+# SOURCE_FILES = $(filter-out $(LIB_PATH)/mklrand.cpp, $(NOMAIN_FILES))
 ## INTEL
-# SOURCE_FILES = $(filter-out $(LIB_PATH)/stdrand.cpp, $(NOMAIN_FILES))
+SOURCE_FILES = $(filter-out $(LIB_PATH)/stdrand.cpp, $(NOMAIN_FILES))
 OBJS = $(addprefix $(OBJ_PATH)/, $(notdir $(SOURCE_FILES:.cpp=.o)))
 
 #################################################################
 ## Compile options
 #################################################################
 ## INTEL
-# CPPFLAGS = -std=c++11 -Ofast -qopenmp -DMKL_ILP64 -I${MKLROOT}/include -I${HDFINC} -ipo
+CPPFLAGS = -std=c++11 -Ofast -qopenmp -DMKL_ILP64 -I${MKLROOT}/include -I${HDFPINC} -ipo
 ## NON-INTEL
-CPPFLAGS = -std=c++11 -Ofast -fopenmp -I${HDFINC} -Wno-narrowing -flto
+# CPPFLAGS = -std=c++11 -Ofast -fopenmp -I${HDFPINC} -Wno-narrowing -flto
 
 #################################################################
 ## Link options
 #################################################################
 ## INTEL
-# LDFLAGS = -L${HDFLIB}  -L${MKLROOT}/lib/intel64 -lmkl_intel_ilp64 -lmkl_intel_thread -lmkl_core -liomp5 -lpthread -lm -ldl -lhdf5 -lz -ipo
+LDFLAGS = -L${HDFPLIB}  -L${MKLROOT}/lib/intel64 -lmkl_intel_ilp64 -lmkl_intel_thread -lmkl_core -liomp5 -lpthread -lm -ldl -lhdf5 -lz -ipo
 ## NON-INTEL
-LDFLAGS = -L${HDFLIB} -lhdf5 -lz -flto
+# LDFLAGS = -L${HDFPLIB} -lhdf5 -lz -flto
 
 #################################################################
 ## Gtest options
