@@ -13,3 +13,4 @@ TEMPNAME skyrm_half.txt
 PRINT_LATT 1
 FIELDNAME skyrm_half.dat
 PROTOCOL 1
+NLATTS 1
