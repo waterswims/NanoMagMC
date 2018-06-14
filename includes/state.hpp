@@ -1,8 +1,9 @@
 #ifndef _STATE
 #define _STATE
 
-#include "hamiltonian.hpp"
+#include "param_read.hpp"
 #include "field_type.hpp"
+#include "thermodynamics.hpp"
 #include "shape.hpp"
 
 #include <string.h>
@@ -11,37 +12,39 @@
 class state
 {
 private:
-    double E, beta, k_b;
-    std::vector<double> M;
-    std::vector<double> subM;
-    int num, snum;
-    char s_code, h_code;
-    ham_type* hamil;
-    field_type* field;
+    double beta, k_b;
+    xt::xtensorf<double, xt::xshape<4>> H;
+    int num, snum, s4num, h_ind, edgesize;
+    char s_code;
+    particle::field::field_type field;
+    particle::td::functionObject td_funcs;
     particle::shape::shape_type* shape;
 
 public:
     state(){}
-    state(double size, bool isPerio, char shape_code, char ham_code, double J,
-        double H, double k, double Temp, double K, double* args);
+    state(stateOptions opt);
     state(const state& other);
     ~state();
+    particle::field::field_type get_field() {return field;}
     void copy_points(const state& other);
-    void init_points(double size, bool isPerio, double H, double J, double K, double* args);
+    void init_points(stateOptions opt);
     void equil(int iter);
     std::vector<double> magnetisation();
     std::vector<double> submag(int subnumber);
+    std::vector<double> sub4mag();
     double energy();
     std::vector<double> tcharge();
     int num_spins();
+    int get_size() {return edgesize;}
     int sub_num(int subnumber);
+    int sub4_num();
     void init_lattice();
     void change_temp(double T);
-    void change_field(double H);
+    void change_field(double Hin);
     state& operator=(const state& other);
     void print_latt();
     void ptf(std::string fname, std::string arrname);
-    void add_to_av(field_type* other_field);
+    void add_to_av(particle::field::field_type& other_field);
     void change_v1(int protocol, double v1);
     void change_v2(int protocol, double v2);
     void send_latt_data(int dest_rank);

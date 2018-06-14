@@ -1,269 +1,123 @@
 #include "../includes/state.hpp"
-
-#ifdef __INTEL_COMPILER
-#include "../includes/mklrand.hpp"
-#define IRANDTYPE mklrand::mkl_irand
-#define DRANDTYPE mklrand::mkl_drand
-#else
 #include "../includes/stdrand.hpp"
 #define IRANDTYPE stdrand::std_i_unirand
 #define DRANDTYPE stdrand::std_d_unirand
-#endif
 
 #include "../includes/functions.hpp"
 #include <iostream>
 #include <fstream>
 #include <cmath>
+#include <xtensor/xio.hpp>
 
 extern IRANDTYPE st_rand_int;
 extern DRANDTYPE st_rand_double;
 
-state::state(double size, bool isPerio, char shape_code, char ham_code, double J,
-    double H, double k, double Temp, double K, double* args)
+state::state(stateOptions opt)
 {
-    h_code = ham_code;
-    s_code = shape_code;
+    td_funcs.setup((opt.J!=0), (opt.K!=0));
 
-    this->init_points(size, isPerio, H, J, K, args);
+    s_code = opt.shape_code;
+    edgesize = opt.edgeSize;
 
-    k_b = k;
-    this->change_temp(Temp);
+    h_ind = 2;
+    if(opt.isIsing)
+    {
+        h_ind = 0;
+    }
+    H = {0, 0, 0, 0};
+    H[h_ind] = opt.H;
+
+    this->init_points(opt);
+
+    k_b = opt.k;
+    this->change_temp(opt.T);
     this->init_lattice();
 }
 
 state::state(const state& other)
 {
-    E = other.E;
-    M = other.M;
-    beta = other.beta;
-    k_b = other.k_b;
-    num = other.num;
-    h_code = other.h_code;
-    s_code = other.s_code;
     this->copy_points(other);
 }
 
 state& state::operator=(const state& other)
 {
-    E = other.E;
-    M = other.M;
-    beta = other.beta;
-    k_b = other.k_b;
-    num = other.num;
-    h_code = other.h_code;
-    s_code = other.s_code;
     this->copy_points(other);
+    return *this;
 }
 
-void state::init_points(double size, bool isPerio, double H, double J, double K, double* args)
+void state::init_points(stateOptions opt)
 {
-    switch(h_code)
+    int pad = 1;
+    double sizeab = opt.size;
+    double sizec = opt.size;
+    int d;
+    switch (s_code)
     {
-        case 'i':
-        case 'I':
-            hamil = new ham_ising(H, J);
-            break;
-        case 'h':
-        case 'H':
-            hamil = new ham_heis(H, J);
-            break;
-        case 'f':
-        case 'F':
-            hamil = new ham_FePt(H);
-            break;
         case 's':
         case 'S':
-            hamil = new ham_skyrm(H, J, K);
+            d = 2;
+            shape = new particle::shape::square;
+            break;
+        case 'w':
+        case 'W':
+            d = 2;
+            shape = new particle::shape::weibull(opt.size, opt.beta);
+            break;
+        case 'c':
+        case 'C':
+            d = 3;
+            shape = new particle::shape::cube;
+            break;
+        case 'x':
+        case 'X':
+            d = 3;
+            shape = new particle::shape::weibull(opt.size, opt.beta);
             break;
         default:
-            std::cerr << "Incorrect hamiltonian, exiting..." << std::endl;
-            exit(102);
+            std::cerr << "Incorrect shape code, exiting" << std::endl;
+            exit(103);
     }
-    int pad = 1;
-    double sizeab = size;
-    double sizec = size;
-    switch (h_code)
-    {
-        case 'f':
-        case 'F':
-            sizeab = size / 0.26233661582;
-            sizec = size / 0.385;
-            switch (s_code)
-            {
-                case 'x':
-                case 'X':
-                    field = new field_3d_h(int(2*sizeab+10), isPerio, pad);
-                    shape = new particle::shape::weibull(args[0], sizeab,
-                        sizeab, sizec);
-                    break;
-                default:
-                    std::cerr << "Incorrect shape code, FePt only works with Weibull, exiting" << std::endl;
-                    exit(103);
-            }
-            break;
-        case 's':
-        case 'S':
-            pad *= 2;
-        case 'h':
-        case 'H':
-        switch (s_code)
-        {
-            case 's':
-            case 'S':
-                field = new field_2d_h(int(size), isPerio, pad);
-                shape = new particle::shape::square;
-                break;
-            case 'w':
-            case 'W':
-                field = new field_2d_h(int(2*size+10), isPerio, pad);
-                shape = new particle::shape::weibull((size), args[0]);
-                break;
-            case 'c':
-            case 'C':
-                field = new field_3d_h(int(size), isPerio, pad);
-                shape = new particle::shape::cube;
-                break;
-            case 'x':
-            case 'X':
-                field = new field_3d_h(int(2*size+10), isPerio, pad);
-                shape = new particle::shape::weibull((size), args[0]);
-                break;
-            default:
-                std::cerr << "Incorrect shape code, exiting" << std::endl;
-                exit(103);
-        }
-        break;
-
-        case 'i':
-        case 'I':
-        switch (s_code)
-        {
-            case 's':
-            case 'S':
-                field = new field_2d_i(int(size), isPerio);
-                shape = new particle::shape::square;
-                break;
-            case 'w':
-            case 'W':
-                field = new field_2d_i(int(2*size+10), isPerio);
-                shape = new particle::shape::weibull((size), args[0]);
-                break;
-            case 'c':
-            case 'C':
-                field = new field_3d_i(int(size), isPerio);
-                shape = new particle::shape::cube;
-                break;
-            case 'x':
-            case 'X':
-                field = new field_3d_i(int(2*size+10), isPerio);
-                shape = new particle::shape::weibull((size), args[0]);
-                break;
-            default:
-                std::cerr << "Incorrect shape code, exiting" << std::endl;
-                exit(103);
-        }
-        break;
-    }
-    hamil->init_dim(field);
+    field = particle::field::field_type(opt.isIsing, opt.isPerio, d,
+        opt.edgeSize, opt.J, opt.K, opt.intFile);
 }
 
 void state::copy_points(const state& other)
 {
-    switch(other.h_code)
+    field = other.field;
+    td_funcs = other.td_funcs;
+    beta = other.beta;
+    k_b = other.k_b;
+    num = other.num;
+    s_code = other.s_code;
+    edgesize = other.edgesize;
+    H = other.H;
+    h_ind = other.h_ind;
+    switch (s_code)
     {
-        case 'i':
-        case 'I':
-            hamil = new ham_ising(*(other.hamil));
-            break;
-        case 'h':
-        case 'H':
-            hamil = new ham_heis(*(other.hamil));
-            break;
-        case 'f':
-        case 'F':
-            hamil = new ham_FePt(*(other.hamil));
-            break;
         case 's':
         case 'S':
-            hamil = new ham_skyrm(*(other.hamil));
+            shape = new particle::shape::square;
+            break;
+        case 'w':
+        case 'W':
+            shape = new particle::shape::weibull(*(other.shape));
+            break;
+        case 'c':
+        case 'C':
+            shape = new particle::shape::cube;
+            break;
+        case 'x':
+        case 'X':
+            shape = new particle::shape::weibull(*(other.shape));
             break;
         default:
-            std::cerr << "Incorrect hamiltonian, exiting..." << std::endl;
-            exit(102);
+            std::cerr << "Incorrect shape code, exiting" << std::endl;
+            exit(103);
     }
-    switch (h_code)
-    {
-        case 'h':
-        case 'H':
-        case 'f':
-        case 'F':
-        case 's':
-        case 'S':
-        switch (s_code)
-        {
-            case 's':
-            case 'S':
-                field = new field_2d_h(*(other.field));
-                shape = new particle::shape::square;
-                break;
-            case 'w':
-            case 'W':
-                field = new field_2d_h(*(other.field));
-                shape = new particle::shape::weibull(*(other.shape));
-                break;
-            case 'c':
-            case 'C':
-                field = new field_3d_h(*(other.field));
-                shape = new particle::shape::cube;
-                break;
-            case 'x':
-            case 'X':
-                field = new field_3d_h(*(other.field));
-                shape = new particle::shape::weibull(*(other.shape));
-                break;
-            default:
-                std::cerr << "Incorrect shape code, exiting" << std::endl;
-                exit(103);
-        }
-        break;
-
-        case 'i':
-        case 'I':
-        switch (s_code)
-        {
-            case 's':
-            case 'S':
-                field = new field_2d_i(*(other.field));
-                shape = new particle::shape::square;
-                break;
-            case 'w':
-            case 'W':
-                field = new field_2d_i(*(other.field));
-                shape = new particle::shape::weibull(*(other.shape));
-                break;
-            case 'c':
-            case 'C':
-                field = new field_3d_i(*(other.field));
-                shape = new particle::shape::cube;
-                break;
-            case 'x':
-            case 'X':
-                field = new field_3d_i(*(other.field));
-                shape = new particle::shape::weibull(*(other.shape));
-                break;
-            default:
-                std::cerr << "Incorrect shape code, exiting" << std::endl;
-                exit(103);
-        }
-        break;
-    }
-    hamil->init_dim(field);
 }
 
 state::~state()
 {
-    delete hamil;
-    delete field;
     delete shape;
 }
 
@@ -271,65 +125,78 @@ void state::init_lattice()
 {
     num = 0;
     snum = 0;
-    int start = (field->get_totsize() - field->get_insize()) / 2;
-    int dim = field->get_dim();
-    std::vector<int> pos(dim, start);
-    bool finished = false;
-    while (!finished)
+    s4num = 0;
+    int dim = field.get_dim();
+    std::vector<int> pos(dim, 0);
+    xt::xtensorf<int, xt::xshape<4>> posva = {0, 0, 0, 0};
+    for(int i = 0; i < pow(edgesize, dim); i++)
     {
-        bool fillspin = shape->check(pos, field->get_totsize());
+        bool fillspin = shape->check(pos, edgesize);
         int possum = sum(pos);
         if (fillspin)
         {
-            field->fill_rand(pos);
+            field.add_spin(posva);
             num++;
+
             if (possum%2 == 0){snum++;}
+
+            int possum2 = posva[0] + posva[1];
+            int posdiff = -posva[0] + posva[1] + (edgesize - edgesize%4);
+            if (possum2%4 == 0 && posdiff%4 == 0 && posva[2]%4 == 0)
+            {
+                s4num++;
+            }
+            else if (possum2%4 == 2 && posdiff%4 == 2 && posva[2]%4 == 2)
+            {
+                s4num++;
+            }
         }
-        else{field->fill_zero(pos);}
-        field->next(finished, pos);
+        pos[dim-1]++;
+        posva[dim-1]++;
+        for(int j=dim-1; j > 0; j--)
+        {
+            if(pos[dim-j] == edgesize)
+            {
+                pos[dim-j] = 0;
+                pos[dim-j-1]++;
+                posva[dim-j] = 0;
+                posva[dim-j-1]++;
+            }
+        }
     }
-    field->fill_ghost(start);
+    field.all_rand();
+    field.set_neigh();
 }
 
 void state::equil(int iter)
 {
-    int dim = field->get_dim();
-    int size = field->get_insize();
-    int tsize = field->get_totsize();
-    int per = field->get_perio();
-
-    int s_start = (tsize-size)/2;
+    int size = field.get_size();
+    int choice;
 
     // create some variables
-    std::vector<int> r_choice(dim);
-    double dE = 0;
+    double dE = 0, spare;
     double log_eta = 0;
 
     for (int i=0; i<iter; i++)
     {
-        for (int j=0; j < dim; j++)
-        {
-            r_choice[j] = int(st_rand_double.gen() * size)+s_start;
-        }
+        choice = int(st_rand_double.gen() * size);
 
-        if(field->check_zero(r_choice))
-        {
-            i--;
-            continue;
-        }
+        field.gen_rand();
+
         //check dE
-        dE = hamil->dE(field, r_choice);
+        dE = td_funcs.calc_dE(field, choice, H);
+
         //check if flip
         if(dE <= 0)
         {
-            field->change_to_test(r_choice, hamil);
+            field.set_rand(choice);
         }
         else
         {
             log_eta = log(st_rand_double.gen());
 			if ((-dE * beta) > log_eta)
 			{
-                field->change_to_test(r_choice, hamil);
+                field.set_rand(choice);
 			}
         }
     }
@@ -337,22 +204,45 @@ void state::equil(int iter)
 
 std::vector<double> state::magnetisation()
 {
-    return hamil->calc_M(field);
+    xt::xtensorf<double, xt::xshape<4>> M = td_funcs.calc_M(field);
+    std::vector<double> M_out;
+    for(int i=0; i < 4; i++)
+    {
+        M_out.push_back(M[i]);
+    }
+    return M_out;
 }
 
 std::vector<double> state::submag(int subnumber)
 {
-    return hamil->calc_subM(field, 0);
+    xt::xtensorf<double, xt::xshape<4>> M = td_funcs.calc_subM(field, 0);
+    std::vector<double> M_out;
+    for(int i=0; i < 4; i++)
+    {
+        M_out.push_back(M[i]);
+    }
+    return M_out;
+}
+
+std::vector<double> state::sub4mag()
+{
+    xt::xtensorf<double, xt::xshape<4>> M = td_funcs.calc_sub4M(field);
+    std::vector<double> M_out;
+    for(int i=0; i < 4; i++)
+    {
+        M_out.push_back(M[i]);
+    }
+    return M_out;
 }
 
 double state::energy()
 {
-    return hamil->calc_E(field);
+    return td_funcs.calc_E(field, H);
 }
 
 std::vector<double> state::tcharge()
 {
-    return hamil->calc_top_charge(field);
+    return td_funcs.calc_TC(field);
 }
 
 int state::num_spins()
@@ -365,6 +255,11 @@ int state::sub_num(int subnumber)
     return snum;
 }
 
+int state::sub4_num()
+{
+    return s4num;
+}
+
 void state::change_temp(double T)
 {
     if (T <= 0)
@@ -373,12 +268,11 @@ void state::change_temp(double T)
         exit(104);
     }
     beta = 1.0 / (k_b * T);
-    // std::cout << "T = " << T << ", k = " << k_b << ", beta = " << beta << std::endl;
 }
 
-void state::change_field(double H)
+void state::change_field(double Hin)
 {
-    hamil->set_H(H);
+    H[h_ind] = Hin;
 }
 
 void state::print_latt()
@@ -388,24 +282,16 @@ void state::print_latt()
 
 void state::ptf(std::string fname, std::string arrname)
 {
-    field->print(fname, arrname);
+    field.print(fname, arrname);
 }
 
-void state::add_to_av(field_type* other_field)
+void state::add_to_av(particle::field::field_type& other_field)
 {
-    int i_size = field->get_insize();
-    int t_size = field->get_totsize();
-    int start = (t_size - i_size) / 2;
-    int dim = field->get_dim();
-    std::vector<int> pos(dim, start);
-    bool finished = false;
-    std::vector<double> curr(dim);
+    int size = field.get_size();
 
-    while(!finished)
+    for(int i = 0; i < size; i++)
     {
-        field->h_access(pos, curr);
-        other_field->add_val_h(pos, curr);
-        field->next(finished, pos);
+        other_field.access(i) += field.access(i);
     }
 }
 
@@ -441,10 +327,10 @@ void state::change_v2(int protocol, double v2)
 
 void state::send_latt_data(int dest_rank)
 {
-    field->send_data(dest_rank);
+    field.send_data(dest_rank);
 }
 
 void state::recv_latt_data(int src_rank)
 {
-    field->recv_data(src_rank);
+    field.recv_data(src_rank);
 }

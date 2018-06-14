@@ -4,7 +4,7 @@
 <meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
 <meta http-equiv="X-UA-Compatible" content="IE=9"/>
 <meta name="generator" content="Doxygen 1.8.11"/>
-<title>MC_HAMR: stdrand::std_randbase Class Reference</title>
+<title>NanoMagMC: stdrand::std_randbase Class Reference</title>
 <link href="../../tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="../../jquery.js"></script>
 <script type="text/javascript" src="../../dynsections.js"></script>
@@ -23,10 +23,10 @@
  <tbody>
  <tr style="height: 56px;">
   <td id="projectalign" style="padding-left: 0.5em;">
-   <div id="projectname">MC_HAMR
-   &#160;<span id="projectnumber">v0.01</span>
+   <div id="projectname">NanoMagMC
+   &#160;<span id="projectnumber">v0.2</span>
    </div>
-   <div id="projectbrief">Monte Carlo Simulation Software for Atomistic Models of Magnetic Materials for Heat Assisted Magnetic Recording</div>
+   <div id="projectbrief">Monte Carlo Simulation Software for Atomistic Models of Magnetic Materials</div>
   </td>
  </tr>
  </tbody>
@@ -113,6 +113,14 @@ Inheritance diagram for stdrand::std_randbase:</div>
 <area shape="rect" id="node5" href="../../d5/d23/classstdrand_1_1std__normrand.html" title="Generator for random numbers on a normal distribution. " alt="" coords="213,157,365,184"/>
 </map>
 <center><span class="legend">[<a href="../../graph_legend.html">legend</a>]</span></center></div>
+<div class="dynheader">
+Collaboration diagram for stdrand::std_randbase:</div>
+<div class="dyncontent">
+<div class="center"><img src="../../d0/d37/classstdrand_1_1std__randbase__coll__graph.png" border="0" usemap="#stdrand_1_1std__randbase_coll__map" alt="Collaboration graph"/></div>
+<map name="stdrand_1_1std__randbase_coll__map" id="stdrand_1_1std__randbase_coll__map">
+<area shape="rect" id="node2" href="../../dd/dad/structrng_1_1rng128.html" title="rng::rng128" alt="" coords="37,5,124,32"/>
+</map>
+<center><span class="legend">[<a href="../../graph_legend.html">legend</a>]</span></center></div>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
@@ -125,11 +133,17 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:ae4d2a7ab5253b8d21ce4ede8f9988f24"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../db/d79/classstdrand_1_1std__randbase.html#ae4d2a7ab5253b8d21ce4ede8f9988f24">change_seed</a> (int seed)</td></tr>
 <tr class="memdesc:ae4d2a7ab5253b8d21ce4ede8f9988f24"><td class="mdescLeft">&#160;</td><td class="mdescRight">Change the current random seed.  <a href="#ae4d2a7ab5253b8d21ce4ede8f9988f24">More...</a><br /></td></tr>
 <tr class="separator:ae4d2a7ab5253b8d21ce4ede8f9988f24"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a76e2d3761b0d1409f41dc73c8a87b0d5"><td class="memItemLeft" align="right" valign="top">virtual double&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../db/d79/classstdrand_1_1std__randbase.html#a76e2d3761b0d1409f41dc73c8a87b0d5">gen</a> ()</td></tr>
+<tr class="memdesc:a76e2d3761b0d1409f41dc73c8a87b0d5"><td class="mdescLeft">&#160;</td><td class="mdescRight">Return a single random number.  <a href="#a76e2d3761b0d1409f41dc73c8a87b0d5">More...</a><br /></td></tr>
+<tr class="separator:a76e2d3761b0d1409f41dc73c8a87b0d5"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a1f59d641467d33c51df65651212dac1f"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../db/d79/classstdrand_1_1std__randbase.html#a1f59d641467d33c51df65651212dac1f">jump</a> ()</td></tr>
+<tr class="memdesc:a1f59d641467d33c51df65651212dac1f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Jump forward 2^64 places.  <a href="#a1f59d641467d33c51df65651212dac1f">More...</a><br /></td></tr>
+<tr class="separator:a1f59d641467d33c51df65651212dac1f"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pro-attribs"></a>
 Protected Attributes</h2></td></tr>
-<tr class="memitem:a5a5ef1aba1d27d8ec497b7033eca5335"><td class="memItemLeft" align="right" valign="top">std::mt19937_64&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../db/d79/classstdrand_1_1std__randbase.html#a5a5ef1aba1d27d8ec497b7033eca5335">generator</a></td></tr>
-<tr class="separator:a5a5ef1aba1d27d8ec497b7033eca5335"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a04dc8f49595791e10967b74a4b137b53"><td class="memItemLeft" align="right" valign="top"><a class="el" href="../../dd/dad/structrng_1_1rng128.html">rng::rng128</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../db/d79/classstdrand_1_1std__randbase.html#a04dc8f49595791e10967b74a4b137b53">generator</a></td></tr>
+<tr class="separator:a04dc8f49595791e10967b74a4b137b53"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>Base class for the random number generators. </p>
@@ -217,8 +231,7 @@ Protected Attributes</h2></td></tr>
 
 </div>
 </div>
-<h2 class="groupheader">Member Data Documentation</h2>
-<a class="anchor" id="a5a5ef1aba1d27d8ec497b7033eca5335"></a>
+<a class="anchor" id="a76e2d3761b0d1409f41dc73c8a87b0d5"></a>
 <div class="memitem">
 <div class="memproto">
 <table class="mlabels">
@@ -226,7 +239,60 @@ Protected Attributes</h2></td></tr>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">std::mt19937_64 stdrand::std_randbase::generator</td>
+          <td class="memname">virtual double stdrand::std_randbase::gen </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span><span class="mlabel">virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Return a single random number. </p>
+
+<p>Reimplemented in <a class="el" href="../../dd/d26/classstdrand_1_1std__lognormrand.html#a4521bea46b321ea53a2026eac8dc046a">stdrand::std_lognormrand</a>, <a class="el" href="../../d5/d23/classstdrand_1_1std__normrand.html#adf3d7e53ddd7a0aa6b43b08038f09c91">stdrand::std_normrand</a>, <a class="el" href="../../d6/dd5/classstdrand_1_1std__i__unirand.html#abe9833ea9fab736cf3b03b529498b767">stdrand::std_i_unirand</a>, and <a class="el" href="../../d5/dbe/classstdrand_1_1std__d__unirand.html#a3dde71452da1a44bd6be86877e74be74">stdrand::std_d_unirand</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="a1f59d641467d33c51df65651212dac1f"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void stdrand::std_randbase::jump </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Jump forward 2^64 places. </p>
+
+</div>
+</div>
+<h2 class="groupheader">Member Data Documentation</h2>
+<a class="anchor" id="a04dc8f49595791e10967b74a4b137b53"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="../../dd/dad/structrng_1_1rng128.html">rng::rng128</a> stdrand::std_randbase::generator</td>
         </tr>
       </table>
   </td>

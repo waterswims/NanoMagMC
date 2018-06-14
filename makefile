@@ -4,8 +4,8 @@
 ## Location of the HDF5 instalation
 #################################################################
 ## IRIDIS BUILD - Using intel compilers
-#HDFLIB=/local/software/gdf5/1.8.11/intel-par/lib
-#HDFINC=/local/software/gdf5/1.8.11/intel-par/include
+#HDFPLIB=/local/software/gdf5/1.8.11/intel-par/lib
+#HDFPINC=/local/software/gdf5/1.8.11/intel-par/include
 
 #################################################################
 ## Directories
@@ -16,32 +16,28 @@ LIB_PATH = lib
 OBJ_PATH = obj
 TEST_PATH = tests
 
+XTEN = xtensor/include
+XTL = xtl/include
+XSIMD = xsimd/include
+XLIN = xtensor-blas/include
+
 #################################################################
 ## Files to use
 #################################################################
 
 TEST_FILES = $(wildcard $(TEST_PATH)/*.hpp)
 NOMAIN_FILES = $(filter-out $(LIB_PATH)/main.cpp, $(wildcard $(LIB_PATH)/*.cpp))
-## NON-INTEL
 SOURCE_FILES = $(filter-out $(LIB_PATH)/mklrand.cpp, $(NOMAIN_FILES))
-## INTEL
-# SOURCE_FILES = $(filter-out $(LIB_PATH)/stdrand.cpp, $(NOMAIN_FILES))
 OBJS = $(addprefix $(OBJ_PATH)/, $(notdir $(SOURCE_FILES:.cpp=.o)))
 
 #################################################################
 ## Compile options
 #################################################################
-## INTEL
-# CPPFLAGS = -std=c++11 -Ofast -qopenmp -DMKL_ILP64 -I${MKLROOT}/include -I${HDFPINC} -ipo
-## NON-INTEL
-CPPFLAGS = -std=c++11 -Ofast -fopenmp -I${HDFPINC} -Wno-narrowing -flto
+CPPFLAGS = -std=c++14 -Ofast -fopenmp -I${HDFPINC} -I${XTEN} -I${XLIN} -I${XTL} -I${XSIMD} -Wno-narrowing -flto
 
 #################################################################
 ## Link options
 #################################################################
-## INTEL
-# LDFLAGS = -L${HDFPLIB}  -L${MKLROOT}/lib/intel64 -lmkl_intel_ilp64 -lmkl_intel_thread -lmkl_core -liomp5 -lpthread -lm -ldl -lhdf5 -lz -ipo
-## NON-INTEL
 LDFLAGS = -L${HDFPLIB} -lhdf5 -lz -flto
 
 #################################################################

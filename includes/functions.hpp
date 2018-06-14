@@ -5,6 +5,9 @@
 #include <fstream>
 #include <cstring>
 
+#define XTENSOR_USE_XSIMD
+#include <xtensor/xfixed.hpp>
+
 double mean(std::vector<double> &oY);
 
 double std_dev(std::vector<double> &x);
@@ -19,9 +22,9 @@ void AtoLn(double amean, double asd, double &lmean, double &lsd);
 
 int mod(int a, int b);
 
-double solid_angle(const std::vector<double> &s1,
-                const std::vector<double> &s2,
-                const std::vector<double> &s3,
-                std::vector<double> &buff);
+void c_prod(
+    const xt::xtensorf<double, xt::xshape<4>> &s1,
+    const xt::xtensorf<double, xt::xshape<4>> &s2,
+    xt::xtensorf<double, xt::xshape<4>> &out);
 
 #endif
