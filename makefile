@@ -3,9 +3,8 @@
 #################################################################
 ## Location of the HDF5 instalation
 #################################################################
-## IRIDIS BUILD - Using intel compilers
-#HDFPLIB=/local/software/gdf5/1.8.11/intel-par/lib
-#HDFPINC=/local/software/gdf5/1.8.11/intel-par/include
+#HDFPLIB=
+#HDFPINC=
 
 #################################################################
 ## Directories
@@ -16,9 +15,9 @@ LIB_PATH = lib
 OBJ_PATH = obj
 TEST_PATH = tests
 
-XTEN = xtensor/include
-XTL = xtl/include
-XSIMD = xsimd/include
+XTEN = ./xtensor/include
+XTL = ./xtl/include
+XSIMD = ./xsimd/include
 
 #################################################################
 ## Files to use
