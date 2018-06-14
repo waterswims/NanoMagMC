@@ -1,16 +1,16 @@
 [submodule "tests/googletest"]
 	path = tests/googletest
-	url = https://github.com/google/googletest.git
+	url = git@github.com:google/googletest.git
 	branch = master
 [submodule "xtl"]
 	path = xtl
-	url = https://github.com/QuantStack/xtl.git
+	url = git@github.com:QuantStack/xtl.git
 [submodule "xtensor"]
 	path = xtensor
-	url = https://github.com/QuantStack/xtensor.git
+	url = git@github.com:QuantStack/xtensor.git
 [submodule "xsimd"]
 	path = xsimd
-	url = https://github.com/QuantStack/xsimd.git
+	url = git@github.com:QuantStack/xsimd.git
 [submodule "xtensor-blas"]
 	path = xtensor-blas
 	url = https://github.com/QuantStack/xtensor-blas.git
