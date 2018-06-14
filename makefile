@@ -19,7 +19,6 @@ TEST_PATH = tests
 XTEN = xtensor/include
 XTL = xtl/include
 XSIMD = xsimd/include
-XLIN = xtensor-blas/include
 
 #################################################################
 ## Files to use
@@ -33,7 +32,7 @@ OBJS = $(addprefix $(OBJ_PATH)/, $(notdir $(SOURCE_FILES:.cpp=.o)))
 #################################################################
 ## Compile options
 #################################################################
-CPPFLAGS = -std=c++14 -Ofast -fopenmp -I${HDFPINC} -I${XTEN} -I${XLIN} -I${XTL} -I${XSIMD} -Wno-narrowing -flto
+CPPFLAGS = -std=c++14 -Ofast -fopenmp -I${HDFPINC} -I${XTEN} -I${XTL} -I${XSIMD} -Wno-narrowing -flto
 
 #################################################################
 ## Link options
