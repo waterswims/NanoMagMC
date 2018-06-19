@@ -29,7 +29,6 @@ struct simOptions
     int Eq_steps;
     int N_latts;
     int protocol;
-    bool printLatt;
     bool distrib;
     double amean;
     double asd;

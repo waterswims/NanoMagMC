@@ -105,6 +105,56 @@ void create_h5_file(stateOptions& stOpt,
 
         g_id = H5Gcreate2(file_id, "/Sing_Latt", H5P_DEFAULT, H5P_DEFAULT, H5P_DEFAULT);
         H5Gclose(g_id);
+
+        int d = 0;
+
+        switch(stOpt.shape_code)
+        {
+            case 'c':
+            case 'x':
+            case 'C':
+            case 'X':
+                d = 3;
+                break;
+            case 's':
+            case 'S':
+            case 'w':
+            case 'W':
+                d = 2;
+                break;
+        }
+
+        // create datasets
+        hsize_t *full_dims = (hsize_t*)malloc(sizeof(hsize_t)*(d+1));
+        if (stOpt.isIsing) {full_dims[d] = 1;}
+        else {full_dims[d] = 3;}
+        for(int i = 0; i < d; i++) {full_dims[i] = stOpt.edgeSize;}
+
+        hid_t dspace_id = H5Screate_simple(d+1, full_dims, NULL);
+        hid_t dset_id;
+        std::stringstream nstream;
+        std::string name;
+        for(int i=0; i < num_Ts; i++)
+        {
+            for(int j=0; j < num_Hs; j++)
+            {
+                nstream << "/Av_Latt/T_" << i << "-H_" << j;
+                nstream >> name;
+                nstream.clear();
+                dset_id = H5Dcreate(file_id, name.c_str(), H5T_NATIVE_FLOAT,
+                    dspace_id, H5P_DEFAULT, H5P_DEFAULT, H5P_DEFAULT);
+                H5Dclose(dset_id);
+
+                nstream << "/Sing_Latt/T_" << i << "-H_" << j;
+                nstream >> name;
+                nstream.clear();
+                dset_id = H5Dcreate(file_id, name.c_str(), H5T_NATIVE_FLOAT,
+                    dspace_id, H5P_DEFAULT, H5P_DEFAULT, H5P_DEFAULT);
+                H5Dclose(dset_id);
+            }
+        }
+
+        free(full_dims);
     }
 
     // create datasets
@@ -403,5 +453,6 @@ void print_TD_h5(const float* magx,
     {
         std::cout << "\rPrinting H = " << H << ", T = " << T;
         std::cout << ", lattice number " << latt_num << "              ";
+        std::cout << std::flush;
     }
 }

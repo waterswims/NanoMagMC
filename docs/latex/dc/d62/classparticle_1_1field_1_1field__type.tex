@@ -58,8 +58,6 @@ void \hyperlink{classparticle_1_1field_1_1field__type_a3d14b4ed88a12ac2cfc0ed194
 \begin{DoxyCompactList}\small\item\em Set all spins to a random state. \end{DoxyCompactList}\item 
 void \hyperlink{classparticle_1_1field_1_1field__type_a0ea5e47a876e032d71f80f36fb7d420e}{all\+\_\+zero} ()
 \begin{DoxyCompactList}\small\item\em Set all spins to a zero state. \end{DoxyCompactList}\item 
-void \hyperlink{classparticle_1_1field_1_1field__type_a35366643a91d160dd49ed129fb638906}{print\+\_\+setup} (const std\+::string filename, const std\+::string groupname, const int Tmax, const int Hmax)
-\item 
 void \hyperlink{classparticle_1_1field_1_1field__type_affdbf54dbaf99790a4002c0a34a41617}{print} (std\+::string filename, std\+::string arrname)
 \item 
 void \hyperlink{classparticle_1_1field_1_1field__type_a556f4573caf7bbf30a5319e8b7d72135}{send\+\_\+data} (int dest\+\_\+rank)
@@ -346,19 +344,7 @@ The number of spins in the field
 )}\hypertarget{classparticle_1_1field_1_1field__type_affdbf54dbaf99790a4002c0a34a41617}{}\label{classparticle_1_1field_1_1field__type_affdbf54dbaf99790a4002c0a34a41617}
 Print the lattice to a file
 
-/param filename The name of the H\+D\+F5 file /param arrname The name of the particular array to be printed to \index{particle\+::field\+::field\+\_\+type@{particle\+::field\+::field\+\_\+type}!print\+\_\+setup@{print\+\_\+setup}}
-\index{print\+\_\+setup@{print\+\_\+setup}!particle\+::field\+::field\+\_\+type@{particle\+::field\+::field\+\_\+type}}
-\subsubsection[{\texorpdfstring{print\+\_\+setup(const std\+::string filename, const std\+::string groupname, const int Tmax, const int Hmax)}{print_setup(const std::string filename, const std::string groupname, const int Tmax, const int Hmax)}}]{\setlength{\rightskip}{0pt plus 5cm}void particle\+::field\+::field\+\_\+type\+::print\+\_\+setup (
-\begin{DoxyParamCaption}
-\item[{const std\+::string}]{filename, }
-\item[{const std\+::string}]{groupname, }
-\item[{const int}]{Tmax, }
-\item[{const int}]{Hmax}
-\end{DoxyParamCaption}
-)}\hypertarget{classparticle_1_1field_1_1field__type_a35366643a91d160dd49ed129fb638906}{}\label{classparticle_1_1field_1_1field__type_a35366643a91d160dd49ed129fb638906}
-Set up the H\+D\+F5 file for array printing
-
-/param filename The name of the H\+D\+F5 file /param groupname The name of the group within the file to store the lattices /param Tmax The number of temperatures /param Hmax The number of fields \index{particle\+::field\+::field\+\_\+type@{particle\+::field\+::field\+\_\+type}!recv\+\_\+data@{recv\+\_\+data}}
+/param filename The name of the H\+D\+F5 file /param arrname The name of the particular array to be printed to \index{particle\+::field\+::field\+\_\+type@{particle\+::field\+::field\+\_\+type}!recv\+\_\+data@{recv\+\_\+data}}
 \index{recv\+\_\+data@{recv\+\_\+data}!particle\+::field\+::field\+\_\+type@{particle\+::field\+::field\+\_\+type}}
 \subsubsection[{\texorpdfstring{recv\+\_\+data(int src\+\_\+rank)}{recv_data(int src_rank)}}]{\setlength{\rightskip}{0pt plus 5cm}void particle\+::field\+::field\+\_\+type\+::recv\+\_\+data (
 \begin{DoxyParamCaption}

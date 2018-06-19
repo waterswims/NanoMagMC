@@ -112,6 +112,7 @@ int main(int argc, char **argv)
 			rand_ln.jump();
 			continue;
 		}
+
 		if (simOpt.distrib) {stOpt.size = rand_ln.gen();}
 		else {stOpt.size = simOpt.amean;}
 		stOpt.T = Tmax;
@@ -120,16 +121,10 @@ int main(int argc, char **argv)
 		nums = base_state.num_spins();
 		s_nums = base_state.sub_num(0);
 
+
 		if (k == 0)
 		{
 			summed_field = base_state.get_field();
-			if ((!file_exists) && simOpt.printLatt)
-			{
-				summed_field.print_setup(simOpt.outFile, "Av_Latt", num_Ts,
-					num_Hs);
-				summed_field.print_setup(simOpt.outFile, "Sing_Latt", num_Ts,
-					num_Hs);
-			}
 		}
 
 		base_state.equil(20*simOpt.Eq_steps*nums);
@@ -158,7 +153,6 @@ int main(int argc, char **argv)
 			// Equillibriation
 			base_state.equil(simOpt.Eq_steps*nums);
 
-
 			// Send data to next rank, unless final rank
 			if(sub_rank != sub_size-1 && i != v1_final)
 			{
@@ -179,7 +173,7 @@ int main(int argc, char **argv)
 				curr_state.equil(simOpt.Eq_steps*nums);
 
 				// Zero print field
-				if(simOpt.printLatt && k == 0)
+				if(k == 0)
 				{
 					summed_field.all_zero();
 				}
@@ -239,7 +233,7 @@ int main(int argc, char **argv)
 					}
 
 					// Add sample to print lattice
-					if(simOpt.printLatt && k == 0)
+					if(k == 0)
 					{
 						curr_state.add_to_av(summed_field);
 					}
@@ -249,20 +243,19 @@ int main(int argc, char **argv)
 				print_TD_h5(magx1, magy1, magz1, mag1, ener1, smagx1, smagy1,
 					     smagz1, smag1, s4magx1, s4magy1, s4magz1, s4mag1,
 						 tcharges1, stOpt, simOpt, i, j, v2_size, k);
-				if (simOpt.printLatt)
+
+
+				if (k == 0)
 				{
-					if (k == 0)
-					{
-						std::string lname = av_latt_name(simOpt.protocol, i, j);
-						summed_field.print(simOpt.outFile, lname);
-						lname = sing_latt_name(simOpt.protocol, i, j);
-						curr_state.ptf(simOpt.outFile, lname);
-					}
-					else if (k/num_par == 0)
-					{
-						extra_file_open(simOpt.outFile);
-						extra_file_open(simOpt.outFile);
-					}
+					std::string lname = av_latt_name(simOpt.protocol, i, j);
+					summed_field.print(simOpt.outFile, lname);
+					lname = sing_latt_name(simOpt.protocol, i, j);
+					curr_state.ptf(simOpt.outFile, lname);
+				}
+				else if (k/num_par == 0)
+				{
+					extra_file_open(simOpt.outFile);
+					extra_file_open(simOpt.outFile);
 				}
 	        }
 

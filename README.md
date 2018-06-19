@@ -11,7 +11,7 @@
 
 ## Compiling the Code
 
-There is a makefile in the root folder. Typing "make" will correctly compile the code. CC can be set within this makefile or with environment variables.
+There is a makefile in the root folder. Typing "make" will correctly compile the code. CXX can be set within this makefile or with environment variables.
 
 ## Running the Code and the Input File
 
@@ -61,13 +61,11 @@ To run in parallel, run with "mpirun -n N ./run INPUT_FILE", where N is the numb
 
 * NLATTS: The number of different lattices to sample from. NSAMPS samples will be taken for each of these lattices.
 
-* PRINT_LATT: Boolean option signifying whether the average lattice should be stored. This may significantly increase file storage requirements. (This option has only been implemented for 3D continuous spin systems so far. Using it in other situations will result in large, blank datasets within the output.)
-
 * ISISING: Flag to say whether up/down simple Ising spins should be used.
 
 * EXCHANGE: The inter-atomic exchange coupling constant J between coupled atoms in the Ising and Heisenberg models.
 
-* DMISTREN: The strength of the DMI interaction for a skyrmion hamiltonian.
+* DMISTREN: The strength of the DMI interaction for a skyrmion Hamiltonian.
 
 ### Optional/Situational Settings
 

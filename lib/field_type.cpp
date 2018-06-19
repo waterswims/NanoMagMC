@@ -230,46 +230,6 @@ void particle::field::field_type::all_zero()
     }
 }
 
-void particle::field::field_type::print_setup(const std::string filename,
-    const std::string groupname,
-    const int Tmax,
-    const int Hmax)
-{
-    // Open existing file
-    hid_t plist_id = H5Pcreate(H5P_FILE_ACCESS);
-    H5Pset_fapl_mpio(plist_id, MPI_COMM_WORLD, MPI_INFO_NULL);
-    hid_t f_id = H5Fopen(filename.c_str(), H5F_ACC_RDWR, plist_id);
-    H5Pclose(plist_id);
-
-    // create datasets
-    hsize_t *full_dims = (hsize_t*)malloc(sizeof(hsize_t)*(d+1));
-    if (ising) {full_dims[d] = 1;}
-    else {full_dims[d] = 3;}
-    for(int i = 0; i < d; i++) {full_dims[i] = edgesize;}
-
-    hid_t dspace_id = H5Screate_simple(d+1, full_dims, NULL);
-    hid_t dset_id;
-    std::stringstream nstream;
-    std::string name;
-    for(int i=0; i < Tmax; i++)
-    {
-        for(int j=0; j < Hmax; j++)
-        {
-            nstream << groupname << "/T_" << i << "-H_" << j;
-            nstream >> name;
-            nstream.clear();
-            dset_id = H5Dcreate(f_id, name.c_str(), H5T_NATIVE_FLOAT,
-                dspace_id, H5P_DEFAULT, H5P_DEFAULT, H5P_DEFAULT);
-            H5Dclose(dset_id);
-        }
-    }
-
-    free(full_dims);
-
-    // close
-    H5Fclose(f_id);
-}
-
 void particle::field::field_type::print(std::string filename,
     std::string arrname)
 {

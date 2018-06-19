@@ -78,7 +78,6 @@ void read_all_vars(std::string f_name, stateOptions& stOpt, simOptions& simOpt)
     simOpt.tempFile = read_var<std::string>("TEMPNAME", f_name);
     simOpt.fieldFile = read_var<std::string>("FIELDNAME", f_name);
     simOpt.protocol = read_var<int>("PROTOCOL", f_name);
-    simOpt.printLatt = read_var<int>("PRINT_LATT", f_name);
     stOpt.intFile = read_var<std::string>("INTERACTIONS", f_name);
 }
 

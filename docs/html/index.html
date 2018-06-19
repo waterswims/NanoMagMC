@@ -89,7 +89,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <li>Currently only linux and mac builds are supported.</li>
 </ul>
 <h2>Compiling the Code</h2>
-<p>There is a makefile in the root folder. Typing "make" will correctly compile the code. CC can be set within this makefile or with environment variables.</p>
+<p>There is a makefile in the root folder. Typing "make" will correctly compile the code. CXX can be set within this makefile or with environment variables.</p>
 <h2>Running the Code and the Input File</h2>
 <p>After compilation an executable file will be placed in the root folder named "run". This can be executed by typing "./run INPUT_FILE" where "INPUT_FILE" is the name of the input file which takes a number of arguments. An example input file is provided called "INPUT.dat".</p>
 <p>To run in parallel, run with "mpirun -n N ./run INPUT_FILE", where N is the number of processors to run with.</p>
@@ -119,10 +119,9 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 </ul>
 </li>
 <li>NLATTS: The number of different lattices to sample from. NSAMPS samples will be taken for each of these lattices.</li>
-<li>PRINT_LATT: Boolean option signifying whether the average lattice should be stored. This may significantly increase file storage requirements. (This option has only been implemented for 3D continuous spin systems so far. Using it in other situations will result in large, blank datasets within the output.)</li>
 <li>ISISING: Flag to say whether up/down simple Ising spins should be used.</li>
 <li>EXCHANGE: The inter-atomic exchange coupling constant J between coupled atoms in the Ising and Heisenberg models.</li>
-<li>DMISTREN: The strength of the DMI interaction for a skyrmion hamiltonian.</li>
+<li>DMISTREN: The strength of the DMI interaction for a skyrmion Hamiltonian.</li>
 </ul>
 <h3>Optional/Situational Settings</h3>
 <ul>

@@ -211,20 +211,6 @@ namespace particle{ namespace field {
         void all_zero();
 
         ////////////////////////////////////////////////////////////////////////
-        /// Set up the HDF5 file for array printing
-        ///
-        /// /param filename The name of the HDF5 file
-        /// /param groupname The name of the group within the file to store the
-        ///                  lattices
-        /// /param Tmax The number of temperatures
-        /// /param Hmax The number of fields
-        ////////////////////////////////////////////////////////////////////////
-        void print_setup(const std::string filename,
-            const std::string groupname,
-            const int Tmax,
-            const int Hmax);
-
-        ////////////////////////////////////////////////////////////////////////
         /// Print the lattice to a file
         ///
         /// /param filename The name of the HDF5 file
