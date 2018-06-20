@@ -115,11 +115,17 @@ xt::xtensorf<double, xt::xshape<4>> particle::td::functionObject::calc_subM(
     int subnumber)
 {
     int Nspins = lattice.get_size();
+    int d = lattice.get_dim();
+    int possum = 0;
     Vtemp = {0, 0, 0, 0};
 
     for(int i = 0; i < Nspins; i++)
     {
-        int possum = xt::eval(xt::sum(lattice.get_loc(i)))[0];
+        possum = 0;
+        for(int j = 0; j < d; j++)
+        {
+            possum += lattice.get_loc(i)[j];
+        }
         if (possum%2 == subnumber)
         {
             Vtemp += lattice.access(i);
