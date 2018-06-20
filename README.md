@@ -6,6 +6,7 @@
 ## Requirements
 
 * Requires a parallel build of HDF5 for data storage.
+* GSL for random number generation: This can be installed on Ubuntu using "sudo apt-get install libgsl-dev"
 * A C++14 capable compiler due to dependence on Xtensor library.
 * Currently only linux and mac builds are supported.
 
