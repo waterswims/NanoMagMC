@@ -228,15 +228,18 @@ void particle::field::field_type::print(std::string filename,
         new_y[i] = 0;
         new_z[i] = 0;
     }
+
+    std::cout << "Pre Array copy" << std::endl;
+
     for(int i = 0; i < spins.size(); i++)
     {
-        // std::cout << locs[i] << std::endl;
         int index = 0;
         for (int j = 0; j < d; j++)
         {
             index *= edgesize;
             index += locs[i][j];
         }
+        if(index >= t_size){std::cout << index << std::endl;}
         new_x[index] = spins[i][0];
         if (!ising)
         {
@@ -245,11 +248,15 @@ void particle::field::field_type::print(std::string filename,
         }
     }
 
+    std::cout << "Array copied" << std::endl;
+
     // Open existing file
     hid_t plist_id = H5Pcreate(H5P_FILE_ACCESS);
     H5Pset_fapl_mpio(plist_id, MPI_COMM_WORLD, MPI_INFO_NULL);
     hid_t f_id = H5Fopen(filename.c_str(), H5F_ACC_RDWR, plist_id);
     H5Pclose(plist_id);
+
+    std::cout << "File Opened" << std::endl;
 
     // Open dataset
     hid_t dset_id = H5Dopen1(f_id, arrname.c_str());

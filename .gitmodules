@@ -4,13 +4,13 @@
 	branch = master
 [submodule "ThirdParty/xtl"]
 	path = ThirdParty/xtl
-	url = git@github.com:QuantStack/xtl.git
+	url = git@github.com:xtensor-stack/xtl.git
 [submodule "ThirdParty/xtensor"]
 	path = ThirdParty/xtensor
-	url = git@github.com:QuantStack/xtensor.git
+	url = git@github.com:xtensor-stack/xtensor.git
 [submodule "ThirdParty/xsimd"]
 	path = ThirdParty/xsimd
-	url = git@github.com:QuantStack/xsimd.git
+	url = git@github.com:xtensor-stack/xsimd.git
 [submodule "ThirdParty/xtensor-blas"]
 	path = ThirdParty/xtensor-blas
-	url = https://github.com/QuantStack/xtensor-blas.git
+	url = git@github.com:xtensor-stack/xtensor-blas.git

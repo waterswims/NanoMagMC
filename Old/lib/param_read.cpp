@@ -59,7 +59,7 @@ void read_all_vars(std::string f_name, stateOptions& stOpt, simOptions& simOpt)
         case 'x':
         case 'X':
             stOpt.beta = read_var<double>("WEIBULLFACT", f_name);
-            stOpt.edgeSize = (simOpt.amean + 2*simOpt.asd) * 2 + 10;
+            stOpt.edgeSize = (simOpt.amean + 2*simOpt.asd) * 3;
             break;
         case 's':
         case 'S':

@@ -244,7 +244,6 @@ int main(int argc, char **argv)
 					     smagz1, smag1, s4magx1, s4magy1, s4magz1, s4mag1,
 						 tcharges1, stOpt, simOpt, i, j, v2_size, k);
 
-
 				if (k == 0)
 				{
 					std::string lname = av_latt_name(simOpt.protocol, i, j);

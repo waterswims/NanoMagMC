@@ -31,12 +31,12 @@ OBJS = $(addprefix $(OBJ_PATH)/, $(notdir $(SOURCE_FILES:.cpp=.o)))
 #################################################################
 ## Compile options
 #################################################################
-CPPFLAGS = -std=c++14 -Ofast -fopenmp -I${HDFPINC} -I${XTEN} -I${XTL} -I${XSIMD} -Wno-narrowing -flto
+CPPFLAGS = -std=c++14 -Ofast -fopenmp -I${HDFPINC} -I${XTEN} -I${XTL} -I${XSIMD} -Wno-narrowing -flto -g
 
 #################################################################
 ## Link options
 #################################################################
-LDFLAGS = -L${HDFPLIB} -lhdf5 -lz -lgsl -lgslcblas -flto
+LDFLAGS = -L${HDFPLIB} -lhdf5 -lz -lgsl -lgslcblas -flto -g
 
 #################################################################
 ## Gtest options
